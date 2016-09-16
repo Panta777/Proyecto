@@ -4,6 +4,7 @@
     Author     : panle
 --%>
 <%@page import="modelo.Idioma"%>
+<%@page session = "true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <!--
