@@ -20,7 +20,7 @@
     </head>
     <body class="landing">
         <%
-           
+
 //           if(request.getAttribute("Idioma").equals("Español") || request.getAttribute("Idioma") == null)
 //           {
 //               request.setAttribute("Idioma", "Español");
@@ -29,14 +29,13 @@
 //           {
 //                request.setAttribute("Idioma", "Ingles");
 //           }
-           
-           Idioma  idioma =new Idioma("Ingles");
+            Idioma idioma = new Idioma("Ingles");
             String nivel = "", usuario = "", rol = null, foto = null;
-System.out.println("///// Usuario: " + usuario);
+            System.out.println("///// Usuario: " + usuario);
             if (session.getAttribute("nivel") != null) {
                 nivel = session.getAttribute("nivel").toString();
                 usuario = session.getAttribute("user").toString();
-     System.out.println("///// Usuario:2 " + usuario);           
+                System.out.println("///// Usuario:2 " + usuario);
                 //  if (session.getAttribute("nivel").equals("1")) {
                 //response.sendRedirect("index.jsp");
                 //      out.write("Admin");
@@ -58,7 +57,7 @@ System.out.println("///// Usuario: " + usuario);
             <div id="page-wrapper">
                 <!-- Header -->
                 <header id="header" class="alt">
-                    <%if (usuario != ""){%>
+                    <%if (usuario != "") {%>
                     <h5 class="button">Usuario En el Sistema: <%=session.getAttribute("user").toString()%> </h5>
                     <%}%>
                     <nav id="nav">
@@ -90,9 +89,9 @@ System.out.println("///// Usuario: " + usuario);
                             </li>
                             <% if (session.getAttribute("user") == null) {%>
                             <li><a href="login.jsp" class="button">Entrar</a></li>
-                            <%} else {%>
-                            <li> <a href="# "class ="button"><%//session.invalidate();%>Salir</a> </li>
-                            <%}%>
+                                <%} else {%>
+                            <li> <a href="#" class ="button"><%session.invalidate();%>Salir</a> </li>
+                                <%}%>
                         </ul>
                     </nav>
                 </header>
@@ -122,21 +121,21 @@ System.out.println("///// Usuario: " + usuario);
 
                     <section class="box special features">
                         <div class="row">
-                             <div class="6u 12u(narrower)">
-                            <section class="box special">
-                                <!--  <span class="icon major fa-bolt accent2"></span>-->
-                                <span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
-                                <h3>Muebles Tradicionales</h3>
-                                <p>Este tipo de muebles se caracterizan por contar con una estética conservadora y  detalles muy elegantes, como maderas brillantes y oscuras, un diseño simétrico, tapicería delicada y curvas bien detalladas, entre otros.</p>
-                            </section>
-                             </div>
                             <div class="6u 12u(narrower)">
-                            <section class="box special">
-                                <!--  <span class="icon major fa-area-chart accent3"></span> -->
-                                <span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
-                                <h3>Muebles Modernos </h3>
-                                <p>Los muebles de este estilo presentan líneas ligeras y son asociados con el minimalismo posmoderno. Son producidos para ser funcionales y prácticos,ajustandose a las necesidades de la actualidad.</p>
-                            </section>
+                                <section class="box special">
+                                    <!--  <span class="icon major fa-bolt accent2"></span>-->
+                                    <span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
+                                    <h3>Muebles Tradicionales</h3>
+                                    <p>Este tipo de muebles se caracterizan por contar con una estética conservadora y  detalles muy elegantes, como maderas brillantes y oscuras, un diseño simétrico, tapicería delicada y curvas bien detalladas, entre otros.</p>
+                                </section>
+                            </div>
+                            <div class="6u 12u(narrower)">
+                                <section class="box special">
+                                    <!--  <span class="icon major fa-area-chart accent3"></span> -->
+                                    <span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
+                                    <h3>Muebles Modernos </h3>
+                                    <p>Los muebles de este estilo presentan líneas ligeras y son asociados con el minimalismo posmoderno. Son producidos para ser funcionales y prácticos,ajustandose a las necesidades de la actualidad.</p>
+                                </section>
                             </div>
                         </div>
                         <div class="row">
@@ -197,7 +196,7 @@ System.out.println("///// Usuario: " + usuario);
                         </div>
                         <%}%>
                     </div>
-                    
+
                 </section>
 
                 <!-- CTA 
@@ -242,6 +241,6 @@ System.out.println("///// Usuario: " + usuario);
             <script src="assets/js/util.js"></script>
             <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
             <script src="assets/js/main.js"></script>
-</section>
+        </section>
     </body>
 </html>
