@@ -1,0 +1,117 @@
+<%-- 
+    Document   : conctact
+    Created on : 12/09/2016, 02:26:32 PM
+    Author     : DesarrolloPantaleon
+--%>
+
+<!DOCTYPE HTML>
+<!--
+        Alpha by HTML5 UP
+        html5up.net | @ajlkn
+        Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+    <head>
+        <title>Contacto</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    </head>
+    <body>
+        <div id="page-wrapper">
+
+            <!-- Header -->
+            <header id="header">
+                <h1><a href="index.jsp">Alpha</a> by HTML5 UP</h1>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.jsp">Home</a></li>
+                        <li>
+                            <a href="#" class="icon fa-angle-down">Layouts</a>
+                            <ul>
+                                <li><a href="generic.jsp">Generic</a></li>
+                                <li><a href="contact.jsp">Contact</a></li>
+                                <li><a href="elements.jsp">Elements</a></li>
+                                <li>
+                                    <a href="#">Submenu</a>
+                                    <ul>
+                                        <li><a href="#">Opcion One</a></li>
+                                        <li><a href="#">Opcion Two</a></li>
+                                        <li><a href="#">Opcion Three</a></li>
+                                        <li><a href="#">Opcion Four</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#" class="button">Sign Up</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <!-- Main -->
+            <section id="main" class="container 75%">
+                <header>
+                    <h2>Contact Us</h2>
+                    <p>Tell us what you think about our little operation.</p>
+                </header>
+                <div class="box">
+                    <form method="post" action="#">
+                        <div class="row uniform 50%">
+                            <div class="6u 12u(mobilep)">
+                                <input type="text" name="name" id="name" value="" placeholder="Name" />
+                            </div>
+                            <div class="6u 12u(mobilep)">
+                                <input type="email" name="email" id="email" value="" placeholder="Email" />
+                            </div>
+                        </div>
+                        <div class="row uniform 50%">
+                            <div class="12u">
+                                <input type="text" name="subject" id="subject" value="" placeholder="Subject" />
+                            </div>
+                        </div>
+                        <div class="row uniform 50%">
+                            <div class="12u">
+                                <textarea name="message" id="message" placeholder="Enter your message" rows="6"></textarea>
+                            </div>
+                        </div>
+                        <div class="row uniform">
+                            <div class="12u">
+                                <ul class="actions align-center">
+                                    <li><input type="submit" value="Send Message" /></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247063.69281388656!2d-90.5068824!3d14.634914899999991!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x130d2fa32ad2286a!2sColegio+Biling%C3%BCe+IMB-PC!5e0!3m2!1ses-419!2sgt!4v1473730975168" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </section>
+
+            <!-- Footer -->
+            <footer id="footer">
+                <ul class="icons">
+                    <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                    <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+                </ul>
+                <ul class="copyright">
+                    <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Pantaleón Medrano</a></li>
+                </ul>
+            </footer>
+
+        </div>
+
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/jquery.scrollgress.min.js"></script>
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+        <script src="assets/js/main.js"></script>
+
+    </body>
+</html>
