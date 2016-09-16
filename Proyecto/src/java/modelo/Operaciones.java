@@ -190,7 +190,7 @@ public class Operaciones {
             funcionLogin.execute();
                 coneLocal.commit();// confirmar si se ejecuto sin errores
                 nivel = funcionLogin.getInt(1);// obtener salida
-//            }
+//            }fgsf
 //            else 
 //                return nivel ; 
         } 
