@@ -14,11 +14,6 @@
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-        <script>
-            function abrirVentana(url) {
-    window.open(url, "nuevo", "directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=400, height=400");
-}
-        </script>
     </head>
     <body>
         <div id="page-wrapper">
@@ -53,7 +48,6 @@
             <section id="main" class="container">
                 <header>
                     <h2>Ingreso al Sistema</h2>
-                    <a href="#" onClick="abrirVentana('http://www.w3api.com')">W3Api</a><br />
                 </header>
             </section>
             <div class="row">

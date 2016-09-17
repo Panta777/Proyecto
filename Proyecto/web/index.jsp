@@ -19,8 +19,9 @@
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
     </head>
     <body class="landing">
-        <%
 
+
+        <%
 //           if(request.getAttribute("Idioma").equals("Español") || request.getAttribute("Idioma") == null)
 //           {
 //               request.setAttribute("Idioma", "Español");
