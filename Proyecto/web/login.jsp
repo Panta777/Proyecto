@@ -87,7 +87,7 @@
                                 HttpSession sesion = request.getSession();
                                 switch (op.loguear(usu, contra)) {
                                     case 1:
-                                        sesion.setAttribute("userfdsfads", usu);
+                                        sesion.setAttribute("user", usu);
                                         sesion.setAttribute("nivel", "1");
                                         response.sendRedirect("index.jsp");
                                         break;
