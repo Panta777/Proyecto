@@ -58,11 +58,11 @@
             <div id="page-wrapper">
                 <!-- Header -->
                 <header id="header" class="alt">
-                    <%if (usuario != "") {%>
-                    <h5 class="button">Usuario En el Sistema: <%=session.getAttribute("user").toString()%> </h5>
-                    <%}%>
                     <nav id="nav">
                         <ul>
+                            <%if (usuario != "") {%>
+                            <li>Usuario  <%=session.getAttribute("user").toString()%> </li>
+                                <%}%>
                             <li><a href="index.jsp">Inicio</a></li>
                             <li>
                                 <a href="#" class="icon fa-angle-down">Menu</a>
@@ -91,7 +91,7 @@
                             <% if (session.getAttribute("user") == null) {%>
                             <li><a href="login.jsp" class="button">Entrar</a></li>
                                 <%} else {%>
-                            <li> <a href="#" class ="button"><%session.invalidate();%>Salir</a> </li>
+                            <li> <a href="logout.jsp" class ="button">Salir</a> </li>
                                 <%}%>
                         </ul>
                     </nav>
