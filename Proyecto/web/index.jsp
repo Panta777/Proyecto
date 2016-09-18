@@ -19,8 +19,6 @@
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
     </head>
     <body class="landing">
-
-
         <%
 //           if(request.getAttribute("Idioma").equals("Español") || request.getAttribute("Idioma") == null)
 //           {
@@ -99,7 +97,7 @@
                 <!-- Banner -->
                 <section id="banner">
                     <h2>Muebles De Los Alpes</h2>
-                    <p>Sirviendole con total amabilidad desde 2016.</p>
+                    <p>Sirviendole con total amabilidad desde 1985.</p>
                     <%if (usuario.equals("")) {%>
                     <ul class="actions" id = "botonesEntrada">
                         <li><a href="login.jsp" class="button special">Entrar</a></li>
@@ -184,7 +182,6 @@
                         </div>
                         <%if (nivel.equals("1")) {%>
                         <div class="12u 20u(narrower)">
-
                             <section class="box special">
                                 <span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
                                 <h3>REPORTERIA</h3>
@@ -193,13 +190,10 @@
                                     <li><a href="#" class="button alt">Más Información</a></li>
                                 </ul>
                             </section>
-
                         </div>
                         <%}%>
                     </div>
-
                 </section>
-
                 <!-- CTA 
                         <section id="cta">
     
@@ -231,9 +225,7 @@
                         <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
                     </ul>
                 </footer>
-
             </div>
-
             <!-- Scripts -->
             <script src="assets/js/jquery.min.js"></script>
             <script src="assets/js/jquery.dropotron.min.js"></script>
