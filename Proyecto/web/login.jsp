@@ -3,6 +3,7 @@
     Created on : 12/09/2016, 08:15:25 PM
     Author     : panle
 --%>
+r9r19y
 <%@page import="modelo.Idioma"%>
 <%@page import="modelo.Operaciones"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
