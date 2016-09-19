@@ -22,15 +22,17 @@
         <%
             Idioma idioma = new Idioma("Español");
             String nivel = "", usuario = "";
-            if (session.getAttribute("nivel") != null) {
+            if (session.getAttribute("nivel") != null)
+            {
                 response.sendRedirect("modificaCliente.jsp");
                 nivel = session.getAttribute("nivel").toString();
                 usuario = session.getAttribute("user").toString();
                 System.out.println("///// Usuario: " + usuario);
                 System.out.println("///// Tiempo:" + session.getMaxInactiveInterval());
-            } else {
-                
-            }
+            } 
+//            else {
+//                
+//            }
         %>
         <div id="page-wrapper">
             <!-- Header -->
@@ -41,11 +43,8 @@
                         <li>
                             <a href="#" class="icon fa-angle-down">Menu</a>
                             <ul>
-                                <% if (session.getAttribute("user") == null) {%>
-                                <li><a href="nuevoCliente.jsp">Registro Nuevo Cliente</a></li>
-                                    <%} else {%>
-                                <li> <a href="logout.jsp" class ="actions">Modificar mis Datos</a> </li>
-                                    <%}%> 
+                                <% if (session.getAttribute("user") != null) {%>
+                                <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li> 
                                 <li><a href="catalogo.jsp">Catálogo Productos</a></li>
                                 <li><a href="contact.jsp">Contactos</a></li>
                                 <li>
@@ -80,10 +79,6 @@
             </header>
             <!-- Main -->
             <section id="main" class="container">
-                <!--  <header>
-                      <h2>Formulario Cliente Nuevo</h2>
-                      <p>Ingrese sus Datos</p>
-                  </header>-->
                 <header>
                     <h2>Registro Nuevo Cliente</h2>
                 </header>
@@ -96,10 +91,10 @@
                         <form method="post" action="#">
                             <div class="row uniform 50%">
                                 <div class="6u 12u(mobilep)">
-                                    <input type="text" name="name" id="name" value="" placeholder="Name" />
+                                    <input type="text" name="name" id="name" value="" placeholder=<% out.write(idioma.getProperty("nombre")); %> />
                                 </div>
                                 <div class="6u 12u(mobilep)">
-                                    <input type="email" name="email" id="email" value="" placeholder="Email" />
+                                    <input type="email" name="email" id="email" value="" placeholder=<% out.write(idioma.getProperty("email")); %>  />
                                 </div>
                             </div>
                             <div class="row uniform 50%">

@@ -94,37 +94,37 @@ public class Operaciones {
      * @return DataSource ds
      *
      */
-    private DataSource getDBDataSource() {
-        DataSource ds = null;
-
-        try {
-
-            if (variablesAmbiente.getDbDataSourceName().equals("MYSQL")) {  // MySQL
-                Class.forName("com.mysql.jdbc.Driver").newInstance();
-                ds = (DataSource) variablesAmbiente.getCurrentContext().lookup("java:comp/env/MYSQLDS");
-            }
-
-            if (variablesAmbiente.getDbDataSourceName().equals("MSSQL")) {   // Microsoft SQLSERVER
-                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
-                ds = (DataSource) variablesAmbiente.getCurrentContext().lookup("java:comp/env/MSSQLDS");
-            }
-            if (variablesAmbiente.getDbDataSourceName().equals("ORACLE")) {  // ORACLE
-                Class.forName("oracle.jdbc.driver.OracleDriver").newInstance();
-                ds = (DataSource) variablesAmbiente.getCurrentContext().lookup("java:comp/env/ORACLEDS");
-            }
-            if (variablesAmbiente.getDbDataSourceName().equals("SQLITE")) {  // ORACLE
-                Class.forName("org.sqlite.JDBC").newInstance();
-                ds = (DataSource) variablesAmbiente.getCurrentContext().lookup("java:comp/env/SQLITEDS");
-            }
-
-        } catch (NamingException nE) {
-            utileria.escribirLog("N/A", "", "\n\nConnectionBD->getDBDataSource()...Error al obtener varaibles del contexto...: " + nE.getMessage());
-        } catch (Exception cnfE) {
-            utileria.escribirLog("N/A", "", "\n\nConnectionBD->getDBDataSource()...Error, no se pudo instanciar la clase..: " + cnfE.getMessage());
-        }
-
-        return ds;
-    }
+//    private DataSource getDBDataSource() {
+//        DataSource ds = null;
+//
+//        try {
+//
+//            if (variablesAmbiente.getDbDataSourceName().equals("MYSQL")) {  // MySQL
+//                Class.forName("com.mysql.jdbc.Driver").newInstance();
+//                ds = (DataSource) variablesAmbiente.getCurrentContext().lookup("java:comp/env/MYSQLDS");
+//            }
+//
+//            if (variablesAmbiente.getDbDataSourceName().equals("MSSQL")) {   // Microsoft SQLSERVER
+//                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+//                ds = (DataSource) variablesAmbiente.getCurrentContext().lookup("java:comp/env/MSSQLDS");
+//            }
+//            if (variablesAmbiente.getDbDataSourceName().equals("ORACLE")) {  // ORACLE
+//                Class.forName("oracle.jdbc.driver.OracleDriver").newInstance();
+//                ds = (DataSource) variablesAmbiente.getCurrentContext().lookup("java:comp/env/ORACLEDS");
+//            }
+//            if (variablesAmbiente.getDbDataSourceName().equals("SQLITE")) {  // ORACLE
+//                Class.forName("org.sqlite.JDBC").newInstance();
+//                ds = (DataSource) variablesAmbiente.getCurrentContext().lookup("java:comp/env/SQLITEDS");
+//            }
+//
+//        } catch (NamingException nE) {
+//            utileria.escribirLog("N/A", "", "\n\nConnectionBD->getDBDataSource()...Error al obtener varaibles del contexto...: " + nE.getMessage());
+//        } catch (Exception cnfE) {
+//            utileria.escribirLog("N/A", "", "\n\nConnectionBD->getDBDataSource()...Error, no se pudo instanciar la clase..: " + cnfE.getMessage());
+//        }
+//
+//        return ds;
+//    }
 
     /**
      * Lee la variable de ambiente DBDATASOURCE contenida en el archivo web.xml,
@@ -132,28 +132,28 @@ public class Operaciones {
      *
      * @return String DBDATASOURCE
      */
-    public String getUsedDBDataSource() {
-        String usedDataSource = null;
-
-        try {
-
-            if (variablesAmbiente.getDbDataSourceName().equals("MYSQL")) { // MySQL
-                usedDataSource = "MYSQL";
-            }
-
-            if (variablesAmbiente.getDbDataSourceName().equals("MSSQL")) { // Microsoft SQLSERVER
-                usedDataSource = "MSSQL";
-            }
-
-            if (variablesAmbiente.getDbDataSourceName().equals("ORACLE")) { // ORACLE
-                usedDataSource = "ORACLE";
-            }
-        } catch (Exception cnfE) {
-            utileria.escribirLog("N/A", "", "\n\nConnectionBD->getUsedDBDataSource()...Error, no se pudo instanciar la clase..: " + cnfE.getMessage());
-        }
-
-        return usedDataSource;
-    }
+//    public String getUsedDBDataSource() {
+//        String usedDataSource = null;
+//
+//        try {
+//
+//            if (variablesAmbiente.getDbDataSourceName().equals("MYSQL")) { // MySQL
+//                usedDataSource = "MYSQL";
+//            }
+//
+//            if (variablesAmbiente.getDbDataSourceName().equals("MSSQL")) { // Microsoft SQLSERVER
+//                usedDataSource = "MSSQL";
+//            }
+//
+//            if (variablesAmbiente.getDbDataSourceName().equals("ORACLE")) { // ORACLE
+//                usedDataSource = "ORACLE";
+//            }
+//        } catch (Exception cnfE) {
+//            utileria.escribirLog("N/A", "", "\n\nConnectionBD->getUsedDBDataSource()...Error, no se pudo instanciar la clase..: " + cnfE.getMessage());
+//        }
+//
+//        return usedDataSource;
+//    }
 
     /**
      * Retorna la coneccion actual de base de datos.

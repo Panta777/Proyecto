@@ -28,6 +28,8 @@
                 System.out.println("///// Usuario: " + usuario);
                 System.out.println("///// Tiempo:" + session.getMaxInactiveInterval());
             } 
+else
+            {response.sendRedirect("index.jsp");}
 
         %>
         <div id="page-wrapper">
