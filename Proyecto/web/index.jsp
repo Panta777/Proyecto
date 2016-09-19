@@ -65,25 +65,28 @@
                                 <ul>
                                     <% if (session.getAttribute("user") == null) {%>
                                     <li><a href="nuevoCliente.jsp">Registro Nuevo Cliente</a></li>
-                                        <%} else {%>
-                                    <li> <a href="logout.jsp" class ="actions">Modificar mis Datos</a> </li>
-                                        <%}%> 
+                                    <%} else {%>
+                                    <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
+                                    <%}%> 
                                     <li><a href="catalogo.jsp">Catálogo Productos</a></li>
-                                    <li><a href="contact.jsp">Contactos</a></li>
+                                    <li><a href="contact.jsp">Contacto</a></li>
                                     <li>
                                         <a href="#">Opciones</a>
                                         <ul>
-                                            <li><a href="#">Productos</a></li>
-                                            <li><a href="#">Hacer Pedido</a></li>
-                                            <li><a href="#">Reporteria</a></li>
+                                            <li><a href="#">Buscar Productos</a></li>
+                                            <li><a href="#">Ver Pedido</a></li>  
                                             <li><a href="#">Comentarios</a></li>
+                                            <%if (nivel.equals("1")) {%>
+                                            <li><a href="#">Reporteria</a></li>
+                                            <li><a href="#">Administracion</a></li>
+                                            <%}%>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
                             <li><a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
                                 <ul>
-                                    <li><a href="#"><% out.write(idioma.getProperty("espanol")); %></a></li>
+                                    <li><a href="#"><% out.write(idioma.getProperty("espanol"));%></a></li>
                                     <li><a href="#"><% out.write(idioma.getProperty("ingles"));%></a></li>
                                 </ul>
                             </li>

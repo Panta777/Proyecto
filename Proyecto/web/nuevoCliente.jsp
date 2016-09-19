@@ -1,5 +1,5 @@
 <%-- 
-    Document   : login
+    Document   : nuevoCliente
     Created on : 12/09/2016, 08:15:25 PM
     Author     : panle
 --%>
@@ -24,7 +24,7 @@
             String nivel = "", usuario = "";
             if (session.getAttribute("nivel") != null)
             {
-                response.sendRedirect("modificaCliente.jsp");
+                response.sendRedirect("index.jsp");
                 nivel = session.getAttribute("nivel").toString();
                 usuario = session.getAttribute("user").toString();
                 System.out.println("///// Usuario: " + usuario);
@@ -44,7 +44,8 @@
                             <a href="#" class="icon fa-angle-down">Menu</a>
                             <ul>
                                 <% if (session.getAttribute("user") != null) {%>
-                                <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li> 
+                                <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
+                                <% }%>
                                 <li><a href="catalogo.jsp">Catálogo Productos</a></li>
                                 <li><a href="contact.jsp">Contactos</a></li>
                                 <li>

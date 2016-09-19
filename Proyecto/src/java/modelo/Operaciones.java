@@ -58,12 +58,12 @@ public class Operaciones {
 //        String CLASSNAME = "com.mysql.jdbc.Driver";
 //        String URL = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
 
-        String USERNAME = "C##PRUEBAS";
-       // String USERNAME = "PRUEBAS";
+        //String USERNAME = "C##PRUEBAS";
+       String USERNAME = "PRUEBAS";
         String PASSWORD = "medrano7";
         String CLASSNAME = "oracle.jdbc.driver.OracleDriver";
-      //  String URL = "jdbc:oracle:thin:@localhost:1521:xe";
-        String URL = "jdbc:oracle:thin:@localhost:1521:orclsys";
+       String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+      //  String URL = "jdbc:oracle:thin:@localhost:1521:orclsys";
         
         try {
             

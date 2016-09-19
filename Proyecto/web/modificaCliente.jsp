@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Registro de Nuevo Cliente</title>
+        <title>Actualización de mis Datos</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -28,8 +28,10 @@
                 System.out.println("///// Usuario: " + usuario);
                 System.out.println("///// Tiempo:" + session.getMaxInactiveInterval());
             } 
-else
-            {response.sendRedirect("index.jsp");}
+            else 
+            {
+                response.sendRedirect("index.jsp");
+            }
 
         %>
         <div id="page-wrapper">
@@ -43,9 +45,9 @@ else
                             <ul>
                                 <% if (session.getAttribute("user") == null) {%>
                                 <li><a href="nuevoCliente.jsp">Registro Nuevo Cliente</a></li>
-                                    <%} else {%>
-                                <li> <a href="logout.jsp" class ="actions">Modificar mis Datos</a> </li>
-                                    <%}%> 
+                                <%} else {%>
+                                <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
+                                <%}%> 
                                 <li><a href="catalogo.jsp">Catálogo Productos</a></li>
                                 <li><a href="contact.jsp">Contactos</a></li>
                                 <li>
@@ -61,7 +63,7 @@ else
                         </li>
                         <li><a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
                             <ul>
-                                <li><a href="#"><% out.write(idioma.getProperty("espanol")); %></a></li>
+                                <li><a href="#"><% out.write(idioma.getProperty("espanol"));%></a></li>
                                 <li><a href="#"><% out.write(idioma.getProperty("ingles"));%></a></li>
                             </ul>
                         </li>
@@ -85,14 +87,14 @@ else
                       <p>Ingrese sus Datos</p>
                   </header>-->
                 <header>
-                    <h2>Registro Nuevo Cliente</h2>
+                    <h2>Actualizar mis Datos</h2>
                 </header>
             </section>
             <div class="row">
                 <div class="12u">
                     <!-- Form -->
                     <section class="box">
-                        <h3><p>Ingrese sus Datos</p></h3>
+                        <h3><p>Modifique los Datos Deseados:</p></h3>
                         <form method="post" action="#">
                             <div class="row uniform 50%">
                                 <div class="6u 12u(mobilep)">

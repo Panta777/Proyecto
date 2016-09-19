@@ -3,7 +3,7 @@
     Created on : 12/09/2016, 08:15:25 PM
     Author     : panle
 --%>
-r9r19y
+
 <%@page import="modelo.Idioma"%>
 <%@page import="modelo.Operaciones"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -46,8 +46,7 @@ r9r19y
                                     <a href="#">Opciones</a>
                                     <ul>
                                         <li><a href="#">Productos</a></li>
-                                        <li><a href="#">Hacer Pedido</a></li>
-                                        <li><a href="#">Reporteria</a></li>
+                                        <li><a href="#">Ver Pedido</a></li>
                                         <li><a href="#">Comentarios</a></li>
                                     </ul>
                                 </li>
@@ -120,7 +119,7 @@ r9r19y
                                         response.sendRedirect("index.jsp");
                                         break;
                                     case 3:
-                                        out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Usuario ha sido detectado como Inactivo o Bloqueado, contacte Servicio Técnico</p></h5>");
+                                        out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Usuario ha sido detectado como Inactivo o Bloqueado, contacte  a itMueblesLosAlpes@gmail.com </p></h5>");
                                         break;
                                     default:
                                         out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Login fallido, intente nuevamente</p></h5>");
