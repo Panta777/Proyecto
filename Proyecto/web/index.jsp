@@ -11,7 +11,7 @@
 -->
 <html >
     <head>
-        <title>Muebles de los Alpes</title>
+        <title>Muebles de Los Alpes</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -28,13 +28,14 @@
 //           {
 //                request.setAttribute("Idioma", "Ingles");
 //           }
-            Idioma idioma = new Idioma("Ingles");
+            Idioma idioma = new Idioma("Español");
             String nivel = "", usuario = "", rol = null, foto = null;
             System.out.println("///// Usuario: " + usuario);
             if (session.getAttribute("nivel") != null) {
                 nivel = session.getAttribute("nivel").toString();
                 usuario = session.getAttribute("user").toString();
-                System.out.println("///// Usuario:2 " + usuario);
+                System.out.println("///// Usuario2: " + usuario);
+                System.out.println("///// Tiempo:" + session.getMaxInactiveInterval());
                 //  if (session.getAttribute("nivel").equals("1")) {
                 //response.sendRedirect("index.jsp");
                 //      out.write("Admin");
@@ -58,17 +59,17 @@
                 <header id="header" class="alt">
                     <nav id="nav">
                         <ul>
-                            <%if (usuario != "") {%>
-                            <li>Usuario  <%=session.getAttribute("user").toString()%> </li>
-                                <%}%>
                             <li><a href="index.jsp">Inicio</a></li>
                             <li>
                                 <a href="#" class="icon fa-angle-down">Menu</a>
                                 <ul>
-                                    <li><a href="generic.jsp">Catálogo</a></li>
-                                    <li><a href="contact.jsp">Contacto</a></li>
-                                    <li><a href="elements.jsp">Elementos</a></li>
-                                    <li><a href="nuevoCliente.jsp">Registro</a></li>
+                                    <% if (session.getAttribute("user") == null) {%>
+                                    <li><a href="nuevoCliente.jsp">Registro Nuevo Cliente</a></li>
+                                        <%} else {%>
+                                    <li> <a href="logout.jsp" class ="actions">Modificar mis Datos</a> </li>
+                                        <%}%> 
+                                    <li><a href="catalogo.jsp">Catálogo Productos</a></li>
+                                    <li><a href="contact.jsp">Contactos</a></li>
                                     <li>
                                         <a href="#">Opciones</a>
                                         <ul>
@@ -80,18 +81,23 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="#" class="button"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
+                            <li><a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
                                 <ul>
                                     <li><a href="#"><% out.write(idioma.getProperty("espanol")); %></a></li>
                                     <li><a href="#"><% out.write(idioma.getProperty("ingles"));%></a></li>
                                 </ul>
                             </li>
-                            <% if (session.getAttribute("user") == null) {%>
-                            <li><a href="login.jsp" class="button">Entrar</a></li>
-                                <%} else {%>
-                            <li> <a href="logout.jsp" class ="button">Salir</a> </li>
+                            <%if (usuario != "") {%>
+                            <li>
+                                <a  class= "button">Usuario:  <%=session.getAttribute("user").toString()%><img src="images/vercarrito.gif" width="25" height="21" border="0"> </a>
+                                <ul>
+                                    <% if (session.getAttribute("user") != null) {%>
+                                    <li> <a href="logout.jsp" class ="actions">Salir</a> </li>
+                                </ul>
                                 <%}%>
-                        </ul>
+                            </li>
+                            <%}%>
+                        </ul>     
                     </nav>
                 </header>
                 <!-- Banner -->
@@ -107,7 +113,6 @@
                 </section>
                 <!-- Main -->
                 <section id="main" class="container">
-
                     <section class="box special">
                         <header class="major">
                             <h2>Pagina Oficial de Muebleria Los Alpes
@@ -117,7 +122,18 @@
                         </header>
                         <span class="image featured"><img src="images/ImagenPrueba.jpg" alt="" /></span>
                     </section>
-
+                    <%if (nivel.equals("1")) {%>
+                    <div class="12u 20u(narrower)">
+                        <section class="box special">
+                            <span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
+                            <h3>REPORTERIA</h3>
+                            <p>Para facilitarle la entrega de su pedido, contamos también con el servicio de entrega a cualquier parte de Centroamerica.</p>
+                            <ul class="actions">
+                                <li><a href="#" class="button alt">Más Información</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                    <%}%>
                     <section class="box special features">
                         <div class="row">
                             <div class="6u 12u(narrower)">
@@ -156,75 +172,60 @@
                             </div>
                         </div>
                     </section>
-
-                    <div class="row">
-                        <div class="6u 12u(narrower)">
-                            <section class="box special">
-                                <span class="image featured"><img src="images/VisaMCAmex.jpg" alt="" /></span>
-                                <h3>Formas de Pago</h3>
-                                <p>En Muebleria Los Alpes, contamos con varias facilidades de Pago, como lo son  Tarjetas de Crédito, Débito y Depósitos a nuestra cuenta. </p>
-                                <ul class="actions">
-                                    <li><a href="#" class="button alt">Más Información</a></li>
-                                </ul>
+                    <section class="box special features">
+                        <div class="row">
+                            <div class="6u 12u(narrower)">
+                                <section class="box special">
+                                    <span class="image featured"><img src="images/tarjetas.jpg"  height="250" /></span>
+                                    <h3>Formas de Pago</h3>
+                                    <p>En Muebleria Los Alpes, contamos con varias facilidades de Pago, como lo son  Tarjetas de Crédito, Débito y Depósitos a nuestra cuenta. </p>
+                                    <ul class="actions">
+                                        <li><a href="#" class="button alt">Más Información</a></li>
+                                    </ul>
+                                </section>
+                            </div>
+                            <div class="6u 12u(narrower)">
+                                <section class="box special">
+                                    <span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
+                                    <h3>Entregas a Domicilio</h3>
+                                    <p>Para facilitarle la entrega de su pedido, contamos también con el servicio de entrega a cualquier parte de Centroamerica.</p>
+                                    <ul class="actions">
+                                        <li><a href="#" class="button alt">Más Información</a></li>
+                                    </ul>
+                                </section>
+                            </div>
+                    </section>
+                    <!-- CTA 
+                            <section id="cta">
+        
+                                    <h2>Sign up for beta access</h2>
+                                    <p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc.</p>
+        
+                                    <form>
+                                            <div class="row uniform 50%">
+                                                    <div class="8u 12u(mobilep)">
+                                                            <input type="email" name="email" id="email" placeholder="Email Address" />
+                                                    </div>
+                                                    <div class="4u 12u(mobilep)">
+                                                            <input type="submit" value="Sign Up" class="fit" />
+                                                    </div>
+                                            </div>
+                                    </form>
+        
                             </section>
-                        </div>
-                        <div class="6u 12u(narrower)">
-
-                            <section class="box special">
-                                <span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
-                                <h3>Entregas a Domicilio</h3>
-                                <p>Para facilitarle la entrega de su pedido, contamos también con el servicio de entrega a cualquier parte de Centroamerica.</p>
-                                <ul class="actions">
-                                    <li><a href="#" class="button alt">Más Información</a></li>
-                                </ul>
-                            </section>
-
-                        </div>
-                        <%if (nivel.equals("1")) {%>
-                        <div class="12u 20u(narrower)">
-                            <section class="box special">
-                                <span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
-                                <h3>REPORTERIA</h3>
-                                <p>Para facilitarle la entrega de su pedido, contamos también con el servicio de entrega a cualquier parte de Centroamerica.</p>
-                                <ul class="actions">
-                                    <li><a href="#" class="button alt">Más Información</a></li>
-                                </ul>
-                            </section>
-                        </div>
-                        <%}%>
-                    </div>
-                </section>
-                <!-- CTA 
-                        <section id="cta">
-    
-                                <h2>Sign up for beta access</h2>
-                                <p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc.</p>
-    
-                                <form>
-                                        <div class="row uniform 50%">
-                                                <div class="8u 12u(mobilep)">
-                                                        <input type="email" name="email" id="email" placeholder="Email Address" />
-                                                </div>
-                                                <div class="4u 12u(mobilep)">
-                                                        <input type="submit" value="Sign Up" class="fit" />
-                                                </div>
-                                        </div>
-                                </form>
-    
-                        </section>
-    
-                <!-- Footer -->
-                <footer id="footer">
-                    <ul class="icons">
-                        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-                        <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
-                    </ul>
-                    <ul class="copyright">
-                        <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
-                    </ul>
-                </footer>
+        
+                    <!-- Footer -->
+                    <footer id="footer">
+                        <ul class="icons">
+                            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                            <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+                        </ul>
+                        <ul class="copyright">
+                            <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
+                        </ul>
+                    </footer>
             </div>
             <!-- Scripts -->
             <script src="assets/js/jquery.min.js"></script>

@@ -3,6 +3,7 @@
     Created on : 12/09/2016, 08:15:25 PM
     Author     : panle
 --%>
+<%@page import="modelo.Idioma"%>
 <%@page import="modelo.Operaciones"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,32 +17,58 @@
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
     </head>
     <body>
+        <%
+            Idioma idioma = new Idioma("Español");
+            String nivel = "", usuario = "";
+            if (session.getAttribute("nivel") != null) 
+            {
+                response.sendRedirect("modificaCliente.jsp");
+            }
+        %>
         <div id="page-wrapper">
             <!-- Header -->
-            <header id="header">
-                <h1><a href="index.jsp">Inicio</a></h1>
+            <header id="header" >
                 <nav id="nav">
                     <ul>
                         <li><a href="index.jsp">Inicio</a></li>
                         <li>
-                            <a href="#" class="icon fa-angle-down">Layouts</a>
+                            <a href="#" class="icon fa-angle-down">Menu</a>
                             <ul>
-                                <li><a href="generic.jsp">Generic</a></li>
-                                <li><a href="contact.jsp">Contact</a></li>
-                                <li><a href="elements.jsp">Elements</a></li>
+                                <% if (session.getAttribute("user") == null) {%>
+                                <li><a href="nuevoCliente.jsp">Registro Nuevo Cliente</a></li>
+                                    <%} else {%>
+                                <li> <a href="logout.jsp" class ="actions">Modificar mis Datos</a> </li>
+                                    <%}%> 
+                                <li><a href="catalogo.jsp">Catálogo Productos</a></li>
+                                <li><a href="contact.jsp">Contactos</a></li>
                                 <li>
-                                    <a href="#">Submenu</a>
+                                    <a href="#">Opciones</a>
                                     <ul>
-                                        <li><a href="#">Option One</a></li>
-                                        <li><a href="#">Option Two</a></li>
-                                        <li><a href="#">Option Three</a></li>
-                                        <li><a href="#">Option Four</a></li>
+                                        <li><a href="#">Productos</a></li>
+                                        <li><a href="#">Hacer Pedido</a></li>
+                                        <li><a href="#">Reporteria</a></li>
+                                        <li><a href="#">Comentarios</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="#" class="button">Sign Up</a></li>
-                    </ul>
+                        <li><a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
+                            <ul>
+                                <li><a href="#"><% out.write(idioma.getProperty("espanol")); %></a></li>
+                                <li><a href="#"><% out.write(idioma.getProperty("ingles"));%></a></li>
+                            </ul>
+                        </li>
+                        <%if (usuario != "") {%>
+                        <li>
+                            <a  class= "button">Usuario:  <%=session.getAttribute("user").toString()%><img src="images/vercarrito.gif" width="25" height="21" border="0"> </a>
+                            <ul>
+                                <% if (session.getAttribute("user") != null) {%>
+                                <li> <a href="logout.jsp" class ="actions">Salir</a> </li>
+                            </ul>
+                            <%}%>
+                        </li>
+                        <%}%>
+                    </ul>     
                 </nav>
             </header>
             <!-- Main -->
@@ -64,6 +91,7 @@
                                 <div class="6u 12u(mobilep)">
                                     <input type="password" name="password" id="query" value="" placeholder="Ingrese su contraseña" />
                                 </div>
+                                <input type="hidden" name="sid" value="full_sessionID_value" />
                                 <div class="row uniform 50%">
                                     <div class="12u">
                                         <ul class="actions">
@@ -89,6 +117,9 @@
                                         sesion.setAttribute("user", usu);
                                         sesion.setAttribute("nivel", "2");
                                         response.sendRedirect("index.jsp");
+                                        break;
+                                    case 3:
+                                        out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Usuario ha sido detectado como Inactivo o Bloqueado, contacte Servicio Técnico</p></h5>");
                                         break;
                                     default:
                                         out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Login fallido, intente nuevamente</p></h5>");

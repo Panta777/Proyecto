@@ -43,7 +43,7 @@ public class Operaciones {
     }
 
     /**
-     * Retorna el objeto Connection, que es una nueva conexion a base de datos.
+     * Retorna el objeto Connection, que es una nueva conexion a la base de datos.
      *
      * @return currentConnection Connection.
      *
