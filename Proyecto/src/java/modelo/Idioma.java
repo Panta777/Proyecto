@@ -19,9 +19,9 @@ public class Idioma extends Properties{
 	    	case "Ingles":
                     getProperties("ingles.properties");
                     break;
-                case "Frances":
-                    getProperties("frances.properties");
-                    break;
+//                case "Frances":
+//                    getProperties("frances.properties");
+//                    break;
 	    	default:
                     getProperties("espanol.properties");
 	   	}

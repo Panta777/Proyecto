@@ -20,17 +20,18 @@
     </head>
     <body class="landing">
         <%
-//           if(request.getAttribute("Idioma").equals("Español") || request.getAttribute("Idioma") == null)
-//           {
-//               request.setAttribute("Idioma", "Español");
-//           }
-//           else 
-//           {
-//                request.setAttribute("Idioma", "Ingles");
-//           }
-            Idioma idioma = new Idioma("Español");
+            Idioma idioma = null;
+            System.out.println("///// Idioma " + session.getAttribute("Idioma"));
+            if (session.getAttribute("Idioma") == null) {
+                session.setAttribute("Idioma", "Español");
+                idioma = new Idioma("Español");
+            } 
+            else   
+            {
+               idioma = new Idioma(session.getAttribute("Idioma").toString());
+            }
+
             String nivel = "", usuario = "", rol = null, foto = null;
-            System.out.println("///// Usuario: " + usuario);
             if (session.getAttribute("nivel") != null) {
                 nivel = session.getAttribute("nivel").toString();
                 usuario = session.getAttribute("user").toString();
@@ -86,8 +87,17 @@
                             </li>
                             <li><a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
                                 <ul>
-                                    <li><a href="#"><% out.write(idioma.getProperty("espanol"));%></a></li>
-                                    <li><a href="#"><% out.write(idioma.getProperty("ingles"));%></a></li>
+                                    <li>
+                                        <a href="index.jsp">
+                                            <% out.write(idioma.getProperty("espanol"));
+                                                 session.setAttribute("Idioma", "Español");
+                                            %>
+                                        </a>
+                                    </li>
+                                    <li><a href="index.jsp">
+                                            <% out.write(idioma.getProperty("ingles"));
+                                                 session.setAttribute("Idioma", "Ingles");
+                                            %></a></li>
                                 </ul>
                             </li>
                             <%if (usuario != "") {%>
