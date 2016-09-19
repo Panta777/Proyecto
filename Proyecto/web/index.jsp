@@ -25,10 +25,8 @@
             if (session.getAttribute("Idioma") == null) {
                 session.setAttribute("Idioma", "Español");
                 idioma = new Idioma("Español");
-            } 
-            else   
-            {
-               idioma = new Idioma(session.getAttribute("Idioma").toString());
+            } else {
+                idioma = new Idioma(session.getAttribute("Idioma").toString());
             }
 
             String nivel = "", usuario = "", rol = null, foto = null;
@@ -88,16 +86,18 @@
                             <li><a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
                                 <ul>
                                     <li>
-                                        <a href="index.jsp">
+                                        <a href="cambioIdioma.jsp">
                                             <% out.write(idioma.getProperty("espanol"));
-                                                 session.setAttribute("Idioma", "Español");
+                                                session.removeAttribute("Idioma");
+                                                session.setAttribute("Idioma", "Español");
                                             %>
                                         </a>
                                     </li>
-                                    <li><a href="index.jsp">
+                                    <li><a href="cambioIdioma.jsp">
                                             <% out.write(idioma.getProperty("ingles"));
-                                                 session.setAttribute("Idioma", "Ingles");
-                                            %></a></li>
+                                                session.removeAttribute("Idioma");
+                                                session.setAttribute("Idioma", "Ingles");//Temporalmente
+%></a></li>
                                 </ul>
                             </li>
                             <%if (usuario != "") {%>
