@@ -19,7 +19,15 @@
     </head>
     <body>
         <%
-            Idioma idioma = new Idioma("Español");
+        Idioma idioma = null;
+
+            if (session.getAttribute("Idioma") == null || session.getAttribute("Idioma").equals("Español")) {
+                session.setAttribute("Idioma", "Español");
+                idioma = new Idioma("Español");
+            } else {
+                idioma = new Idioma("Ingles");
+            }
+        
             String nivel = "", usuario = "";
             if (session.getAttribute("nivel") != null) 
             {
@@ -28,49 +36,47 @@
         %>
         <div id="page-wrapper">
             <!-- Header -->
-            <header id="header" >
-                <nav id="nav">
-                    <ul>
-                        <li><a href="index.jsp">Inicio</a></li>
-                        <li>
-                            <a href="#" class="icon fa-angle-down">Menu</a>
-                            <ul>
-                                <% if (session.getAttribute("user") == null) {%>
-                                <li><a href="nuevoCliente.jsp">Registro Nuevo Cliente</a></li>
+                <header id="header" >
+                    <nav id="nav">
+                        <ul>
+                            <li><a href="index.jsp">Inicio</a></li>
+                            <li>
+                                <a href="#" class="icon fa-angle-down">Menu</a>
+                                <ul>
+                                    <% if (session.getAttribute("user") == null) {%>
+                                    <li><a href="nuevoCliente.jsp">Registro Nuevo Cliente</a></li>
                                     <%} else {%>
-                                <li> <a href="logout.jsp" class ="actions">Modificar mis Datos</a> </li>
+                                    <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
                                     <%}%> 
-                                <li><a href="catalogo.jsp">Catálogo Productos</a></li>
-                                <li><a href="contact.jsp">Contactos</a></li>
-                                <li>
-                                    <a href="#">Opciones</a>
-                                    <ul>
-                                        <li><a href="#">Productos</a></li>
-                                        <li><a href="#">Ver Pedido</a></li>
-                                        <li><a href="#">Comentarios</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
-                            <ul>
-                                <li><a href="#"><% out.write(idioma.getProperty("espanol")); %></a></li>
-                                <li><a href="#"><% out.write(idioma.getProperty("ingles"));%></a></li>
-                            </ul>
-                        </li>
-                        <%if (usuario != "") {%>
-                        <li>
-                            <a  class= "button">Usuario:  <%=session.getAttribute("user").toString()%><img src="images/vercarrito.gif" width="25" height="21" border="0"> </a>
-                            <ul>
-                                <% if (session.getAttribute("user") != null) {%>
-                                <li> <a href="logout.jsp" class ="actions">Salir</a> </li>
-                            </ul>
+                                    <li><a href="catalogo.jsp">Catálogo Productos</a></li>
+                                    <li><a href="contact.jsp">Contacto</a></li>
+                                    <li>
+                                        <a href="#">Opciones</a>
+                                        <ul>
+                                            <li><a href="#">Buscar Productos</a></li>
+                                            <li><a href="#">Ver Pedido</a></li>  
+                                            <li><a href="#">Comentarios</a></li>
+                                            <%if (nivel.equals("1")) {%>
+                                            <li><a href="#">Reporteria</a></li>
+                                            <li><a href="#">Administracion</a></li>
+                                            <%}%>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <%if (usuario != "") {%>
+                            <li>
+                                <a  class= "button">Usuario:  <%=session.getAttribute("user").toString()%><img src="images/vercarrito.gif" width="25" height="21" border="0"> </a>
+                                <ul>
+                                    <% if (session.getAttribute("user") != null) {%>
+                                    <li> <a href="logout.jsp" class ="actions">Salir</a> </li>
+                                </ul>
+                                <%}%>
+                            </li>
                             <%}%>
-                        </li>
-                        <%}%>
-                    </ul>     
-                </nav>
-            </header>
+                        </ul>     
+                    </nav>
+                </header>
             <!-- Main -->
             <section id="main" class="container">
                 <header>

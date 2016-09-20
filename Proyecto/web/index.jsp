@@ -21,22 +21,12 @@
     <body class="landing">
         <%
             Idioma idioma = null;
-//            if (request.getParameter("espa") != null )
-//            {
-//                session.setAttribute("Idioma", "Español");
-//                idioma = new Idioma("Español");
-//            }
-            if (session.getAttribute("Idioma") != null) {
-                if (session.getAttribute("Idioma").equals("Ingles")) {
-                    idioma = new Idioma("Ingles");
-                } else {
-                    session.setAttribute("Idioma", "Español");
-                    idioma = new Idioma("Español");
-                }
-                System.out.println("///// Idioma " + idioma.getProperty("saludo"));
-            } else {
+
+            if (session.getAttribute("Idioma") == null || session.getAttribute("Idioma").equals("Español")) {
                 session.setAttribute("Idioma", "Español");
                 idioma = new Idioma("Español");
+            } else {
+                idioma = new Idioma("Ingles");
             }
 
             String nivel = "", usuario = "", rol = null, foto = null;
@@ -44,7 +34,7 @@
                 nivel = session.getAttribute("nivel").toString();
                 usuario = session.getAttribute("user").toString();
                 System.out.println("///// Usuario2: " + usuario);
-                System.out.println("///// Tiempo:" + session.getMaxInactiveInterval());
+            //    System.out.println("///// Tiempo:" + session.getMaxInactiveInterval());
                 //  if (session.getAttribute("nivel").equals("1")) {
                 //response.sendRedirect("index.jsp");
                 //      out.write("Admin");
@@ -65,7 +55,7 @@
         <section id="container" > 
             <div id="page-wrapper">
                 <!-- Header -->
-                <header id="header" class="alt">
+                <header id="header">
                     <nav id="nav">
                         <ul>
                             <li><a href="index.jsp">Inicio</a></li>
@@ -74,9 +64,9 @@
                                 <ul>
                                     <% if (session.getAttribute("user") == null) {%>
                                     <li><a href="nuevoCliente.jsp">Registro Nuevo Cliente</a></li>
-                                        <%} else {%>
+                                    <%} else {%>
                                     <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
-                                        <%}%> 
+                                    <%}%> 
                                     <li><a href="catalogo.jsp">Catálogo Productos</a></li>
                                     <li><a href="contact.jsp">Contacto</a></li>
                                     <li>
@@ -85,10 +75,10 @@
                                             <li><a href="#">Buscar Productos</a></li>
                                             <li><a href="#">Ver Pedido</a></li>  
                                             <li><a href="#">Comentarios</a></li>
-                                                <%if (nivel.equals("1")) {%>
+                                            <%if (nivel.equals("1")) {%>
                                             <li><a href="#">Reporteria</a></li>
                                             <li><a href="#">Administracion</a></li>
-                                                <%}%>
+                                            <%}%>
                                         </ul>
                                     </li>
                                 </ul>
@@ -97,17 +87,12 @@
                                 <ul>
                                     <li>
                                         <a href="cambioEspanol.jsp" class ="actions" >
-                                            <% out.write(idioma.getProperty("espanol"));
-                                                //                  idioma = new Idioma("Español");
-                                                //                   System.out.println(idioma);
-                                            %>
+                                            <% out.write(idioma.getProperty("espanol"));%>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="cambioIngles.jsp" class ="actions"> 
-                                            <% out.write(idioma.getProperty("ingles"));
-
-                                            %>
+                                            <% out.write(idioma.getProperty("ingles"));%>
                                         </a>
                                     </li>
                                 </ul>
@@ -150,9 +135,22 @@
                     <%if (nivel.equals("1")) {%>
                     <div class="12u 20u(narrower)">
                         <section class="box special">
-                            <span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
+                            <span class="icon major fa-area-chart accent3"></span>
+                            <!-- <span class="image featured"><img src="images/pic03.jpg" alt="" /></span> -->
                             <h3>REPORTERIA</h3>
-                            <p>Para facilitarle la entrega de su pedido, contamos también con el servicio de entrega a cualquier parte de Centroamerica.</p>
+                            <p>VEA LOS REPORTES DE VENTAS, CLIENTES ACTIVOS  Y PRODUCTOS EN EL INVENTARIO</p>
+                            <ul class="actions">
+                                <li><a href="#" class="button alt">Más Información</a></li>
+                            </ul>
+                        </section>
+                    </div>
+
+                    <div class="12u 20u(narrower)">
+                        <section class="box special">
+                            <span class="icon major fa-bolt accent2"></span>
+                            <!-- <span class="image featured"><img src="images/pic03.jpg" alt="" /></span> -->
+                            <h3>ADMINISTRACIÓN</h3>
+                            <p>ACTUALIZACIÓN DE ESTADO DE CLIENTES, ESTADO DE PEDIOS, ETC. </p>
                             <ul class="actions">
                                 <li><a href="#" class="button alt">Más Información</a></li>
                             </ul>
@@ -163,7 +161,7 @@
                         <div class="row">
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
-                                    <!--  <span class="icon major fa-bolt accent2"></span>-->
+
                                     <span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
                                     <h3>Muebles Tradicionales</h3>
                                     <p>Este tipo de muebles se caracterizan por contar con una estética conservadora y  detalles muy elegantes, como maderas brillantes y oscuras, un diseño simétrico, tapicería delicada y curvas bien detalladas, entre otros.</p>

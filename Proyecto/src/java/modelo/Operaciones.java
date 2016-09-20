@@ -43,7 +43,8 @@ public class Operaciones {
     }
 
     /**
-     * Retorna el objeto Connection, que es una nueva conexion a la base de datos.
+     * Retorna el objeto Connection, que es una nueva conexion a la base de
+     * datos.
      *
      * @return currentConnection Connection.
      *
@@ -58,22 +59,22 @@ public class Operaciones {
 //        String CLASSNAME = "com.mysql.jdbc.Driver";
 //        String URL = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
 
-        String USERNAME = "C##PRUEBAS";
-      // String USERNAME = "PRUEBAS";
+        // String USERNAME = "C##PRUEBAS";
+        String USERNAME = "PRUEBAS";
         String PASSWORD = "medrano7";
         String CLASSNAME = "oracle.jdbc.driver.OracleDriver";
-      // String URL = "jdbc:oracle:thin:@localhost:1521:xe";
-        String URL = "jdbc:oracle:thin:@localhost:1521:orclsys";
-        
+        String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+        // String URL = "jdbc:oracle:thin:@localhost:1521:orclsys";
+
         try {
-            
+
 
             Class.forName(CLASSNAME);
 //            currentConnection = DriverManager.getConnection(
 //                    (String)variablesAmbiente.getDB_URL(),
 //                    (String)variablesAmbiente.getDB_USERNAME(),
 //                    (String)variablesAmbiente.getDB_PASSWORD());
-            
+
             currentConnection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
             System.out.println("Conexion Exitosa");
@@ -125,7 +126,6 @@ public class Operaciones {
 //
 //        return ds;
 //    }
-
     /**
      * Lee la variable de ambiente DBDATASOURCE contenida en el archivo web.xml,
      * para determinar que manejador de base de datos se usarara.
@@ -154,7 +154,6 @@ public class Operaciones {
 //
 //        return usedDataSource;
 //    }
-
     /**
      * Retorna la coneccion actual de base de datos.
      *
@@ -164,46 +163,48 @@ public class Operaciones {
     public Connection getCurrentConnection() {
         return currentConnection;
     }
-    
+
     /**
-     * Retorna el tipo de Nivel de acceso, según el login de Usuario
-     * La cantidad de "?" determina  la cantidad parametros que utiliza el procedimiento/función
+     * Retorna el tipo de Nivel de acceso, según el login de Usuario La cantidad
+     * de "?" determina la cantidad parametros que utiliza el
+     * procedimiento/función
+     *
      * @param usuario
      * @param contra
      * @return Nivel de Acceso
      * @throws java.sql.SQLException
      */
-    public int loguear(String usuario, String contra) throws SQLException  {
+    public int loguear(String usuario, String contra) throws SQLException {
 
         int nivel = 0;
         Connection coneLocal = getNewConnection();
 
-        try { 
+        try
+        {
             coneLocal.setAutoCommit(false);
             CallableStatement funcionLogin = coneLocal.prepareCall("{ ?=call GET_TIPO_USUARIO(?,?) }");
-            
+
             funcionLogin.setString(2, usuario);// cargar parametros de entrada
             funcionLogin.setString(3, contra);
             funcionLogin.registerOutParameter(1, Types.INTEGER);//Parametro de salida
 //            if(funcionLogin.execute()) // ejecutar
 //            {
             funcionLogin.execute();
-                coneLocal.commit();// confirmar si se ejecuto sin errores
-                nivel = funcionLogin.getInt(1);// obtener salida
+            coneLocal.commit();// confirmar si se ejecuto sin errores
+            nivel = funcionLogin.getInt(1);// obtener salida
 //            }
 //            else 
 //                return nivel ; 
-        } 
-        catch (SQLException e) 
-        {            
+        } catch (SQLException e) 
+        {
             coneLocal.rollback();// deshacer la ejecucion en caso de error
-            System.out.println("Error al ejecutar función GET_TIPO_USUARIO por, " +e); // informar por consola
-        }
+            System.out.println("Error al ejecutar función GET_TIPO_USUARIO por, " + e); // informar por consola
+        } 
         finally 
         {
             coneLocal.close();// cerrar la conexion
         }
-        
-       return nivel;
+
+        return nivel;
     }
 }

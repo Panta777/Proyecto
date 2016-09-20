@@ -12,7 +12,7 @@
         <title>JSP Page</title>
                 
         <%
-                session.setAttribute("Idioma", "Ingles");
+            session.setAttribute("Idioma", "Ingles");
             response.sendRedirect("index.jsp");
         %>
     </head>

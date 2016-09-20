@@ -26,7 +26,7 @@
                 nivel = session.getAttribute("nivel").toString();
                 usuario = session.getAttribute("user").toString();
                 System.out.println("///// Usuario: " + usuario);
-                System.out.println("///// Tiempo:" + session.getMaxInactiveInterval());
+                System.out.println("///// Tiempo modifica:" + session.getMaxInactiveInterval());
             } 
             else 
             {
