@@ -21,12 +21,22 @@
     <body class="landing">
         <%
             Idioma idioma = null;
-            System.out.println("///// Idioma " + session.getAttribute("Idioma"));
-            if (session.getAttribute("Idioma") == null) {
+//            if (request.getParameter("espa") != null )
+//            {
+//                session.setAttribute("Idioma", "Español");
+//                idioma = new Idioma("Español");
+//            }
+            if (session.getAttribute("Idioma") != null) {
+                if (session.getAttribute("Idioma").equals("Ingles")) {
+                    idioma = new Idioma("Ingles");
+                } else {
+                    session.setAttribute("Idioma", "Español");
+                    idioma = new Idioma("Español");
+                }
+                System.out.println("///// Idioma " + idioma.getProperty("saludo"));
+            } else {
                 session.setAttribute("Idioma", "Español");
                 idioma = new Idioma("Español");
-            } else {
-                idioma = new Idioma(session.getAttribute("Idioma").toString());
             }
 
             String nivel = "", usuario = "", rol = null, foto = null;
@@ -64,9 +74,9 @@
                                 <ul>
                                     <% if (session.getAttribute("user") == null) {%>
                                     <li><a href="nuevoCliente.jsp">Registro Nuevo Cliente</a></li>
-                                    <%} else {%>
+                                        <%} else {%>
                                     <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
-                                    <%}%> 
+                                        <%}%> 
                                     <li><a href="catalogo.jsp">Catálogo Productos</a></li>
                                     <li><a href="contact.jsp">Contacto</a></li>
                                     <li>
@@ -75,10 +85,10 @@
                                             <li><a href="#">Buscar Productos</a></li>
                                             <li><a href="#">Ver Pedido</a></li>  
                                             <li><a href="#">Comentarios</a></li>
-                                            <%if (nivel.equals("1")) {%>
+                                                <%if (nivel.equals("1")) {%>
                                             <li><a href="#">Reporteria</a></li>
                                             <li><a href="#">Administracion</a></li>
-                                            <%}%>
+                                                <%}%>
                                         </ul>
                                     </li>
                                 </ul>
@@ -86,18 +96,20 @@
                             <li><a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
                                 <ul>
                                     <li>
-                                        <a href="cambioIdioma.jsp">
+                                        <a href="cambioEspanol.jsp" class ="actions" >
                                             <% out.write(idioma.getProperty("espanol"));
-                                                session.removeAttribute("Idioma");
-                                                session.setAttribute("Idioma", "Español");
+                                                //                  idioma = new Idioma("Español");
+                                                //                   System.out.println(idioma);
                                             %>
                                         </a>
                                     </li>
-                                    <li><a href="cambioIdioma.jsp">
+                                    <li>
+                                        <a href="cambioIngles.jsp" class ="actions"> 
                                             <% out.write(idioma.getProperty("ingles"));
-                                                session.removeAttribute("Idioma");
-                                                session.setAttribute("Idioma", "Ingles");//Temporalmente
-%></a></li>
+
+                                            %>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <%if (usuario != "") {%>

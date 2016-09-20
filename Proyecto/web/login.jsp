@@ -91,7 +91,6 @@
                                 <div class="6u 12u(mobilep)">
                                     <input type="password" name="password" id="query" value="" placeholder="Ingrese su contraseña" />
                                 </div>
-                                <input type="hidden" name="sid" value="full_sessionID_value" />
                                 <div class="row uniform 50%">
                                     <div class="12u">
                                         <ul class="actions">

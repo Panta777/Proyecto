@@ -12,19 +12,7 @@
         <title>JSP Page</title>
                 
         <%
-            if (session.getAttribute("Idioma") == null) 
-            {
-                session.setAttribute("Idioma", "Español");
-            } 
-            else   
-            { 
-                
-                System.out.println("///// Idioma L " + session.getAttribute("Idioma"));
-               
-               session.setAttribute("Idioma", session.getAttribute("Idioma"));
-            }
-
-            
+                session.setAttribute("Idioma", "Ingles");
             response.sendRedirect("index.jsp");
         %>
     </head>
