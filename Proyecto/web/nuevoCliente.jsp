@@ -178,6 +178,13 @@
                         <hr />
 
                         <%
+                           /*  
+                                * @return      * 1 = exitoso
+                                * 2 = usuario ya existe
+                                * 3 =  error al procesar datos
+                                * 4 = ?
+                                * @throws java.sql.SQLException
+                                */
                             Operaciones op = new Operaciones();
 
                             if (request.getParameter("Enviar") != null) {
