@@ -114,6 +114,9 @@
                                 <div class="6u 12u(mobilep)">
                                      <input type="text" name="Profesion" id="Profesion" value="" placeholder="Profesion<% out.write(idioma.getProperty("email"));%>"  />
                                 </div>
+                                <div class="12u">
+                                    <input type="text" name="email" id="email" value="" placeholder="<%out.write(idioma.getProperty("email"));%>" />
+                                </div>
                             </div>
 <!--                            <div class="row uniform 50%">
                                 <div class="12u">

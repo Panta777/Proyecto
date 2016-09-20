@@ -207,4 +207,60 @@ public class Operaciones {
 
         return nivel;
     }
+
+    /**
+     * Retorna determinado valor, según respuesta de la función para insertar Datos de Nuevo Cliente
+     * @param No_Documento
+     * @param Nombre
+     * @param Apellidos
+     * @param Telefono Residencia
+     * @param Telefono Celular
+     * @param Nit
+     * @param Direccion
+     * @param Ciudad
+     * @param Departamento
+     * @param Pais
+     * @param Profesion
+     * @param Correo
+     * @param usuario
+     * @param contra
+     * @return      * 1 = exitoso
+     * 2 = usuario ya existe
+     * 3 =  error al procesar datos
+     * 4 = ?
+     * @throws java.sql.SQLException
+     */
+    public int insertarCliente(String usuario, String contra) throws SQLException {
+
+        int nivel = 0;
+        Connection coneLocal = getNewConnection();
+
+        try
+        {
+            coneLocal.setAutoCommit(false);
+            CallableStatement funcionLogin = coneLocal.prepareCall("{ ?=call GET_TIPO_USUARIO(?,?) }");
+
+            funcionLogin.setString(2, usuario);// cargar parametros de entrada
+            funcionLogin.setString(3, contra);
+            funcionLogin.registerOutParameter(1, Types.INTEGER);//Parametro de salida
+//            if(funcionLogin.execute()) // ejecutar
+//            {
+            funcionLogin.execute();
+            coneLocal.commit();// confirmar si se ejecuto sin errores
+            nivel = funcionLogin.getInt(1);// obtener salida
+//            }
+//            else
+//                return nivel ;
+        } catch (SQLException e)
+        {
+            coneLocal.rollback();// deshacer la ejecucion en caso de error
+            System.out.println("Error al ejecutar función GET_TIPO_USUARIO por, " + e); // informar por consola
+        }
+        finally
+        {
+            coneLocal.close();// cerrar la conexion
+        }
+
+        return nivel;
+    }
 }
