@@ -112,7 +112,8 @@
                 </header>
                 <!-- Banner -->
                 <section id="banner">
-                    <h2>Muebles De Los Alpes</h2>
+<!--                    <h2>Muebles De Los Alpes</h2>-->
+                     <span class="image featured"><img src="images/logo.png" alt="log" /></span>
                     <p>Sirviendole con total amabilidad desde 1985.</p>
                     <%if (usuario.equals("")) {%>
                     <ul class="actions" id = "botonesEntrada">
