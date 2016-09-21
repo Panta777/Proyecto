@@ -4,6 +4,7 @@
     Author     : panle
 --%>
 
+<%@page import="modelo.login"%>
 <%@page import="modelo.Idioma"%>
 <%@page import="modelo.Operaciones"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -89,7 +90,7 @@
                     <section class="box">
                         <h3><p>Ingrese sus Datos</p></h3>
                         <hr />
-                        <form method="post" action="login.jsp">
+                        <form method="post" action="login">
                             <div class="row uniform 50%">
                                 <div class="6u 12u(mobilep)">
                                     <input type="text" name="user" id="query" value="" placeholder="Ingrese su Usuario" />
@@ -107,30 +108,32 @@
                             </div>
                         </form>
                         <%
-                            Operaciones op = new Operaciones();
-                            if (request.getParameter("Enviar") != null && request.getParameter("user") != null && request.getParameter("password") != null) {
-                                String usu = request.getParameter("user");
-                                String contra = request.getParameter("password");
-                                HttpSession sesion = request.getSession();
-                                switch (op.loguear(usu, contra)) {
-                                    case 1:
-                                        sesion.setAttribute("user", usu);
-                                        sesion.setAttribute("nivel", "1");
-                                        response.sendRedirect("index.jsp");
-                                        break;
-                                    case 2:
-                                        sesion.setAttribute("user", usu);
-                                        sesion.setAttribute("nivel", "2");
-                                        response.sendRedirect("index.jsp");
-                                        break;
-                                    case 3:
-                                        out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Usuario ha sido detectado como Inactivo o Bloqueado, contacte  a itMueblesLosAlpes@gmail.com </p></h5>");
-                                        break;
-                                    default:
-                                        out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Login fallido, intente nuevamente</p></h5>");
-                                        break;
-                                }
-                            }
+                    
+                        
+//                            Operaciones op = new Operaciones();
+//                            if (request.getParameter("Enviar") != null && request.getParameter("user") != null && request.getParameter("password") != null) {
+//                                String usu = request.getParameter("user");
+//                                String contra = request.getParameter("password");
+//                                HttpSession sesion = request.getSession();
+//                                switch (op.loguear(usu, contra)) {
+//                                    case 1:
+//                                        sesion.setAttribute("user", usu);
+//                                        sesion.setAttribute("nivel", "1");
+//                                        response.sendRedirect("index.jsp");
+//                                        break;
+//                                    case 2:
+//                                        sesion.setAttribute("user", usu);
+//                                        sesion.setAttribute("nivel", "2");
+//                                        response.sendRedirect("index.jsp");
+//                                        break;
+//                                    case 3:
+//                                        out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Usuario ha sido detectado como Inactivo o Bloqueado, contacte  a itMueblesLosAlpes@gmail.com </p></h5>");
+//                                        break;
+//                                    default:
+//                                        out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Login fallido, intente nuevamente</p></h5>");
+//                                        break;
+//                                }
+//                            }
                         %>
                     </section>
                 </div>

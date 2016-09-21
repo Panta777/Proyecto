@@ -7,6 +7,7 @@ package modelo;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,48 +22,63 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "login", urlPatterns = {"/login"})
 public class login extends HttpServlet {
 
-   //metodo encargado de la gestión del método POST
+    //metodo encargado de la gestión del método POST
     protected void processRequestPOST(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- 
-        HttpSession sesion = request.getSession();
-        String usu, pass;
-        usu = request.getParameter("user");
-        pass = request.getParameter("password");
-        //deberíamos buscar el usuario en la base de datos, pero dado que se escapa de este tema, ponemos un ejemplo en el mismo código
-        if(usu.equals("admin") && pass.equals("admin") && sesion.getAttribute("usuario") == null){
-            //si coincide usuario y password y además no hay sesión iniciada
-            sesion.setAttribute("usuario", usu);
-            //redirijo a página con información de login exitoso
-            response.sendRedirect("index.jsp");
-        }
-        else
+        PrintWriter out = response.getWriter();
+        try {
+            Operaciones op = new Operaciones();
+            if (request.getParameter("Enviar") != null && request.getParameter("user") != null && request.getParameter("password") != null) {
+                String usu = request.getParameter("user");
+                String contra = request.getParameter("password");
+                HttpSession sesion = request.getSession();
+                switch (op.loguear(usu, contra)) {
+                    case 1:
+                        sesion.setAttribute("user", usu);
+                        sesion.setAttribute("nivel", "1");
+                        response.sendRedirect("index.jsp");
+                        break;
+                    case 2:
+                        sesion.setAttribute("user", usu);
+                        sesion.setAttribute("nivel", "2");
+                        response.sendRedirect("index.jsp");
+                        break;
+                    case 3:
+                        response.sendRedirect("login.jsp");
+                        out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Usuario ha sido detectado como Inactivo o Bloqueado, contacte  a IT </p></h5>");
+                        break;
+                    default:out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Login fallido, intente nuevamente</p></h5>");
+                        response.sendRedirect("login.jsp");
+                        
+                        break;
+                }
+            }
+        } catch(SQLException e)
         {
-            //lógica para login inválido
-            //redirijo a página con información de login exitoso
-            response.sendRedirect("index.jsp");
-        }
-    }
- 
-   //método encargado de la gestión del método GET
-    protected void processRequestGET(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
- 
-        //me llega la url "proyecto/login/out"
-        String action=(request.getPathInfo()!=null?request.getPathInfo():"");
-        HttpSession sesion = request.getSession();
-        if(action.equals("/out")){
-            sesion.invalidate();
-            response.sendRedirect("/index.jsp");
-        }else{
- 
+            out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Error login desde Base de Datos</p></h5>");
+        }finally {
+            out.close();
         }
     }
 
+    //método encargado de la gestión del método GET
+    protected void processRequestGET(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        //me llega la url "proyecto/login/out"
+        String action = (request.getPathInfo() != null ? request.getPathInfo() : "");
+        HttpSession sesion = request.getSession();
+        if (action.equals("/out")) {
+            sesion.invalidate();
+            response.sendRedirect("/index.jsp");
+        } else {
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the HTTP
+     * <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -76,7 +92,8 @@ public class login extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP
+     * <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -98,5 +115,4 @@ public class login extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

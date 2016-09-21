@@ -17,6 +17,19 @@
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <script languaje="javascript">
+            function AutenticaSiEsHumano(form)
+            {
+                if (form.human.checked == true)
+                {
+                    form.EnviaCliente.disabled = false;
+                }
+//                else 
+//                {
+//                    form.EnviaCliente.disabled = false;
+//                }
+            }
+        </script>
     </head>
     <body>
         <%
@@ -81,9 +94,19 @@
                         <h3><p>Ingrese sus Datos</p></h3>
                         <form method="post" action="#">
                             <div class="row uniform 50%">
-                                <div class="12u">
+                                <div class="6u 12u(mobilep)">
                                     <input type="text" name="NoDoc" id="NoDoc" value="" placeholder="Docto <%out.write(idioma.getProperty("nombre"));%>" />
                                 </div>
+                                <div class="6u 12u(mobilep)">
+                                    <div class="select-wrapper">
+                                        <select  name="TipoDoc" id="TipoDoc" >
+                                            <option value="">-TipoDoc- <%out.write(idioma.getProperty("nombre"));%></option>
+                                            <option value="DPI">DPI <%out.write(idioma.getProperty("nombre"));%></option>
+                                            <option value="Pasaporte">Pasaporte <%out.write(idioma.getProperty("nombre"));%></option>
+                                            <option value="Otro(Licencia Conducir...etc)">Otro(Licencia Conducir...etc) <%out.write(idioma.getProperty("nombre"));%></option>
+                                        </select>
+                                    </div>
+                                </div>                                
                                 <div class="6u 12u(mobilep)">
                                     <input type="text" name="FName" id="FName" value="" placeholder="<%out.write(idioma.getProperty("nombre"));%>" />
                                 </div>
@@ -97,10 +120,10 @@
                                     <input type="text" name="TelCel" id="TelCel" value="" placeholder="TelCel <% out.write(idioma.getProperty("email"));%>"  />
                                 </div>
                                 <div class="6u 12u(mobilep)">
-                                     <input type="text" name="Nit" id="Nit" value="" placeholder="Nit<%out.write(idioma.getProperty("nombre"));%>" />
+                                    <input type="text" name="Nit" id="Nit" value="" placeholder="Nit<%out.write(idioma.getProperty("nombre"));%>" />
                                 </div>
                                 <div class="6u 12u(mobilep)">
-                                      <input type="text" name="Direccion" id="Direccion" value="" placeholder="Direccion<% out.write(idioma.getProperty("email"));%>"  />
+                                    <input type="text" name="Direccion" id="Direccion" value="" placeholder="Direccion<% out.write(idioma.getProperty("email"));%>"  />
                                 </div>
                                 <div class="6u 12u(mobilep)">
                                     <input type="text" name="Ciudad" id="Ciudad" value="" placeholder="Ciudad <%out.write(idioma.getProperty("nombre"));%>" />
@@ -109,68 +132,36 @@
                                     <input type="text" name="Departamento" id="Departamento" value="" placeholder="Departamento<% out.write(idioma.getProperty("email"));%>"  />
                                 </div>
                                 <div class="6u 12u(mobilep)">
-                                     <input type="text" name="Pais" id="Pais" value="" placeholder="Pais<%out.write(idioma.getProperty("nombre"));%>" />
+                                    <input type="text" name="Pais" id="Pais" value="" placeholder="Pais<%out.write(idioma.getProperty("nombre"));%>" />
                                 </div>
                                 <div class="6u 12u(mobilep)">
-                                     <input type="text" name="Profesion" id="Profesion" value="" placeholder="Profesion<% out.write(idioma.getProperty("email"));%>"  />
+                                    <input type="text" name="Profesion" id="Profesion" value="" placeholder="Profesion<% out.write(idioma.getProperty("email"));%>"  />
                                 </div>
-                                <div class="12u">
+                                <div class="6u 12u(mobilep)">
                                     <input type="text" name="email" id="email" value="" placeholder="<%out.write(idioma.getProperty("email"));%>" />
                                 </div>
-                            </div>
-<!--                            <div class="row uniform 50%">
-                                <div class="12u">
-                                    <div class="select-wrapper">
-                                        <select name="category" id="category">
-                                            <option value="">- Category -</option>
-                                            <option value="1">Manufacturing</option>
-                                            <option value="1">Shipping</option>
-                                            <option value="1">Administration</option>
-                                            <option value="1">Human Resources</option>
-                                        </select>
-                                    </div>
+                                <div class="6u 12u(narrower)">
+                                    <br> </br>
+                                    <h3>Datos para Ingreso al Sistema</h3> 
                                 </div>
-                            </div>-->
-<!--                            <div class="row uniform 50%">
-                                <div class="4u 12u(narrower)">
-                                    <input type="radio" id="priority-low" name="priority" checked>
-                                    <label for="priority-low">Low Priority</label>
-                                </div>
-                                <div class="4u 12u(narrower)">
-                                    <input type="radio" id="priority-normal" name="priority">
-                                    <label for="priority-normal">Normal Priority</label>
-                                </div>
-                                <div class="4u 12u(narrower)">
-                                    <input type="radio" id="priority-high" name="priority">
-                                    <label for="priority-high">High Priority</label>
-                                </div>
-                            </div>-->
-                            <div class="row uniform 50%">
-<!--                                <div class="6u 12u(narrower)">
-                                    <input type="checkbox" id="copy" name="copy">
-                                    <label for="copy">Email me a copy of this message</label>
-                                </div>-->
                                 <div class="6u 12u(narrower)">
                                     <input type="text" name="usuario" id="usuario" value="" placeholder="usuario <% out.write(idioma.getProperty("email"));%>"  />
                                 </div>
                                 <div class="6u 12u(narrower)">
-                                     <input type="Password" name="pass" id="pass" value="" placeholder="Password <% out.write(idioma.getProperty("email"));%>"  />
+                                    <input type="Password" name="pass" id="pass" value="" placeholder="Password <% out.write(idioma.getProperty("email"));%>"  />
                                 </div>
                                 <div class="6u 12u(narrower)">
-                                    <input type="checkbox" id="human" name="human" checked>
+                                    <input type="Password" name="pass2" id="pass2" value="" placeholder="Confirme Password <% out.write(idioma.getProperty("email"));%>"  />
+                                </div>
+                                <div class="6u 12u(narrower)">
+                                    <input type="checkbox" id="human" name="human"  onClick="AutenticaSiEsHumano(this.form)">
                                     <label for="human">I am a human and not a robot</label>
                                 </div>
                             </div>
-<!--                            <div class="row uniform 50%">
-                                <div class="12u">
-                                    <textarea name="message" id="message" placeholder="Enter your message" rows="6"></textarea>
-                                </div>
-                            </div>-->
                             <div class="row uniform ">
                                 <div class="12u">
                                     <ul class="actions">
-                                        <li><input type="submit" value="Send" /></li>
-<!--                                        <li><input type="reset" value="Reset" class="alt" /></li>-->
+                                        <li><input type="submit" name ="EnviaCliente" value="Send" disabled = true /></li>
                                     </ul>
                                 </div>
                             </div>
@@ -178,13 +169,13 @@
                         <hr />
 
                         <%
-                           /*  
-                                * @return      * 1 = exitoso
-                                * 2 = usuario ya existe
-                                * 3 =  error al procesar datos
-                                * 4 = ?
-                                * @throws java.sql.SQLException
-                                */
+                            /*  
+                             * @return      * 1 = exitoso
+                             * 2 = usuario ya existe
+                             * 3 =  error al procesar datos
+                             * 4 = ?
+                             * @throws java.sql.SQLException
+                             */
                             Operaciones op = new Operaciones();
 
                             if (request.getParameter("Enviar") != null) {

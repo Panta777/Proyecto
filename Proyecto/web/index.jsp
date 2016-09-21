@@ -11,7 +11,7 @@
 -->
 <html >
     <head>
-        <title>Muebles de Los Alpes</title>
+        <title>Muebles Los Alpes</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -34,7 +34,7 @@
                 nivel = session.getAttribute("nivel").toString();
                 usuario = session.getAttribute("user").toString();
                 System.out.println("///// Usuario2: " + usuario);
-            //    System.out.println("///// Tiempo:" + session.getMaxInactiveInterval());
+                //    System.out.println("///// Tiempo:" + session.getMaxInactiveInterval());
                 //  if (session.getAttribute("nivel").equals("1")) {
                 //response.sendRedirect("index.jsp");
                 //      out.write("Admin");
@@ -111,9 +111,9 @@
                     </nav>
                 </header>
                 <!-- Banner -->
-                <section id="banner">
-<!--                    <h2>Muebles De Los Alpes</h2>-->
-                     <span class="image featured"><img src="images/logo.png" alt="log" /></span>
+                <section id="banner" class ="box">
+                    <!--                    <h2>Muebles De Los Alpes</h2>-->
+                    <span class="image featured"><img src="images/logo.png" alt="log" /></span>
                     <p>Sirviendole con total amabilidad desde 1985.</p>
                     <%if (usuario.equals("")) {%>
                     <ul class="actions" id = "botonesEntrada">
@@ -145,7 +145,6 @@
                             </ul>
                         </section>
                     </div>
-
                     <div class="12u 20u(narrower)">
                         <section class="box special">
                             <span class="icon major fa-bolt accent2"></span>
@@ -218,6 +217,7 @@
                                     </ul>
                                 </section>
                             </div>
+                        </div>
                     </section>
                     <!-- CTA 
                             <section id="cta">
@@ -239,6 +239,7 @@
                             </section>
         
                     <!-- Footer -->
+                </section>
                     <footer id="footer">
                         <ul class="icons">
                             <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
@@ -250,7 +251,9 @@
                             <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
                         </ul>
                     </footer>
+                
             </div>
+        </section>
             <!-- Scripts -->
             <script src="assets/js/jquery.min.js"></script>
             <script src="assets/js/jquery.dropotron.min.js"></script>
@@ -259,6 +262,6 @@
             <script src="assets/js/util.js"></script>
             <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
             <script src="assets/js/main.js"></script>
-        </section>
+<!--        </section>-->
     </body>
 </html>
