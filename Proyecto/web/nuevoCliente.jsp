@@ -42,11 +42,10 @@
                 idioma = new Idioma("Ingles");
             }
 
-            String nivel = "", usuario = "";
+            String nivel = "";
 
             if (session.getAttribute("nivel") != null && session.getAttribute("user") != null) {
                 nivel = session.getAttribute("nivel").toString();
-                usuario = session.getAttribute("user").toString();
             }
 
             if (nivel.equals("2") || nivel.equals("1")) {

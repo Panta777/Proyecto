@@ -59,12 +59,12 @@ public class Operaciones {
 //        String CLASSNAME = "com.mysql.jdbc.Driver";
 //        String URL = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
 
-         String USERNAME = "C##PRUEBAS";
-        //String USERNAME = "PRUEBAS";
+        // String USERNAME = "C##PRUEBAS";
+       String USERNAME = "PRUEBAS";
         String PASSWORD = "medrano7";
         String CLASSNAME = "oracle.jdbc.driver.OracleDriver";
-       //  String URL = "jdbc:oracle:thin:@localhost:1521:xe";
-        String URL = "jdbc:oracle:thin:@localhost:1521:orclsys";
+         String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+        // String URL = "jdbc:oracle:thin:@localhost:1521:orclsys";
 
         try {
 
@@ -73,7 +73,7 @@ public class Operaciones {
 //            currentConnection = DriverManager.getConnection(
 //                    (String)variablesAmbiente.getDB_URL(),
 //                    (String)variablesAmbiente.getDB_USERNAME(),
-//                    (String)variablesAmbiente.getDB_PASSWORD());
+//                   (String)variablesAmbiente.getDB_PASSWORD());
 
             currentConnection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
@@ -202,6 +202,7 @@ public class Operaciones {
         } 
         finally 
         {
+             nivel = 0;
             coneLocal.close();// cerrar la conexion
         }
 
