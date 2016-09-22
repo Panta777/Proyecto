@@ -44,12 +44,14 @@ public class login extends HttpServlet {
                         response.sendRedirect("index.jsp");
                         break;
                     case 3:
+                        sesion.setAttribute("user", usu);
+                        sesion.setAttribute("nivel", "3");
                         response.sendRedirect("login.jsp");
-                        out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Usuario ha sido detectado como Inactivo o Bloqueado, contacte  a IT </p></h5>");
                         break;
-                    default:out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Login fallido, intente nuevamente</p></h5>");
+                    default:
+                        sesion.setAttribute("user", usu);
+                        sesion.setAttribute("nivel", "4");
                         response.sendRedirect("login.jsp");
-                        
                         break;
                 }
             }

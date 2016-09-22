@@ -42,17 +42,17 @@
                 idioma = new Idioma("Ingles");
             }
 
-
             String nivel = "", usuario = "";
-            if (session.getAttribute("nivel") != null) {
-                response.sendRedirect("modificaCliente.jsp");
+
+            if (session.getAttribute("nivel") != null && session.getAttribute("user") != null) {
                 nivel = session.getAttribute("nivel").toString();
                 usuario = session.getAttribute("user").toString();
-                System.out.println("///// Usuario: " + usuario);
             }
-//            else {
-//                
-//            }
+
+            if (nivel.equals("2") || nivel.equals("1")) {
+                response.sendRedirect("modificaCliente.jsp");
+            }
+
         %>
         <div id="page-wrapper">
             <!-- Header -->
@@ -63,9 +63,6 @@
                         <li>
                             <a href="#" class="icon fa-angle-down">Menu</a>
                             <ul>
-                                <% if (session.getAttribute("user") != null) {%>
-                                <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
-                                <% }%>
                                 <li><a href="catalogo.jsp">Catálogo Productos</a></li>
                                 <li><a href="contact.jsp">Contactos</a></li>
                                 <li>
@@ -81,6 +78,11 @@
                     </ul>     
                 </nav>
             </header>
+            <!-- Banner -->
+            <section id="banner" class ="box special">
+                <span class="image featured"><img src="images/logo.png" alt="log" /></span>
+                <p>Sirviendole con total amabilidad desde 1985.</p>
+            </section>
             <!-- Main -->
             <section id="main" class="container">
                 <header>
@@ -140,8 +142,7 @@
                                 <div class="6u 12u(mobilep)">
                                     <input type="text" name="email" id="email" value="" placeholder="<%out.write(idioma.getProperty("email"));%>" />
                                 </div>
-                                <div class="6u 12u(narrower)">
-                                    <br> </br>
+                                <div class="12u">
                                     <h3>Datos para Ingreso al Sistema</h3> 
                                 </div>
                                 <div class="6u 12u(narrower)">

@@ -17,7 +17,8 @@
             response.setDateHeader("Expires", 0);
             response.setHeader("Pragma", "no-cache");
 
-            request.getSession().removeAttribute("logueado");
+            request.getSession().removeAttribute("user");
+            request.getSession().removeAttribute("nivel");
 
 // session.removeAttribute("logueado");
 // session.setMaxInactiveInterval(1);

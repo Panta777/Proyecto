@@ -20,7 +20,7 @@
     </head>
     <body>
         <%
-        Idioma idioma = null;
+            Idioma idioma = null;
 
             if (session.getAttribute("Idioma") == null || session.getAttribute("Idioma").equals("Español")) {
                 session.setAttribute("Idioma", "Español");
@@ -28,56 +28,58 @@
             } else {
                 idioma = new Idioma("Ingles");
             }
-        
+
             String nivel = "", usuario = "";
-            if (session.getAttribute("nivel") != null) 
-            {
+            if (session.getAttribute("nivel") != null) {
+                nivel = session.getAttribute("nivel").toString();
+            }
+            if (nivel.equals("2") || nivel.equals("1")) {
                 response.sendRedirect("modificaCliente.jsp");
             }
         %>
         <div id="page-wrapper">
             <!-- Header -->
-                <header id="header" >
-                    <nav id="nav">
-                        <ul>
-                            <li><a href="index.jsp">Inicio</a></li>
-                            <li>
-                                <a href="#" class="icon fa-angle-down">Menu</a>
-                                <ul>
-                                    <% if (session.getAttribute("user") == null) {%>
-                                    <li><a href="nuevoCliente.jsp">Registro Nuevo Cliente</a></li>
+            <header id="header" >
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.jsp">Inicio</a></li>
+                        <li>
+                            <a href="#" class="icon fa-angle-down">Menu</a>
+                            <ul>
+                                <% if (nivel.equals("2") || nivel.equals("1")) {%>
+                                <li><a href="modificaCliente.jsp">Registro Nuevo Cliente</a></li>
                                     <%} else {%>
-                                    <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
+                                <li> <a href="nuevoCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
                                     <%}%> 
-                                    <li><a href="catalogo.jsp">Catálogo Productos</a></li>
-                                    <li><a href="contact.jsp">Contacto</a></li>
-                                    <li>
-                                        <a href="#">Opciones</a>
-                                        <ul>
-                                            <li><a href="#">Buscar Productos</a></li>
-                                            <li><a href="#">Ver Pedido</a></li>  
-                                            <li><a href="#">Comentarios</a></li>
+                                <li><a href="catalogo.jsp">Catálogo Productos</a></li>
+                                <li><a href="contact.jsp">Contacto</a></li>
+                                <li>
+                                    <a href="#">Opciones</a>
+                                    <ul>
+                                        <li><a href="#">Buscar Productos</a></li>
+                                        <li><a href="#">Ver Pedido</a></li>  
+                                        <li><a href="#">Comentarios</a></li>
                                             <%if (nivel.equals("1")) {%>
-                                            <li><a href="#">Reporteria</a></li>
-                                            <li><a href="#">Administracion</a></li>
+                                        <li><a href="#">Reporteria</a></li>
+                                        <li><a href="#">Administracion</a></li>
                                             <%}%>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <%if (usuario != "") {%>
-                            <li>
-                                <a  class= "button">Usuario:  <%=session.getAttribute("user").toString()%><img src="images/vercarrito.gif" width="25" height="21" border="0"> </a>
-                                <ul>
-                                    <% if (session.getAttribute("user") != null) {%>
-                                    <li> <a href="logout.jsp" class ="actions">Salir</a> </li>
-                                </ul>
-                                <%}%>
-                            </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <%if (usuario != "") {%>
+                        <li>
+                            <a  class= "button">Usuario:  <%=session.getAttribute("user").toString()%><img src="images/vercarrito.gif" width="25" height="21" border="0"> </a>
+                            <ul>
+                                <% if (session.getAttribute("user") != null) {%>
+                                <li> <a href="logout.jsp" class ="actions">Salir</a> </li>
+                            </ul>
                             <%}%>
-                        </ul>     
-                    </nav>
-                </header>
+                        </li>
+                        <%}%>
+                    </ul>     
+                </nav>
+            </header>
             <!-- Main -->
             <section id="main" class="container">
                 <header>
@@ -104,12 +106,18 @@
                                             <li> <input type="submit" value="Entrar" class="fit" name = "Enviar"/></li>
                                         </ul>
                                     </div>
+                                    <% if (nivel.equals("3")) {
+                                            out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Usuario ha sido detectado como Inactivo o Bloqueado, contacte  a itMueblesLosAlpes@gmail.com </p></h5>");
+                                        } %>
+
+                                    <% if (nivel.equals("4")) {
+                                            out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Login fallido, intente nuevamente</p></h5>");
+                                        } %>
                                 </div>
                             </div>
                         </form>
                         <%
-                    
-                        
+
 //                            Operaciones op = new Operaciones();
 //                            if (request.getParameter("Enviar") != null && request.getParameter("user") != null && request.getParameter("password") != null) {
 //                                String usu = request.getParameter("user");
@@ -134,7 +142,7 @@
 //                                        break;
 //                                }
 //                            }
-                        %>
+%>
                     </section>
                 </div>
             </div>

@@ -30,27 +30,12 @@
             }
 
             String nivel = "", usuario = "", rol = null, foto = null;
-            if (session.getAttribute("nivel") != null) {
+            if (session.getAttribute("user") != null && session.getAttribute("nivel") != null) {
                 nivel = session.getAttribute("nivel").toString();
                 usuario = session.getAttribute("user").toString();
-                System.out.println("///// Usuario2: " + usuario);
-                //    System.out.println("///// Tiempo:" + session.getMaxInactiveInterval());
-                //  if (session.getAttribute("nivel").equals("1")) {
-                //response.sendRedirect("index.jsp");
-                //      out.write("Admin");
-                //  } else if (session.getAttribute("nivel").equals("2")) {
-                //   out.write("Cliente");
-                //  } //else {
-                // response.sendRedirect("index.jsp");
-                //   out.write("Ingrese al sistema para realizar su pedido");
-                // }
+                System.out.println("///// Usuario: " + usuario);
+                System.out.println("///// Nivel: " + nivel);
             }
-            //      else
-            //      {
-            // response.sendRedirect("index.jsp");
-            //       out.write("Ingrese al sistema para realizar su pedido");
-            //      }
-
         %>
         <section id="container" > 
             <div id="page-wrapper">
@@ -62,11 +47,9 @@
                             <li>
                                 <a href="#" class="icon fa-angle-down">Menu</a>
                                 <ul>
-                                    <% if (session.getAttribute("user") == null) {%>
-                                    <li><a href="nuevoCliente.jsp">Registro Nuevo Cliente</a></li>
-                                    <%} else {%>
-                                    <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
-                                    <%}%> 
+                                    <% if (!(nivel.equals("2") || nivel.equals("1"))) {%>
+                                    <li> <a href="nuevoCliente.jsp" class ="actions">Registro Nuevo Cliente</a> </li>
+                                    <% }%>
                                     <li><a href="catalogo.jsp">Catálogo Productos</a></li>
                                     <li><a href="contact.jsp">Contacto</a></li>
                                     <li>
@@ -75,10 +58,10 @@
                                             <li><a href="#">Buscar Productos</a></li>
                                             <li><a href="#">Ver Pedido</a></li>  
                                             <li><a href="#">Comentarios</a></li>
-                                            <%if (nivel.equals("1")) {%>
+                                                <%if (nivel.equals("1")) {%>
                                             <li><a href="#">Reporteria</a></li>
                                             <li><a href="#">Administracion</a></li>
-                                            <%}%>
+                                                <%}%>
                                         </ul>
                                     </li>
                                 </ul>
@@ -97,25 +80,23 @@
                                     </li>
                                 </ul>
                             </li>
-                            <%if (usuario != "") {%>
+                            <%if (nivel.equals("2") || nivel.equals("1")) {%>
                             <li>
                                 <a  class= "button">Usuario:  <%=session.getAttribute("user").toString()%><img src="images/vercarrito.gif" width="25" height="21" border="0"> </a>
                                 <ul>
-                                    <% if (session.getAttribute("user") != null) {%>
-                                    <li> <a href="logout.jsp" class ="actions">Salir</a> </li>
+                                    <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
+                                    <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
                                 </ul>
-                                <%}%>
                             </li>
                             <%}%>
                         </ul>     
                     </nav>
                 </header>
                 <!-- Banner -->
-                <section id="banner" class ="box">
-                    <!--                    <h2>Muebles De Los Alpes</h2>-->
+                <section id="banner" class ="box special">
                     <span class="image featured"><img src="images/logo.png" alt="log" /></span>
                     <p>Sirviendole con total amabilidad desde 1985.</p>
-                    <%if (usuario.equals("")) {%>
+                    <%if  (nivel.equals("4") || nivel.equals("3") || nivel.equals("")) {%>
                     <ul class="actions" id = "botonesEntrada">
                         <li><a href="login.jsp" class="button special">Entrar</a></li>
                         <li><a href="nuevoCliente.jsp" class="button">Registrarse</a></li>
@@ -240,28 +221,28 @@
         
                     <!-- Footer -->
                 </section>
-                    <footer id="footer">
-                        <ul class="icons">
-                            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-                            <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
-                        </ul>
-                        <ul class="copyright">
-                            <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
-                        </ul>
-                    </footer>
-                
+                <footer id="footer">
+                    <ul class="icons">
+                        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                        <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+                    </ul>
+                    <ul class="copyright">
+                        <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
+                    </ul>
+                </footer>
+
             </div>
         </section>
-            <!-- Scripts -->
-            <script src="assets/js/jquery.min.js"></script>
-            <script src="assets/js/jquery.dropotron.min.js"></script>
-            <script src="assets/js/jquery.scrollgress.min.js"></script>
-            <script src="assets/js/skel.min.js"></script>
-            <script src="assets/js/util.js"></script>
-            <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-            <script src="assets/js/main.js"></script>
-<!--        </section>-->
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/jquery.scrollgress.min.js"></script>
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+        <script src="assets/js/main.js"></script>
+        <!--        </section>-->
     </body>
 </html>

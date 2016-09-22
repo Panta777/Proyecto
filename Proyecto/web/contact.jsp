@@ -4,6 +4,7 @@
     Author     : DesarrolloPantaleon
 --%>
 
+<%@page import="modelo.Idioma"%>
 <!DOCTYPE HTML>
 <!--
         Alpha by HTML5 UP
@@ -19,53 +20,92 @@
         <link rel="stylesheet" href="assets/css/main.css" />
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-329936-3', 'auto');
-    ga('send', 'pageview');
+            ga('create', 'UA-329936-3', 'auto');
+            ga('send', 'pageview');
 
-</script>
+        </script>
     </head>
     <body>
-        <div id="page-wrapper">
+        <%
+            Idioma idioma = null;
 
+            if (session.getAttribute("Idioma") == null || session.getAttribute("Idioma").equals("Español")) {
+                session.setAttribute("Idioma", "Español");
+                idioma = new Idioma("Español");
+            } else {
+                idioma = new Idioma("Ingles");
+            }
+
+            String nivel = "", usuario = "";
+            if (session.getAttribute("nivel") != null) {
+                nivel = session.getAttribute("nivel").toString();
+            }
+        %>
+        <div id="page-wrapper">
             <!-- Header -->
             <header id="header">
-                <h1><a href="index.jsp">Alpha</a> by HTML5 UP</h1>
                 <nav id="nav">
                     <ul>
-                        <li><a href="index.jsp">Home</a></li>
+                        <li><a href="index.jsp">Inicio</a></li>
                         <li>
-                            <a href="#" class="icon fa-angle-down">Layouts</a>
+                            <a href="#" class="icon fa-angle-down">Menu</a>
                             <ul>
-                                <li><a href="generic.jsp">Generic</a></li>
-                                <li><a href="contact.jsp">Contact</a></li>
-                                <li><a href="elements.jsp">Elements</a></li>
+                                <li><a href="catalogo.jsp">Catálogo Productos</a></li>
+                                <li><a href="contact.jsp">Contacto</a></li>
                                 <li>
-                                    <a href="#">Submenu</a>
+                                    <a href="#">Opciones</a>
                                     <ul>
-                                        <li><a href="#">Opcion One</a></li>
-                                        <li><a href="#">Opcion Two</a></li>
-                                        <li><a href="#">Opcion Three</a></li>
-                                        <li><a href="#">Opcion Four</a></li>
+                                        <li><a href="#">Buscar Productos</a></li>
+                                        <li><a href="#">Ver Pedido</a></li>  
+                                        <li><a href="#">Comentarios</a></li>
+                                            <%if (nivel.equals("1")) {%>
+                                        <li><a href="#">Reporteria</a></li>
+                                        <li><a href="#">Administracion</a></li>
+                                            <%}%>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="#" class="button">Sign Up</a></li>
-                    </ul>
+                        <%if (nivel.equals("2") || nivel.equals("1")) {%>
+                        <li>
+                            <a  class= "button">Usuario:  <%=session.getAttribute("user").toString()%><img src="images/vercarrito.gif" width="25" height="21" border="0"> </a>
+                            <ul>
+                                <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
+                                <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
+                            </ul>
+                        </li>
+                        <%}%>
+                    </ul>     
                 </nav>
             </header>
-
+            <!-- Banner -->
+            <section id="banner" class ="box special">
+                <span class="image featured"><img src="images/logo.png" alt="log" /></span>
+                <p>Sirviendole con total amabilidad desde 1985.</p>
+            </section>
             <!-- Main -->
-            <section id="main" class="container 75%">
-                <header>
-                    <h2>Contact Us</h2>
-                    <p>Tell us what you think about our little operation.</p>
-                </header>
+            <section class="box special">
+                <div class="box">
+                    <h2>Ubicación</h2>
+                    <p>Puedes encontrarnos en la siguiente dirección</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247063.69281388656!2d-90.5068824!3d14.634914899999991!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x130d2fa32ad2286a!2sColegio+Biling%C3%BCe+IMB-PC!5e0!3m2!1ses-419!2sgt!4v1473730975168" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </section>
+            <section id="main" class="box special">
+                <h2>Contact Us</h2>
+                <p>Tell us what you think about our little operation.</p>
                 <div class="box">
                     <form method="post" action="#">
                         <div class="row uniform 50%">
@@ -95,9 +135,7 @@
                         </div>
                     </form>
                 </div>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247063.69281388656!2d-90.5068824!3d14.634914899999991!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x130d2fa32ad2286a!2sColegio+Biling%C3%BCe+IMB-PC!5e0!3m2!1ses-419!2sgt!4v1473730975168" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
             </section>
-
             <!-- Footer -->
             <footer id="footer">
                 <ul class="icons">
