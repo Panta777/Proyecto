@@ -160,10 +160,10 @@ public class Operaciones {
             coneLocal.commit();// confirmar si se ejecuto sin errores
             nivel = funcionLogin.getInt(1);// obtener salida
         } catch (SQLException e) {
+            nivel = 0;
             coneLocal.rollback();// deshacer la ejecucion en caso de error
             System.out.println("Error al ejecutar función GET_TIPO_USUARIO por, " + e); // informar por consola
         } finally {
-            nivel = 0;
             coneLocal.close();// cerrar la conexion
         }
 

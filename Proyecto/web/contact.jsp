@@ -14,6 +14,7 @@
 <html>
     <head>
         <title>Contacto</title>
+        <link rel="shortcut icon" href="images/ICONOS/ICO.ico "/>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -26,7 +27,7 @@
                     (i[r].q = i[r].q || []).push(arguments)
                 }, i[r].l = 1 * new Date();
                 a = s.createElement(o),
-                        m = s.getElementsByTagName(o)[0];
+                m = s.getElementsByTagName(o)[0];
                 a.async = 1;
                 a.src = g;
                 m.parentNode.insertBefore(a, m)
@@ -70,17 +71,17 @@
                                         <li><a href="#">Buscar Productos</a></li>
                                         <li><a href="#">Ver Pedido</a></li>  
                                         <li><a href="#">Comentarios</a></li>
-                                            <%if (nivel.equals("1")) {%>
+                                        <%if (nivel.equals("1")) {%>
                                         <li><a href="#">Reporteria</a></li>
                                         <li><a href="#">Administracion</a></li>
-                                            <%}%>
+                                        <%}%>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
                         <%if (nivel.equals("2") || nivel.equals("1")) {%>
                         <li>
-                            <a  class= "button">Usuario:  <%=session.getAttribute("user").toString()%><img src="images/vercarrito.gif" width="25" height="21" border="0"> </a>
+                            <a  class= "button">Usuario:  <%=usuario%><img src="images/vercarrito.gif" width="25" height="21" border="0"> </a>
                             <ul>
                                 <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
                                 <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>

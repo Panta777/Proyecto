@@ -12,7 +12,7 @@
 <html>
     <head>
         <title>Ingresar al Sistema</title>
-         <link rel="shortcut icon" href="images/ICONOS/ICO.ico "/>
+        <link rel="shortcut icon" href="images/ICONOS/ICO.ico "/>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -49,9 +49,9 @@
                             <ul>
                                 <% if (nivel.equals("2") || nivel.equals("1")) {%>
                                 <li><a href="modificaCliente.jsp">Registro Nuevo Cliente</a></li>
-                                    <%} else {%>
+                                <%} else {%>
                                 <li> <a href="nuevoCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
-                                    <%}%> 
+                                <%}%> 
                                 <li><a href="catalogo.jsp">Catálogo Productos</a></li>
                                 <li><a href="contact.jsp">Contacto</a></li>
                                 <li>
@@ -60,10 +60,10 @@
                                         <li><a href="#">Buscar Productos</a></li>
                                         <li><a href="#">Ver Pedido</a></li>  
                                         <li><a href="#">Comentarios</a></li>
-                                            <%if (nivel.equals("1")) {%>
+                                        <%if (nivel.equals("1")) {%>
                                         <li><a href="#">Reporteria</a></li>
                                         <li><a href="#">Administracion</a></li>
-                                            <%}%>
+                                        <%}%>
                                     </ul>
                                 </li>
                             </ul>
@@ -81,6 +81,10 @@
                     </ul>     
                 </nav>
             </header>
+            <section id="banner" class ="box special">
+                <span class="image featured"><img src="images/logo.png" alt="log" /></span>
+                <p>Sirviendole con total amabilidad desde 1985.</p>
+            </section>                    
             <!-- Main -->
             <section id="main" class="container">
                 <header>
@@ -109,11 +113,11 @@
                                     </div>
                                     <% if (nivel.equals("3")) {
                                             out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Usuario ha sido detectado como Inactivo o Bloqueado, contacte  a itMueblesLosAlpes@gmail.com </p></h5>");
-                                        } %>
+                                        }%>
 
                                     <% if (nivel.equals("4")) {
                                             out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Login fallido, intente nuevamente</p></h5>");
-                                        } %>
+                                        }%>
                                 </div>
                             </div>
                         </form>

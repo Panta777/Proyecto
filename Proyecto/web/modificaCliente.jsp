@@ -49,10 +49,6 @@
                 nivel = session.getAttribute("nivel").toString();
                 usuario = session.getAttribute("user").toString();
             }
-
-//            if (nivel.equals("2") || nivel.equals("1")) {
-//                response.sendRedirect("modificaCliente.jsp");
-//            }
         %>
         <div id="page-wrapper">
                 <!-- Header -->
@@ -81,7 +77,7 @@
                             </li>
                             <%if (nivel.equals("2") || nivel.equals("1")) {%>
                             <li>
-                                <a  class= "button">Usuario:  <%=session.getAttribute("user").toString()%><img src="images/vercarrito.gif" width="25" height="21" border="0"> </a>
+                                <a  class= "button">Usuario:  <%=usuario%><img src="images/vercarrito.gif" width="25" height="21" border="0"> </a>
                                 <ul>
                                     <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
                                     <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
