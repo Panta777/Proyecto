@@ -83,7 +83,7 @@
                             </li>
                             <%if (nivel.equals("2") || nivel.equals("1")) {%>
                             <li>
-                                <a  class= "button">Usuario:  <%=usuario%><img src="images/ICONOS/CARRITO.png" width="25" height="21" border="0"> </a>
+                                <a  class= "button">Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
                                     <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
                                     <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
@@ -114,7 +114,7 @@
                             </h2>
                             <p>En nuestro catálogo de productos podrá encontrar una gran variedad de muebles para su hogar</p>
                         </header>
-                        <span class="image featured"><img src="images/ImagenPrueba.jpg" alt="" /></span>
+                        <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
                     </section>
                     <%if (nivel.equals("1")) {%>
                     <div class="12u 20u(narrower)">
@@ -144,8 +144,7 @@
                         <div class="row">
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
-
-                                    <span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
+                                    <span class="image featured"><img src="images/TRADICIONALES/MTradicionales.png" alt = "Muebles Tradicionales"/></span>
                                     <h3>Muebles Tradicionales</h3>
                                     <p>Este tipo de muebles se caracterizan por contar con una estética conservadora y  detalles muy elegantes, como maderas brillantes y oscuras, un diseño simétrico, tapicería delicada y curvas bien detalladas, entre otros.</p>
                                 </section>
@@ -153,7 +152,7 @@
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <!--  <span class="icon major fa-area-chart accent3"></span> -->
-                                    <span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
+                                    <span class="image featured"><img src="images/MODERNOS/MModernos.png" alt = "Muebles Tradicionales"/></span>
                                     <h3>Muebles Modernos </h3>
                                     <p>Los muebles de este estilo presentan líneas ligeras y son asociados con el minimalismo posmoderno. Son producidos para ser funcionales y prácticos,ajustandose a las necesidades de la actualidad.</p>
                                 </section>
@@ -163,7 +162,7 @@
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <!--  <span class="icon major fa-cloud accent4"></span>-->
-                                    <span class="image featured"><img src="images/ImagenPrueba2.jpg" alt="" /></span>
+                                    <span class="image featured"><img src="images/COLONIALES/MColoniales.png" alt = "Muebles Tradicionales"/></span>
                                     <h3>Muebles Coloniales</h3>
                                     <p>Son propios de las fincas y haciendas previas al siglo XX. Para su fabricación se recurre a materiales autóctonos, detalles artesanales, maderas macizas y toques exóticos.</p>
                                 </section>
@@ -171,7 +170,7 @@
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <!--   <span class="icon major fa-lock accent5"></span>-->
-                                    <span class="image featured"><img src="images/ImagenPrueba.jpg" alt="" /></span>
+                                    <span class="image featured"><img src="images/RUSTICOS/MRusticos.png" alt = "Muebles Tradicionales"/></span>
                                     <h3>Muebles Rústicos</h3>
                                     <p> Los muebles que cuentan con este estilo tienen una apariencia folklórica. Transmiten la sensación de ser muebles usados, sencillos o rudimentarios.</p>
                                 </section>
@@ -182,7 +181,7 @@
                         <div class="row">
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
-                                    <span class="image featured"><img src="images/tarjetas.jpg"  height="250" /></span>
+                                    <span class="image featured"><img src="images/ICONOS/formas-de-pago.png" alt = "Formas de Pago"/></span>
                                     <h3>Formas de Pago</h3>
                                     <p>En Muebleria Los Alpes, contamos con varias facilidades de Pago, como lo son  Tarjetas de Crédito, Débito y Depósitos a nuestra cuenta. </p>
                                     <ul class="actions">
@@ -192,7 +191,7 @@
                             </div>
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
-                                    <span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
+                                    <span class="image featured"><img src="images/ICONOS/ENTREGA A DOMICILIO.png" alt="Entregas a Domicilio" /></span>
                                     <h3>Entregas a Domicilio</h3>
                                     <p>Para facilitarle la entrega de su pedido, contamos también con el servicio de entrega a cualquier parte de Centroamerica.</p>
                                     <ul class="actions">

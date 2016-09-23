@@ -98,23 +98,15 @@
                     <!--                    <span class="image featured"><img src="images/logo.png" alt="log" /></span>-->
                     <img class="image featured" src="images/logo.png" alt="log" />
                     <p>Sirviendole con total amabilidad desde 1985.</p>
-                    <%if (nivel.equals("4") || nivel.equals("3") || nivel.equals("")) {%>
-                    <ul class="actions" id = "botonesEntrada">
-                        <li><a href="login.jsp" class="button special">Entrar</a></li>
-                        <li><a href="nuevoCliente.jsp" class="button">Registrarse</a></li>
-                    </ul>
-                    <%}%>
                 </section>
                 <!-- Main -->
                 <section id="main" class="container">
                     <section class="box special">
                         <header class="major">
-                            <h2>Pagina Oficial de Muebleria Los Alpes
-                                <br />
-                            </h2>
-                            <p>En nuestro catálogo de productos podrá encontrar una gran variedad de muebles para su hogar</p>
+                            <h1>CATÁLOGO DE PRODUCTOS</h1>
+                            <p>Nuestros productos están dividos en diferentes categorias para su mayor comodidad.</p>
                         </header>
-                        <span class="image featured"><img src="images/ImagenPrueba.jpg" alt="" /></span>
+                        <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
                     </section>
                     <%if (nivel.equals("1")) {%>
                     <div class="12u 20u(narrower)">
@@ -144,8 +136,7 @@
                         <div class="row">
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
-
-                                    <span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
+                                    <span class="image featured"><img src="images/TRADICIONALES/MTradicionales.png" alt="Muebles Tradicionales" /></span>
                                     <h3>Muebles Tradicionales</h3>
                                     <p>Este tipo de muebles se caracterizan por contar con una estética conservadora y  detalles muy elegantes, como maderas brillantes y oscuras, un diseño simétrico, tapicería delicada y curvas bien detalladas, entre otros.</p>
                                 </section>
