@@ -50,7 +50,7 @@
                                 <ul>
                                     <% if (!(nivel.equals("2") || nivel.equals("1"))) {%>
                                     <li> <a href="nuevoCliente.jsp" class ="actions">Registro Nuevo Cliente</a> </li>
-                                    <% }%>
+                                        <% }%>
                                     <li><a href="catalogo.jsp">Catálogo Productos</a></li>
                                     <li><a href="contact.jsp">Contacto</a></li>
                                     <li>
@@ -94,10 +94,11 @@
                     </nav>
                 </header>
                 <!-- Banner -->
-                <section id="banner" class ="box special">
-                    <span class="image featured"><img src="images/logo.png" alt="log" /></span>
+                <section id="banner" class ="box">
+                    <!--                    <span class="image featured"><img src="images/logo.png" alt="log" /></span>-->
+                    <img class="image featured" src="images/logo.png" alt="log" />
                     <p>Sirviendole con total amabilidad desde 1985.</p>
-                    <%if  (nivel.equals("4") || nivel.equals("3") || nivel.equals("")) {%>
+                    <%if (nivel.equals("4") || nivel.equals("3") || nivel.equals("")) {%>
                     <ul class="actions" id = "botonesEntrada">
                         <li><a href="login.jsp" class="button special">Entrar</a></li>
                         <li><a href="nuevoCliente.jsp" class="button">Registrarse</a></li>
