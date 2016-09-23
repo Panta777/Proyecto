@@ -69,13 +69,13 @@ public class login extends HttpServlet {
             throws ServletException, IOException {
 
         //me llega la url "proyecto/login/out"
-        String action = (request.getPathInfo() != null ? request.getPathInfo() : "");
-        HttpSession sesion = request.getSession();
-        if (action.equals("/out")) {
-            sesion.invalidate();
-            response.sendRedirect("/index.jsp");
-        } else {
-        }
+//        String action = (request.getPathInfo() != null ? request.getPathInfo() : "");
+//        HttpSession sesion = request.getSession();
+//        if (action.equals("/out")) {
+//            sesion.invalidate();
+//            response.sendRedirect("/index.jsp");
+//        } else {
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

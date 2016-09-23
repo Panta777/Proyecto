@@ -1,102 +1,250 @@
 <%-- 
-    Document   : generic
-    Created on : 12/09/2016, 02:24:28 PM
-    Author     : DesarrolloPantaleon
+    Document   : index
+    Created on : 8/09/2016, 11:50:17 PM
+    Author     : panle
 --%>
-
+<%@page import="modelo.Idioma"%>
+<%@page session = "true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <!--
-	Alpha by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
-	<head>
-		<title>Generic - Alpha by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-	</head>
-	<body>
-		<div id="page-wrapper">
+<html >
+    <head>
+        <title>Muebles Los Alpes</title>
+        <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    </head>
+    <body class="landing">
+        <%
+            Idioma idioma = null;
 
-			<!-- Header -->
-				<header id="header">
-					<h1><a href="index.jsp">Alpha</a> by HTML5 UP</h1>
-					<nav id="nav">
-						<ul>
-							<li><a href="index.jsp">Home</a></li>
-							<li>
-								<a href="#" class="icon fa-angle-down">Layouts</a>
-								<ul>
-									<li><a href="generic.jsp">Generic</a></li>
-									<li><a href="contact.jsp">Contact</a></li>
-									<li><a href="elements.jsp">Elements</a></li>
-									<li>
-										<a href="#">Submenu</a>
-										<ul>
-											<li><a href="#">Option One</a></li>
-											<li><a href="#">Option Two</a></li>
-											<li><a href="#">Option Three</a></li>
-											<li><a href="#">Option Four</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li><a href="#" class="button">Sign Up</a></li>
-						</ul>
-					</nav>
-				</header>
+            if (session.getAttribute("Idioma") == null || session.getAttribute("Idioma").equals("Español")) {
+                session.setAttribute("Idioma", "Español");
+                idioma = new Idioma("Español");
+            } else {
+                idioma = new Idioma("Ingles");
+            }
 
-			<!-- Main -->
-				<section id="main" class="container">
-					<header>
-						<h2>Generic</h2>
-						<p>A generic page for every non-generic situation.</p>
-					</header>
-					<div class="box">
-						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
-						<h3>This is a subheading</h3>
-						<p>Cep risus aliquam gravida cep ut lacus amet. Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae ante vestibulum ante. Blandit. Ante accumsan nisi eu placerat gravida placerat adipiscing in risus fusce vitae ac mi accumsan nunc in accumsan tempor blandit aliquet aliquet lobortis. Ultricies blandit lobortis praesent turpis. Adipiscing accumsan adipiscing adipiscing ac lacinia cep. Orci blandit a iaculis adipiscing ac. Vivamus ornare laoreet odio vis praesent nunc lorem mi. Erat. Tempus sem faucibus ac id. Vis in blandit. Nascetur ultricies blandit ac. Arcu aliquam. Accumsan mi eget adipiscing nulla. Non vestibulum ac interdum condimentum semper commodo massa arcu.</p>
-						<div class="row">
-							<div class="6u 12u(mobilep)">
-								<h3>And now a subheading</h3>
-								<p>Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae lorem ipsum adipiscing ac. Vivamus ornare laoreet odio vis praesent.</p>
-							</div>
-							<div class="6u 12u(mobilep)">
-								<h3>And another subheading</h3>
-								<p>Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae lorem ipsum adipiscing ac. Vivamus ornare laoreet odio vis praesent.</p>
-							</div>
-						</div>
-					</div>
-				</section>
+            String nivel = "", usuario = "", rol = null, foto = null;
+            if (session.getAttribute("user") != null && session.getAttribute("nivel") != null) {
+                nivel = session.getAttribute("nivel").toString();
+                usuario = session.getAttribute("user").toString();
+                System.out.println("///// Usuario: " + usuario);
+                System.out.println("///// Nivel: " + nivel);
+            }
+        %>
+        <section id="container" > 
+            <div id="page-wrapper">
+                <!-- Header -->
+                <header id="header">
+                    <nav id="nav">
+                        <ul>
+                            <li><a href="index.jsp">Inicio</a></li>
+                            <li>
+                                <a href="#" class="icon fa-angle-down">Menu</a>
+                                <ul>
+                                    <% if (!(nivel.equals("2") || nivel.equals("1"))) {%>
+                                    <li> <a href="nuevoCliente.jsp" class ="actions">Registro Nuevo Cliente</a> </li>
+                                        <% }%>
+                                    <li><a href="catalogo.jsp">Catálogo Productos</a></li>
+                                    <li><a href="contact.jsp">Contacto</a></li>
+                                    <li>
+                                        <a href="#">Opciones</a>
+                                        <ul>
+                                            <li><a href="#">Buscar Productos</a></li>
+                                            <li><a href="#">Ver Pedido</a></li>  
+                                            <li><a href="#">Comentarios</a></li>
+                                                <%if (nivel.equals("1")) {%>
+                                            <li><a href="#">Reporteria</a></li>
+                                            <li><a href="#">Administracion</a></li>
+                                                <%}%>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
+                                <ul>
+                                    <li>
+                                        <a href="cambioEspanol.jsp" class ="actions" >
+                                            <% out.write(idioma.getProperty("espanol"));%>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="cambioIngles.jsp" class ="actions"> 
+                                            <% out.write(idioma.getProperty("ingles"));%>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <%if (nivel.equals("2") || nivel.equals("1")) {%>
+                            <li>
+                                <a  class= "button">Usuario:  <%=usuario%><img src="images/ICONOS/CARRITO.png" width="25" height="21" border="0"> </a>
+                                <ul>
+                                    <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
+                                    <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
+                                </ul>
+                            </li>
+                            <%}%>
+                        </ul>     
+                    </nav>
+                </header>
+                <!-- Banner -->
+                <section id="banner" class ="box">
+                    <!--                    <span class="image featured"><img src="images/logo.png" alt="log" /></span>-->
+                    <img class="image featured" src="images/logo.png" alt="log" />
+                    <p>Sirviendole con total amabilidad desde 1985.</p>
+                    <%if (nivel.equals("4") || nivel.equals("3") || nivel.equals("")) {%>
+                    <ul class="actions" id = "botonesEntrada">
+                        <li><a href="login.jsp" class="button special">Entrar</a></li>
+                        <li><a href="nuevoCliente.jsp" class="button">Registrarse</a></li>
+                    </ul>
+                    <%}%>
+                </section>
+                <!-- Main -->
+                <section id="main" class="container">
+                    <section class="box special">
+                        <header class="major">
+                            <h2>Pagina Oficial de Muebleria Los Alpes
+                                <br />
+                            </h2>
+                            <p>En nuestro catálogo de productos podrá encontrar una gran variedad de muebles para su hogar</p>
+                        </header>
+                        <span class="image featured"><img src="images/ImagenPrueba.jpg" alt="" /></span>
+                    </section>
+                    <%if (nivel.equals("1")) {%>
+                    <div class="12u 20u(narrower)">
+                        <section class="box special">
+                            <span class="icon major fa-area-chart accent3"></span>
+                            <!-- <span class="image featured"><img src="images/pic03.jpg" alt="" /></span> -->
+                            <h3>REPORTERIA</h3>
+                            <p>VEA LOS REPORTES DE VENTAS, CLIENTES ACTIVOS  Y PRODUCTOS EN EL INVENTARIO</p>
+                            <ul class="actions">
+                                <li><a href="#" class="button alt">Más Información</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div class="12u 20u(narrower)">
+                        <section class="box special">
+                            <span class="icon major fa-bolt accent2"></span>
+                            <!-- <span class="image featured"><img src="images/pic03.jpg" alt="" /></span> -->
+                            <h3>ADMINISTRACIÓN</h3>
+                            <p>ACTUALIZACIÓN DE ESTADO DE CLIENTES, ESTADO DE PEDIOS, ETC. </p>
+                            <ul class="actions">
+                                <li><a href="#" class="button alt">Más Información</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                    <%}%>
+                    <section class="box special features">
+                        <div class="row">
+                            <div class="6u 12u(narrower)">
+                                <section class="box special">
 
-            <!-- Footer -->
-            <footer id="footer">
-                <ul class="icons">
-                    <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                    <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                    <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-                    <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
-                </ul>
-                <ul class="copyright">
-                    <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Pantaleón Medrano</a></li>
-                </ul>
-            </footer>
+                                    <span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
+                                    <h3>Muebles Tradicionales</h3>
+                                    <p>Este tipo de muebles se caracterizan por contar con una estética conservadora y  detalles muy elegantes, como maderas brillantes y oscuras, un diseño simétrico, tapicería delicada y curvas bien detalladas, entre otros.</p>
+                                </section>
+                            </div>
+                            <div class="6u 12u(narrower)">
+                                <section class="box special">
+                                    <!--  <span class="icon major fa-area-chart accent3"></span> -->
+                                    <span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
+                                    <h3>Muebles Modernos </h3>
+                                    <p>Los muebles de este estilo presentan líneas ligeras y son asociados con el minimalismo posmoderno. Son producidos para ser funcionales y prácticos,ajustandose a las necesidades de la actualidad.</p>
+                                </section>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="6u 12u(narrower)">
+                                <section class="box special">
+                                    <!--  <span class="icon major fa-cloud accent4"></span>-->
+                                    <span class="image featured"><img src="images/ImagenPrueba2.jpg" alt="" /></span>
+                                    <h3>Muebles Coloniales</h3>
+                                    <p>Son propios de las fincas y haciendas previas al siglo XX. Para su fabricación se recurre a materiales autóctonos, detalles artesanales, maderas macizas y toques exóticos.</p>
+                                </section>
+                            </div>
+                            <div class="6u 12u(narrower)">
+                                <section class="box special">
+                                    <!--   <span class="icon major fa-lock accent5"></span>-->
+                                    <span class="image featured"><img src="images/ImagenPrueba.jpg" alt="" /></span>
+                                    <h3>Muebles Rústicos</h3>
+                                    <p> Los muebles que cuentan con este estilo tienen una apariencia folklórica. Transmiten la sensación de ser muebles usados, sencillos o rudimentarios.</p>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="box special features">
+                        <div class="row">
+                            <div class="6u 12u(narrower)">
+                                <section class="box special">
+                                    <span class="image featured"><img src="images/tarjetas.jpg"  height="250" /></span>
+                                    <h3>Formas de Pago</h3>
+                                    <p>En Muebleria Los Alpes, contamos con varias facilidades de Pago, como lo son  Tarjetas de Crédito, Débito y Depósitos a nuestra cuenta. </p>
+                                    <ul class="actions">
+                                        <li><a href="#" class="button alt">Más Información</a></li>
+                                    </ul>
+                                </section>
+                            </div>
+                            <div class="6u 12u(narrower)">
+                                <section class="box special">
+                                    <span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
+                                    <h3>Entregas a Domicilio</h3>
+                                    <p>Para facilitarle la entrega de su pedido, contamos también con el servicio de entrega a cualquier parte de Centroamerica.</p>
+                                    <ul class="actions">
+                                        <li><a href="#" class="button alt">Más Información</a></li>
+                                    </ul>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- CTA 
+                            <section id="cta">
+        
+                                    <h2>Sign up for beta access</h2>
+                                    <p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc.</p>
+        
+                                    <form>
+                                            <div class="row uniform 50%">
+                                                    <div class="8u 12u(mobilep)">
+                                                            <input type="email" name="email" id="email" placeholder="Email Address" />
+                                                    </div>
+                                                    <div class="4u 12u(mobilep)">
+                                                            <input type="submit" value="Sign Up" class="fit" />
+                                                    </div>
+                                            </div>
+                                    </form>
+        
+                            </section>
+        
+                    <!-- Footer -->
+                </section>
+                <footer id="footer">
+                    <ul class="icons">
+                        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                        <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+                    </ul>
+                    <ul class="copyright">
+                        <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
+                    </ul>
+                </footer>
 
-		</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrollgress.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
-
-	</body>
+            </div>
+        </section>
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/jquery.scrollgress.min.js"></script>
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+        <script src="assets/js/main.js"></script>
+        <!--        </section>-->
+    </body>
 </html>
