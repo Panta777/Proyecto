@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import modelo.Operaciones;
+import modelo.OperacionesCliente;
 
 /**
  *
@@ -28,7 +28,7 @@ public class login extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         try {
-            Operaciones op = new Operaciones();
+            OperacionesCliente op = new OperacionesCliente();
             if (request.getParameter("Enviar") != null && request.getParameter("user") != null && request.getParameter("password") != null) {
                 String usu = request.getParameter("user");
                 String contra = request.getParameter("password");

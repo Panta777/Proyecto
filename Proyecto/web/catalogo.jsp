@@ -49,8 +49,8 @@
                                 <a href="#" class="icon fa-angle-down">Menu</a>
                                 <ul>
                                     <% if (!(nivel.equals("2") || nivel.equals("1"))) {%>
-                                    <li> <a href="nuevoCliente.jsp" class ="actions">Registro Nuevo Cliente</a> </li>
-                                        <% }%>
+                                    <li> <a href="nuevoCliente.jsp" class ="actions"> Nuevo Cliente</a> </li>
+                                        <%}%>
                                     <li><a href="catalogo.jsp">Catálogo Productos</a></li>
                                     <li><a href="contact.jsp">Contacto</a></li>
                                     <li>
@@ -83,7 +83,7 @@
                             </li>
                             <%if (nivel.equals("2") || nivel.equals("1")) {%>
                             <li>
-                                <a  class= "button">Usuario:  <%=usuario%><img src="images/ICONOS/CARRITO.png" width="25" height="21" border="0"> </a>
+                                <a  class= "button special">Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
                                     <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
                                     <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
@@ -95,7 +95,6 @@
                 </header>
                 <!-- Banner -->
                 <section id="banner" class ="box">
-                    <!--                    <span class="image featured"><img src="images/logo.png" alt="log" /></span>-->
                     <img class="image featured" src="images/logo.png" alt="log" />
                     <p>Sirviendole con total amabilidad desde 1985.</p>
                 </section>
@@ -103,117 +102,37 @@
                 <section id="main" class="container">
                     <section class="box special">
                         <header class="major">
-                            <h1>CATÁLOGO DE PRODUCTOS</h1>
-                            <p>Nuestros productos están dividos en diferentes categorias para su mayor comodidad.</p>
+                            <h2>CATÁLOGO DE PRODUCTOS</h2>
+                            <p>Nuestros productos están divididos en diferentes categorias para su mayor comodidad.</p>
                         </header>
                         <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
                     </section>
-                    <%if (nivel.equals("1")) {%>
-                    <div class="12u 20u(narrower)">
-                        <section class="box special">
-                            <span class="icon major fa-area-chart accent3"></span>
-                            <!-- <span class="image featured"><img src="images/pic03.jpg" alt="" /></span> -->
-                            <h3>REPORTERIA</h3>
-                            <p>VEA LOS REPORTES DE VENTAS, CLIENTES ACTIVOS  Y PRODUCTOS EN EL INVENTARIO</p>
-                            <ul class="actions">
-                                <li><a href="#" class="button alt">Más Información</a></li>
-                            </ul>
-                        </section>
-                    </div>
-                    <div class="12u 20u(narrower)">
-                        <section class="box special">
-                            <span class="icon major fa-bolt accent2"></span>
-                            <!-- <span class="image featured"><img src="images/pic03.jpg" alt="" /></span> -->
-                            <h3>ADMINISTRACIÓN</h3>
-                            <p>ACTUALIZACIÓN DE ESTADO DE CLIENTES, ESTADO DE PEDIOS, ETC. </p>
-                            <ul class="actions">
-                                <li><a href="#" class="button alt">Más Información</a></li>
-                            </ul>
-                        </section>
-                    </div>
-                    <%}%>
-                    <section class="box special features">
+                    <section class="box special features" id = "tradcionales"><h3>Muebles Tradicionales</h3>
                         <div class="row">
-                            <div class="6u 12u(narrower)">
+                            <div class="4u 12u(narrower)">
                                 <section class="box special">
-                                    <span class="image featured"><img src="images/TRADICIONALES/MTradicionales.png" alt="Muebles Tradicionales" /></span>
-                                    <h3>Muebles Tradicionales</h3>
-                                    <p>Este tipo de muebles se caracterizan por contar con una estética conservadora y  detalles muy elegantes, como maderas brillantes y oscuras, un diseño simétrico, tapicería delicada y curvas bien detalladas, entre otros.</p>
+                                    <span class="image featured"><img src="images/TRADICIONALES/MT1 - Sofa.png" alt="Muebles Tradicionales" /></span>
+                                    <p>Mueble 1</p>
                                 </section>
                             </div>
-                            <div class="6u 12u(narrower)">
+                            <div class="4u 12u(narrower)">
                                 <section class="box special">
-                                    <!--  <span class="icon major fa-area-chart accent3"></span> -->
-                                    <span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
-                                    <h3>Muebles Modernos </h3>
-                                    <p>Los muebles de este estilo presentan líneas ligeras y son asociados con el minimalismo posmoderno. Son producidos para ser funcionales y prácticos,ajustandose a las necesidades de la actualidad.</p>
+                                    <span class="image featured"><img src="images/TRADICIONALES/MT2 - Ropero.png" alt="Muebles Tradicionales" /></span>
+                                    <p>Mueble 1</p>
+                                </section>
+                            </div>
+                            <div class="4u 12u(narrower)">
+                                <section class="box special">
+                                    <span class="image featured"><img src="images/TRADICIONALES/MT3 - Comoda.png" alt="Muebles Tradicionales" /></span>
+                                    <p>Mueble 1</p>
                                 </section>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="6u 12u(narrower)">
-                                <section class="box special">
-                                    <!--  <span class="icon major fa-cloud accent4"></span>-->
-                                    <span class="image featured"><img src="images/ImagenPrueba2.jpg" alt="" /></span>
-                                    <h3>Muebles Coloniales</h3>
-                                    <p>Son propios de las fincas y haciendas previas al siglo XX. Para su fabricación se recurre a materiales autóctonos, detalles artesanales, maderas macizas y toques exóticos.</p>
-                                </section>
-                            </div>
-                            <div class="6u 12u(narrower)">
-                                <section class="box special">
-                                    <!--   <span class="icon major fa-lock accent5"></span>-->
-                                    <span class="image featured"><img src="images/ImagenPrueba.jpg" alt="" /></span>
-                                    <h3>Muebles Rústicos</h3>
-                                    <p> Los muebles que cuentan con este estilo tienen una apariencia folklórica. Transmiten la sensación de ser muebles usados, sencillos o rudimentarios.</p>
-                                </section>
-                            </div>
                         </div>
                     </section>
-                    <section class="box special features">
-                        <div class="row">
-                            <div class="6u 12u(narrower)">
-                                <section class="box special">
-                                    <span class="image featured"><img src="images/tarjetas.jpg"  height="250" /></span>
-                                    <h3>Formas de Pago</h3>
-                                    <p>En Muebleria Los Alpes, contamos con varias facilidades de Pago, como lo son  Tarjetas de Crédito, Débito y Depósitos a nuestra cuenta. </p>
-                                    <ul class="actions">
-                                        <li><a href="#" class="button alt">Más Información</a></li>
-                                    </ul>
-                                </section>
-                            </div>
-                            <div class="6u 12u(narrower)">
-                                <section class="box special">
-                                    <span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
-                                    <h3>Entregas a Domicilio</h3>
-                                    <p>Para facilitarle la entrega de su pedido, contamos también con el servicio de entrega a cualquier parte de Centroamerica.</p>
-                                    <ul class="actions">
-                                        <li><a href="#" class="button alt">Más Información</a></li>
-                                    </ul>
-                                </section>
-                            </div>
-                        </div>
-                    </section>
-                    <!-- CTA 
-                            <section id="cta">
-        
-                                    <h2>Sign up for beta access</h2>
-                                    <p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc.</p>
-        
-                                    <form>
-                                            <div class="row uniform 50%">
-                                                    <div class="8u 12u(mobilep)">
-                                                            <input type="email" name="email" id="email" placeholder="Email Address" />
-                                                    </div>
-                                                    <div class="4u 12u(mobilep)">
-                                                            <input type="submit" value="Sign Up" class="fit" />
-                                                    </div>
-                                            </div>
-                                    </form>
-        
-                            </section>
-        
-                    <!-- Footer -->
                 </section>
+                <!-- Footer -->
                 <footer id="footer">
                     <ul class="icons">
                         <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
@@ -225,7 +144,6 @@
                         <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
                     </ul>
                 </footer>
-
             </div>
         </section>
         <!-- Scripts -->

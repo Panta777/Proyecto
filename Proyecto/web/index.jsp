@@ -3,7 +3,9 @@
     Created on : 8/09/2016, 11:50:17 PM
     Author     : panle
 --%>
+<%@page import="modelo.Articulo"%>
 <%@page import="modelo.Idioma"%>
+<%@page import="java.util.ArrayList"%>
 <%@page session = "true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
@@ -37,11 +39,16 @@
                 System.out.println("///// Usuario: " + usuario);
                 System.out.println("///// Nivel: " + nivel);
             }
+
+            HttpSession sesion = request.getSession(true);
+            ArrayList<Articulo> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
+
         %>
         <section id="container" > 
             <div id="page-wrapper">
                 <!-- Header -->
-                <header id="header">
+                <header id="header" class = "alt">
+                    <h1><a href="#main">Muebleria Los Alpes</a></h1>
                     <nav id="nav">
                         <ul>
                             <li><a href="index.jsp">Inicio</a></li>
@@ -49,9 +56,9 @@
                                 <a href="#" class="icon fa-angle-down">Menu</a>
                                 <ul>
                                     <% if (!(nivel.equals("2") || nivel.equals("1"))) {%>
-                                    <li> <a href="nuevoCliente.jsp" class ="actions">Registro Nuevo Cliente</a> </li>
-                                        <% }%>
-                                    <li><a href="catalogo.jsp">Catálogo Productos</a></li>
+                                    <li> <a href="nuevoCliente.jsp" class ="actions">Nuevo Cliente</a> </li>
+                                        <% }%>    
+                                    <li><a href="#catalogo">Catálogo Productos</a></li>
                                     <li><a href="contact.jsp">Contacto</a></li>
                                     <li>
                                         <a href="#">Opciones</a>
@@ -83,7 +90,7 @@
                             </li>
                             <%if (nivel.equals("2") || nivel.equals("1")) {%>
                             <li>
-                                <a  class= "button">Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <a  class= "button special">Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
                                     <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
                                     <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
@@ -109,9 +116,7 @@
                 <section id="main" class="container">
                     <section class="box special">
                         <header class="major">
-                            <h2>Pagina Oficial de Muebleria Los Alpes
-                                <br />
-                            </h2>
+                            <h2>Pagina Oficial de Muebleria Los Alpes<br /></h2>
                             <p>En nuestro catálogo de productos podrá encontrar una gran variedad de muebles para su hogar</p>
                         </header>
                         <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
@@ -140,20 +145,21 @@
                         </section>
                     </div>
                     <%}%>
-                    <section class="box special features">
+                    <section class="box special features" id = "catalogo">
+                        <h3>CATALOGO DE PRODUCTOS</h3>
                         <div class="row">
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <span class="image featured"><img src="images/TRADICIONALES/MTradicionales.png" alt = "Muebles Tradicionales"/></span>
-                                    <h3>Muebles Tradicionales</h3>
-                                    <p>Este tipo de muebles se caracterizan por contar con una estética conservadora y  detalles muy elegantes, como maderas brillantes y oscuras, un diseño simétrico, tapicería delicada y curvas bien detalladas, entre otros.</p>
+                                    <h3><a href="catalogo.jsp">Muebles Tradicionales</a></h3>
+                                    <p>Este tipo de muebles se caracterizan por contar con una estética conservadora y  detalles muy elegantes, como maderas brillantes y oscuras, diseño simétrico, tapicería delicada y curvas bien detalladas.</p>
                                 </section>
                             </div>
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <!--  <span class="icon major fa-area-chart accent3"></span> -->
                                     <span class="image featured"><img src="images/MODERNOS/MModernos.png" alt = "Muebles Tradicionales"/></span>
-                                    <h3>Muebles Modernos </h3>
+                                    <h3><a href="catalogo.jsp">Muebles Modernos </a></h3>
                                     <p>Los muebles de este estilo presentan líneas ligeras y son asociados con el minimalismo posmoderno. Son producidos para ser funcionales y prácticos,ajustandose a las necesidades de la actualidad.</p>
                                 </section>
                             </div>
@@ -163,16 +169,16 @@
                                 <section class="box special">
                                     <!--  <span class="icon major fa-cloud accent4"></span>-->
                                     <span class="image featured"><img src="images/COLONIALES/MColoniales.png" alt = "Muebles Tradicionales"/></span>
-                                    <h3>Muebles Coloniales</h3>
-                                    <p>Son propios de las fincas y haciendas previas al siglo XX. Para su fabricación se recurre a materiales autóctonos, detalles artesanales, maderas macizas y toques exóticos.</p>
+                                    <h3> <a href="catalogo.jsp"> Muebles Coloniales</a></h3>
+                                    <p>Son propios de las fincas y haciendas previas al siglo XX. Para su fabricación se recurre a materiales autóctonos, detalles artesanales, maderas macizas y toques exóticos que aún perduran en el tiempo.</p>
                                 </section>
                             </div>
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <!--   <span class="icon major fa-lock accent5"></span>-->
                                     <span class="image featured"><img src="images/RUSTICOS/MRusticos.png" alt = "Muebles Tradicionales"/></span>
-                                    <h3>Muebles Rústicos</h3>
-                                    <p> Los muebles que cuentan con este estilo tienen una apariencia folklórica. Transmiten la sensación de ser muebles usados, sencillos o rudimentarios.</p>
+                                    <h3><a href="catalogo.jsp">Muebles Rústicos</a></h3>
+                                    <p>Los muebles que cuentan con este estilo tienen una apariencia folklórica. Transmiten la sensación de ser muebles usados, sencillos o rudimentarios, además de dar una sensación hogareña.</p>
                                 </section>
                             </div>
                         </div>
@@ -233,7 +239,6 @@
                         <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
                     </ul>
                 </footer>
-
             </div>
         </section>
         <!-- Scripts -->
