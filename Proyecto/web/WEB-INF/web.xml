@@ -85,17 +85,17 @@
     <env-entry>
         <env-entry-name>DB_URL</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>jdbc:oracle:thin:@localhost:1521:orclsys</env-entry-value>
+        <env-entry-value>jdbc:oracle:thin:@localhost:1521:xe</env-entry-value>
     </env-entry>
     <env-entry>
         <env-entry-name>DB_USERNAME</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>C##PRUEBAS</env-entry-value>
+        <env-entry-value>alpes</env-entry-value>
     </env-entry>
     <env-entry>
         <env-entry-name>DB_PASSWORD</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>medrano7</env-entry-value>
+        <env-entry-value>AlpesDB2016</env-entry-value>
     </env-entry>
     <env-entry>
         <env-entry-name>DBDATASOURCE</env-entry-name>

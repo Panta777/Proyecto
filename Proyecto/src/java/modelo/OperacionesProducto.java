@@ -5,7 +5,7 @@
  */
 package modelo;
 
-import ClasesAbstractas.Producto;
+import ClasesGenericas.Producto;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -14,20 +14,19 @@ import java.util.ArrayList;
  */
 public class OperacionesProducto {
 
-    
-    private  Conexion coneLocal;
+    private Conexion coneLocal;
 
     public OperacionesProducto() {
         this.coneLocal = new Conexion();
     }
 
     /**
-     * Retorna el listado de productos existentes 
-     * @return 
+     * 
+     * @return Retorna el listado de productos existentes
      * @throws java.sql.SQLException
      * @
      */
-      public ArrayList<Producto> getAllProductos()throws SQLException {
+    public ArrayList<Producto> getAllProductos() throws SQLException {
         ArrayList<Producto> productos = new ArrayList<>();
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -38,10 +37,14 @@ public class OperacionesProducto {
             while (rs.next()) {
                 productos.add(new Producto(rs.getInt("id_producto"), rs.getString("nombre"), rs.getString("img_producto"), rs.getInt("id_categoria"), rs.getDouble("precio"), rs.getInt("stock")));
             }
-        } catch (Exception e) {
-
-        } finally {
-            try {
+        } 
+        catch (Exception e)
+        {
+        } 
+        finally 
+        {
+            try 
+            {
                 if (rs != null) {
                     rs.close();
                 }
@@ -51,11 +54,19 @@ public class OperacionesProducto {
                 if (coneLocal.getNewConnection() != null) {
                     coneLocal.getNewConnection().close();
                 }
-            } catch (Exception e) {
+            } 
+            catch (Exception e) 
+            {
             }
         }
         return productos;
     }
+    /**
+     *
+     * @return el detalle de un producto en específico
+     * @throws java.sql.SQLException
+     * @
+     */
 
     public Producto getProducto(int id) {
         Producto producto = null;
@@ -69,9 +80,12 @@ public class OperacionesProducto {
             while (rs.next()) {
                 producto = new Producto(rs.getInt("id_producto"), rs.getString("nombre"), rs.getString("img_producto"), rs.getInt("id_categoria"), rs.getDouble("precio"), rs.getInt("stock"));
             }
-        } catch (Exception e) {
-
-        } finally {
+        } 
+        catch (Exception e) 
+        {
+        } 
+        finally 
+        {
             try {
                 if (rs != null) {
                     rs.close();
@@ -87,5 +101,4 @@ public class OperacionesProducto {
         }
         return producto;
     }
-
 }
