@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="modelo.Idioma"%>
-<%@page import="modelo.Operaciones"%>
+<%@page import="modelo.OperacionesCliente"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -166,42 +166,6 @@
                                 </div>
                             </form>
                             <hr />
-
-                            <%
-                                /*  
-                                 * @return      * 1 = exitoso
-                                 * 2 = usuario ya existe
-                                 * 3 =  error al procesar datos
-                                 * 4 = ?
-                                 * @throws java.sql.SQLException
-                                 */
-                                Operaciones op = new Operaciones();
-
-                                if (request.getParameter("Enviar") != null) {
-                                    String usu = request.getParameter("");
-                                    String contra = request.getParameter("");
-                                    HttpSession sesion = request.getSession();
-                                    switch (op.loguear(usu, contra)) {
-                                        case 1:
-                                            sesion.setAttribute("user", usu);
-                                            sesion.setAttribute("nivel", "1");
-                                            response.sendRedirect("index.jsp");
-
-                                            break;
-
-                                        case 2:
-                                            sesion.setAttribute("user", usu);
-                                            sesion.setAttribute("nivel", "2");
-                                            response.sendRedirect("generic.jsp");
-
-                                            break;
-
-                                        default:
-                                            out.write("Usuario no existe, o contraseña invalida");
-                                            break;
-                                    }
-                                }
-                            %>
                         </section>
                     </div>
                 </div>

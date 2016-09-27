@@ -37,6 +37,7 @@
                 response.sendRedirect("modificaCliente.jsp");
             }
         %>
+
         <section id="container" > 
             <div id="page-wrapper">
                 <!-- Header -->
@@ -52,7 +53,7 @@
                                     <li>
                                         <a href="#">Opciones</a>
                                         <ul>
-                                            <li><a href="#">Buscar Productos</a></li>
+                                            <li><a href="catalogo.jsp">Buscar Productos</a></li>
                                             <li><a href="#">Ver Pedido</a></li>  
                                             <li><a href="#">Comentarios</a></li>
                                         </ul>
@@ -72,42 +73,43 @@
                     <section class="box special">
                         <header class="major">
                             <h2>INGRESO AL SISTEMA</h2>
-                            <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
-                        </header>                
-                    </section>
-                    <div class="row">
-                        <div class="12u">
-                            <!-- Form -->
-                            <section class="box">
-                                <h1><p>Ingrese sus datos registrados para poder realizar su compra.</p></h1>
-                                <form method="post" action="login">
-                                    <div class="row uniform 50%">
-                                        <div class="6u 12u(mobilep)">
-                                            <input type="text" name="user" id="query" value="" placeholder="Ingrese su Usuario" />
-                                        </div>
-                                        <div class="6u 12u(mobilep)">
-                                            <input type="password" name="password" id="query" value="" placeholder="Ingrese su contraseña" />
-                                        </div>
-                                    </div>
-                                    <div class="row uniform">
-                                        <div class="12u">
-                                            <ul class="actions">
-                                                <li> <input type="submit" value="Entrar" class="fit" name = "Enviar"/></li>
-                                            </ul>
-                                        </div>
-                                        <% if (nivel.equals("3")) {
-                                                out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Usuario ha sido detectado como Inactivo o Bloqueado, contacte  a itMueblesLosAlpes@gmail.com </p></h5>");
-                                            }%>
+                            <!--                            <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>-->
+                        </header>   
 
-                                        <% if (nivel.equals("4")) {
-                                                out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Login fallido, intente nuevamente</p></h5>");
-                                            }%>
-                                    </div>
-                                </form>
-                                <hr />
-                            </section>
-                        </div>
-                    </div>    
+                        <div class="row">
+                            <div class="12u">
+                                <!-- Form -->
+                                <section class="box">
+                                    <h2><p>Ingrese sus datos registrados para poder realizar su compra.</p></h2>
+                                    <form method="post" action="login">
+                                        <div class="row uniform">
+                                            <div class="12u">
+                                                <input type="text" name="user" id="query" value="" placeholder="Ingrese su Usuario" />
+                                            </div>
+                                            <div class="12u">
+                                                <input type="password" name="password" id="query" value="" placeholder="Ingrese su contraseña" />
+                                            </div>
+                                        </div>
+                                        <div class="row uniform">
+                                            <div class="12u">
+                                                <ul class="actions">
+                                                    <li> <input type="submit" value="Entrar" class="fit" name = "Enviar"/></li>
+                                                </ul>
+                                            </div>
+                                            <% if (nivel.equals("3")) {
+                                                    out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Usuario ha sido detectado como Inactivo o Bloqueado, contacte  a itMueblesLosAlpes@gmail.com </p></h5>");
+                                                }%>
+
+                                            <% if (nivel.equals("4")) {
+                                                    out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Login fallido, intente nuevamente</p></h5>");
+                                                }%>
+                                        </div>
+                                    </form>
+                                    <hr />
+                                </section>
+                            </div>
+                        </div>  
+                    </section>  
                 </section>
                 <!-- Footer -->
                 <footer id="footer">
