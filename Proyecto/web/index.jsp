@@ -3,7 +3,7 @@
     Created on : 8/09/2016, 11:50:17 PM
     Author     : panle
 --%>
-<%@page import="modelo.Articulo"%>
+<%@page import="ClasesGenericas.Compra"%>
 <%@page import="modelo.Idioma"%>
 <%@page import="java.util.ArrayList"%>
 <%@page session = "true"%>
@@ -41,7 +41,7 @@
             }
 
             HttpSession sesion = request.getSession(true);
-            ArrayList<Articulo> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
+            ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
 
         %>
         <section id="container" > 

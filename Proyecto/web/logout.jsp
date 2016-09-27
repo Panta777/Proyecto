@@ -4,11 +4,13 @@
     Author     : panle
 --%>
 
+<%@page import="java.awt.SystemColor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Refresh" content="10; url=index.jsp">
         <title>JSP Page</title>
         <%
             response.setContentType("text/html");
@@ -23,7 +25,8 @@
 // session.removeAttribute("logueado");
 // session.setMaxInactiveInterval(1);
             session.invalidate();
-
+   
+            
             response.sendRedirect("index.jsp");
         %>
     </head>

@@ -48,9 +48,9 @@ public class EnvironmentVars {
             DB_USERNAME = (String) currentContext.lookup("java:comp/env/DB_USERNAME");
             DB_PASSWORD = (String) currentContext.lookup("java:comp/env/DB_PASSWORD");
 
-            System.out.println("url: " + DB_URL);
-            System.out.println("USER: " + DB_USERNAME);
-            System.out.println("PASS: " + DB_PASSWORD);
+//            System.out.println("url: " + DB_URL);
+//            System.out.println("USER: " + DB_USERNAME);
+//            System.out.println("PASS: " + DB_PASSWORD);
         } catch (NamingException nE) {
             System.out.println("VariablesAmbiente()...Error al obtener variables del contexto...: " + nE.getMessage());
         }

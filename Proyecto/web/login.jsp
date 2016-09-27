@@ -6,7 +6,7 @@
 
 <%@page import="Controlador.login"%>
 <%@page import="modelo.Idioma"%>
-<%@page import="modelo.Operaciones"%>
+<%@page import="modelo.OperacionesCliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
