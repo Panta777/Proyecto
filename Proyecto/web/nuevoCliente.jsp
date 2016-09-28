@@ -18,18 +18,30 @@
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-        <script languaje="javascript">
+        <script type="text/javascript">
             function AutenticaSiEsHumano(form)
             {
-                if (form.human.checked == true)
+                if (form.human.checked === true)
                 {
                     form.EnviaCliente.disabled = false;
                 }
-//                else 
-//                {
-//                    form.EnviaCliente.disabled = false;
-//                }
             }
+
+            function CompruebaContras(form)
+            {
+                if (form.pass.value !== form.pass2.value)
+                {
+                    return alert("Contraseñas no coinciden");
+                    window.onbeforeunload = function exitAlert()
+                    {
+                        var textillo = "Los datos que no se han guardado se perderan.";
+                        return textillo;
+                    }
+                    // return "¿Seguro que quieres salir?";
+                }
+            }
+
+
         </script>
     </head>
     <body class="landing">
@@ -41,7 +53,7 @@
             } else {
                 idioma = new Idioma("Ingles");
             }
-            
+
             String nivel = "";
             if (session.getAttribute("nivel") != null && session.getAttribute("user") != null) {
                 nivel = session.getAttribute("nivel").toString();
@@ -81,18 +93,18 @@
             </section>
             <!-- Main -->
             <section id="main" class="container">
-                    <section class="box special">
-                        <header class="major">
-                            <h2>REGISTRO NUEVO CLIENTE</h2>
-                            <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
-                        </header>                
-                    </section>
+                <section class="box special">
+                    <header class="major">
+                        <h2>REGISTRO NUEVO CLIENTE</h2>
+                        <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
+                    </header>                
+                </section>
                 <div class="row">
                     <div class="12u">
                         <!-- Form -->
                         <section class="box">
                             <h3><p>Ingrese sus Datos</p></h3>
-                            <form method="post" action="#">
+                            <form method="post" action="controladorCliente">
                                 <div class="row uniform 50%">
                                     <div class="6u 12u(mobilep)">
                                         <input type="text" name="NoDoc" id="NoDoc" value="" placeholder="Docto <%out.write(idioma.getProperty("nombre"));%>" />
@@ -103,7 +115,7 @@
                                                 <option value="">-TipoDoc- <%out.write(idioma.getProperty("nombre"));%></option>
                                                 <option value="DPI">DPI <%out.write(idioma.getProperty("nombre"));%></option>
                                                 <option value="Pasaporte">Pasaporte <%out.write(idioma.getProperty("nombre"));%></option>
-                                                <option value="Otro(Licencia Conducir...etc)">Otro(Licencia Conducir...etc) <%out.write(idioma.getProperty("nombre"));%></option>
+                                                <option value="Otros">Otro(Licencia Conducir...etc) <%out.write(idioma.getProperty("nombre"));%></option>
                                             </select>
                                         </div>
                                     </div>                                
@@ -160,7 +172,7 @@
                                 <div class="row uniform ">
                                     <div class="12u">
                                         <ul class="actions">
-                                            <li><input type="submit" name ="EnviaCliente" value="Send" disabled = true /></li>
+                                            <li><input type="submit" name ="EnviaCliente" value="Send" disabled = true onClick="CompruebaContras(this.form)"/></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -11,13 +11,25 @@ package ClasesGenericas;
 public class Cliente {
 
     private int ID_CLIENTE;
+    private String USUARIO;
+    private String CONTRASENA;
     private String NUMERO_DOC;
+    private String TIPODOCUMENTO;
     private String NOMBRE;
     private String APELLIDO;
     private String TEL_RESIDENCIA;
     private String TEL_CEL;
     private String NIT;
     private String DIRECCION;
+    private String CIUDAD;
+
+    public String getCIUDAD() {
+        return CIUDAD;
+    }
+
+    public void setCIUDAD(String CIUDAD) {
+        this.CIUDAD = CIUDAD;
+    }
     private String PAIS;
     private String DEPARTAMENTO;
     private String PROFESION;
@@ -33,6 +45,46 @@ public class Cliente {
     private int Iddepartamento;
     private String IdTarjeta;
 
+    public Cliente() {
+        this.ID_CLIENTE = 0;
+        this.NUMERO_DOC = "";
+        this.TIPODOCUMENTO = "";
+        this.NOMBRE = "";
+        this.APELLIDO = "";
+        this.TEL_RESIDENCIA = "";
+        this.TEL_CEL = "";
+        this.NIT = "";
+        this.DIRECCION = "";
+        this.PAIS = "";
+        this.DEPARTAMENTO = "";
+        this.PROFESION = "";
+        this.EMAIL = "";
+        this.FECHA_ALTA = "";
+        this.FECHA_BAJA = "";
+        this.CUENTA_BANCO = "";
+        this.NUMERO_TARJETA = "";
+        this.ESTADO = 0;
+        this.ID_USUARIO = 0;
+        this.idbanco = 0;
+        this.identidad = 0;
+        this.Iddepartamento = 0;
+    }
+
+    public String getUSUARIO() {
+        return USUARIO;
+    }
+
+    public void setUSUARIO(String USUARIO) {
+        this.USUARIO = USUARIO;
+    }
+
+    public String getCONTRASENA() {
+        return CONTRASENA;
+    }
+
+    public void setCONTRASENA(String CONTRASENA) {
+        this.CONTRASENA = CONTRASENA;
+    }    
     public int getID_CLIENTE() {
         return ID_CLIENTE;
     }
@@ -47,6 +99,14 @@ public class Cliente {
 
     public void setNUMERO_DOC(String NUMERO_DOC) {
         this.NUMERO_DOC = NUMERO_DOC;
+    }
+
+    public String getTIPODOCUMENTO() {
+        return TIPODOCUMENTO;
+    }
+
+    public void setTIPODOCUMENTO(String TIPODOCUMENTO) {
+        this.TIPODOCUMENTO = TIPODOCUMENTO;
     }
 
     public String getNOMBRE() {

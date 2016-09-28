@@ -25,64 +25,55 @@ import modelo.OperacionesCliente;
 public class controladorCliente extends HttpServlet {
 
     //metodo encargado de la gestión del método POST
+    //Recibe los parametros de la paginas para el mantenimiento del Cliente
     protected void processRequestPOST(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         try {
-            /*  
-             *     private int ID_CLIENTE;
-             private String NUMERO_DOC;
-             private String NOMBRE;
-             private String APELLIDO;
-             private String TEL_RESIDENCIA;
-             private String TEL_CEL;
-             private String NIT;
-             private String DIRECCION;
-             private String PAIS;
-             private String DEPARTAMENTO;
-             private String PROFESION;
-             private String EMAIL;
-             private String FECHA_ALTA;
-             private String FECHA_BAJA;
-             private String CUENTA_BANCO;
-             private String NUMERO_TARJETA;
-             private int ESTADO;
-             private int ID_USUARIO;
-             private int idbanco;
-             private int identidad;
-             private int Iddepartamento;
-             private String IdTarjeta;
-             * @return      * 1 = exitoso
-             * 2 = usuario ya existe
-             * 3 =  error al procesar datos
-             * 4 = ?
-             * @throws java.sql.SQLException
-             */
             OperacionesCliente opcliente = new OperacionesCliente();
             Cliente cliente = new Cliente();
 
-            if (request.getParameter("Enviar") != null) {
-                cliente.setNOMBRE(request.getParameter("FName"));
+            if (request.getParameter("EnviaCliente") != null) {
+                if(request.getParameter("pass") == null ? request.getParameter("pass2") != null : !request.getParameter("pass").equals(request.getParameter("pass2")))
+                {
+                   response.sendRedirect("nuevoCliente.jsp");
+                }
+                else
+                {
+                    cliente.setNOMBRE(request.getParameter("FName"));
+                    cliente.setAPELLIDO(request.getParameter("LName"));
+                    cliente.setTIPODOCUMENTO(request.getParameter("TipoDoc"));
+                    cliente.setNUMERO_DOC(request.getParameter("NoDoc"));
+                    cliente.setTEL_RESIDENCIA(request.getParameter("TelRes"));
+                    cliente.setTEL_CEL(request.getParameter("TelCel"));
+                    cliente.setNIT(request.getParameter("Nit"));
+                    cliente.setDIRECCION(request.getParameter("Direccion"));
+                    cliente.setCIUDAD(request.getParameter("Ciudad"));
+                    cliente.setDEPARTAMENTO(request.getParameter("Departamento"));
+                    cliente.setPAIS(request.getParameter("Pais"));
+                    cliente.setPROFESION(request.getParameter("Profesion"));
+                    cliente.setEMAIL(request.getParameter("email"));
+                    cliente.setUSUARIO(request.getParameter("usuario"));
+                    cliente.setCONTRASENA(request.getParameter("pass"));
 
-                HttpSession sesion = request.getSession();
-                switch (opcliente.insertarCliente(usu, contra)) {
-                    case 1:
-                        sesion.setAttribute("user", usu);
-                        sesion.setAttribute("nivel", "1");
-                        response.sendRedirect("index.jsp");
-
-                        break;
-
-                    case 2:
-                        sesion.setAttribute("user", usu);
-                        sesion.setAttribute("nivel", "2");
-                        response.sendRedirect("generic.jsp");
-
-                        break;
-
-                    default:
-                        out.write("Usuario no existe, o contraseña invalida");
-                        break;
+                    HttpSession sesion = request.getSession();
+                    switch (opcliente.insertarCliente(cliente)) {
+                        case 1:
+//                            sesion.setAttribute("user", usu);
+//                            sesion.setAttribute("nivel", "1");
+                             System.out.println("Exito");
+                            response.sendRedirect("index.jsp");
+                            break;
+                        case 2:
+//                            sesion.setAttribute("user", usu);
+//                            sesion.setAttribute("nivel", "2");
+                             System.out.println("error");
+                            response.sendRedirect("nuevoCliente.jsp");
+                            break;
+                        default:
+                            out.write("Usuario no existe, o contraseña invalida");
+                            break;
+                    }                    
                 }
             }
         } catch (SQLException e) {
@@ -107,8 +98,7 @@ public class controladorCliente extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -122,8 +112,7 @@ public class controladorCliente extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
