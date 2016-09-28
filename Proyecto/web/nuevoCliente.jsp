@@ -27,21 +27,15 @@
                 }
             }
 
-            function CompruebaContras(form)
-            {
-                if (form.pass.value !== form.pass2.value)
-                {
-                    return alert("Contraseñas no coinciden");
-                    window.onbeforeunload = function exitAlert()
-                    {
-                        var textillo = "Los datos que no se han guardado se perderan.";
-                        return textillo;
-                    }
-                    // return "¿Seguro que quieres salir?";
+            function CompruebaContras(){
+                var texto = document.getElementById("pass");
+                var texto2 = document.getElementById("pass2");
+                if (texto !== texto2){
+                    alert("Contraseñas no coinciden");
+                    return false;
                 }
+                else return true;
             }
-
-
         </script>
     </head>
     <body class="landing">
@@ -162,7 +156,7 @@
                                         <input type="Password" name="pass" id="pass" value="" placeholder="Password <% out.write(idioma.getProperty("email"));%>"  />
                                     </div>
                                     <div class="12u">
-                                        <input type="Password" name="pass2" id="pass2" value="" placeholder="Confirme Password <% out.write(idioma.getProperty("email"));%>"  />
+                                        <input type="Password" name="pass2" id="pass2" value="" placeholder="Confirme Password <% out.write(idioma.getProperty("email"));%> " onBlur ="CompruebaContras(this.form)" />
                                     </div>
                                     <div class="12u">
                                         <input type="checkbox" id="human" name="human"  onClick="AutenticaSiEsHumano(this.form)">
@@ -172,7 +166,7 @@
                                 <div class="row uniform ">
                                     <div class="12u">
                                         <ul class="actions">
-                                            <li><input type="submit" name ="EnviaCliente" value="Send" disabled = true onClick="CompruebaContras(this.form)"/></li>
+                                            <li><input type="submit" name ="EnviaCliente" value="Send" disabled = true /></li>
                                         </ul>
                                     </div>
                                 </div>

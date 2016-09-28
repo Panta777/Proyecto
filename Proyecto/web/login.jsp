@@ -37,7 +37,6 @@
                 response.sendRedirect("modificaCliente.jsp");
             }
         %>
-
         <section id="container" > 
             <div id="page-wrapper">
                 <!-- Header -->
@@ -75,7 +74,6 @@
                             <h2>INGRESO AL SISTEMA</h2>
                             <!--                            <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>-->
                         </header>   
-
                         <div class="row">
                             <div class="12u">
                                 <!-- Form -->
@@ -93,16 +91,23 @@
                                         <div class="row uniform">
                                             <div class="12u">
                                                 <ul class="actions">
-                                                    <li> <input type="submit" value="Entrar" class="fit" name = "Enviar"/></li>
+                                                    <li> <input type="submit" value="Ingresar" class="fit" name = "Enviar"/></li>
                                                 </ul>
                                             </div>
-                                            <% if (nivel.equals("3")) {
-                                                    out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Usuario ha sido detectado como Inactivo o Bloqueado, contacte  a itMueblesLosAlpes@gmail.com </p></h5>");
-                                                }%>
+                                            <%
+                                                if (nivel.equals("3") || nivel.equals("4")) {
+                                                    if (nivel.equals("3")) {
+                                                        out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Usuario ha sido detectado como Inactivo, contacte  a itMueblesLosAlpes@gmail.com </p></h5>");
+                                                    }
+                                                    if (nivel.equals("4")) {
+                                                        out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Login fallido, intente nuevamente</p></h5>");
+                                                    }
 
-                                            <% if (nivel.equals("4")) {
-                                                    out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Login fallido, intente nuevamente</p></h5>");
-                                                }%>
+                                                    request.getSession().removeAttribute("user");
+                                                    request.getSession().removeAttribute("nivel");
+                                                //    session.invalidate();
+                                                }
+                                            %>
                                         </div>
                                     </form>
                                     <hr />

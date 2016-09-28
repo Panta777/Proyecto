@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="modelo.Idioma"%>
-<%@page import="modelo.Operaciones"%>
+<%@page import="modelo.OperacionesCliente"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,10 +25,6 @@
                 {
                     form.EnviaCliente.disabled = false;
                 }
-//                else 
-//                {
-//                    form.EnviaCliente.disabled = false;
-//                }
             }
         </script>
     </head>
@@ -188,7 +184,7 @@
                                  * 4 = ?
                                  * @throws java.sql.SQLException
                                  */
-                                Operaciones op = new Operaciones();
+                                OperacionesCliente op = new OperacionesCliente();
 
                                 if (request.getParameter("Enviar") != null) {
                                     String usu = request.getParameter("");

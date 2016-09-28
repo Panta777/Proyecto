@@ -47,7 +47,7 @@
         <section id="container" > 
             <div id="page-wrapper">
                 <!-- Header -->
-                <header id="header" class = "alt">
+                <header id="header" >
                     <h1><a href="#main">Muebleria Los Alpes</a></h1>
                     <nav id="nav">
                         <ul>
@@ -55,9 +55,9 @@
                             <li>
                                 <a href="#" class="icon fa-angle-down">Menu</a>
                                 <ul>
-                                    <% if (!(nivel.equals("2") || nivel.equals("1"))) {%>
+<!--                                    <% if (!(nivel.equals("2") || nivel.equals("1"))) {%>
                                     <li> <a href="nuevoCliente.jsp" class ="actions">Nuevo Cliente</a> </li>
-                                    <% }%>    
+                                    <% }%>    -->
                                     <li><a href="#catalogo">Catálogo Productos</a></li>
                                     <li><a href="contact.jsp">Contacto</a></li>
                                     <li>
@@ -96,6 +96,10 @@
                                     <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
                                 </ul>
                             </li>
+                            <%}else{%>
+                            <li>
+                                <a href="nuevoCliente.jsp" class= "button special"> Registrate <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            </li>             
                             <%}%>
                         </ul>     
                     </nav>
