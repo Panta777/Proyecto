@@ -18,10 +18,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
-        <!--        <meta http-equiv =”Cache-Control” content =”no-cache”/>
-                <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
-                <META HTTP-EQUIV="Expires" CONTENT="-1">-->
-
         <meta http-equiv="Cache-Control" content="no-cache">
         <meta HTTP-EQUIV="Expires" CONTENT="Tue, 01 Jan 1980 1:00:00 GMT">
         <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
@@ -50,15 +46,12 @@
                 response.sendRedirect("modificaCliente.jsp");
                 System.out.println("Ahora, Hice esto");
             }
-//            else {
-//                response.reset();
-//                out.write("<meta http-equiv=\"refresh\" />");
-//            }
-%>
+        %>
         <section id="container" > 
             <div id="page-wrapper">
                 <!-- Header -->
                 <header id="header" >
+                    <h1><a href="#main">Muebleria Los Alpes</a></h1>
                     <nav id="nav">
                         <ul>
                             <li><a href="index.jsp">Inicio</a></li>
@@ -77,6 +70,14 @@
                                     </li>
                                 </ul>
                             </li>
+                            <% if (nivel.equals("3") || nivel.equals("4") || nivel.equals("")) {%>
+                            <li>
+                                <a href="login.jsp" class= "button special"> Entrar <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <ul>
+                                    <li> <a href="nuevoCliente.jsp" class ="actions">Registrate</a> </li>
+                                </ul>
+                            </li>             
+                            <%}%>
                         </ul>     
                     </nav>
                 </header>
@@ -121,8 +122,8 @@
                                                         out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Login fallido, intente nuevamente</p></h5>");
                                                     }
 
-                                                    request.getSession().removeAttribute("user");
-                                                    request.getSession().removeAttribute("nivel");
+//                                                    request.getSession().removeAttribute("user");
+//                                                    request.getSession().removeAttribute("nivel");
                                                     // session.invalidate();
                                                 }
                                             %>
