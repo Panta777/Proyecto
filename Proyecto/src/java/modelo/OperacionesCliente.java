@@ -75,7 +75,7 @@ public class OperacionesCliente {
         if (cone != null) {
             try {
                 cone.setAutoCommit(false);
-                CallableStatement funcionInsertarCliente = cone.prepareCall("{ ?=call xxxxx(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+                CallableStatement funcionInsertarCliente = cone.prepareCall("{ call xxxxx(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
 
 //                System.out.println("Dato: " + cliente.getNOMBRE());
 //                System.out.println("Dato: " + cliente.getAPELLIDO());

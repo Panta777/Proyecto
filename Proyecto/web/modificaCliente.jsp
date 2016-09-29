@@ -12,7 +12,7 @@
 <html>
     <head>
         <title>Actualización de mis Datos</title>
-         <link rel="shortcut icon" href="images/ICONOS/ICO.ico "/>
+        <link rel="shortcut icon" href="images/ICONOS/ICO.ico "/>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -21,9 +21,12 @@
         <script languaje="javascript">
             function AutenticaSiEsHumano(form)
             {
-                if (form.human.checked == true)
+                if (form.human.checked === true)
                 {
                     form.EnviaCliente.disabled = false;
+                } else
+                {
+                    form.EnviaCliente.disabled = true;
                 }
             }
         </script>
@@ -44,45 +47,49 @@
             if (session.getAttribute("nivel") != null && session.getAttribute("user") != null) {
                 nivel = session.getAttribute("nivel").toString();
                 usuario = session.getAttribute("user").toString();
+                System.out.println("Nivel mC:" + nivel);
+            }
+            if (nivel.equals("3") || nivel.equals("4")|| nivel == "") {
+                response.sendRedirect("nuevoCliente.jsp");
             }
         %>
         <div id="page-wrapper">
-                <!-- Header -->
-                <header id="header">
-                    <nav id="nav">
-                        <ul>
-                            <li><a href="index.jsp">Inicio</a></li>
-                            <li>
-                                <a href="#" class="icon fa-angle-down">Menu</a>
-                                <ul>
-                                    <li><a href="catalogo.jsp">Catálogo Productos</a></li>
-                                    <li><a href="contact.jsp">Contacto</a></li>
-                                    <li>
-                                        <a href="#">Opciones</a>
-                                        <ul>
-                                            <li><a href="#">Buscar Productos</a></li>
-                                            <li><a href="#">Ver Pedido</a></li>  
-                                            <li><a href="#">Comentarios</a></li>
-                                                <%if (nivel.equals("1")) {%>
-                                            <li><a href="#">Reporteria</a></li>
-                                            <li><a href="#">Administracion</a></li>
-                                                <%}%>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <%if (nivel.equals("2") || nivel.equals("1")) {%>
-                            <li>
-                                <a  class= "button special">Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
-                                <ul>
-                                    <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
-                                    <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
-                                </ul>
-                            </li>
-                            <%}%>
-                        </ul>     
-                    </nav>
-                </header>
+            <!-- Header -->
+            <header id="header">
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.jsp">Inicio</a></li>
+                        <li>
+                            <a href="#" class="icon fa-angle-down">Menu</a>
+                            <ul>
+                                <li><a href="catalogo.jsp">Catálogo Productos</a></li>
+                                <li><a href="contact.jsp">Contacto</a></li>
+                                <li>
+                                    <a href="#">Opciones</a>
+                                    <ul>
+                                        <li><a href="#">Buscar Productos</a></li>
+                                        <li><a href="#">Ver Pedido</a></li>  
+                                        <li><a href="#">Comentarios</a></li>
+                                            <%if (nivel.equals("1")) {%>
+                                        <li><a href="#">Reporteria</a></li>
+                                        <li><a href="#">Administracion</a></li>
+                                            <%}%>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <%if (nivel.equals("2") || nivel.equals("1")) {%>
+                        <li>
+                            <a  class= "button special">Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <ul>
+                                <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
+                                <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
+                            </ul>
+                        </li>
+                        <%}%>
+                    </ul>     
+                </nav>
+            </header>
             <!-- Banner -->
             <section id="banner" class ="box special">
                 <span class="image featured"><img src="images/logo.png" alt="log" /></span>
@@ -90,12 +97,12 @@
             </section>
             <!-- Main -->
             <section id="main" class="container">
-                   <section class="box special">
-                        <header class="major">
-                            <h2>ACTUALIZACIÓN DE MIS DATOS</h2>
-                            <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
-                        </header>                
-                    </section>
+                <section class="box special">
+                    <header class="major">
+                        <h2>ACTUALIZACIÓN DE MIS DATOS</h2>
+                        <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
+                    </header>                
+                </section>
                 <div class="row">
                     <div class="12u">
                         <!-- Form -->
@@ -213,7 +220,7 @@
                             %>
                         </section>
                     </div>
-            </div>
+                </div>
             </section>
             <!-- Footer -->
             <footer id="footer">

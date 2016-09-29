@@ -62,14 +62,14 @@ public class controladorCliente extends HttpServlet {
 //                            sesion.setAttribute("user", usu);
 //                            sesion.setAttribute("nivel", "1");
                              System.out.println("Exito");
-                            response.sendRedirect("index.jsp");
-                            break;
-                        case 2:
-//                            sesion.setAttribute("user", usu);
-//                            sesion.setAttribute("nivel", "2");
-                             System.out.println("error");
                             response.sendRedirect("nuevoCliente.jsp");
                             break;
+//                        case 2:
+////                            sesion.setAttribute("user", usu);
+////                            sesion.setAttribute("nivel", "2");
+//                             System.out.println("error");
+//                            response.sendRedirect("nuevoCliente.jsp");
+//                            break;
                         default:
                             out.write("Usuario no existe, o contraseña invalida");
                             break;

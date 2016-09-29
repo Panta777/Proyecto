@@ -48,11 +48,18 @@ public class login extends HttpServlet {
                         sesion.setAttribute("user", usu);
                         sesion.setAttribute("nivel", "3");
                         response.sendRedirect("login.jsp");
-                        break;
+                        
+                        return;
+                        
+                      //  request.getRequestDispatcher("login.jsp").forward(request, response);
+                        
+                       // break;
                     default:
                         sesion.setAttribute("user", usu);
                         sesion.setAttribute("nivel", "4");
+                        response.sendError(0, "USUARIO ERRONEO");
                         response.sendRedirect("login.jsp");
+                        // request.getRequestDispatcher("login.jsp").forward(request, response);
                         break;
                 }
             }

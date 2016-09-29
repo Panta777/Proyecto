@@ -6,7 +6,6 @@
 
 <%@page import="modelo.Idioma"%>
 <%@page import="modelo.OperacionesCliente"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,20 +24,25 @@
                 {
                     form.EnviaCliente.disabled = false;
                 }
+                else 
+                {
+                    form.EnviaCliente.disabled = true;
+                }
             }
 
             function CompruebaContras(){
                 var texto = document.getElementById("pass");
                 var texto2 = document.getElementById("pass2");
-                if (texto !== texto2){
+                if (texto.value === texto2.value){
+                    return true;
+                }   
+                else
+                {
                     alert("Contraseñas no coinciden");
                     return false;
                 }
-                else return true;
             }
-        </script>
-    </head>
-    <body class="landing">
+        </script>        
         <%
             Idioma idioma = null;
             if (session.getAttribute("Idioma") == null || session.getAttribute("Idioma").equals("Español")) {
@@ -56,6 +60,8 @@
                 response.sendRedirect("modificaCliente.jsp");
             }
         %>
+    </head>
+    <body class="landing">
         <div id="page-wrapper">
             <!-- Header -->
             <header id="header" >
