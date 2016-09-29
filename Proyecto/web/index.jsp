@@ -23,26 +23,28 @@
     </head>
     <body class="landing">
         <%
+            HttpSession sesion = request.getSession(true);
             Idioma idioma = null;
 
-            if (session.getAttribute("Idioma") == null || session.getAttribute("Idioma").equals("Español")) {
-                session.setAttribute("Idioma", "Español");
+            if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
+                sesion.setAttribute("Idioma", "Español");
                 idioma = new Idioma("Español");
             } else {
                 idioma = new Idioma("Ingles");
             }
 
             String nivel = "", usuario = "", rol = null, foto = null;
-            if (session.getAttribute("user") != null && session.getAttribute("nivel") != null) {
-                nivel = session.getAttribute("nivel").toString();
-                usuario = session.getAttribute("user").toString();
+            if (sesion.getAttribute("user") != null && sesion.getAttribute("nivel") != null) {
+                nivel = sesion.getAttribute("nivel").toString();
+                usuario = sesion.getAttribute("user").toString();
                 System.out.println("///// Usuario: " + usuario);
                 System.out.println("///// Nivel: " + nivel);
             }
 
-            HttpSession sesion = request.getSession(true);
             ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
 
+//            System.out.println("///// Sesion1: " + session.getId().toString());
+//            System.out.println("///// Sesion2 : " + sesion.getId().toString());
         %>
         <section id="container" > 
             <div id="page-wrapper">
@@ -55,9 +57,6 @@
                             <li>
                                 <a href="#" class="icon fa-angle-down">Menu</a>
                                 <ul>
-                                    <!-- <% if (!(nivel.equals("2") || nivel.equals("1"))) {%>
-                                                                        <li> <a href="nuevoCliente.jsp" class ="actions">Nuevo Cliente</a> </li>
-                                    <% }%>    -->
                                     <li><a href="#catalogo">Catálogo Productos</a></li>
                                     <li><a href="contact.jsp">Contacto</a></li>
                                     <li>
@@ -66,10 +65,10 @@
                                             <li><a href="#">Buscar Productos</a></li>
                                             <li><a href="#">Ver Pedido</a></li>  
                                             <li><a href="#">Comentarios</a></li>
-                                                <%if (nivel.equals("1")) {%>
+                                            <%if (nivel.equals("1")) {%>
                                             <li><a href="#">Reporteria</a></li>
                                             <li><a href="#">Administracion</a></li>
-                                                <%}%>
+                                            <%}%>
                                         </ul>
                                     </li>
                                 </ul>

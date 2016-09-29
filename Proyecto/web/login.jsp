@@ -7,27 +7,31 @@
 <%@page import="Controlador.login"%>
 <%@page import="modelo.Idioma"%>
 <%@page import="modelo.OperacionesCliente"%>
+<%@page session = "true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <title>Ingresar al Sistema</title>
-        <link rel="shortcut icon" href="images/ICONOS/ICO.ico "/>
+        <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta http-equiv="Refresh">
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
-        <script type="text/javascript">
-            function recargar()
-            {
-                window.location.reload(true);
-            }
-        </script>   
+        <!--        <meta http-equiv =”Cache-Control” content =”no-cache”/>
+                <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+                <META HTTP-EQUIV="Expires" CONTENT="-1">-->
+
+        <meta http-equiv="Cache-Control" content="no-cache">
+        <meta HTTP-EQUIV="Expires" CONTENT="Tue, 01 Jan 1980 1:00:00 GMT">
+        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <script type ="text/javascript">
+            previene = function(){  window.stop; history.go(1); };
+            window.back = previene();
+        </script>
     </head>
     <body class="landing">
-
         <%
-
             Idioma idioma = null;
             if (session.getAttribute("Idioma") == null || session.getAttribute("Idioma").equals("Español")) {
                 session.setAttribute("Idioma", "Español");
@@ -39,15 +43,18 @@
             String nivel = "";
             if (session.getAttribute("nivel") != null) {
                 nivel = session.getAttribute("nivel").toString();
+                System.out.println("Hice esto");
             }
+
             if (nivel.equals("2") || nivel.equals("1")) {
                 response.sendRedirect("modificaCliente.jsp");
+                System.out.println("Ahora, Hice esto");
             }
-            else 
-            {
-                out.write("<meta http-equiv=\"refresh\" />");
-            }
-        %>
+//            else {
+//                response.reset();
+//                out.write("<meta http-equiv=\"refresh\" />");
+//            }
+%>
         <section id="container" > 
             <div id="page-wrapper">
                 <!-- Header -->
@@ -116,6 +123,7 @@
 
                                                     request.getSession().removeAttribute("user");
                                                     request.getSession().removeAttribute("nivel");
+                                                    // session.invalidate();
                                                 }
                                             %>
                                         </div>

@@ -85,7 +85,7 @@
     <env-entry>
         <env-entry-name>DB_URL</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>jdbc:oracle:thin:@localhost:1521:AlpesDB</env-entry-value>
+        <env-entry-value>jdbc:oracle:thin:@localhost:1521:xe</env-entry-value>
     </env-entry>
     <env-entry>
         <env-entry-name>DB_USERNAME</env-entry-name>
@@ -100,7 +100,7 @@
     <env-entry>
         <env-entry-name>DBDATASOURCE</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>MYSQL</env-entry-value>
+        <env-entry-value>ORACLE</env-entry-value>
     </env-entry>
     <resource-ref>
         <description>DBMYSQLURL</description>
