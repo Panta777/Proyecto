@@ -3,6 +3,8 @@
     Created on : 8/09/2016, 11:50:17 PM
     Author     : panle
 --%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="ClasesGenericas.Compra"%>
 <%@page import="modelo.Idioma"%>
 <%@page session = "true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,30 +20,38 @@
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <script type ="text/javascript">
+            previene = function () {
+                window.stop;
+                history.go(1);
+            };
+            window.back = previene();
+        </script>
     </head>
     <body class="landing">
         <%
             Idioma idioma = null;
-
-            if (session.getAttribute("Idioma") == null || session.getAttribute("Idioma").equals("Español")) {
-                session.setAttribute("Idioma", "Español");
+            HttpSession sesion = request.getSession(true);
+            if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
+                sesion.setAttribute("Idioma", "Español");
                 idioma = new Idioma("Español");
             } else {
                 idioma = new Idioma("Ingles");
             }
 
             String nivel = "", usuario = "", rol = null, foto = null;
-            if (session.getAttribute("user") != null && session.getAttribute("nivel") != null) {
-                nivel = session.getAttribute("nivel").toString();
-                usuario = session.getAttribute("user").toString();
-                System.out.println("///// Usuario: " + usuario);
-                System.out.println("///// Nivel: " + nivel);
+            if (sesion.getAttribute("user") != null && sesion.getAttribute("nivel") != null) {
+                nivel = sesion.getAttribute("nivel").toString();
+                usuario = sesion.getAttribute("user").toString();
             }
+
+            ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
         %>
         <section id="container" > 
             <div id="page-wrapper">
                 <!-- Header -->
                 <header id="header">
+                    <h1><a href="#main">Muebleria Los Alpes</a></h1>
                     <nav id="nav">
                         <ul>
                             <li><a href="index.jsp">Inicio</a></li>
@@ -50,7 +60,7 @@
                                 <ul>
                                     <% if (!(nivel.equals("2") || nivel.equals("1"))) {%>
                                     <li> <a href="nuevoCliente.jsp" class ="actions"> Nuevo Cliente</a> </li>
-                                        <%}%>
+                                    <%}%>
                                     <li><a href="catalogo.jsp">Catálogo Productos</a></li>
                                     <li><a href="contact.jsp">Contacto</a></li>
                                     <li>
@@ -59,10 +69,10 @@
                                             <li><a href="#">Buscar Productos</a></li>
                                             <li><a href="#">Ver Pedido</a></li>  
                                             <li><a href="#">Comentarios</a></li>
-                                                <%if (nivel.equals("1")) {%>
+                                            <%if (nivel.equals("1")) {%>
                                             <li><a href="#">Reporteria</a></li>
                                             <li><a href="#">Administracion</a></li>
-                                                <%}%>
+                                            <%}%>
                                         </ul>
                                     </li>
                                 </ul>
@@ -83,12 +93,19 @@
                             </li>
                             <%if (nivel.equals("2") || nivel.equals("1")) {%>
                             <li>
-                                <a  class= "button special">Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <a  class= "button special" >Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
                                     <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
                                     <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
                                 </ul>
                             </li>
+                            <%} else {%>
+                            <li>
+                                <a href="login.jsp" class= "button special"> Entrar <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <ul>
+                                    <li> <a href="nuevoCliente.jsp" class ="actions">Registrate</a> </li>
+                                </ul>
+                            </li>             
                             <%}%>
                         </ul>     
                     </nav>
@@ -112,19 +129,28 @@
                             <div class="4u 12u(narrower)">
                                 <section class="box special">
                                     <span class="image featured"><img src="images/TRADICIONALES/MT1 - Sofa.png" alt="Muebles Tradicionales" /></span>
-                                    <p>Mueble 1</p>
+                                    <p>Mueble 1</p>                                                <ul class="actions">
+                                        <li> <input type="submit" value="AGREGAR" class="fit" name = "Enviar"/> </li>
+                                    </ul>
+
                                 </section>
                             </div>
                             <div class="4u 12u(narrower)">
                                 <section class="box special">
                                     <span class="image featured"><img src="images/TRADICIONALES/MT2 - Ropero.png" alt="Muebles Tradicionales" /></span>
                                     <p>Mueble 1</p>
+                                    <ul class="actions">
+                                        <li> <input type="submit" value="AGREGAR" class="fit" name = "Enviar"/></li>
+                                    </ul>
                                 </section>
                             </div>
                             <div class="4u 12u(narrower)">
                                 <section class="box special">
                                     <span class="image featured"><img src="images/TRADICIONALES/MT3 - Comoda.png" alt="Muebles Tradicionales" /></span>
                                     <p>Mueble 1</p>
+                                    <ul class="actions">
+                                        <li> <input type="submit" value="AGREGAR" class="fit" name = "Enviar"/></li>
+                                    </ul>
                                 </section>
                             </div>
                         </div>

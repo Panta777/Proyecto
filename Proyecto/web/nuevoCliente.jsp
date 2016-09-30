@@ -6,6 +6,7 @@
 
 <%@page import="modelo.Idioma"%>
 <%@page import="modelo.OperacionesCliente"%>
+<%@page session = "true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,9 +15,7 @@
         <link rel="shortcut icon" href="images/ICONOS/ICO.ico "/>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
-        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <meta http-equiv="Cache-Control" content="no-cache">
         <meta HTTP-EQUIV="Expires" CONTENT="Tue, 01 Jan 1980 1:00:00 GMT">
         <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
@@ -51,16 +50,17 @@
         </script>        
         <%
             Idioma idioma = null;
-            if (session.getAttribute("Idioma") == null || session.getAttribute("Idioma").equals("Español")) {
-                session.setAttribute("Idioma", "Español");
+            HttpSession sesion = request.getSession(true);
+            if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
+                sesion.setAttribute("Idioma", "Español");
                 idioma = new Idioma("Español");
             } else {
                 idioma = new Idioma("Ingles");
             }
 
             String nivel = "";
-            if (session.getAttribute("nivel") != null && session.getAttribute("user") != null) {
-                nivel = session.getAttribute("nivel").toString();
+            if (sesion.getAttribute("nivel") != null && sesion.getAttribute("user") != null) {
+                nivel = sesion.getAttribute("nivel").toString();
             }
             if (nivel.equals("2") || nivel.equals("1")) {
                 response.sendRedirect("modificaCliente.jsp");
@@ -70,28 +70,6 @@
     <body class="landing">
         <div id="page-wrapper">
             <!-- Header -->
-            <!--            <header id="header" >
-                            <nav id="nav">
-                                <ul>
-                                    <li><a href="index.jsp">Inicio</a></li>
-                                    <li>
-                                        <a href="#" class="icon fa-angle-down">Menu</a>
-                                        <ul>
-                                            <li><a href="catalogo.jsp">Catálogo Productos</a></li>
-                                            <li><a href="contact.jsp">Contactos</a></li>
-                                            <li>
-                                                <a href="#">Opciones</a>
-                                                <ul>
-                                                    <li><a href="#">Buscar Productos</a></li>
-                                                    <li><a href="#">Ver Pedido</a></li>  
-                                                    <li><a href="#">Comentarios</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>     
-                            </nav>
-                        </header>-->
             <header id="header" >
                 <h1><a href="#main">Muebleria Los Alpes</a></h1>
                 <nav id="nav">
@@ -238,7 +216,6 @@
         <script src="assets/js/jquery.scrollgress.min.js"></script>
         <script src="assets/js/skel.min.js"></script>
         <script src="assets/js/util.js"></script>
-        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
         <script src="assets/js/main.js"></script>
     </body>
 </html>

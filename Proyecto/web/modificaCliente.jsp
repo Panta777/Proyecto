@@ -6,7 +6,7 @@
 
 <%@page import="modelo.Idioma"%>
 <%@page import="modelo.OperacionesCliente"%>
-
+<%@page session = "true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,9 +15,7 @@
         <link rel="shortcut icon" href="images/ICONOS/ICO.ico "/>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
-        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <script languaje="javascript">
             function AutenticaSiEsHumano(form)
             {
@@ -247,7 +245,6 @@
         <script src="assets/js/jquery.scrollgress.min.js"></script>
         <script src="assets/js/skel.min.js"></script>
         <script src="assets/js/util.js"></script>
-        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
         <script src="assets/js/main.js"></script>
     </body>
 </html>

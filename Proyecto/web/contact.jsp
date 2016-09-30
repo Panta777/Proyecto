@@ -5,6 +5,7 @@
 --%>
 
 <%@page import="modelo.Idioma"%>
+<%@page session = "true"%>
 <!DOCTYPE HTML>
 <!--
         Alpha by HTML5 UP
@@ -38,20 +39,21 @@
 
         </script>
     </head>
-    <body>
+    <body class ="landing">
         <%
+        HttpSession sesion = request.getSession(true);
             Idioma idioma = null;
 
-            if (session.getAttribute("Idioma") == null || session.getAttribute("Idioma").equals("Español")) {
-                session.setAttribute("Idioma", "Español");
+            if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
+                sesion.setAttribute("Idioma", "Español");
                 idioma = new Idioma("Español");
             } else {
                 idioma = new Idioma("Ingles");
             }
 
             String nivel = "", usuario = "";
-            if (session.getAttribute("nivel") != null) {
-                nivel = session.getAttribute("nivel").toString();
+            if (sesion.getAttribute("nivel") != null) {
+                nivel = sesion.getAttribute("nivel").toString();
             }
         %>
         <div id="page-wrapper">

@@ -10,7 +10,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-
         <%
             session.setAttribute("Idioma", "Español");
             response.sendRedirect("index.jsp");

@@ -32,22 +32,23 @@
     <body class="landing">
         <%
             Idioma idioma = null;
-            if (session.getAttribute("Idioma") == null || session.getAttribute("Idioma").equals("Español")) {
-                session.setAttribute("Idioma", "Español");
+            HttpSession sesion = request.getSession(true);
+            if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
+                sesion.setAttribute("Idioma", "Español");
                 idioma = new Idioma("Español");
             } else {
                 idioma = new Idioma("Ingles");
             }
 
             String nivel = "";
-            if (session.getAttribute("nivel") != null) {
-                nivel = session.getAttribute("nivel").toString();
+            if (sesion.getAttribute("nivel") != null) {
+                nivel = sesion.getAttribute("nivel").toString();
                 //  System.out.println("Hice esto");
             }
 
             if (nivel.equals("2") || nivel.equals("1")) {
                 response.sendRedirect("modificaCliente.jsp");
-              //  System.out.println("Ahora, Hice esto");
+                //  System.out.println("Ahora, Hice esto");
             }
         %>
         <section id="container" > 
@@ -127,7 +128,7 @@
 
 //                                                    request.getSession().removeAttribute("user");
 //                                                    request.getSession().removeAttribute("nivel");
-                                                    // session.invalidate();
+                                                    // sesion.invalidate();
                                                 }
                                             %>
                                         </div>

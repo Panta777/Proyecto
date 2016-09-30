@@ -13,6 +13,7 @@
         <meta http-equiv="Refresh" content="10; url=index.jsp">
         <title>JSP Page</title>
         <%
+        HttpSession sesion = request.getSession(true);
             response.setContentType("text/html");
             response.setHeader("Cache-Control", "no-cache");
             response.setHeader("Cache-Control", "no-store");
@@ -24,9 +25,7 @@
 
 // session.removeAttribute("logueado");
 // session.setMaxInactiveInterval(1);
-            session.invalidate();
-   
-            
+            sesion.invalidate();
             response.sendRedirect("index.jsp");
         %>
     </head>

@@ -17,9 +17,7 @@
         <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
-        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
     </head>
     <body class="landing">
         <%
@@ -43,8 +41,6 @@
 
             ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
 
-//            System.out.println("///// Sesion1: " + session.getId().toString());
-//            System.out.println("///// Sesion2 : " + sesion.getId().toString());
         %>
         <section id="container" > 
             <div id="page-wrapper">
