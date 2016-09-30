@@ -75,7 +75,7 @@ public class OperacionesCliente {
         if (cone != null) {
             try {
                 cone.setAutoCommit(false);
-                CallableStatement funcionInsertarCliente = cone.prepareCall("{ call xxxxx(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+                CallableStatement InsertarCliente = cone.prepareCall("{ call xxxxx(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
 
 //                System.out.println("Dato: " + cliente.getNOMBRE());
 //                System.out.println("Dato: " + cliente.getAPELLIDO());
@@ -92,27 +92,29 @@ public class OperacionesCliente {
 //                System.out.println("Dato: " + cliente.getEMAIL());
 //                System.out.println("Dato: " + cliente.getUSUARIO());
 //                System.out.println("Dato: " + cliente.getCONTRASENA());
+
                 // cargar parametros de entrada
-                funcionInsertarCliente.setString(2, cliente.getNUMERO_DOC());
-                funcionInsertarCliente.setString(3, cliente.getTIPODOCUMENTO());
-                funcionInsertarCliente.setString(4, cliente.getNOMBRE());
-                funcionInsertarCliente.setString(5, cliente.getAPELLIDO());
-                funcionInsertarCliente.setString(6, cliente.getTEL_RESIDENCIA());
-                funcionInsertarCliente.setString(7, cliente.getTEL_CEL());
-                funcionInsertarCliente.setString(8, cliente.getNIT());
-                funcionInsertarCliente.setString(9, cliente.getDIRECCION());
-                funcionInsertarCliente.setString(10, cliente.getCIUDAD());
-                funcionInsertarCliente.setString(11, cliente.getDEPARTAMENTO());
-                funcionInsertarCliente.setString(12, cliente.getPAIS());
-                funcionInsertarCliente.setString(13, cliente.getPROFESION());
-                funcionInsertarCliente.setString(14, cliente.getEMAIL());
-                funcionInsertarCliente.setString(15, cliente.getUSUARIO());
-                funcionInsertarCliente.setString(16, cliente.getCONTRASENA());
-                funcionInsertarCliente.registerOutParameter(1, Types.INTEGER);//Parametro de salida
-                funcionInsertarCliente.execute();
+                InsertarCliente.setString(2, cliente.getNUMERO_DOC());
+                InsertarCliente.setString(3, cliente.getTIPODOCUMENTO());
+                InsertarCliente.setString(4, cliente.getNOMBRE());
+                InsertarCliente.setString(5, cliente.getAPELLIDO());
+                InsertarCliente.setString(6, cliente.getTEL_RESIDENCIA());
+                InsertarCliente.setString(7, cliente.getTEL_CEL());
+                InsertarCliente.setString(8, cliente.getNIT());
+                InsertarCliente.setString(9, cliente.getDIRECCION());
+                InsertarCliente.setString(10, cliente.getCIUDAD());
+                InsertarCliente.setString(11, cliente.getDEPARTAMENTO());
+                InsertarCliente.setString(12, cliente.getPAIS());
+                InsertarCliente.setString(13, cliente.getPROFESION());
+                InsertarCliente.setString(14, cliente.getEMAIL());
+                InsertarCliente.setString(15, cliente.getUSUARIO());
+                InsertarCliente.setString(16, cliente.getCONTRASENA());
+                
+                InsertarCliente.registerOutParameter(1, Types.INTEGER);//Parametro de salida
+                InsertarCliente.execute();
 
                 cone.commit();// confirmar si se ejecuto sin errores
-                respuesta = funcionInsertarCliente.getInt(1);// obtener salida
+                respuesta = InsertarCliente.getInt(1);// obtener salida
             } catch (SQLException e) {
                 cone.rollback();// deshacer la ejecucion en caso de error
                 System.out.println("Error al ejecutar función  por, " + e); // informar por consola

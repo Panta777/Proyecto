@@ -47,9 +47,8 @@
             if (session.getAttribute("nivel") != null && session.getAttribute("user") != null) {
                 nivel = session.getAttribute("nivel").toString();
                 usuario = session.getAttribute("user").toString();
-                System.out.println("Nivel mC:" + nivel);
             }
-            if (nivel.equals("3") || nivel.equals("4")|| nivel == "") {
+            if (nivel.equals("3") || nivel.equals("4") || nivel == "") {
                 response.sendRedirect("nuevoCliente.jsp");
             }
         %>
@@ -62,22 +61,20 @@
                         <li>
                             <a href="#" class="icon fa-angle-down">Menu</a>
                             <ul>
-                                <li><a href="catalogo.jsp">Catálogo Productos</a></li>
+                                <li><a href="#catalogo">Catálogo Productos</a></li>
                                 <li><a href="contact.jsp">Contacto</a></li>
-                                <li>
-                                    <a href="#">Opciones</a>
-                                    <ul>
-                                        <li><a href="#">Buscar Productos</a></li>
-                                        <li><a href="#">Ver Pedido</a></li>  
-                                        <li><a href="#">Comentarios</a></li>
-                                            <%if (nivel.equals("1")) {%>
-                                        <li><a href="#">Reporteria</a></li>
-                                        <li><a href="#">Administracion</a></li>
-                                            <%}%>
-                                    </ul>
-                                </li>
+                                <li><a href="#">Ver Pedido</a></li> 
                             </ul>
                         </li>
+                        <%if (nivel.equals("1")) {%>
+                        <li>
+                            <a href="#" class="icon fa-angle-down">Administracion</a>
+                            <ul>
+                                <li><a href="#">Reporteria</a></li>
+                                <li><a href="#">Mantenimientos</a></li>
+                            </ul>
+                        </li>
+                        <%}%>
                         <%if (nivel.equals("2") || nivel.equals("1")) {%>
                         <li>
                             <a  class= "button special">Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
@@ -86,6 +83,13 @@
                                 <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
                             </ul>
                         </li>
+                        <%} else {%>
+                        <li>
+                            <a href="login.jsp" class= "button special"> Entrar <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <ul>
+                                <li> <a href="nuevoCliente.jsp" class ="actions">Registrate</a> </li>
+                            </ul>
+                        </li>             
                         <%}%>
                     </ul>     
                 </nav>

@@ -22,7 +22,10 @@
         <meta HTTP-EQUIV="Expires" CONTENT="Tue, 01 Jan 1980 1:00:00 GMT">
         <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
         <script type ="text/javascript">
-            previene = function(){  window.stop; history.go(1); };
+            previene = function () {
+                window.stop;
+                history.go(1);
+            };
             window.back = previene();
         </script>
     </head>
@@ -39,12 +42,12 @@
             String nivel = "";
             if (session.getAttribute("nivel") != null) {
                 nivel = session.getAttribute("nivel").toString();
-                System.out.println("Hice esto");
+                //  System.out.println("Hice esto");
             }
 
             if (nivel.equals("2") || nivel.equals("1")) {
                 response.sendRedirect("modificaCliente.jsp");
-                System.out.println("Ahora, Hice esto");
+              //  System.out.println("Ahora, Hice esto");
             }
         %>
         <section id="container" > 

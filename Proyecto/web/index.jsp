@@ -53,26 +53,23 @@
                     <h1><a href="#main">Muebleria Los Alpes</a></h1>
                     <nav id="nav">
                         <ul>
-                            <li><a href="index.jsp">Inicio</a></li>
                             <li>
                                 <a href="#" class="icon fa-angle-down">Menu</a>
                                 <ul>
                                     <li><a href="#catalogo">Catálogo Productos</a></li>
                                     <li><a href="contact.jsp">Contacto</a></li>
-                                    <li>
-                                        <a href="#">Opciones</a>
-                                        <ul>
-                                            <li><a href="#">Buscar Productos</a></li>
-                                            <li><a href="#">Ver Pedido</a></li>  
-                                            <li><a href="#">Comentarios</a></li>
-                                            <%if (nivel.equals("1")) {%>
-                                            <li><a href="#">Reporteria</a></li>
-                                            <li><a href="#">Administracion</a></li>
-                                            <%}%>
-                                        </ul>
-                                    </li>
+                                    <li><a href="#">Ver Pedido</a></li> 
                                 </ul>
                             </li>
+                            <%if (nivel.equals("1")) {%>
+                            <li>
+                                <a href="#" class="icon fa-angle-down">Administracion</a>
+                                <ul>
+                                    <li><a href="#">Reporteria</a></li>
+                                    <li><a href="#">Mantenimientos</a></li>
+                                </ul>
+                            </li>
+                            <%}%>
                             <li><a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
                                 <ul>
                                     <li>

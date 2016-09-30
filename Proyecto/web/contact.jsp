@@ -27,7 +27,7 @@
                     (i[r].q = i[r].q || []).push(arguments)
                 }, i[r].l = 1 * new Date();
                 a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
+                        m = s.getElementsByTagName(o)[0];
                 a.async = 1;
                 a.src = g;
                 m.parentNode.insertBefore(a, m)
@@ -71,10 +71,10 @@
                                         <li><a href="#">Buscar Productos</a></li>
                                         <li><a href="#">Ver Pedido</a></li>  
                                         <li><a href="#">Comentarios</a></li>
-                                        <%if (nivel.equals("1")) {%>
+                                            <%if (nivel.equals("1")) {%>
                                         <li><a href="#">Reporteria</a></li>
                                         <li><a href="#">Administracion</a></li>
-                                        <%}%>
+                                            <%}%>
                                     </ul>
                                 </li>
                             </ul>
@@ -104,7 +104,7 @@
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247063.69281388656!2d-90.5068824!3d14.634914899999991!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x130d2fa32ad2286a!2sColegio+Biling%C3%BCe+IMB-PC!5e0!3m2!1ses-419!2sgt!4v1473730975168" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div>
             </section>
-            <section id="main" class="box">
+            <section class="box special">
                 <h2>Contact Us</h2>
                 <p>Tell us what you think about our little operation.</p>
                 <div class="box">
@@ -137,6 +137,21 @@
                     </form>
                 </div>
             </section>
+            <section class="box special">
+            <div id="fb-root"></div>
+            <script>(function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id))
+                        return;
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = "//connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.3&appId=1443146759327514";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+            <br><br>
+            <h2>CAJA COMENTARIOS</h2>
+            <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="25" data-numposts="2"></div>
+            </section>
             <!-- Footer -->
             <footer id="footer">
                 <ul class="icons">
@@ -149,10 +164,7 @@
                     <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Pantaleón Medrano</a></li>
                 </ul>
             </footer>
-
         </div>
-
-
         <!-- Scripts -->
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/jquery.dropotron.min.js"></script>

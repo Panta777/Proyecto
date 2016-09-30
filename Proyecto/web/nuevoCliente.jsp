@@ -17,31 +17,37 @@
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <meta http-equiv="Cache-Control" content="no-cache">
+        <meta HTTP-EQUIV="Expires" CONTENT="Tue, 01 Jan 1980 1:00:00 GMT">
+        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
         <script type="text/javascript">
             function AutenticaSiEsHumano(form)
             {
                 if (form.human.checked === true)
                 {
                     form.EnviaCliente.disabled = false;
-                }
-                else 
+                } else
                 {
                     form.EnviaCliente.disabled = true;
                 }
             }
 
-            function CompruebaContras(){
+            function CompruebaContras() {
                 var texto = document.getElementById("pass");
                 var texto2 = document.getElementById("pass2");
-                if (texto.value === texto2.value){
+                if (texto.value === texto2.value) {
                     return true;
-                }   
-                else
+                } else
                 {
                     alert("Contraseñas no coinciden");
                     return false;
                 }
             }
+            previene = function () {
+                window.stop;
+                history.go(1);
+            };
+            window.back = previene();
         </script>        
         <%
             Idioma idioma = null;
@@ -64,7 +70,30 @@
     <body class="landing">
         <div id="page-wrapper">
             <!-- Header -->
+            <!--            <header id="header" >
+                            <nav id="nav">
+                                <ul>
+                                    <li><a href="index.jsp">Inicio</a></li>
+                                    <li>
+                                        <a href="#" class="icon fa-angle-down">Menu</a>
+                                        <ul>
+                                            <li><a href="catalogo.jsp">Catálogo Productos</a></li>
+                                            <li><a href="contact.jsp">Contactos</a></li>
+                                            <li>
+                                                <a href="#">Opciones</a>
+                                                <ul>
+                                                    <li><a href="#">Buscar Productos</a></li>
+                                                    <li><a href="#">Ver Pedido</a></li>  
+                                                    <li><a href="#">Comentarios</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>     
+                            </nav>
+                        </header>-->
             <header id="header" >
+                <h1><a href="#main">Muebleria Los Alpes</a></h1>
                 <nav id="nav">
                     <ul>
                         <li><a href="index.jsp">Inicio</a></li>
@@ -72,17 +101,25 @@
                             <a href="#" class="icon fa-angle-down">Menu</a>
                             <ul>
                                 <li><a href="catalogo.jsp">Catálogo Productos</a></li>
-                                <li><a href="contact.jsp">Contactos</a></li>
+                                <li><a href="contact.jsp">Contacto</a></li>
                                 <li>
                                     <a href="#">Opciones</a>
                                     <ul>
-                                        <li><a href="#">Buscar Productos</a></li>
+                                        <li><a href="catalogo.jsp">Buscar Productos</a></li>
                                         <li><a href="#">Ver Pedido</a></li>  
                                         <li><a href="#">Comentarios</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
+                        <% if (nivel.equals("3") || nivel.equals("4") || nivel.equals("")) {%>
+                        <li>
+                            <a href="login.jsp" class= "button special"> Entrar <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <ul>
+                                <li> <a href="nuevoCliente.jsp" class ="actions">Registrate</a> </li>
+                            </ul>
+                        </li>             
+                        <%}%>
                     </ul>     
                 </nav>
             </header>
