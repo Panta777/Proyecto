@@ -46,7 +46,7 @@
             <div id="page-wrapper">
                 <!-- Header -->
                 <header id="header" >
-                    <h1><a href="#main">Muebleria Los Alpes</a></h1>
+                    <h1><a href="#main"><% out.write(idioma.getProperty("mueblierialosalpes"));%></a></h1>
                     <nav id="nav">
                         <ul>
                             <li>
