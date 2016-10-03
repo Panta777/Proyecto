@@ -71,10 +71,11 @@
             }
 
             OperacionesCliente oper = new OperacionesCliente();
-            Cliente clMostrar = new Cliente();
+            Cliente clMostrar = oper.mostrarDatosCliente(usuario); 
+         //   new Cliente();clMostrar = 
 //            if(oper.mostrarDatosCliente(usuario) != null)
 //            {
-            clMostrar = oper.mostrarDatosCliente(usuario);
+            
 //            };
         %>
         <section id="container"> 
@@ -84,6 +85,7 @@
                     <h1><a href="#main"><% out.write(idioma.getProperty("mueblierialosalpes"));%></a></h1>
                     <nav id="nav">
                         <ul>
+                            <li><a href="index.jsp">Inicio</a></li>
                             <li>
                                 <a href="#" class="icon fa-angle-down">Menu</a>
                                 <ul>
