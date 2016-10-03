@@ -32,14 +32,11 @@ public class controladorCliente extends HttpServlet {
         try {
             OperacionesCliente opcliente = new OperacionesCliente();
             Cliente cliente = new Cliente();
-
+            
             if (request.getParameter("EnviaCliente") != null) {
-                if(request.getParameter("pass") == null ? request.getParameter("pass2") != null : !request.getParameter("pass").equals(request.getParameter("pass2")))
-                {
-                   response.sendRedirect("nuevoCliente.jsp");
-                }
-                else
-                {
+                if (request.getParameter("pass") == null ? request.getParameter("pass2") != null : !request.getParameter("pass").equals(request.getParameter("pass2"))) {
+                    response.sendRedirect("nuevoCliente.jsp");
+                } else {
                     cliente.setNOMBRE(request.getParameter("FName"));
                     cliente.setAPELLIDO(request.getParameter("LName"));
                     cliente.setTIPODOCUMENTO(request.getParameter("TipoDoc"));
@@ -55,25 +52,54 @@ public class controladorCliente extends HttpServlet {
                     cliente.setEMAIL(request.getParameter("email"));
                     cliente.setUSUARIO(request.getParameter("usuario"));
                     cliente.setCONTRASENA(request.getParameter("pass"));
-
+                    
                     HttpSession sesion = request.getSession();
                     switch (opcliente.insertarCliente(cliente)) {
                         case 1:
-//                            sesion.setAttribute("user", usu);
-//                            sesion.setAttribute("nivel", "1");
-                             System.out.println("Exito");
+//                            sesion.setAttribute("user", usu);//                            sesion.setAttribute("nivel", "1");
+                            System.out.println("Prueba Inserta");
+                            System.out.println("Exito");
+                            response.sendRedirect("login.jsp");
+                            break;
+                        default:
+                            sesion.setAttribute("resOper", "2");
                             response.sendRedirect("nuevoCliente.jsp");
                             break;
-//                        case 2:
-////                            sesion.setAttribute("user", usu);
-////                            sesion.setAttribute("nivel", "2");
-//                             System.out.println("error");
-//                            response.sendRedirect("nuevoCliente.jsp");
-//                            break;
-                        default:
-                            out.write("Usuario no existe, o contraseña invalida");
+                    }
+                }
+            } else if (request.getParameter("modificaCliente") != null) {
+                if (request.getParameter("pass") == null ? request.getParameter("pass2") != null : !request.getParameter("pass").equals(request.getParameter("pass2"))) {
+                    response.sendRedirect("modificarCliente.jsp");
+                } else {
+                    cliente.setNOMBRE(request.getParameter("FName"));
+                    cliente.setAPELLIDO(request.getParameter("LName"));
+                    cliente.setTIPODOCUMENTO(request.getParameter("TipoDoc"));
+                    cliente.setNUMERO_DOC(request.getParameter("NoDoc"));
+                    cliente.setTEL_RESIDENCIA(request.getParameter("TelRes"));
+                    cliente.setTEL_CEL(request.getParameter("TelCel"));
+                    cliente.setNIT(request.getParameter("Nit"));
+                    cliente.setDIRECCION(request.getParameter("Direccion"));
+                    //cliente.setCIUDAD(request.getParameter("Ciudad"));
+                    cliente.setDEPARTAMENTO(request.getParameter("Departamento"));
+                    cliente.setPAIS(request.getParameter("Pais"));
+                    cliente.setPROFESION(request.getParameter("Profesion"));
+                    cliente.setEMAIL(request.getParameter("email"));
+                    cliente.setUSUARIO(request.getParameter("usuario"));
+                    cliente.setCONTRASENA(request.getParameter("pass"));
+                    
+                    HttpSession sesion = request.getSession();
+                    switch (opcliente.insertarCliente(cliente)) {
+                        case 1:
+//                            sesion.setAttribute("user", usu);//                            sesion.setAttribute("nivel", "1");
+                            System.out.println("Prueba Modificacion");
+                            System.out.println("Exito");
+                            sesion.setAttribute("resOper", "1");
                             break;
-                    }                    
+                        default:
+                            sesion.setAttribute("resOper", "2");
+                            break;
+                    }
+                    response.sendRedirect("modificaCliente.jsp");
                 }
             }
         } catch (SQLException e) {
@@ -82,8 +108,8 @@ public class controladorCliente extends HttpServlet {
             out.close();
         }
     }
-
     //método encargado de la gestión del método GET
+
     protected void processRequestGET(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //me llega la url "proyecto/login/out"

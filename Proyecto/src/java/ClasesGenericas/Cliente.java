@@ -68,6 +68,8 @@ public class Cliente {
         this.idbanco = 0;
         this.identidad = 0;
         this.Iddepartamento = 0;
+        this.USUARIO = "";
+        this.CIUDAD = "";
     }
 
     public String getUSUARIO() {

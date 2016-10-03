@@ -49,23 +49,17 @@ public class login extends HttpServlet {
                         sesion.setAttribute("nivel", "3");
                         response.sendRedirect("login.jsp");
                         
-                        return;
-                        
-                      //  request.getRequestDispatcher("login.jsp").forward(request, response);
-                        
-                       // break;
+                        break;
                     default:
                         sesion.setAttribute("user", usu);
                         sesion.setAttribute("nivel", "4");
-    //                    response.sendError(0, "USUARIO ERRONEO");
                         response.sendRedirect("login.jsp");
-                        // request.getRequestDispatcher("login.jsp").forward(request, response);
                         break;
                 }
             }
         } catch(SQLException e)
         {
-            out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Error login desde Base de Datos</p></h5>");
+            out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Error desde Base de Datos</p></h5>");
         }finally {
             out.close();
         }

@@ -3,13 +3,14 @@
 		1.1.1 Creación de formulario en la aplicacion (Ingresar Datos Cliente , Usuario y Contraseña para acceso)//
 		1.1.2 Llamada de funcion o procedimiento a la BD.(Obtener datos con método POST, enviarlos a OperacionesClientes.insertarCliente).//
 		1.1.3 Validación Exitoso/fallido
-	1.2 Login()- Cliente
+	1.2 Login- Cliente
 		1.2.1 Creación de formulario en la aplicacion//
 		1.2.2 Llamada de funcion o procedimiento a la BD.(Obtener datos con método POST, enviarlos a OperacionesClientes.loguear)//
 		1.2.3 Validación Exitoso/fallido, Si es exitoso, Validación si esta activo Usuario y si es admin o Cliente, //
 	1.4 Cliente Modificacion(Modificación de los datos del Cliente) - Cliente
 		1.4.1 Creación de formulario en la aplicacion (Mostrar Datos Cliente , Usuario y Contraseña, para posible actualizacion)//
-		    1.4.1.1 Llamada de procedimiento para mostrar los datos del cliente según su respectivo Id o usuario que se obtiene durante su session.
+		    1.4.1.1 Llamada de procedimiento para mostrar los datos del cliente según su respectivo  usuario que se obtiene durante su session.
+                        (Se debe mostrar los mismos campos que se ingresan en el formulario del registro)
 		1.4.2 Llamada de funcion o procedimiento a la BD, para modificar los datos (Obtener datos con método POST, enviarlos a OperacionesClientes.modificarCliente).
 		1.4.3 Validación Exitoso/fallido
 	1.4 Mostrar datos del Cliente(Consultas con diferentes criterios de Busqueda) - Usuario Admin.
