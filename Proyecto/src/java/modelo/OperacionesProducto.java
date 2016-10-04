@@ -26,7 +26,7 @@ public class OperacionesProducto {
      * @throws java.sql.SQLException
      * @
      */
-    public ArrayList<Producto> getAllProductos() throws SQLException {
+    public ArrayList<Producto> getAllProductos() {
         ArrayList<Producto> productos = new ArrayList<>();
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -35,10 +35,11 @@ public class OperacionesProducto {
             pst = coneLocal.getNewConnection().prepareCall(sql);
             rs = pst.executeQuery();
             while (rs.next()) {
-                productos.add(new Producto(rs.getInt("id_producto"), rs.getString("nombre"), rs.getString("img_producto"), rs.getInt("id_categoria"), rs.getDouble("precio"), rs.getInt("stock")));
+             //   productos.add(new Producto(rs.getInt("id_producto"), rs.getString("nombre"), rs.getString("img_producto"), rs.getInt("id_categoria"), rs.getDouble("precio"), rs.getInt("stock")));
             }
-        } 
-        catch (Exception e)
+        }
+        //4258
+        catch (SQLException e)
         {
         } 
         finally 
@@ -78,7 +79,7 @@ public class OperacionesProducto {
             pst.setInt(1, id);
             rs = pst.executeQuery();
             while (rs.next()) {
-                producto = new Producto(rs.getInt("id_producto"), rs.getString("nombre"), rs.getString("img_producto"), rs.getInt("id_categoria"), rs.getDouble("precio"), rs.getInt("stock"));
+                //producto = new Producto(rs.getInt("id_producto"), rs.getString("nombre"), rs.getString("img_producto"), rs.getInt("id_categoria"), rs.getDouble("precio"), rs.getInt("stock"));
             }
         } 
         catch (Exception e) 
