@@ -11,8 +11,9 @@ package ClasesGenericas;
  */
 public class Producto {
 
-    public Producto(int ID_PRODUCTO, String REFERENCIA, String DESCRIPCION, String TIPO, String MATERIAL, String ALTO, String ANCHO, String PROFUNDIDAD, String COLOR, String PESO, String FOTO, String FECHA_ALTA, String FECHA_BAJA, String ESTADO, double PRECIOCOSTO, double PRECIOVENTA) {
+    public Producto(int ID_PRODUCTO, String NOMBRE,String REFERENCIA, String DESCRIPCION, String TIPO, String MATERIAL, String ALTO, String ANCHO, String PROFUNDIDAD, String COLOR, String PESO, String FOTO, String FECHA_ALTA, String FECHA_BAJA, String ESTADO, double PRECIOCOSTO, double PRECIOVENTA) {
         this.ID_PRODUCTO = ID_PRODUCTO;
+        this.NOMBRE = NOMBRE;
         this.REFERENCIA = REFERENCIA;
         this.DESCRIPCION = DESCRIPCION;
         this.TIPO = TIPO;
@@ -31,6 +32,23 @@ public class Producto {
     }
 
     private int ID_PRODUCTO;
+    private String NOMBRE;
+
+    public String getNOMBRE() {
+        return NOMBRE;
+    }
+
+    public void setNOMBRE(String NOMBRE) {
+        this.NOMBRE = NOMBRE;
+    }
+
+    public double getPRECIOCOSTO() {
+        return PRECIOCOSTO;
+    }
+
+    public void setPRECIOCOSTO(double PRECIOCOSTO) {
+        this.PRECIOCOSTO = PRECIOCOSTO;
+    }
     private String REFERENCIA;
     private String DESCRIPCION;
     private String TIPO;

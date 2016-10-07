@@ -3,6 +3,7 @@
     Created on : 8/09/2016, 11:50:17 PM
     Author     : panle
 --%>
+<%@page import="Controlador.controladorProducto"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ClasesGenericas.Compra"%>
 <%@page import="modelo.Idioma"%>
@@ -20,13 +21,13 @@
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-        <script type ="text/javascript">
+<!--        <script type ="text/javascript">
             previene = function () {
                 window.stop;
                 history.go(1);
             };
             window.back = previene();
-        </script>
+        </script>-->
     </head>
     <body class="landing">
         <%
@@ -44,7 +45,7 @@
                 nivel = sesion.getAttribute("nivel").toString();
                 usuario = sesion.getAttribute("user").toString();
             }
-
+            controladorProducto cp = new controladorProducto();
             ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
         %>
         <section id="container" > 
@@ -60,7 +61,7 @@
                                 <ul>
                                     <% if (!(nivel.equals("2") || nivel.equals("1"))) {%>
                                     <li> <a href="nuevoCliente.jsp" class ="actions"> Nuevo Cliente</a> </li>
-                                    <%}%>
+                                        <%}%>
                                     <li><a href="catalogo.jsp">Catálogo Productos</a></li>
                                     <li><a href="contact.jsp">Contacto</a></li>
                                     <li>
@@ -69,10 +70,10 @@
                                             <li><a href="#">Buscar Productos</a></li>
                                             <li><a href="#">Ver Pedido</a></li>  
                                             <li><a href="#">Comentarios</a></li>
-                                            <%if (nivel.equals("1")) {%>
+                                                <%if (nivel.equals("1")) {%>
                                             <li><a href="#">Reporteria</a></li>
                                             <li><a href="#">Administracion</a></li>
-                                            <%}%>
+                                                <%}%>
                                         </ul>
                                     </li>
                                 </ul>
@@ -112,33 +113,7 @@
                     </section>
                     <section class="box special features" id = "tradcionales"><h3>Muebles Tradicionales</h3>
                         <div class="row">
-                            <div class="4u 12u(narrower)">
-                                <section class="box special">
-                                    <span class="image featured"><img src="images/TRADICIONALES/MT1 - Sofa.png" alt="Muebles Tradicionales" /></span>
-                                    <p>Mueble 1</p>                                                <ul class="actions">
-                                        <li> <input type="submit" value="AGREGAR" class="fit" name = "Enviar"/> </li>
-                                    </ul>
-
-                                </section>
-                            </div>
-                            <div class="4u 12u(narrower)">
-                                <section class="box special">
-                                    <span class="image featured"><img src="images/TRADICIONALES/MT2 - Ropero.png" alt="Muebles Tradicionales" /></span>
-                                    <p>Mueble 1</p>
-                                    <ul class="actions">
-                                        <li> <input type="submit" value="AGREGAR" class="fit" name = "Enviar"/></li>
-                                    </ul>
-                                </section>
-                            </div>
-                            <div class="4u 12u(narrower)">
-                                <section class="box special">
-                                    <span class="image featured"><img src="images/TRADICIONALES/MT3 - Comoda.png" alt="Muebles Tradicionales" /></span>
-                                    <p>Mueble 1</p>
-                                    <ul class="actions">
-                                        <li> <input type="submit" value="AGREGAR" class="fit" name = "Enviar"/></li>
-                                    </ul>
-                                </section>
-                            </div>
+                            <%= cp.getProductos()%>
                         </div>
                         <div class="row">
                         </div>

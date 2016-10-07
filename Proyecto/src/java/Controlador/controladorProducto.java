@@ -17,33 +17,17 @@ public class controladorProducto {
         OperacionesProducto mp = new OperacionesProducto();
         String htmlcode = "";
         for (Producto producto : mp.getAllProductos()) {
-            htmlcode += "<div class=\"col-sm-4\">\n"
-                    + "							<div class=\"product-image-wrapper\">\n"
-                    + "								<div class=\"single-products\">\n"
-                    + "									<div class=\"productinfo text-center\">\n"
-                    + "										<img src=\"" + producto.getFOTO() + "\" alt=\"\" />\n"
-                    + "										<h2>$" + producto.getPRECIOVENTA() + "</h2>\n"
-                    + "										<p>" + producto.getDESCRIPCION() + "</p>\n"
-                    + "										<a href=\"product-details.jsp?id=" + producto.getID_PRODUCTO() + "\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Ver detalles</a>\n"
-                    + "									</div>\n"
-                    + "									<div class=\"product-overlay\">\n"
-                    + "										<div class=\"overlay-content\">\n"
-                    + "											<h2>$" + producto.getPRECIOVENTA() + "</h2>\n"
-                    + "											<p>" + producto.getDESCRIPCION() + "</p>\n"
-                    + "											<a href=\"product-details.jsp?id=" + producto.getID_PRODUCTO()+ "\" class=\"btn btn-default add-to-cart\"><i class=\"fa fa-shopping-cart\"></i>Ver Detalles</a>\n"
-                    + "										</div>\n"
-                    + "									</div>\n"
-                    + "								</div>\n"
-                    + "								<div class=\"choose\">\n"
-                    + "									<ul class=\"nav nav-pills nav-justified\">\n"
-                    + "										<li><a href=\"\"><i class=\"fa fa-plus-square\"></i>Add to wishlist</a></li>\n"
-                    + "										<li><a href=\"\"><i class=\"fa fa-plus-square\"></i>Add to compare</a></li>\n"
-                    + "									</ul>\n"
-                    + "								</div>\n"
-                    + "							</div>\n"
-                    + "						</div>";
+            htmlcode +=  "                                    <div class=\"4u 12u(narrower)\">\n"
+                    + "                                <section class=\"box special\">\n"
+                    + "                                    <span class=\"image featured\"><img src=\"" + producto.getFOTO() + "\" alt=\"Muebles Tradicionales\" /></span>\n"
+                    + "                                    <p>" + producto.getDESCRIPCION() + "</p>                                                <ul class=\"actions\">\n"
+                    + "                                        <li><a href=\"detalleproducto.jsp?id=" + producto.getID_PRODUCTO() + "#main\" class= \"button \" >VER DETALLES</a></li>\n"
+                    + "                                    </ul>\n"
+                    + "                                </section></div>";
         }
+        //System.out.println("Resultado:" + htmlcode);
         return htmlcode;
+        
     }
 
     public Producto getProducto(int id) {
