@@ -115,8 +115,8 @@
                         <div class="row">
                             <%= cp.getProductos()%>
                         </div>
-                        <div class="row">
-                        </div>
+<!--                        <div class="row">
+                        </div>-->
                     </section>
                 </section>
                 <!-- Footer -->

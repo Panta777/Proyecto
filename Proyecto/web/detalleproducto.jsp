@@ -109,17 +109,17 @@
                                             </header>
                                             <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
                                         </section>-->
-                    <section class="box special features" id = "tradcionales"><h2><%=producto.getNOMBRE()%></h2>
-                        <div class="row">
+                    <section class="box special features" id = "tradcionales" ><h2><%=producto.getNOMBRE()%></h2>
+                        <div class="row" >
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <div class="image featured"><img src="<%=producto.getFOTO()%>" alt="Muebles Tradicionales" /></div>
                                 </section>
                             </div>
                             <div class="6u 12u(narrower)">
-                                <section class="box">
+                                <section class="box" >
                                     <h2><%=producto.getDESCRIPCION()%></h2>      
-                                    <h4>Detalles</h4>
+                                    <h3>Detalles</h3>
                                     <h5>Tipo Mueble: <%= producto.getTIPO()%></h5>
                                     <h5>Precio Venta: Q. <%= producto.getPRECIOVENTA()%></h5>
                                     <h5>ALTO: <%= producto.getALTO()%></h5>
@@ -127,7 +127,7 @@
                                     <h5>PROFUNDIDAD: <%= producto.getPROFUNDIDAD()%></h5>
                                     <h5>COLOR: <%= producto.getCOLOR()%></h5>
                                     <h5>ESTADO: <%= producto.getESTADO()%></h5>
-                                    <form action="agregarproducto" method="post"><h2>US $<%= producto.getPRECIOVENTA()%></h2>
+                                    <form action="agregarproducto" method="post"><h2>Q. <%= producto.getPRECIOVENTA()%></h2>
                                         <span>
                                             <label>Cantidad al Carrito:</label>
                                             <input type="hidden" value="<%= producto.getID_PRODUCTO()%>" name="idproducto">
