@@ -13,12 +13,21 @@ public class Compra {
     
     private int idProducto;
     private int cantidad;
+    private Producto prod;
 
-    public Compra(int idProducto, int cantidad) {
+    public Compra(int idProducto, int cantidad, Producto prod) {
         this.idProducto = idProducto;
         this.cantidad = cantidad;
+        this.prod = prod;
+    }
+    
+    public Producto getProd() {
+        return prod;
     }
 
+    public void setProd(Producto prod) {
+        this.prod = prod;
+    }
     /**
      * @return the idProducto
      */
