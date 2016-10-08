@@ -17,7 +17,7 @@ public class controladorProducto {
         OperacionesProducto mp = new OperacionesProducto();
         String htmlcode = "";
         for (Producto producto : mp.getAllProductos()) {
-            htmlcode +=  "                                    <div class=\"4u 12u(narrower)\">\n"
+            htmlcode += "                                    <div class=\"4u 12u(narrower)\">\n"
                     + "                                <section class=\"box special\">\n"
                     + "                                    <span class=\"image featured\"><img src=\"" + producto.getFOTO() + "\" alt=\"Muebles Tradicionales\" /></span>\n"
                     + "                                    <p>" + producto.getDESCRIPCION() + "</p>                                                <ul class=\"actions\">\n"
@@ -27,7 +27,7 @@ public class controladorProducto {
         }
         //System.out.println("Resultado:" + htmlcode);
         return htmlcode;
-        
+
     }
 
     public Producto getProducto(int id) {
