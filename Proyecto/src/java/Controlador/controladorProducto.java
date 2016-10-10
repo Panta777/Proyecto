@@ -20,7 +20,7 @@ public class controladorProducto {
             htmlcode += "                                    <div class=\"4u 12u(narrower)\">\n"
                     + "                                <section class=\"box special\">\n"
                     + "                                    <span class=\"image featured\"><img src=\"" + producto.getFOTO() + "\" alt=\"Muebles Tradicionales\" /></span>\n"
-                    + "                                    <p>" + producto.getDESCRIPCION() + "</p>                                                <ul class=\"actions\">\n"
+                    + "                                    <h3>" + producto.getNOMBRE()+ "</h3>                                                <ul class=\"actions\">\n"
                     + "                                        <li><a href=\"detalleproducto.jsp?id=" + producto.getID_PRODUCTO() + "#main\" class= \"button \" >VER DETALLES</a></li>\n"
                     + "                                    </ul>\n"
                     + "                                </section></div>";
