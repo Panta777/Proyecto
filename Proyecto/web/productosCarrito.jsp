@@ -50,7 +50,7 @@
             }
             // controladorProducto cp = new controladorProducto();
             //   ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
-        %>
+%>
         <section id="container" > 
             <div id="page-wrapper">
                 <!-- Header -->
@@ -64,7 +64,7 @@
                                 <ul>
                                     <% if (!(nivel.equals("2") || nivel.equals("1"))) {%>
                                     <li> <a href="nuevoCliente.jsp" class ="actions"> Nuevo Cliente</a> </li>
-                                        <%}%>
+                                    <%}%>
                                     <li><a href="catalogo.jsp">Catálogo Productos</a></li>
                                     <li><a href="contact.jsp">Contacto</a></li>
                                     <li>
@@ -73,10 +73,10 @@
                                             <li><a href="#">Buscar Productos</a></li>
                                             <li><a href="#">Ver Pedido</a></li>  
                                             <li><a href="#">Comentarios</a></li>
-                                                <%if (nivel.equals("1")) {%>
+                                            <%if (nivel.equals("1")) {%>
                                             <li><a href="#">Reporteria</a></li>
                                             <li><a href="#">Administracion</a></li>
-                                                <%}%>
+                                            <%}%>
                                         </ul>
                                     </li>
                                 </ul>
@@ -115,6 +115,10 @@
                                     <h3>Lista Productos</h3>
                                     <h4>Orden de Compra</h4>
                                     <div class="table-wrapper">
+                                        <%
+                                            controladorProducto cp = new controladorProducto();
+                                            double total = 0;
+                                            if (articulos != null) {%>
                                         <table>
                                             <thead>
                                                 <tr>
@@ -127,12 +131,9 @@
                                             </thead>
                                             <tbody>
                                                 <%
-                                                    controladorProducto cp = new controladorProducto();
-                                                    double total = 0;
-                                                    if (articulos != null) {
-                                                        for (Compra a : articulos) {
-                                                            Producto producto = cp.getProducto(a.getIdProducto());
-                                                            total += a.getCantidad() * producto.getPRECIOVENTA();
+                                                    for (Compra a : articulos) {
+                                                        Producto producto = cp.getProducto(a.getIdProducto());
+                                                        total += a.getCantidad() * producto.getPRECIOVENTA();
                                                 %>
                                                 <tr>
                                                     <td class="cart_quantity">
@@ -143,37 +144,37 @@
                                                         </div>
                                                     </td>
                                                     <td >
-                                                        <img src="<%= producto.getFOTO()%>" alt="" width="100">
+                                                        <span class="image featured"><img src="<%= producto.getFOTO()%>" alt="" width="100"></span>    
                                                     </td>
                                                     <td><%= producto.getNOMBRE()%></td>
                                                     <td><%= producto.getPRECIOVENTA()%></td>
                                                     <td class="cart_total">
-                                                        <p class="cart_total_price">$<%= Math.round(producto.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0%></p>
+                                                        <p class="cart_total_price">Q.<%= Math.round(producto.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0%></p>
                                                     </td>
                                                     <td class="cart_delete">
                                                         <span id="idarticulo" style="display:none;"><%=producto.getID_PRODUCTO()%></span>
                                                         <a class="cart_quantity_delete" href="" id="deleteitem"><i class="fa fa-times"></i></a>
                                                     </td>
                                                 </tr>
-                                                <% }
-                                                                                            } else {%>
-                                            <h4>No hay Articulos en el carro</h4>
-                                            <%}%>
+                                                <% }%>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
                                                     <td colspan="3"></td>
                                                     <td>Total</td>
-                                                    <td>100.00</td>
+                                                    <td><%=total%></td>
                                                 </tr>
                                             </tfoot>
                                         </table>
-                                        <a href="javascript:window.history.go(-2);">Seguir Comprando</a>
+                                        <% } 
+                                        else {%>
+                                        <h4>No hay Articulos en el carro</h4>
+                                        <%}%>
+                                        <a class ="actions" href="javascript:window.history.go(-2);">Seguir Comprando</a>
                                     </div>
                                 </section>>
                             </div>
                         </div>
-
                     </div>
                     <footer id="footer">
                         <ul class="icons">
