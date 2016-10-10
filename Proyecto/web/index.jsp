@@ -54,7 +54,7 @@
                                 <ul>
                                     <li><a href="#catalogo">Catálogo Productos</a></li>
                                     <li><a href="contact.jsp">Contacto</a></li>
-                                    <li><a href="#">Ver Pedido</a></li> 
+                                    <li><a href="productosCarrito.jsp#">Ver Pedido</a></li> 
                                 </ul>
                             </li>
                             <%if (nivel.equals("1")) {%>
@@ -90,7 +90,7 @@
                             </li>
                             <%} else {%>
                             <li>
-                                <a href="login.jsp" class= "button special"> Entrar <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <a href="login.jsp#main" class= "button special"> Entrar <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
                                     <li> <a href="nuevoCliente.jsp" class ="actions">Registrate</a> </li>
                                 </ul>
@@ -103,10 +103,11 @@
                 <section id="banner" class ="box">
                     <!--                    <span class="image featured"><img src="images/logo.png" alt="log" /></span>-->
                     <img class="image featured" src="images/logo.png" alt="log" />
-                    <p>Sirviendole con total amabilidad desde 1985.</p>
+                    
+                    <h2>Sirviendole con total amabilidad desde 1985.</h2>
                     <%if (nivel.equals("4") || nivel.equals("3") || nivel.equals("")) {%>
                     <ul class="actions" id = "botonesEntrada">
-                        <li><a href="login.jsp" class="button special">Entrar</a></li>
+                        <li><a href="login.jsp#main" class="button special">Entrar</a></li>
                         <li><a href="nuevoCliente.jsp" class="button">Registrarse</a></li>
                     </ul>
                     <%}%>
@@ -116,7 +117,7 @@
                     <section class="box special">
                         <header class="major">
                             <h2>Pagina Oficial de Muebleria Los Alpes<br /></h2>
-                            <p>En nuestro catálogo de productos podrá encontrar una gran variedad de muebles para su hogar</p>
+                            <blockquote><h3>En nuestro catálogo de productos podrá encontrar una gran variedad de muebles para su hogar</h3></blockquote>
                         </header>
                         <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
                     </section>
