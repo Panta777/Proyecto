@@ -15,10 +15,10 @@ public class Compra {
     private int cantidad;
     private Producto prod;
 
-    public Compra(int idProducto, int cantidad, Producto prod) {
+    public Compra(int idProducto, int cantidad) {
         this.idProducto = idProducto;
         this.cantidad = cantidad;
-        this.prod = prod;
+       // this.prod = prod;
     }
     
     public Producto getProd() {
