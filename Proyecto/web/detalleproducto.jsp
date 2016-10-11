@@ -67,7 +67,7 @@
                                         <a href="#">Opciones</a>
                                         <ul>
                                             <li><a href="#">Buscar Productos</a></li>
-                                            <li><a href="#">Ver Pedido</a></li>  
+                                            <li><a href="productosCarrito.jsp#main">Ver Pedido</a></li>  
                                             <li><a href="#">Comentarios</a></li>
                                                 <%if (nivel.equals("1")) {%>
                                             <li><a href="#">Reporteria</a></li>
@@ -81,15 +81,15 @@
                             <li>
                                 <a  class= "button special" >Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
-                                    <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
+                                    <li> <a href="modificaCliente.jsp#main" class ="actions">Modificar mis Datos</a> </li>
                                     <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
                                 </ul>
                             </li>
                             <%} else {%>
                             <li>
-                                <a href="login.jsp" class= "button special"> Entrar <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <a href="login.jsp#main" class= "button special"> Entrar <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
-                                    <li> <a href="nuevoCliente.jsp" class ="actions">Registrate</a> </li>
+                                    <li> <a href="nuevoCliente.jsp#main" class ="actions">Registrate</a> </li>
                                 </ul>
                             </li>             
                             <%}%>

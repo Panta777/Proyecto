@@ -71,7 +71,7 @@
                                         <a href="#">Opciones</a>
                                         <ul>
                                             <li><a href="#">Buscar Productos</a></li>
-                                            <li><a href="#">Ver Pedido</a></li>  
+                                            <li><a href="productosCarrito.jsp#main">Ver Pedido</a></li>  
                                             <li><a href="#">Comentarios</a></li>
                                                 <%if (nivel.equals("1")) {%>
                                             <li><a href="#">Reporteria</a></li>
@@ -85,15 +85,15 @@
                             <li>
                                 <a  class= "button special" >Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
-                                    <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
+                                    <li> <a href="modificaCliente.jsp#main" class ="actions">Modificar mis Datos</a> </li>
                                     <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
                                 </ul>
                             </li>
                             <%} else {%>
                             <li>
-                                <a href="login.jsp" class= "button special"> Entrar <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <a href="login.jsp#main" class= "button special"> Entrar <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
-                                    <li> <a href="nuevoCliente.jsp" class ="actions">Registrate</a> </li>
+                                    <li> <a href="nuevoCliente.jsp#main" class ="actions">Registrate</a> </li>
                                 </ul>
                             </li>             
                             <%}%>
@@ -150,7 +150,7 @@
                                                     <td><%= producto.getNOMBRE()%></td>
                                                     <td><%= producto.getPRECIOVENTA()%></td>
                                                     <td class="cart_total">
-                                                        <p class="cart_total_price">Q.<%= Math.round(producto.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0%></p>
+                                                        <p class="cart_total_price">Q. <%= Math.round(producto.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0%></p>
                                                     </td>
                                                     <td class="cart_delete">
                                                         <span id="idarticulo" style="display:none;"><%=producto.getID_PRODUCTO()%></span>
@@ -162,8 +162,8 @@
                                             <tfoot>
                                                 <tr>
                                                     <td colspan="3"></td>
-                                                    <td>Total</td>
-                                                    <td><%=total%></td>
+                                                    <td><h3>Total</h3></td>
+                                                    <td><h3>Q. <%=total%></h3></td>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -171,14 +171,16 @@
                                         <h4>No hay Articulos en el carro</h4>
                                         <%}%>
                                     </div>
-                                    <div class="6u 12u(mobilep)">
-                                        <a class ="button" href="catalogo.jsp">Seguir Comprando</a>
-                                    </div>
-                                    <div class="6u 12u(mobilep)">
-                                        <p></p>
-                                    </div>
-                                    <div class="6u 12u(mobilep)">
-                                        <a class ="button" href="terminarCompra.jsp">Terminar Compra</a>
+                                    <div class="row" >  
+                                        <div class="4u 12u(mobilep)">
+                                            <a class ="button" href="catalogo.jsp#muebles">Seguir Comprando</a>
+                                        </div>
+                                        <div class="4u 12u(mobilep)">
+                                            <p></p>
+                                        </div> 
+                                        <div class="4u 12u(mobilep)">
+                                            <a class ="button special" href="terminarCompra.jsp">Terminar Compra</a>
+                                        </div>                                        
                                     </div>
                                 </section>>
                             </div>
