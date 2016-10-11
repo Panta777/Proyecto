@@ -31,7 +31,6 @@ public class Utileria {
         long timestamp = (((hora*60)+minuto)*60)+segundo;
         
         referencia += String.format("%05d", timestamp);
-        
         referencia += String.format("%03d", x);
     }
 

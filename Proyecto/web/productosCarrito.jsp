@@ -50,7 +50,7 @@
             }
             // controladorProducto cp = new controladorProducto();
             //   ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
-%>
+        %>
         <section id="container" > 
             <div id="page-wrapper">
                 <!-- Header -->
@@ -64,7 +64,7 @@
                                 <ul>
                                     <% if (!(nivel.equals("2") || nivel.equals("1"))) {%>
                                     <li> <a href="nuevoCliente.jsp" class ="actions"> Nuevo Cliente</a> </li>
-                                    <%}%>
+                                        <%}%>
                                     <li><a href="catalogo.jsp">Catálogo Productos</a></li>
                                     <li><a href="contact.jsp">Contacto</a></li>
                                     <li>
@@ -73,10 +73,10 @@
                                             <li><a href="#">Buscar Productos</a></li>
                                             <li><a href="#">Ver Pedido</a></li>  
                                             <li><a href="#">Comentarios</a></li>
-                                            <%if (nivel.equals("1")) {%>
+                                                <%if (nivel.equals("1")) {%>
                                             <li><a href="#">Reporteria</a></li>
                                             <li><a href="#">Administracion</a></li>
-                                            <%}%>
+                                                <%}%>
                                         </ul>
                                     </li>
                                 </ul>
@@ -112,8 +112,8 @@
                             <div class="12u">
                                 <!-- Table -->
                                 <section class="box">
-                                    <h3>Lista Productos</h3>
-                                    <h4>Orden de Compra</h4>
+                                    <h3></h3>
+                                    <h3>Orden de Compra</h3>
                                     <div class="table-wrapper">
                                         <%
                                             controladorProducto cp = new controladorProducto();
@@ -122,11 +122,12 @@
                                         <table>
                                             <thead>
                                                 <tr>
-                                                    <th>Cantidad</th>
+                                                    <th><h4>Cantidad</h4></th>
                                                     <th>Foto</th>
                                                     <th>Descripcion</th>
                                                     <th>Precio U</th>
                                                     <th>Subtotal</th>
+                                                    <th>Eliminar</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -136,15 +137,15 @@
                                                         total += a.getCantidad() * producto.getPRECIOVENTA();
                                                 %>
                                                 <tr>
-                                                    <td class="cart_quantity">
-                                                        <div class="cart_quantity_button">
-                                                            <a class="cart_quantity_up" href=""> + </a>
-                                                            <input class="cart_quantity_input" type="text" name="quantity" value="<%= a.getCantidad()%>" autocomplete="off" size="2">
-                                                            <a class="cart_quantity_down" href=""> - </a>
+                                                    <td>
+                                                        <div class="4u">
+                                                            <h4><%= a.getCantidad()%> </h4>
                                                         </div>
                                                     </td>
-                                                    <td >
-                                                        <span class="image featured"><img src="<%= producto.getFOTO()%>" alt="" width="100"></span>    
+                                                    <td>
+                                                        <div class="4u">
+                                                            <img src="<%= producto.getFOTO()%>" alt="foto" width="80" height="80"> 
+                                                        </div>
                                                     </td>
                                                     <td><%= producto.getNOMBRE()%></td>
                                                     <td><%= producto.getPRECIOVENTA()%></td>
@@ -166,11 +167,18 @@
                                                 </tr>
                                             </tfoot>
                                         </table>
-                                        <% } 
-                                        else {%>
+                                        <% } else {%>
                                         <h4>No hay Articulos en el carro</h4>
                                         <%}%>
-                                        <a class ="actions" href="javascript:window.history.go(-2);">Seguir Comprando</a>
+                                    </div>
+                                    <div class="6u 12u(mobilep)">
+                                        <a class ="button" href="catalogo.jsp">Seguir Comprando</a>
+                                    </div>
+                                    <div class="6u 12u(mobilep)">
+                                        <p></p>
+                                    </div>
+                                    <div class="6u 12u(mobilep)">
+                                        <a class ="button" href="terminarCompra.jsp">Terminar Compra</a>
                                     </div>
                                 </section>>
                             </div>

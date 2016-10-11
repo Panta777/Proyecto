@@ -111,12 +111,10 @@
                         </header>
                         <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
                     </section>
-                    <section class="box special features" id = "tradcionales"><h3>Muebles Tradicionales</h3>
+                    <section class="box special features" id = "tradicionales"><h3>Muebles Tradicionales</h3>
                         <div class="row">
                             <%= cp.getProductos()%>
                         </div>
-<!--                        <div class="row">
-                        </div>-->
                     </section>
                 </section>
                 <!-- Footer -->
