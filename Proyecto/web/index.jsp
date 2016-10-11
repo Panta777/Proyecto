@@ -103,7 +103,7 @@
                 <section id="banner" class ="box">
                     <!--                    <span class="image featured"><img src="images/logo.png" alt="log" /></span>-->
                     <img class="image featured" src="images/logo.png" alt="log" />
-                    
+
                     <h2>Sirviendole con total amabilidad desde 1985.</h2>
                     <%if (nivel.equals("4") || nivel.equals("3") || nivel.equals("")) {%>
                     <ul class="actions" id = "botonesEntrada">
@@ -151,15 +151,15 @@
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <span class="image featured"><img src="images/TRADICIONALES/MTradicionales.png" alt = "Muebles Tradicionales"/></span>
-                                    <h3><a href="catalogo.jsp#main">Muebles Tradicionales</a></h3>
+                                    <h4><a href="catalogo.jsp?tipo=1#muebles" class= "button" >Muebles Tradicionales</a></h4>
                                     <p>Este tipo de muebles se caracterizan por contar con una estética conservadora y  detalles muy elegantes, como maderas brillantes y oscuras, diseño simétrico, tapicería delicada y curvas bien detalladas.</p>
                                 </section>
                             </div>
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <!--  <span class="icon major fa-area-chart accent3"></span> -->
-                                    <span class="image featured"><img src="images/MODERNOS/MModernos.png" alt = "Muebles Tradicionales"/></span>
-                                    <h3><a href="catalogo.jsp#main">Muebles Modernos </a></h3>
+                                    <span class="image featured"><img src="images/MODERNOS/MModernos.png" alt = "Muebles Modernos"/></span>
+                                    <h4><a href="catalogo.jsp?tipo=2#muebles" class= "button" >Muebles Modernos</a></h4>
                                     <p>Los muebles de este estilo presentan líneas ligeras y son asociados con el minimalismo posmoderno. Son producidos para ser funcionales y prácticos,ajustandose a las necesidades de la actualidad.</p>
                                 </section>
                             </div>
@@ -168,16 +168,16 @@
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <!--  <span class="icon major fa-cloud accent4"></span>-->
-                                    <span class="image featured"><img src="images/COLONIALES/MColoniales.png" alt = "Muebles Tradicionales"/></span>
-                                    <h3> <a href="catalogo.jsp#main"> Muebles Coloniales</a></h3>
+                                    <span class="image featured"><img src="images/COLONIALES/MColoniales.png" alt = "Muebles Coloniales"/></span>
+                                    <h4><a href="catalogo.jsp?tipo=3#muebles" class= "button" >Muebles Coloniales</a></h4>
                                     <p>Son propios de las fincas y haciendas previas al siglo XX. Para su fabricación se recurre a materiales autóctonos, detalles artesanales, maderas macizas y toques exóticos que aún perduran en el tiempo.</p>
                                 </section>
                             </div>
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <!--   <span class="icon major fa-lock accent5"></span>-->
-                                    <span class="image featured"><img src="images/RUSTICOS/MRusticos.png" alt = "Muebles Tradicionales"/></span>
-                                    <h3><a href="catalogo.jsp#main">Muebles Rústicos</a></h3>
+                                    <span class="image featured"><img src="images/RUSTICOS/MRusticos.png" alt = "Muebles Rusticos"/></span>
+                                    <h4><a href="catalogo.jsp?tipo=4#muebles" class= "button" >Muebles Rústicos</a></h4>
                                     <p>Los muebles que cuentan con este estilo tienen una apariencia folklórica. Transmiten la sensación de ser muebles usados, sencillos o rudimentarios, además de dar una sensación hogareña.</p>
                                 </section>
                             </div>

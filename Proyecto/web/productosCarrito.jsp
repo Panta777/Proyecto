@@ -154,7 +154,7 @@
                                                     </td>
                                                     <td class="cart_delete">
                                                         <span id="idarticulo" style="display:none;"><%=producto.getID_PRODUCTO()%></span>
-                                                        <a class="cart_quantity_delete" href="" id="deleteitem"><i class="fa fa-times"></i></a>
+                                                        <a class="cart_quantity_delete" href="EliminarProducto" id="deleteitem"><i class="fa fa-times"></i></a>
                                                     </td>
                                                 </tr>
                                                 <% }%>

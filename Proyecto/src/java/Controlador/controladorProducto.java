@@ -13,10 +13,10 @@ import modelo.OperacionesProducto;
  */
 public class controladorProducto {
 
-    public String getProductos() {
+    public String getProductos(int tipo) {
         OperacionesProducto mp = new OperacionesProducto();
         String htmlcode = "";
-        for (Producto producto : mp.getAllProductos()) {
+        for (Producto producto : mp.getAllProductos(tipo)) {
             htmlcode += "                                    <div class=\"4u 12u(narrower)\">\n"
                     + "                                <section class=\"box special\">\n"
                     + "                                    <span class=\"image featured\"><img src=\"" + producto.getFOTO() + "\" alt=\"Muebles Tradicionales\" /></span>\n"
@@ -24,6 +24,10 @@ public class controladorProducto {
                     + "                                        <li><a href=\"detalleproducto.jsp?id=" + producto.getID_PRODUCTO() + "#main\" class= \"button \" >VER DETALLES</a></li>\n"
                     + "                                    </ul>\n"
                     + "                                </section></div>";
+        }
+        if(htmlcode.equals(""))
+        {
+            htmlcode = "<h3>NO HAY PRODUCTOS EN ESTA CATEGORIA</h3>";
         }
         //System.out.println("Resultado:" + htmlcode);
         return htmlcode;

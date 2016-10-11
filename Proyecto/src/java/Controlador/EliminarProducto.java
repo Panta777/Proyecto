@@ -61,7 +61,7 @@ public class EliminarProducto extends HttpServlet {
         
         response.getWriter().print(Math.round(total * 100.0) /100.0);      
         
-     
+     response.sendRedirect("productosCarrito.jsp");
              
        
     }

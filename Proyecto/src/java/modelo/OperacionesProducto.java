@@ -27,13 +27,13 @@ public class OperacionesProducto {
      * @throws java.sql.SQLException
      * @
      */
-    public ArrayList<Producto> getAllProductos() {
+    public ArrayList<Producto> getAllProductos(int tipo) {
         ArrayList<Producto> productos = new ArrayList<>();
         PreparedStatement pst = null;
         ResultSet rs = null;
         try {
             //   String sql = "call selectProductos()";//SELECT * FROM PRODUCTO
-            String sql = "SELECT * FROM PRODUCTO";//
+            String sql = "SELECT * FROM PRODUCTO WHERE TIPO = '" + tipo + "'";//
             pst = coneLocal.getNewConnection().prepareCall(sql);
             rs = pst.executeQuery();
             while (rs.next()) {
