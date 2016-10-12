@@ -1,3 +1,4 @@
+<%@page import="modelo.Utileria"%>
 <%@page import="Controlador.agregarproducto"%>
 <%@page import="ClasesGenericas.Compra"%>
 <%@page import="java.util.ArrayList"%>
@@ -7,6 +8,10 @@
 <%
     int id = Integer.parseInt(request.getParameter("id"));
     Producto producto = new controladorProducto().getProducto(id);
+    
+    Utileria algo = new Utileria();
+    
+    System.out.println(algo.getLocalIpAddress());
     //System.out.println("prod:" + producto.getNOMBRE());
 %>
 

@@ -4,16 +4,19 @@
     Author     : panle
 --%>
 
+<%@page import="modelo.Utileria"%>
 <%@page import="modelo.Idioma"%>
 <%@page import="ClasesGenericas.Producto"%>
 <%@page import="ClasesGenericas.Compra"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Controlador.controladorProducto"%>
+<%@page import="Controlador.EliminarProducto"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     HttpSession sesion = request.getSession(true);
     ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
+    Utileria algo = new Utileria();
 %>
 <!DOCTYPE html>
 <html>
@@ -25,13 +28,13 @@
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-        <!--        <script type ="text/javascript">
-                    previene = function () {
-                        window.stop;
-                        history.go(1);
-                    };
-                    window.back = previene();
-                </script>-->
+        <script type ="text/javascript">
+            previene = function () {
+                window.stop;
+                history.go(1);
+            };
+            window.back = previene();
+        </script>
     </head>
     <body  class="landing">
         <%
@@ -148,13 +151,18 @@
                                                         </div>
                                                     </td>
                                                     <td><%= producto.getNOMBRE()%></td>
-                                                    <td><%= producto.getPRECIOVENTA()%></td>
+                                                    <td>Q. <%= algo.convertirCantidad(producto.getPRECIOVENTA())%></td>
                                                     <td class="cart_total">
-                                                        <p class="cart_total_price">Q. <%= Math.round(producto.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0%></p>
+                                                        <p class="cart_total_price">Q. <%= algo.convertirCantidad(Math.round(producto.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0)%></p>
                                                     </td>
                                                     <td class="cart_delete">
-                                                        <span id="idarticulo" style="display:none;"><%=producto.getID_PRODUCTO()%></span>
-                                                        <a class="cart_quantity_delete" href="EliminarProducto" id="deleteitem"><i class="fa fa-times"></i></a>
+                                                        <form method="post" action="EliminarProducto">
+                                                            <span id="idarticulo" style="display:none;"><%=producto.getID_PRODUCTO()%></span>
+                                                            <input type="hidden" value="<%= producto.getID_PRODUCTO()%>" name="idproducto">
+                                                            <button type="submit" >
+                                                                <i class="fa fa-times"></i>
+                                                            </button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                                 <% }%>
@@ -163,7 +171,7 @@
                                                 <tr>
                                                     <td colspan="3"></td>
                                                     <td><h3>Total</h3></td>
-                                                    <td><h3>Q. <%=total%></h3></td>
+                                                    <td><h3>Q. <%=algo.convertirCantidad(total)%></h3></td>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -173,7 +181,7 @@
                                     </div>
                                     <div class="row" >  
                                         <div class="4u 12u(mobilep)">
-                                            <a class ="button" href="catalogo.jsp#muebles">Seguir Comprando</a>
+                                            <a class ="button" href="catalogo.jsp?tipo=1#muebles">Seguir Comprando</a>
                                         </div>
                                         <div class="4u 12u(mobilep)">
                                             <p></p>
@@ -209,5 +217,11 @@
         <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
         <script src="assets/js/main.js"></script>
         <!--        </section>-->
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.scrollUp.min.js"></script>
+        <script src="js/jquery.prettyPhoto.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/carrito.js"></script>
     </body>
 </html>

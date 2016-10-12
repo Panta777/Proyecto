@@ -36,7 +36,7 @@ public class agregarproducto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        System.out.println("algo:::::::");
+       // System.out.println("algo:::::::");
         int cantidad = Integer.parseInt(request.getParameter("cantidad"));
         int idproducto = Integer.parseInt(request.getParameter("idproducto"));
 

@@ -6,12 +6,10 @@
 package Controlador;
 
 import ClasesGenericas.Compra;
-import ClasesGenericas.Producto;
-import Controlador.controladorProducto;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,12 +17,12 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Jonathan
+ * @author panle
  */
+@WebServlet(name = "EliminarProducto", urlPatterns = {"/EliminarProducto"})
 public class EliminarProducto extends HttpServlet {
 
     //borraritem
-    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,33 +35,42 @@ public class EliminarProducto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         int idproducto = Integer.parseInt(request.getParameter("idproducto"));
         
+        System.out.println("Id: " + idproducto);
+
         HttpSession sesion = request.getSession(true);
         ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
-        
-        if(articulos != null){
-            for(Compra a : articulos){                
-                if(a.getIdProducto() == idproducto){
+
+        if (articulos != null) {
+            for (Compra a : articulos) {
+                if (a.getIdProducto() == idproducto) {
                     articulos.remove(a);
                     break;
                 }
             }
+            
+            if(articulos.isEmpty())
+            {
+                articulos.clear();
+                articulos = null;
+            }
         }
-        
-        double total = 0;
-        controladorProducto cp = new controladorProducto();
-        for(Compra a : articulos){                
-            Producto producto = cp.getProducto(a.getIdProducto());
-            total += a.getCantidad() * producto.getPRECIOVENTA();            
-        }
-        
-        response.getWriter().print(Math.round(total * 100.0) /100.0);      
-        
-     response.sendRedirect("productosCarrito.jsp");
-             
-       
+//        
+//        double total = 0;
+//        controladorProducto cp = new controladorProducto();
+//        for(Compra a : articulos){                
+//            Producto producto = cp.getProducto(a.getIdProducto());
+//            total += a.getCantidad() * producto.getPRECIOVENTA();            
+//        }
+//        
+//        response.getWriter().print(Math.round(total * 100.0) /100.0);      
+//        
+    // response.sendRedirect("productosCarrito.jsp");
+        sesion.setAttribute("carrito", articulos);
+        response.sendRedirect("productosCarrito.jsp#main");
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
