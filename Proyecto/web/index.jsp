@@ -39,7 +39,7 @@
                 System.out.println("///// Nivel: " + nivel);
             }
 
-            ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
+           // ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
 
         %>
         <section id="container" > 
@@ -54,7 +54,7 @@
                                 <ul>
                                     <li><a href="#catalogo">Catálogo Productos</a></li>
                                     <li><a href="contact.jsp">Contacto</a></li>
-                                    <li><a href="productosCarrito.jsp#">Ver Pedido</a></li> 
+                                    <li><a href="productosCarrito.jsp#main">Ver Pedido</a></li> 
                                 </ul>
                             </li>
                             <%if (nivel.equals("1")) {%>
@@ -66,7 +66,8 @@
                                 </ul>
                             </li>
                             <%}%>
-                            <li><a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
+                            <li>
+                                <a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
                                 <ul>
                                     <li>
                                         <a href="cambioEspanol.jsp" class ="actions" >
@@ -82,7 +83,7 @@
                             </li>
                             <%if (nivel.equals("2") || nivel.equals("1")) {%>
                             <li>
-                                <a  class= "button special">Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <a  class= "icon fa-angle-down">Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
                                     <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
                                     <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
@@ -90,7 +91,7 @@
                             </li>
                             <%} else {%>
                             <li>
-                                <a href="login.jsp#main" class= "button special"> Entrar <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <a href="login.jsp#main" class= "icon fa-angle-down"> Entrar <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
                                     <li> <a href="nuevoCliente.jsp" class ="actions">Registrate</a> </li>
                                 </ul>

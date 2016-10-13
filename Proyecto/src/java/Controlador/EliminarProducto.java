@@ -38,7 +38,7 @@ public class EliminarProducto extends HttpServlet {
 
         int idproducto = Integer.parseInt(request.getParameter("idproducto"));
         
-        System.out.println("Id: " + idproducto);
+        //System.out.println("Id: " + idproducto);
 
         HttpSession sesion = request.getSession(true);
         ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
@@ -51,11 +51,11 @@ public class EliminarProducto extends HttpServlet {
                 }
             }
             
-            if(articulos.isEmpty())
-            {
-                articulos.clear();
-                articulos = null;
-            }
+//            if(articulos.isEmpty())
+//            {
+//                articulos.clear();
+//                articulos = null;
+//            }
         }
 //        
 //        double total = 0;

@@ -166,7 +166,7 @@
                                             out.write(idioma.getProperty("nombre"));
                                     }
                                     
-                                %>
+                                  %>
                             </h3>
                         <!--                            <div class="select-wrapper">
                                                         <select  name="TipoMueble" id="TipoMueble" >

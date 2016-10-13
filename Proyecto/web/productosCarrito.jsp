@@ -121,7 +121,7 @@
                                         <%
                                             controladorProducto cp = new controladorProducto();
                                             double total = 0;
-                                            if (articulos != null) {%>
+                                            if (articulos!= null && articulos.size()>0) {%>
                                         <table>
                                             <thead>
                                                 <tr>

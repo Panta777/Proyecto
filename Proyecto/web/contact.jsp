@@ -141,7 +141,8 @@
             </section>
             <section class="box special">
                 <div id="fb-root"></div>
-                <script>(function (d, s, id) {
+                <script>
+                    (function (d, s, id) {
                         var js, fjs = d.getElementsByTagName(s)[0];
                         if (d.getElementById(id))
                             return;
@@ -149,10 +150,11 @@
                         js.id = id;
                         js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=348569358813605";
                         fjs.parentNode.insertBefore(js, fjs);
-                    }(document, 'script', 'facebook-jssdk'));</script>
+                    }(document, 'script', 'facebook-jssdk'));
+                </script>
                 <br><br>
                 <h2>CAJA COMENTARIOS</h2>
-                <div class="fb-comments" data-href="https://web.facebook.com/Muebleria-los-Alpes-GT-690252594463736/?fref=nf" data-width="750" data-numposts="2"></div>            </section>
+                <div class="fb-comments" data-href="https://web.facebook.com/Muebleria-los-Alpes-GT-690252594463736/?fref=nf" data-width="750" data-numposts="2"></div></section>
             <!-- Footer -->
             <footer id="footer">
                 <ul class="icons">
