@@ -67,7 +67,7 @@
                                 <ul>
                                     <% if (!(nivel.equals("2") || nivel.equals("1"))) {%>
                                     <li> <a href="nuevoCliente.jsp" class ="actions"> Nuevo Cliente</a> </li>
-                                        <%}%>
+                                    <%}%>
                                     <li><a href="catalogo.jsp">Catálogo Productos</a></li>
                                     <li><a href="contact.jsp">Contacto</a></li>
                                     <li>
@@ -76,10 +76,10 @@
                                             <li><a href="#">Buscar Productos</a></li>
                                             <li><a href="productosCarrito.jsp#main">Ver Pedido</a></li>  
                                             <li><a href="#">Comentarios</a></li>
-                                                <%if (nivel.equals("1")) {%>
+                                            <%if (nivel.equals("1")) {%>
                                             <li><a href="#">Reporteria</a></li>
                                             <li><a href="#">Administracion</a></li>
-                                                <%}%>
+                                            <%}%>
                                         </ul>
                                     </li>
                                 </ul>
@@ -121,17 +121,17 @@
                                         <%
                                             controladorProducto cp = new controladorProducto();
                                             double total = 0;
-                                            if (articulos!= null && articulos.size()>0) {%>
+                                            if (articulos != null && articulos.size() > 0) {%>
                                         <table>
                                             <thead>
                                                 <tr>
                                                     <th><h4>Cantidad</h4></th>
-                                                    <th>Foto</th>
-                                                    <th>Descripcion</th>
-                                                    <th>Precio U</th>
-                                                    <th>Subtotal</th>
-                                                    <th>Eliminar</th>
-                                                </tr>
+                                            <th>Foto</th>
+                                            <th>Descripcion</th>
+                                            <th>Precio U</th>
+                                            <th>Subtotal</th>
+                                            <th>Eliminar</th>
+                                            </tr>
                                             </thead>
                                             <tbody>
                                                 <%
@@ -180,15 +180,27 @@
                                         <%}%>
                                     </div>
                                     <div class="row" >  
-                                        <div class="4u 12u(mobilep)">
-                                            <a class ="button" href="catalogo.jsp?tipo=1#muebles">Seguir Comprando</a>
+                                        <div class="4u 12u(narrow)">
+                                            <a class ="button" href="catalogo.jsp?tipo=1#muebles">
+                                                Seguir Comprando &nbsp; <img src="images/ICONOS BLANCOS/FACTURA.png" width="25" height="21" alt ="FAC"> 
+                                            </a>
                                         </div>
-                                        <div class="4u 12u(mobilep)">
+                                        <div class="4u 12u(narrow)">
                                             <p></p>
                                         </div> 
+                                        <%if (articulos != null && articulos.size() > 0 && (nivel.equals("2") || nivel.equals("1"))){%>
                                         <div class="4u 12u(mobilep)">
-                                            <a class ="button special" href="terminarCompra.jsp">Terminar Compra</a>
-                                        </div>                                        
+                                            <a class ="button special" href="terminarCompra.jsp">
+                                                Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
+                                            </a>
+                                        </div>
+                                        <%} else if (articulos != null && articulos.size() > 0 && (nivel.equals("3") || nivel.equals("4"))){%>
+                                        <div class="4u 12u(mobilep)">
+                                            <a class ="button special" href="login.jsp">
+                                                Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
+                                            </a>
+                                        </div>
+                                        <%     }%>
                                     </div>
                                 </section>>
                             </div>

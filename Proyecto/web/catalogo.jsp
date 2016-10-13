@@ -47,7 +47,7 @@
                 usuario = sesion.getAttribute("user").toString();
             }
             controladorProducto cp = new controladorProducto();
-            ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
+           // ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
         %>
         <section id="container" > 
             <div id="page-wrapper">
@@ -63,7 +63,7 @@
                                     <% if (!(nivel.equals("2") || nivel.equals("1"))) {%>
                                     <li> <a href="nuevoCliente.jsp" class ="actions"> Nuevo Cliente</a> </li>
                                     <%}%>
-                                    <li><a href="catalogo.jsp">Catálogo Productos</a></li>
+                                    <li><a href="#main">Catálogo Productos</a></li>
                                     <li><a href="contact.jsp">Contacto</a></li>
                                     <li>
                                         <a href="#">Opciones</a>
@@ -168,16 +168,6 @@
                                     
                                   %>
                             </h3>
-                        <!--                            <div class="select-wrapper">
-                                                        <select  name="TipoMueble" id="TipoMueble" >
-                                                            <option value="0">-Tipo Mueble-<%out.write(idioma.getProperty("nombre"));%></option>
-                                                            <option value="1">Tradicionales <%out.write(idioma.getProperty("nombre"));%></option>
-                                                            <option value="2">Modernos <%out.write(idioma.getProperty("nombre"));%></option>
-                                                            <option value="3">Coloniales <%out.write(idioma.getProperty("nombre"));%></option>
-                                                            <option value="4">Rústicos <%out.write(idioma.getProperty("nombre"));%></option>
-                                                        </select>
-                                                    </div>-->
-
                         <div class="row">
                             <%= cp.getProductos(tipo)%>
                         </div>

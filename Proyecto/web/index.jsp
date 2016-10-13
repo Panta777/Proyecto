@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : 8/09/2016, 11:50:17 PM
+    Created on : 8/09/2016, 11:55:17 PM
     Author     : panle
 --%>
 <%@page import="ClasesGenericas.Compra"%>
@@ -42,18 +42,19 @@
            // ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
 
         %>
-        <section id="container" > 
+        <section id="container"> 
             <div id="page-wrapper">
                 <!-- Header -->
                 <header id="header" >
                     <h1><a href="#main"><% out.write(idioma.getProperty("mueblierialosalpes"));%></a></h1>
                     <nav id="nav">
                         <ul>
+                            <li><a href="index.jsp">Inicio</a></li>
                             <li>
                                 <a href="#" class="icon fa-angle-down">Menu</a>
                                 <ul>
                                     <li><a href="#catalogo">Catálogo Productos</a></li>
-                                    <li><a href="contact.jsp">Contacto</a></li>
+                                    <li><a href="contact.jsp#main">Contacto</a></li>
                                     <li><a href="productosCarrito.jsp#main">Ver Pedido</a></li> 
                                 </ul>
                             </li>
@@ -83,7 +84,7 @@
                             </li>
                             <%if (nivel.equals("2") || nivel.equals("1")) {%>
                             <li>
-                                <a  class= "icon fa-angle-down">Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <a  class= "button special" >Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
                                     <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
                                     <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
@@ -152,7 +153,7 @@
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <span class="image featured"><img src="images/TRADICIONALES/MTradicionales.png" alt = "Muebles Tradicionales"/></span>
-                                    <h4><a href="catalogo.jsp?tipo=1#muebles" class= "button" >Muebles Tradicionales</a></h4>
+                                    <h4><a href="catalogo.jsp?tipo=1#muebles" class= "button alt" >Muebles Tradicionales</a></h4>
                                     <p>Este tipo de muebles se caracterizan por contar con una estética conservadora y  detalles muy elegantes, como maderas brillantes y oscuras, diseño simétrico, tapicería delicada y curvas bien detalladas.</p>
                                 </section>
                             </div>
@@ -160,7 +161,7 @@
                                 <section class="box special">
                                     <!--  <span class="icon major fa-area-chart accent3"></span> -->
                                     <span class="image featured"><img src="images/MODERNOS/MModernos.png" alt = "Muebles Modernos"/></span>
-                                    <h4><a href="catalogo.jsp?tipo=2#muebles" class= "button" >Muebles Modernos</a></h4>
+                                    <h4><a href="catalogo.jsp?tipo=2#muebles" class= "button alt" >Muebles Modernos</a></h4>
                                     <p>Los muebles de este estilo presentan líneas ligeras y son asociados con el minimalismo posmoderno. Son producidos para ser funcionales y prácticos,ajustandose a las necesidades de la actualidad.</p>
                                 </section>
                             </div>
@@ -170,7 +171,7 @@
                                 <section class="box special">
                                     <!--  <span class="icon major fa-cloud accent4"></span>-->
                                     <span class="image featured"><img src="images/COLONIALES/MColoniales.png" alt = "Muebles Coloniales"/></span>
-                                    <h4><a href="catalogo.jsp?tipo=3#muebles" class= "button" >Muebles Coloniales</a></h4>
+                                    <h4><a href="catalogo.jsp?tipo=3#muebles" class= "button alt" >Muebles Coloniales</a></h4>
                                     <p>Son propios de las fincas y haciendas previas al siglo XX. Para su fabricación se recurre a materiales autóctonos, detalles artesanales, maderas macizas y toques exóticos que aún perduran en el tiempo.</p>
                                 </section>
                             </div>
@@ -178,7 +179,7 @@
                                 <section class="box special">
                                     <!--   <span class="icon major fa-lock accent5"></span>-->
                                     <span class="image featured"><img src="images/RUSTICOS/MRusticos.png" alt = "Muebles Rusticos"/></span>
-                                    <h4><a href="catalogo.jsp?tipo=4#muebles" class= "button" >Muebles Rústicos</a></h4>
+                                    <h4><a href="catalogo.jsp?tipo=4#muebles" class= "button alt" >Muebles Rústicos</a></h4>
                                     <p>Los muebles que cuentan con este estilo tienen una apariencia folklórica. Transmiten la sensación de ser muebles usados, sencillos o rudimentarios, además de dar una sensación hogareña.</p>
                                 </section>
                             </div>
@@ -192,7 +193,7 @@
                                     <h3>Formas de Pago</h3>
                                     <p>En Muebleria Los Alpes, contamos con varias facilidades de Pago, como lo son  Tarjetas de Crédito, Débito y Depósitos a nuestra cuenta. </p>
                                     <ul class="actions">
-                                        <li><a href="#" class="button alt">Más Información</a></li>
+                                        <li><a href="#" class="button">Más Información</a></li>
                                     </ul>
                                 </section>
                             </div>
@@ -202,7 +203,7 @@
                                     <h3>Entregas a Domicilio</h3>
                                     <p>Para facilitarle la entrega de su pedido, contamos también con el servicio de entrega a cualquier parte de Centroamerica.</p>
                                     <ul class="actions">
-                                        <li><a href="#" class="button alt">Más Información</a></li>
+                                        <li><a href="#" class="button">Más Información</a></li>
                                     </ul>
                                 </section>
                             </div>
