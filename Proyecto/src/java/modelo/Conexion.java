@@ -29,7 +29,7 @@ public class Conexion {
     public ResultSet rsRecords = null, rsRecords1 = null;
     public ResultSet rsRecordsTmp = null;
     public Utileria utileria = null;
-    private EnvironmentVars variablesAmbiente = null;
+    public EnvironmentVars variablesAmbiente = null;
     public String DtePath = "";
 
     public Conexion() {
@@ -43,7 +43,7 @@ public class Conexion {
      *
      * @return currentConnection Connection.
      */
-    public Connection getNewConnection() {
+    public Connection NewConnection() {
         try {
             Class.forName((String) variablesAmbiente.getDB_CLASSNAME());
             currentConnection = DriverManager.getConnection(
@@ -53,6 +53,21 @@ public class Conexion {
             System.out.println("Conexion Exitosa");
         } catch (Exception e) {
             System.out.println("Error al tratar de conectar a la Base de Datos: " + e);//  utileria.escribirLog("N/A", "", "\n\nConnectionBD->getConnection()..Error..: " + ex.getMessage())
+        }
+        return currentConnection;
+    }
+    
+        public Connection NewConnection(String user, String contra) {
+        try {
+            Class.forName((String) variablesAmbiente.getDB_CLASSNAME());
+            currentConnection = DriverManager.getConnection(
+                    (String) variablesAmbiente.getDB_URL(),
+                    user,
+                    contra);
+            System.out.println("Conexion Exitosa");
+        } catch (Exception e) {
+            currentConnection = null;
+            System.out.println("Error al tratar de loguear: " + e);//  utileria.escribirLog("N/A", "", "\n\nConnectionBD->getConnection()..Error..: " + ex.getMessage())
         }
         return currentConnection;
     }

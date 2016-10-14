@@ -34,7 +34,7 @@ public class OperacionesProducto {
         try {
             //   String sql = "call selectProductos()";//SELECT * FROM PRODUCTO
             String sql = "SELECT * FROM PRODUCTO WHERE TIPO = '" + tipo + "'";//
-            pst = coneLocal.getNewConnection().prepareCall(sql);
+            pst = coneLocal.NewConnection().prepareCall(sql);
             rs = pst.executeQuery();
             while (rs.next()) {
 
@@ -66,8 +66,8 @@ public class OperacionesProducto {
                 if (pst != null) {
                     pst.close();
                 }
-                if (coneLocal.getNewConnection() != null) {
-                    coneLocal.getNewConnection().close();
+                if (coneLocal.NewConnection() != null) {
+                    coneLocal.NewConnection().close();
                 }
             } catch (Exception e) {
             }
@@ -90,7 +90,7 @@ public class OperacionesProducto {
             // String sql = "call selectProducto(?)";
             String sql = "SELECT * FROM PRODUCTO WHERE ID_PRODUCTO = '" + id + "'";
             System.out.println("Consulta producto: " + sql);
-            pst = coneLocal.getNewConnection().prepareCall(sql);
+            pst = coneLocal.NewConnection().prepareCall(sql);
           //  pst.setInt(1, id);
             rs = pst.executeQuery();
             while (rs.next()) {
@@ -122,8 +122,8 @@ public class OperacionesProducto {
                 if (pst != null) {
                     pst.close();
                 }
-                if (coneLocal.getNewConnection() != null) {
-                    coneLocal.getNewConnection().close();
+                if (coneLocal.NewConnection() != null) {
+                    coneLocal.NewConnection().close();
                 }
             } catch (Exception e) {
             }

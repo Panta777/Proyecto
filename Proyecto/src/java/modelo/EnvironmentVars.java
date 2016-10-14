@@ -28,6 +28,14 @@ public class EnvironmentVars {
     private String DB_USERNAME = "";
     private String DB_PASSWORD = "";
 
+    public void setDB_USERNAME(String DB_USERNAME) {
+        this.DB_USERNAME = DB_USERNAME;
+    }
+
+    public void setDB_PASSWORD(String DB_PASSWORD) {
+        this.DB_PASSWORD = DB_PASSWORD;
+    }
+
     public EnvironmentVars() {
         try {
             currentContext = new InitialContext();
