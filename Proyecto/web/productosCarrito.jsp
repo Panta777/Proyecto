@@ -244,39 +244,27 @@
                                 <div class="12u">
                                     <!-- Form -->
                                     <section class="box">
+                                        <h2><p>Pago con Tarjeta de Débito o Crédito </p></h2>
                                         <a class ="actions">
-                                            <h2 class="actions">Tarjeta bancaria</h2>
-                                            <div class="2u (mobilep)">
-                                                <span class="image featured">
-                                                    <img src="images/ICONOS/formas-de-pago.png" alt = "Formas de Pago"/>
-                                                </span>
-                                            </div>
+                                            <!--                                                <h2 class="actions">Tarjeta bancaria</h2>-->
+                                            <img src="images/ICONOS/formas-de-pago.png" alt = "Formas de Pago"/>
                                         </a>
-                                        <h3><p>Ingrese sus Datos </p></h3>
-                                        <form  id="formularioPago" class="expand">
-                                            <p class="heading-4 mop-explanation">Complete su transacción, llenando los datos de su tarjeta.</p>
+                                        <form  id="formularioPago" method="post" action="pagarform">
+                                            <p class="actions">Complete su transacción, llenando los datos de su tarjeta.</p>
                                             <h2 style ='color:blue; font-weight:bold;' >(Verifique sus datos, antes de pagar)</h2>
                                             <p></br></p>
-                                            <div class="form-block form-group">
-                                                <p class="control-label">Nombre del titular de la tarjeta</p>
-                                                <div class="control-wrapper input-cb">
-                                                    <input id="cb-holder-name" data-encrypted-name="holderName" class="form-control">
-                                                    <span class="form-icon icon icon-validation"></span>
-                                                </div>
+                                            <div class="6u 12u(mobilep)">
+                                                <p class="actions">Nombre del titular de la tarjeta</p>
+                                                <input  type="text"  id="cb-holder-name"   value="">
                                             </div>
-                                            <div class="form-block form-group">
-                                                <p class="control-label">Número tarjeta bancaria</p>
-                                                <div class="control-wrapper input-cb">
-                                                    <input id="cb-card-number" data-encrypted-name="number" class="form-control" placeholder="---- ---- ---- ----" type="tel">
-                                                    <span class="form-icon icon icon-secured"></span>
-                                                    <span  class="form-icon icon icon-validation"></span>
-                                                </div>
+                                            <div class="6u 12u(mobilep)">
+                                                <p class="actions">Número tarjeta bancaria</p>
+                                                <input id="cb-card-number"   placeholder="---- ---- ---- ----" type="text" value ="">
                                             </div>
-                                            <div  class="form-block form-horizontal form-table">
-                                                <p class="control-label">Fecha de caducidad</p>
-                                                <div class="form-group">
-                                                    <div class="control-wrapper">
-                                                        <select  id="cb-card-expiration-month" data-encrypted-name="expiryMonth" class="form-control control-medium" >
+                                            <div class="6u 12u(mobilep)">
+                                                <p class="actions">Fecha de caducidad</p>
+                                                <div class="select-wrapper">
+                                                        <select  id="cb-card-expiration-month"  >
                                                             <option value="" disabled selected hidden>Mes</option>
                                                             <option value="01">01 - Enero</option>
                                                             <option value="02">02 - Febrero</option>
@@ -291,12 +279,9 @@
                                                             <option value="11">11 - Noviembre</option>
                                                             <option value="12">12 - Diciembre</option>
                                                         </select>
-                                                        <span class="form-icon icon icon-chevron-down"></span>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="control-wrapper">
-                                                        <select id="cb-card-expiration-year" data-encrypted-name="expiryYear" class="form-control control-medium">
+                                                    <div class="select-wrapper">
+                                                        <select id="cb-card-expiration-year" >
                                                             <option value="" disabled selected hidden>Año</option>
                                                             <option value="2016">2016</option>
                                                             <option value="2017">2017</option>
@@ -320,37 +305,15 @@
                                                             <option value="2035">2035</option>
                                                             <option value="2036">2036</option>
                                                         </select>
-                                                        <span class="form-icon icon icon-chevron-down"></span>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-block form-group">
-                                                <p class="control-label">Código de seguridad</p>
-                                                <div class="control-wrapper">
-                                                    <input id="cb-card-cvc" data-encrypted-name="cvc" class="form-control control-small" placeholder="•••" maxlength="3" type="tel">
-                                                    <span class="form-icon icon icon-secured"></span>
-                                                    <span class="form-icon icon icon-validation"></span>
-                                                    <div class="form-tipsy tipsy-trigger">
-                                                        <a class="info-link">
-                                                            <span class="icon icon-info popover-trigger" data-tracking="tips_cvc"></span>
-                                                        </a>
-                                                        <div class="popover popover-right">
-                                                            <div  class="popover-header">
-                                                                <span class="icon icon-info"></span>
-                                                                Código de seguridad
-                                                            </div>
-                                                            <div class="popover-body"> Tu código de seguridad de tres dígitos está situado en la parte de atrás de tu tarjeta.
-                                                            </div> 
-                                                        </div>
-                                                    </div>
-                                                </div> 
                                             </div>
                                             <div class="form-block form-actions">
                                                 <div class="alert alert-danger hidden mop-message-error">
                                                     <p> espacio para mensaje de error </p>
                                                 </div>
                                                 <button class="btn btn-primary btn-large mops-item-submitbutton" id="mops-item-submitbutton-cb" type="submit">
-                                                    <span class="label">PAGAR</span>
+                                                    <span class="label">EFECTUAR PAGO</span>
                                                 </button>	
                                                 <input type="hidden" id="cb-generationtime" data-encrypted-name="generationtime" value="2016-10-17T04:37:32+02:00"/>
                                             </div>
