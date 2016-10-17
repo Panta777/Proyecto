@@ -28,7 +28,7 @@ public class controladorProducto {
         if(htmlcode.equals(""))
         {
             htmlcode = "<h3>NO HAY MUEBLES EN ESTA CATEGORIA</h3> ";
-            htmlcode += "<span class=\"image featured\"><img src=\"images/404.png\" alt=\"Muebles Tradicionales\" /></span>\n ";
+            htmlcode += "<span class=\"image featured\"><img src=\"images/404.png\" alt=\"Sin Muebles\" /></span>\n ";
         }
         //System.out.println("Resultado:" + htmlcode);
         return htmlcode;

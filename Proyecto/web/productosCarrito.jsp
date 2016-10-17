@@ -27,10 +27,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
-        <meta  name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=no">
-        <meta name="robots" content="noindex,nofollow,"/>
-        <link rel="stylesheet" type="text/css" href="https://payment-files.deezer.com/v2/css/sass_c/bootstrap.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="https://payment-files.deezer.com/v2/css/sass_c/styles.css" media="screen" />
+        <link rel="stylesheet" href="assets/css/otros.css" />
+        <link rel="stylesheet" href="assets/css/otros2.css" />
 
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <script type ="text/javascript">
@@ -43,7 +41,7 @@
 
         <script type="text/javascript">
             function mostrar() {
-                document.getElementById('mops-item-cb').style.display = 'block';
+                document.getElementById('pagotarjeta').style.display = 'block';
             }
         </script>
     </head>
@@ -64,7 +62,7 @@
             }
             // controladorProducto cp = new controladorProducto();
             //   ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
-        %>
+%>
         <section id="container" > 
             <div id="page-wrapper">
                 <!-- Header -->
@@ -111,7 +109,7 @@
                             <li>
                                 <a  class= "button special" >Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
-                                 
+
                                     <li> <a href="modificaCliente.jsp#main" class ="actions">Modificar mis Datos</a> </li>
                                     <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
                                 </ul>
@@ -121,7 +119,7 @@
                                 <a href="#" class= "icon fa-angle-down">Ingresa o Registrate<img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
                                     <li>
-                                    <a href="login.jsp#main" class= "actions"> Entrar  </a>
+                                        <a href="login.jsp#main" class= "actions"> Entrar  </a>
                                     </li>
                                     <li> <a href="nuevoCliente.jsp#main" class ="actions">Registrate</a> </li>
                                 </ul>
@@ -137,212 +135,231 @@
                 </section>
                 <!-- Main -->
                 <section class="container" id="main">
+                    <section class="box special">
+                        <header class="major">
+                            <h2>ORDEN   Y PAGO DE COMPRA</h2>
+                            <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
+                        </header>                
+                    </section>
                     <div class="container">
-                        <div class="row">
-                            <div class="12u">
-                                <!-- Table -->
-                                <section class="box">
-                                    <h3></h3>
-                                    <h3>Orden de Compra</h3>
-                                    <div class="table-wrapper">
-                                        <%
-                                            controladorProducto cp = new controladorProducto();
-                                            double total = 0;
-                                            if (articulos != null && articulos.size() > 0) {%>
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th><h4>Cantidad</h4></th>
-                                                    <th>Foto</th>
-                                                    <th>Descripcion</th>
-                                                    <th>Precio U</th>
-                                                    <th>Subtotal</th>
-                                                    <th>Eliminar</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <%
-                                                    for (Compra a : articulos) {
-                                                        Producto producto = cp.getProducto(a.getIdProducto());
-                                                        total += a.getCantidad() * producto.getPRECIOVENTA();
-                                                %>
-                                                <tr>
-                                                    <td>
-                                                        <div class="4u">
-                                                            <h4><%= a.getCantidad()%> </h4>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="4u">
-                                                            <img src="<%= producto.getFOTO()%>" alt="foto" width="80" height="80"> 
-                                                        </div>
-                                                    </td>
-                                                    <td><%= producto.getNOMBRE()%></td>
-                                                    <td>Q. <%= algo.convertirCantidad(producto.getPRECIOVENTA())%></td>
-                                                    <td class="cart_total">
-                                                        <p class="cart_total_price">Q. <%= algo.convertirCantidad(Math.round(producto.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0)%></p>
-                                                    </td>
-                                                    <td class="cart_delete">
-                                                        <form method="post" action="EliminarProducto">
-                                                            <span id="idarticulo" style="display:none;"><%=producto.getID_PRODUCTO()%></span>
-                                                            <input type="hidden" value="<%= producto.getID_PRODUCTO()%>" name="idproducto">
-                                                            <button type="submit" >
-                                                                <i class="fa fa-times"></i>
-                                                            </button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                <% }%>
-                                            </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <td colspan="3"></td>
-                                                    <td><h3>Total</h3></td>
-                                                    <td><h3>Q. <%=algo.convertirCantidad(total)%></h3></td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                        <% } else {%>
-                                        <h4>No hay Articulos en el carro</h4>
+                        <!-- Tabla Productos del Carrito -->
+                        <section class="box special">
+                            <!--<div class="20u "> -->
+                            <!-- Table -->
+                            <section class="box">
+                                <div class="table-wrapper">
+                                    <%
+                                        controladorProducto cp = new controladorProducto();
+                                        double total = 0;
+                                        if (articulos != null && articulos.size() > 0) {%>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th><h4>Cantidad</h4></th>
+                                        <th>Foto</th>
+                                        <th>Descripcion</th>
+                                        <th>Precio U</th>
+                                        <th>Subtotal</th>
+                                        <th>Eliminar</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%
+                                                for (Compra a : articulos) {
+                                                    Producto producto = cp.getProducto(a.getIdProducto());
+                                                    total += a.getCantidad() * producto.getPRECIOVENTA();
+                                            %>
+                                            <tr>
+                                                <td>
+                                                    <div class="4u">
+                                                        <h4><%= a.getCantidad()%> </h4>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="4u">
+                                                        <img src="<%= producto.getFOTO()%>" alt="foto" width="80" height="80"> 
+                                                    </div>
+                                                </td>
+                                                <td><%= producto.getNOMBRE()%></td>
+                                                <td>Q. <%= algo.convertirCantidad(producto.getPRECIOVENTA())%></td>
+                                                <td class="cart_total">
+                                                    <p class="cart_total_price">Q. <%= algo.convertirCantidad(Math.round(producto.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0)%></p>
+                                                </td>
+                                                <td class="cart_delete">
+                                                    <form method="post" action="EliminarProducto">
+                                                        <span id="idarticulo" style="display:none;"><%=producto.getID_PRODUCTO()%></span>
+                                                        <input type="hidden" value="<%= producto.getID_PRODUCTO()%>" name="idproducto">
+                                                        <button type="submit" >
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <% }%>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="3"></td>
+                                                <td><h3>Total</h3></td>
+                                                <td><h3>Q. <%=algo.convertirCantidad(total)%></h3></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <% } else {%>
+                                    <h4>No hay Articulos en el carrito &nbsp;
+                                        <img  src="images/404.png" alt=" Sin Muebles"  width="25" height="21" /></h4> 
                                         <%}%>
-                                    </div>
-                                    <div class="row" >  
-                                        <div class="4u 12u(narrow)">
-<!--                                            <a class ="button" href="catalogo.jsp?tipo=1#muebles">-->
-                                            <a class ="button special" href="#mops-item-cb" onclick="mostrar()">
-                                                Seguir Comprando &nbsp; <img src="images/ICONOS BLANCOS/FACTURA.png" width="25" height="21" alt ="FAC"> 
-                                            </a>
-                                        </div>
-                                        <div class="4u 12u(narrow)">
-                                            <p></p>
-                                        </div> 
-                                        <%if (articulos != null && articulos.size() > 0 && (nivel.equals("2") || nivel.equals("1"))) {%>
-                                        <div class="4u 12u(mobilep)">
-                                            <a class ="button special" href="#mops-item-cb" onclick="mostrar()">
-                                                Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
-                                            </a>
-                                        </div>
-                                        <%} else if (articulos != null && articulos.size() > 0 && (nivel.equals("3") || nivel.equals("4"))) {%>
-                                        <div class="4u 12u(mobilep)">
-                                            <a class ="button special" href="#mops-item-cb">
-                                                Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
-                                            </a>
-                                        </div>
-                                        <%     }%>
-                                    </div>
-                                </section>>
-                            </div>
-                        </div>
-                        <div id="mops-item-cb" class="mops-item mops-item-openable" data-mop="cb" style='display:none;'>
-                            <a class="mops-item-link">
-                                <span class="mops-logo">
-                                    <span class="payment-logo logo-visa"></span>
-                                    <span class="payment-logo logo-ecmc"></span>
-                                </span>
-                                <span class="label">
-                                    <span class="a">Tarjeta bancaria</span>
-                                </span>
-                            </a>
-                            <form  id="mops-item-form-cb" class="expand">
-                                  <p class="heading-4 mop-explanation">Complete su transacción, llenando los datos de su tarjeta.</p>
-                                  <h2 style ='color:blue; font-weight:bold;' >(Verifique sus datos, antes de pagar)</h2>
-                                  <p></br></p>
-                                 <div class="form-block form-group"><p class="control-label">Nombre del titular de la tarjeta</p>
-                                    <div class="control-wrapper input-cb">
-                                        <input id="cb-holder-name" data-encrypted-name="holderName" class="form-control">
-                                        <span class="form-icon icon icon-validation"></span>
-                                    </div>
+                                    &nbsp;
                                 </div>
-                                <div class="form-block form-group"><p class="control-label">Número tarjeta bancaria</p>
-                                    <div class="control-wrapper input-cb">
-                                        <input id="cb-card-number" data-encrypted-name="number" class="form-control" placeholder="---- ---- ---- ----" type="tel">
-                                        <span class="form-icon icon icon-secured"></span>
-                                        <span  class="form-icon icon icon-validation"></span>
+                                <div class="row" >  
+                                    <div class="4u 12u(narrow)">
+                                        <!-- <a class ="button" href="catalogo.jsp?tipo=1#muebles">-->
+                                        <a class ="button special" href="#mops-item-cb" onclick="mostrar()">
+                                            Seguir Comprando &nbsp; <img src="images/ICONOS BLANCOS/FACTURA.png" width="25" height="21" alt ="FAC"> 
+                                        </a>
                                     </div>
+                                    <div class="4u 12u(narrow)">
+                                        <p></p>
+                                    </div> 
+                                    <%if (articulos != null && articulos.size() > 0 && (nivel.equals("2") || nivel.equals("1"))) {%>
+                                    <div class="4u 12u(mobilep)">
+                                        <a class ="button special" href="#mops-item-cb" onclick="mostrar()">
+                                            Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
+                                        </a>
+                                    </div>
+                                    <%} else if (articulos != null && articulos.size() > 0 && (nivel.equals("3") || nivel.equals("4"))) {%>
+                                    <div class="4u 12u(mobilep)">
+                                        <a class ="button special" href="#mops-item-cb">
+                                            Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
+                                        </a>
+                                    </div>
+                                    <%}%>
                                 </div>
-                                <div  class="form-block form-horizontal form-table">
-                                    <p class="control-label">Fecha de caducidad</p>
-                                    <div class="form-group">
-                                        <div class="control-wrapper">
-                                            <select  id="cb-card-expiration-month" data-encrypted-name="expiryMonth" class="form-control control-medium" >
-                                                <option value="" disabled selected hidden>Mes</option>
-                                                <option value="01">01 - Enero</option>
-                                                <option value="02">02 - Febrero</option>
-                                                <option value="03">03 - Marzo</option>
-                                                <option value="04">04 - Abril</option>
-                                                <option value="05">05 - Mayo</option>
-                                                <option value="06">06 - Junio</option>
-                                                <option value="07">07 - Julio</option>
-                                                <option value="08">08 - Agosto</option>
-                                                <option value="09">09 - Septiembre</option>
-                                                <option value="10">10 - Octubre</option>
-                                                <option value="11">11 - Noviembre</option>
-                                                <option value="12">12 - Diciembre</option>
-                                            </select>
-                                            <span class="form-icon icon icon-chevron-down"></span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="control-wrapper">
-                                            <select id="cb-card-expiration-year" data-encrypted-name="expiryYear" class="form-control control-medium">
-                                                <option value="" disabled selected hidden>Año</option>
-                                                <option value="2016">2016</option>
-                                                <option value="2017">2017</option>
-                                                <option value="2018">2018</option>
-                                                <option value="2019">2019</option>
-                                                <option value="2020">2020</option>
-                                                <option value="2021">2021</option>
-                                                <option value="2022">2022</option>
-                                                <option value="2023">2023</option>
-                                                <option value="2024">2024</option>
-                                                <option value="2025">2025</option>
-                                                <option value="2026">2026</option>
-                                                <option value="2027">2027</option>
-                                                <option value="2028">2028</option>
-                                                <option value="2029">2029</option>
-                                                <option value="2030">2030</option>
-                                                <option value="2031">2031</option>
-                                                <option value="2032">2032</option>
-                                                <option value="2033">2033</option>
-                                                <option value="2034">2034</option>
-                                                <option value="2035">2035</option>
-                                                <option value="2036">2036</option>
-                                            </select>
-                                            <span class="form-icon icon icon-chevron-down"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                 <div class="form-block form-group"><p class="control-label">Código de seguridad</p>
-                                     <div class="control-wrapper">
-                                        <input id="cb-card-cvc" data-encrypted-name="cvc" class="form-control control-small" placeholder="•••" maxlength="3" type="tel">
-                                        <span class="form-icon icon icon-secured"></span>
-                                        <span class="form-icon icon icon-validation"></span>
-                                        <div class="form-tipsy tipsy-trigger">
-                                            <a class="info-link">
-                                                <span class="icon icon-info popover-trigger" data-tracking="tips_cvc"></span>
-                                            </a>
-                                            <div class="popover popover-right">
-                                                <div  class="popover-header">
-                                                    <span class="icon icon-info"></span>
-                                                    Código de seguridad
+                            </section>
+                            <!-- </div> -->
+                        </section>
+                        <!-- Formulario de Pago -->
+                        <section class="box special" id="pagotarjeta"  style='display:none;'>
+                            <div class="row" >
+                                <div class="12u">
+                                    <!-- Form -->
+                                    <section class="box">
+                                        <a class ="actions">
+                                            <h2 class="actions">Tarjeta bancaria</h2>
+                                            <div class="2u (mobilep)">
+                                                <span class="image featured">
+                                                    <img src="images/ICONOS/formas-de-pago.png" alt = "Formas de Pago"/>
+                                                </span>
+                                            </div>
+                                        </a>
+                                        <h3><p>Ingrese sus Datos </p></h3>
+                                        <form  id="formularioPago" class="expand">
+                                            <p class="heading-4 mop-explanation">Complete su transacción, llenando los datos de su tarjeta.</p>
+                                            <h2 style ='color:blue; font-weight:bold;' >(Verifique sus datos, antes de pagar)</h2>
+                                            <p></br></p>
+                                            <div class="form-block form-group">
+                                                <p class="control-label">Nombre del titular de la tarjeta</p>
+                                                <div class="control-wrapper input-cb">
+                                                    <input id="cb-holder-name" data-encrypted-name="holderName" class="form-control">
+                                                    <span class="form-icon icon icon-validation"></span>
                                                 </div>
-                                                <div class="popover-body"> Tu código de seguridad de tres dígitos está situado en la parte de atrás de tu tarjeta.
+                                            </div>
+                                            <div class="form-block form-group">
+                                                <p class="control-label">Número tarjeta bancaria</p>
+                                                <div class="control-wrapper input-cb">
+                                                    <input id="cb-card-number" data-encrypted-name="number" class="form-control" placeholder="---- ---- ---- ----" type="tel">
+                                                    <span class="form-icon icon icon-secured"></span>
+                                                    <span  class="form-icon icon icon-validation"></span>
+                                                </div>
+                                            </div>
+                                            <div  class="form-block form-horizontal form-table">
+                                                <p class="control-label">Fecha de caducidad</p>
+                                                <div class="form-group">
+                                                    <div class="control-wrapper">
+                                                        <select  id="cb-card-expiration-month" data-encrypted-name="expiryMonth" class="form-control control-medium" >
+                                                            <option value="" disabled selected hidden>Mes</option>
+                                                            <option value="01">01 - Enero</option>
+                                                            <option value="02">02 - Febrero</option>
+                                                            <option value="03">03 - Marzo</option>
+                                                            <option value="04">04 - Abril</option>
+                                                            <option value="05">05 - Mayo</option>
+                                                            <option value="06">06 - Junio</option>
+                                                            <option value="07">07 - Julio</option>
+                                                            <option value="08">08 - Agosto</option>
+                                                            <option value="09">09 - Septiembre</option>
+                                                            <option value="10">10 - Octubre</option>
+                                                            <option value="11">11 - Noviembre</option>
+                                                            <option value="12">12 - Diciembre</option>
+                                                        </select>
+                                                        <span class="form-icon icon icon-chevron-down"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="control-wrapper">
+                                                        <select id="cb-card-expiration-year" data-encrypted-name="expiryYear" class="form-control control-medium">
+                                                            <option value="" disabled selected hidden>Año</option>
+                                                            <option value="2016">2016</option>
+                                                            <option value="2017">2017</option>
+                                                            <option value="2018">2018</option>
+                                                            <option value="2019">2019</option>
+                                                            <option value="2020">2020</option>
+                                                            <option value="2021">2021</option>
+                                                            <option value="2022">2022</option>
+                                                            <option value="2023">2023</option>
+                                                            <option value="2024">2024</option>
+                                                            <option value="2025">2025</option>
+                                                            <option value="2026">2026</option>
+                                                            <option value="2027">2027</option>
+                                                            <option value="2028">2028</option>
+                                                            <option value="2029">2029</option>
+                                                            <option value="2030">2030</option>
+                                                            <option value="2031">2031</option>
+                                                            <option value="2032">2032</option>
+                                                            <option value="2033">2033</option>
+                                                            <option value="2034">2034</option>
+                                                            <option value="2035">2035</option>
+                                                            <option value="2036">2036</option>
+                                                        </select>
+                                                        <span class="form-icon icon icon-chevron-down"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-block form-group">
+                                                <p class="control-label">Código de seguridad</p>
+                                                <div class="control-wrapper">
+                                                    <input id="cb-card-cvc" data-encrypted-name="cvc" class="form-control control-small" placeholder="•••" maxlength="3" type="tel">
+                                                    <span class="form-icon icon icon-secured"></span>
+                                                    <span class="form-icon icon icon-validation"></span>
+                                                    <div class="form-tipsy tipsy-trigger">
+                                                        <a class="info-link">
+                                                            <span class="icon icon-info popover-trigger" data-tracking="tips_cvc"></span>
+                                                        </a>
+                                                        <div class="popover popover-right">
+                                                            <div  class="popover-header">
+                                                                <span class="icon icon-info"></span>
+                                                                Código de seguridad
+                                                            </div>
+                                                            <div class="popover-body"> Tu código de seguridad de tres dígitos está situado en la parte de atrás de tu tarjeta.
+                                                            </div> 
+                                                        </div>
+                                                    </div>
                                                 </div> 
                                             </div>
-                                        </div>
-                                     </div> 
-                                 </div>
-                                 <div class="form-block form-actions">
-                                     <div class="alert alert-danger hidden mop-message-error">
-                                         <p> espacio para mensaje de error </p>
-                                     </div>
-                                    <button class="btn btn-primary btn-large mops-item-submitbutton" id="mops-item-submitbutton-cb" type="submit">
-                                        <span class="label">PAGAR</span>
-                                    </button>		
-                                    <input type="hidden" id="cb-generationtime" data-encrypted-name="generationtime" value="2016-10-17T04:37:32+02:00"/>
-                                 </div>
-                            </form>
-                        </div>
+                                            <div class="form-block form-actions">
+                                                <div class="alert alert-danger hidden mop-message-error">
+                                                    <p> espacio para mensaje de error </p>
+                                                </div>
+                                                <button class="btn btn-primary btn-large mops-item-submitbutton" id="mops-item-submitbutton-cb" type="submit">
+                                                    <span class="label">PAGAR</span>
+                                                </button>	
+                                                <input type="hidden" id="cb-generationtime" data-encrypted-name="generationtime" value="2016-10-17T04:37:32+02:00"/>
+                                            </div>
+                                        </form>
+                                        <hr />
+                                    </section>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                     <footer id="footer">
                         <ul class="icons">
