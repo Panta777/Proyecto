@@ -11,7 +11,7 @@
 <!DOCTYPE HTML>
 <!--
 -->
-<html >
+<html>
     <head>
         <title>Muebles Los Alpes</title>
         <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
@@ -38,9 +38,8 @@
                 System.out.println("///// Usuario: " + usuario);
                 System.out.println("///// Nivel: " + nivel);
             }
-
+            
            // ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
-
         %>
         <section id="container"> 
             <div id="page-wrapper">
@@ -49,7 +48,9 @@
                     <h1><a href="#main"><% out.write(idioma.getProperty("mueblierialosalpes"));%></a></h1>
                     <nav id="nav">
                         <ul>
-                            <li><a href="index.jsp">Inicio</a></li>
+                            <li>
+                                <a href="index.jsp">Inicio</a>
+                            </li>
                             <li>
                                 <a href="#" class="icon fa-angle-down">Menu</a>
                                 <ul>
@@ -86,15 +87,19 @@
                             <li>
                                 <a  class= "button special" >Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
-                                    <li> <a href="modificaCliente.jsp" class ="actions">Modificar mis Datos</a> </li>
+                                 
+                                    <li> <a href="modificaCliente.jsp#main" class ="actions">Modificar mis Datos</a> </li>
                                     <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
                                 </ul>
                             </li>
                             <%} else {%>
                             <li>
-                                <a href="login.jsp#main" class= "icon fa-angle-down"> Entrar <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <a href="#" class= "icon fa-angle-down">Ingresa o Registrate<img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
-                                    <li> <a href="nuevoCliente.jsp" class ="actions">Registrate</a> </li>
+                                    <li>
+                                    <a href="login.jsp#main" class= "actions"> Entrar  </a>
+                                    </li>
+                                    <li> <a href="nuevoCliente.jsp#main" class ="actions">Registrate</a> </li>
                                 </ul>
                             </li>             
                             <%}%>
@@ -113,6 +118,7 @@
                         <li><a href="nuevoCliente.jsp" class="button">Registrarse</a></li>
                     </ul>
                     <%}%>
+                    
                 </section>
                 <!-- Main -->
                 <section id="main" class="container">
@@ -230,6 +236,7 @@
         
                     <!-- Footer -->
                 </section>
+                    
                 <footer id="footer">
                     <ul class="icons">
                         <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
@@ -242,7 +249,10 @@
                     </ul>
                 </footer>
             </div>
+                    
         </section>
+                    
+                    
         <!-- Scripts -->
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/jquery.dropotron.min.js"></script>

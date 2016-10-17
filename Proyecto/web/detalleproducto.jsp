@@ -133,7 +133,7 @@
                                                 <h4>Cantidad al Carrito:</h4>
                                                 <div class="3u">
                                                     <input type="hidden" value="<%= producto.getID_PRODUCTO()%>" name="idproducto">
-                                                    <input type="text" value="" id="txt-cantidad" name="cantidad"/>
+                                                    <input type="text" value="" id="txt-cantidad" name="cantidad" placeholder="???? ???? ???? ????"/>
                                                  </div>
                                                     <button type="submit" >
                                                         <i class="fa fa-shopping-cart"></i>
