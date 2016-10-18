@@ -317,8 +317,8 @@
                                                     value="2036">2036</option>
                                             </select>
                                             <span
-                                                class="form-icon icon icon-chevron-down"></span></div></div></div><div
-                                    class="form-block form-group"><p
+                                                class="form-icon icon icon-chevron-down"></span></div></div></div>
+                                <div class="form-block form-group"><p
                                         class="control-label">Código de seguridad</p><div
                                         class="control-wrapper">
                                         <input

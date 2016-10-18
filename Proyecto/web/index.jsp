@@ -8,6 +8,27 @@
 <%@page import="java.util.ArrayList"%>
 <%@page session = "true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    HttpSession sesion = request.getSession(true);
+    Idioma idioma = null;
+
+    if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
+        sesion.setAttribute("Idioma", "Español");
+        idioma = new Idioma("Español");
+    } else {
+        idioma = new Idioma("Ingles");
+    }
+
+    String nivel = "", usuario = "", rol = null, foto = null;
+    if (sesion.getAttribute("user") != null && sesion.getAttribute("nivel") != null) {
+        nivel = sesion.getAttribute("nivel").toString();
+        usuario = sesion.getAttribute("user").toString();
+        System.out.println("///// Usuario: " + usuario);
+        System.out.println("///// Nivel: " + nivel);
+    }
+
+    // ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
+%>
 <!DOCTYPE HTML>
 <!--
 -->
@@ -20,27 +41,6 @@
         <link rel="stylesheet" href="assets/css/main.css" />
     </head>
     <body class="landing">
-        <%
-            HttpSession sesion = request.getSession(true);
-            Idioma idioma = null;
-
-            if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
-                sesion.setAttribute("Idioma", "Español");
-                idioma = new Idioma("Español");
-            } else {
-                idioma = new Idioma("Ingles");
-            }
-
-            String nivel = "", usuario = "", rol = null, foto = null;
-            if (sesion.getAttribute("user") != null && sesion.getAttribute("nivel") != null) {
-                nivel = sesion.getAttribute("nivel").toString();
-                usuario = sesion.getAttribute("user").toString();
-                System.out.println("///// Usuario: " + usuario);
-                System.out.println("///// Nivel: " + nivel);
-            }
-            
-           // ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
-        %>
         <section id="container"> 
             <div id="page-wrapper">
                 <!-- Header -->
@@ -56,7 +56,7 @@
                                 <ul>
                                     <li><a href="#catalogo">Catálogo Productos</a></li>
                                     <li><a href="contact.jsp#main">Contacto</a></li>
-                                    <li><a href="productosCarrito.jsp#main">Ver Pedido</a></li> 
+                                    <li><a href="productosCarrito.jsp#OrdenCompra">Ver Pedido</a></li> 
                                 </ul>
                             </li>
                             <%if (nivel.equals("1")) {%>
@@ -87,7 +87,7 @@
                             <li>
                                 <a  class= "button special" >Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
-                                 
+
                                     <li> <a href="modificaCliente.jsp#main" class ="actions">Modificar mis Datos</a> </li>
                                     <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
                                 </ul>
@@ -97,7 +97,7 @@
                                 <a href="#" class= "icon fa-angle-down">Ingresa o Registrate<img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
                                     <li>
-                                    <a href="login.jsp#main" class= "actions"> Entrar  </a>
+                                        <a href="login.jsp#main" class= "actions"> Entrar  </a>
                                     </li>
                                     <li> <a href="nuevoCliente.jsp#main" class ="actions">Registrate</a> </li>
                                 </ul>
@@ -118,7 +118,7 @@
                         <li><a href="nuevoCliente.jsp" class="button">Registrarse</a></li>
                     </ul>
                     <%}%>
-                    
+
                 </section>
                 <!-- Main -->
                 <section id="main" class="container">
@@ -236,7 +236,7 @@
         
                     <!-- Footer -->
                 </section>
-                    
+                <!-- Footer -->
                 <footer id="footer">
                     <ul class="icons">
                         <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
@@ -249,18 +249,12 @@
                     </ul>
                 </footer>
             </div>
-                    
         </section>
-                    
-                    
-        <!-- Scripts -->
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/jquery.dropotron.min.js"></script>
         <script src="assets/js/jquery.scrollgress.min.js"></script>
         <script src="assets/js/skel.min.js"></script>
         <script src="assets/js/util.js"></script>
-        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
         <script src="assets/js/main.js"></script>
-        <!--        </section>-->
     </body>
 </html>

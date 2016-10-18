@@ -3,7 +3,6 @@
     Created on : 9/10/2016, 08:45:11 PM
     Author     : panle
 --%>
-
 <%@page import="modelo.Utileria"%>
 <%@page import="modelo.Idioma"%>
 <%@page import="ClasesGenericas.Producto"%>
@@ -11,12 +10,28 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="Controlador.controladorProducto"%>
 <%@page import="Controlador.EliminarProducto"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%
     HttpSession sesion = request.getSession(true);
     ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
     Utileria algo = new Utileria();
+
+    Idioma idioma = null;
+    if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
+        sesion.setAttribute("Idioma", "Español");
+        idioma = new Idioma("Español");
+    } else {
+        idioma = new Idioma("Ingles");
+    }
+
+    String nivel = "", usuario = "", rol = null, foto = null;
+    if (sesion.getAttribute("user") != null && sesion.getAttribute("nivel") != null) {
+        nivel = sesion.getAttribute("nivel").toString();
+        usuario = sesion.getAttribute("user").toString();
+    }
+    // controladorProducto cp = new controladorProducto();
+    //   ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
 %>
 <!DOCTYPE html>
 <html>
@@ -25,12 +40,9 @@
         <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
-        <link rel="stylesheet" href="assets/css/otros.css" />
-        <link rel="stylesheet" href="assets/css/otros2.css" />
-
-        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <!--        <link rel="stylesheet" href="assets/css/otros.css" />
+                <link rel="stylesheet" href="assets/css/otros2.css" />-->
         <script type ="text/javascript">
             previene = function () {
                 window.stop;
@@ -38,7 +50,6 @@
             };
             window.back = previene();
         </script>
-
         <script type="text/javascript">
             function mostrar() {
                 document.getElementById('pagotarjeta').style.display = 'block';
@@ -46,307 +57,304 @@
         </script>
     </head>
     <body  class="landing">
-        <%
-            Idioma idioma = null;
-            if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
-                sesion.setAttribute("Idioma", "Español");
-                idioma = new Idioma("Español");
-            } else {
-                idioma = new Idioma("Ingles");
-            }
+        <!--        <section id="container" > -->
+        <div id="page-wrapper">
+            <!-- Header -->
+            <header id="header" >
+                <h1><a href="#main"><% out.write(idioma.getProperty("mueblierialosalpes"));%></a></h1>
+                <nav id="nav">
+                    <ul>
+                        <li>
+                            <a href="index.jsp">Inicio</a>
+                        </li>
+                        <li>
+                            <a href="#" class="icon fa-angle-down">Menu</a>
+                            <ul>
+                                <li><a href="#catalogo">Catálogo Productos</a></li>
+                                <li><a href="contact.jsp#main">Contacto</a></li>
+                                <li><a href="productosCarrito.jsp#main">Ver Pedido</a></li> 
+                            </ul>
+                        </li>
+                        <%if (nivel.equals("1")) {%>
+                        <li>
+                            <a href="#" class="icon fa-angle-down">Administracion</a>
+                            <ul>
+                                <li><a href="#">Reporteria</a></li>
+                                <li><a href="#">Mantenimientos</a></li>
+                            </ul>
+                        </li>
+                        <%}%>
+                        <li>
+                            <a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
+                            <ul>
+                                <li>
+                                    <a href="cambioEspanol.jsp" class ="actions" >
+                                        <% out.write(idioma.getProperty("espanol"));%>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="cambioIngles.jsp" class ="actions"> 
+                                        <% out.write(idioma.getProperty("ingles"));%>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <%if (nivel.equals("2") || nivel.equals("1")) {%>
+                        <li>
+                            <a  class= "button special" >Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <ul>
 
-            String nivel = "", usuario = "", rol = null, foto = null;
-            if (sesion.getAttribute("user") != null && sesion.getAttribute("nivel") != null) {
-                nivel = sesion.getAttribute("nivel").toString();
-                usuario = sesion.getAttribute("user").toString();
-            }
-            // controladorProducto cp = new controladorProducto();
-            //   ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
-%>
-        <section id="container" > 
-            <div id="page-wrapper">
-                <!-- Header -->
-                <header id="header" >
-                    <h1><a href="#main"><% out.write(idioma.getProperty("mueblierialosalpes"));%></a></h1>
-                    <nav id="nav">
-                        <ul>
-                            <li>
-                                <a href="index.jsp">Inicio</a>
-                            </li>
-                            <li>
-                                <a href="#" class="icon fa-angle-down">Menu</a>
-                                <ul>
-                                    <li><a href="#catalogo">Catálogo Productos</a></li>
-                                    <li><a href="contact.jsp#main">Contacto</a></li>
-                                    <li><a href="productosCarrito.jsp#main">Ver Pedido</a></li> 
-                                </ul>
-                            </li>
-                            <%if (nivel.equals("1")) {%>
-                            <li>
-                                <a href="#" class="icon fa-angle-down">Administracion</a>
-                                <ul>
-                                    <li><a href="#">Reporteria</a></li>
-                                    <li><a href="#">Mantenimientos</a></li>
-                                </ul>
-                            </li>
-                            <%}%>
-                            <li>
-                                <a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
-                                <ul>
-                                    <li>
-                                        <a href="cambioEspanol.jsp" class ="actions" >
-                                            <% out.write(idioma.getProperty("espanol"));%>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="cambioIngles.jsp" class ="actions"> 
-                                            <% out.write(idioma.getProperty("ingles"));%>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <%if (nivel.equals("2") || nivel.equals("1")) {%>
-                            <li>
-                                <a  class= "button special" >Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
-                                <ul>
-
-                                    <li> <a href="modificaCliente.jsp#main" class ="actions">Modificar mis Datos</a> </li>
-                                    <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
-                                </ul>
-                            </li>
-                            <%} else {%>
-                            <li>
-                                <a href="#" class= "icon fa-angle-down">Ingresa o Registrate<img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
-                                <ul>
-                                    <li>
-                                        <a href="login.jsp#main" class= "actions"> Entrar  </a>
-                                    </li>
-                                    <li> <a href="nuevoCliente.jsp#main" class ="actions">Registrate</a> </li>
-                                </ul>
-                            </li>             
-                            <%}%>
-                        </ul>     
-                    </nav>
-                </header>
-                <!-- Banner -->
-                <section id="banner" class ="box">
-                    <img class="image featured" src="images/logo.png" alt="log" />
-                    <p>Sirviendole con total amabilidad desde 1985.</p>
+                                <li> <a href="modificaCliente.jsp#main" class ="actions">Modificar mis Datos</a> </li>
+                                <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
+                            </ul>
+                        </li>
+                        <%} else {%>
+                        <li>
+                            <a href="#" class= "icon fa-angle-down">Ingresa o Registrate<img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <ul>
+                                <li>
+                                    <a href="login.jsp#main" class= "actions"> Entrar  </a>
+                                </li>
+                                <li> <a href="nuevoCliente.jsp#main" class ="actions">Registrate</a> </li>
+                            </ul>
+                        </li>             
+                        <%}%>
+                    </ul>     
+                </nav>
+            </header>
+            <!-- Banner -->
+            <section id="banner" class ="box">
+                <img class="image featured" src="images/logo.png" alt="log" />
+                <p>Sirviendole con total amabilidad desde 1985.</p>
+            </section>
+            <!-- Main -->
+            <section class="container" id="main">
+                <section class="box special">
+                    <header class="major">
+                        <h2>ORDEN   Y PAGO DE COMPRA</h2>
+                        <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
+                    </header>                
                 </section>
-                <!-- Main -->
-                <section class="container" id="main">
-                    <section class="box special">
-                        <header class="major">
-                            <h2>ORDEN   Y PAGO DE COMPRA</h2>
-                            <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
-                        </header>                
-                    </section>
-                    <div class="container">
-                        <!-- Tabla Productos del Carrito -->
-                        <section class="box special">
-                            <!--<div class="20u "> -->
-                            <!-- Table -->
-                            <section class="box">
-                                <div class="table-wrapper">
+                <!-- Tabla Productos del Carrito -->
+                <div class="12u 20u(narrower)" id ="OrdenCompra">
+                    <!--<div class="20u "> -->
+                    <!-- Table -->
+                    <section class="box">
+                        <div class="table-wrapper">
+                            <%
+                                controladorProducto cp = new controladorProducto();
+                                double total = 0;
+                                if (articulos != null && articulos.size() > 0) {%>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th><h4>Cantidad</h4></th>
+                                <th>Foto</th>
+                                <th>Descripcion</th>
+                                <th>Precio U</th>
+                                <th>Subtotal</th>
+                                <th>Eliminar</th>
+                                </tr>
+                                </thead>
+                                <tbody>
                                     <%
-                                        controladorProducto cp = new controladorProducto();
-                                        double total = 0;
-                                        if (articulos != null && articulos.size() > 0) {%>
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th><h4>Cantidad</h4></th>
-                                        <th>Foto</th>
-                                        <th>Descripcion</th>
-                                        <th>Precio U</th>
-                                        <th>Subtotal</th>
-                                        <th>Eliminar</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                            <%
-                                                for (Compra a : articulos) {
-                                                    Producto producto = cp.getProducto(a.getIdProducto());
-                                                    total += a.getCantidad() * producto.getPRECIOVENTA();
-                                            %>
-                                            <tr>
-                                                <td>
-                                                    <div class="4u">
-                                                        <h4><%= a.getCantidad()%> </h4>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="4u">
-                                                        <img src="<%= producto.getFOTO()%>" alt="foto" width="80" height="80"> 
-                                                    </div>
-                                                </td>
-                                                <td><%= producto.getNOMBRE()%></td>
-                                                <td>Q. <%= algo.convertirCantidad(producto.getPRECIOVENTA())%></td>
-                                                <td class="cart_total">
-                                                    <p class="cart_total_price">Q. <%= algo.convertirCantidad(Math.round(producto.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0)%></p>
-                                                </td>
-                                                <td class="cart_delete">
-                                                    <form method="post" action="EliminarProducto">
-                                                        <span id="idarticulo" style="display:none;"><%=producto.getID_PRODUCTO()%></span>
-                                                        <input type="hidden" value="<%= producto.getID_PRODUCTO()%>" name="idproducto">
-                                                        <button type="submit" >
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <% }%>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="3"></td>
-                                                <td><h3>Total</h3></td>
-                                                <td><h3>Q. <%=algo.convertirCantidad(total)%></h3></td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                    <% } else {%>
-                                    <h4>No hay Articulos en el carrito &nbsp;
-                                        <img  src="images/404.png" alt=" Sin Muebles"  width="25" height="21" /></h4> 
-                                        <%}%>
-                                    &nbsp;
+                                        for (Compra a : articulos) {
+                                            Producto producto = cp.getProducto(a.getIdProducto());
+                                            total += a.getCantidad() * producto.getPRECIOVENTA();
+                                    %>
+                                    <tr>
+                                        <td>
+                                            <div class="4u">
+                                                <h4><%= a.getCantidad()%> </h4>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="4u">
+                                                <img src="<%= producto.getFOTO()%>" alt="foto" width="80" height="80"> 
+                                            </div>
+                                        </td>
+                                        <td><%= producto.getNOMBRE()%></td>
+                                        <td>Q. <%= algo.convertirCantidad(producto.getPRECIOVENTA())%></td>
+                                        <td class="cart_total">
+                                            <p class="cart_total_price">Q. <%= algo.convertirCantidad(Math.round(producto.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0)%></p>
+                                        </td>
+                                        <td class="cart_delete">
+                                            <form method="post" action="EliminarProducto">
+                                                <span id="idarticulo" style="display:none;"><%=producto.getID_PRODUCTO()%></span>
+                                                <input type="hidden" value="<%= producto.getID_PRODUCTO()%>" name="idproducto">
+                                                <button type="submit" >
+                                                    <i class="fa fa-times"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <% }%>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3"></td>
+                                        <td><h3>Total</h3></td>
+                                        <td><h3>Q. <%=algo.convertirCantidad(total)%></h3></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <% } else {%>
+                            <h4>No hay Articulos en el carrito &nbsp;
+                                <img  src="images/404.png" alt=" Sin Muebles"  width="25" height="21" /></h4> 
+                                <%}%>
+                            &nbsp;
+                        </div>
+                        <div class="row" >  
+                            <div class="4u 12u(narrow)">
+                                <!-- <a class ="button" href="catalogo.jsp?tipo=1#muebles">-->
+                                <a class ="button special" href="#pagotarjeta" onclick="mostrar()">
+                                    Seguir Comprando &nbsp; <img src="images/ICONOS BLANCOS/FACTURA.png" width="25" height="21" alt ="FAC"> 
+                                </a>
+                            </div>
+                            <div class="4u 12u(narrow)">
+                                <p></p>
+                            </div> 
+                            <%if (articulos != null && articulos.size() > 0 && (nivel.equals("2") || nivel.equals("1"))) {%>
+                            <div class="4u 12u(mobilep)">
+                                <a class ="button special" href="#pagotarjeta" onclick="mostrar()">
+                                    Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
+                                </a>
+                            </div>
+                            <%} else if (articulos != null && articulos.size() > 0 && (nivel.equals("3") || nivel.equals("4"))) {%>
+                            <div class="4u 12u(mobilep)">
+                                <a class ="button special" href="#pagotarjeta">
+                                    Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
+                                </a>
+                            </div>
+                            <%}%>
+                        </div>
+                    </section>
+                    <!-- </div> -->
+                </div>
+                <!-- Formulario de Pago -->
+                <div class="12u 20u(narrower)" id="pagotarjeta" style='display:none'>
+                    <!-- Form -->
+                    <section class="box">
+                        <header class="major">
+                            <h2 style ='font-weight:bold;' >Pago con Tarjeta de Débito o Crédito</h2>
+                            <a class ="actions">
+                                <!--                                                <h2 class="actions">Tarjeta bancaria</h2>-->
+                                <img src="images/ICONOS/formas-de-pago.png" alt = "Formas de Pago"/>
+                            </a>
+                        </header>
+                        <form  id="formularioPago" method="post" action="pagarform">
+                            <h4 class="actions">Complete su transacción, llenando los datos de su tarjeta.</h4>
+                            <h4 style ='color:blue; font-weight:bold;' >(Verifique sus datos, antes de pagar)</h4>
+                            <p></br></p>
+                            <div class="12u(mobilep)">
+                                <h1>Nombre del titular de la tarjeta</h1>
+                                <input  type="text"  id="cb-holder-name"   value="">
+                            </div>
+                            <hr />
+                            <div class="12u(mobilep)">
+                                <h1>Número tarjeta bancaria</h1>
+                                <input id="cb-card-number"   placeholder="---- ---- ---- ----" type="text" value ="" maxlength="16">
+                            </div>
+                            <hr />
+                            <h1>Fecha de caducidad</h1>
+                            <div class="row uniform 50%">
+                                <div class="6u 12u(mobilep)">
+                                    <div class="select-wrapper">
+                                        <select  id="cb-card-expiration-month"  >
+                                            <option value="" disabled selected hidden>Mes</option>
+                                            <option value="01">01 - Enero</option>
+                                            <option value="02">02 - Febrero</option>
+                                            <option value="03">03 - Marzo</option>
+                                            <option value="04">04 - Abril</option>
+                                            <option value="05">05 - Mayo</option>
+                                            <option value="06">06 - Junio</option>
+                                            <option value="07">07 - Julio</option>
+                                            <option value="08">08 - Agosto</option>
+                                            <option value="09">09 - Septiembre</option>
+                                            <option value="10">10 - Octubre</option>
+                                            <option value="11">11 - Noviembre</option>
+                                            <option value="12">12 - Diciembre</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="row" >  
-                                    <div class="4u 12u(narrow)">
-                                        <!-- <a class ="button" href="catalogo.jsp?tipo=1#muebles">-->
-                                        <a class ="button special" href="#mops-item-cb" onclick="mostrar()">
-                                            Seguir Comprando &nbsp; <img src="images/ICONOS BLANCOS/FACTURA.png" width="25" height="21" alt ="FAC"> 
-                                        </a>
+                                <div class="6u 12u(mobilep)">
+                                    <div class="select-wrapper">
+                                        <select id="cb-card-expiration-year" >
+                                            <option value="" disabled selected hidden>Año</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2018">2018</option>
+                                            <option value="2019">2019</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                            <option value="2024">2024</option>
+                                            <option value="2025">2025</option>
+                                            <option value="2026">2026</option>
+                                            <option value="2027">2027</option>
+                                            <option value="2028">2028</option>
+                                            <option value="2029">2029</option>
+                                            <option value="2030">2030</option>
+                                            <option value="2031">2031</option>
+                                            <option value="2032">2032</option>
+                                            <option value="2033">2033</option>
+                                            <option value="2034">2034</option>
+                                            <option value="2035">2035</option>
+                                            <option value="2036">2036</option>
+                                        </select>
                                     </div>
-                                    <div class="4u 12u(narrow)">
-                                        <p></p>
-                                    </div> 
-                                    <%if (articulos != null && articulos.size() > 0 && (nivel.equals("2") || nivel.equals("1"))) {%>
-                                    <div class="4u 12u(mobilep)">
-                                        <a class ="button special" href="#mops-item-cb" onclick="mostrar()">
-                                            Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
-                                        </a>
-                                    </div>
-                                    <%} else if (articulos != null && articulos.size() > 0 && (nivel.equals("3") || nivel.equals("4"))) {%>
-                                    <div class="4u 12u(mobilep)">
-                                        <a class ="button special" href="#mops-item-cb">
-                                            Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
-                                        </a>
-                                    </div>
-                                    <%}%>
-                                </div>
-                            </section>
-                            <!-- </div> -->
-                        </section>
-                        <!-- Formulario de Pago -->
-                        <section class="box special" id="pagotarjeta"  style='display:none;'>
-                            <div class="row" >
-                                <div class="12u">
-                                    <!-- Form -->
-                                    <section class="box">
-                                        <h2><p>Pago con Tarjeta de Débito o Crédito </p></h2>
-                                        <a class ="actions">
-                                            <!--                                                <h2 class="actions">Tarjeta bancaria</h2>-->
-                                            <img src="images/ICONOS/formas-de-pago.png" alt = "Formas de Pago"/>
-                                        </a>
-                                        <form  id="formularioPago" method="post" action="pagarform">
-                                            <p class="actions">Complete su transacción, llenando los datos de su tarjeta.</p>
-                                            <h2 style ='color:blue; font-weight:bold;' >(Verifique sus datos, antes de pagar)</h2>
-                                            <p></br></p>
-                                            <div class="6u 12u(mobilep)">
-                                                <p class="actions">Nombre del titular de la tarjeta</p>
-                                                <input  type="text"  id="cb-holder-name"   value="">
-                                            </div>
-                                            <div class="6u 12u(mobilep)">
-                                                <p class="actions">Número tarjeta bancaria</p>
-                                                <input id="cb-card-number"   placeholder="---- ---- ---- ----" type="text" value ="">
-                                            </div>
-                                            <div class="6u 12u(mobilep)">
-                                                <p class="actions">Fecha de caducidad</p>
-                                                <div class="select-wrapper">
-                                                        <select  id="cb-card-expiration-month"  >
-                                                            <option value="" disabled selected hidden>Mes</option>
-                                                            <option value="01">01 - Enero</option>
-                                                            <option value="02">02 - Febrero</option>
-                                                            <option value="03">03 - Marzo</option>
-                                                            <option value="04">04 - Abril</option>
-                                                            <option value="05">05 - Mayo</option>
-                                                            <option value="06">06 - Junio</option>
-                                                            <option value="07">07 - Julio</option>
-                                                            <option value="08">08 - Agosto</option>
-                                                            <option value="09">09 - Septiembre</option>
-                                                            <option value="10">10 - Octubre</option>
-                                                            <option value="11">11 - Noviembre</option>
-                                                            <option value="12">12 - Diciembre</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="select-wrapper">
-                                                        <select id="cb-card-expiration-year" >
-                                                            <option value="" disabled selected hidden>Año</option>
-                                                            <option value="2016">2016</option>
-                                                            <option value="2017">2017</option>
-                                                            <option value="2018">2018</option>
-                                                            <option value="2019">2019</option>
-                                                            <option value="2020">2020</option>
-                                                            <option value="2021">2021</option>
-                                                            <option value="2022">2022</option>
-                                                            <option value="2023">2023</option>
-                                                            <option value="2024">2024</option>
-                                                            <option value="2025">2025</option>
-                                                            <option value="2026">2026</option>
-                                                            <option value="2027">2027</option>
-                                                            <option value="2028">2028</option>
-                                                            <option value="2029">2029</option>
-                                                            <option value="2030">2030</option>
-                                                            <option value="2031">2031</option>
-                                                            <option value="2032">2032</option>
-                                                            <option value="2033">2033</option>
-                                                            <option value="2034">2034</option>
-                                                            <option value="2035">2035</option>
-                                                            <option value="2036">2036</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-block form-actions">
-                                                <div class="alert alert-danger hidden mop-message-error">
-                                                    <p> espacio para mensaje de error </p>
-                                                </div>
-                                                <button class="btn btn-primary btn-large mops-item-submitbutton" id="mops-item-submitbutton-cb" type="submit">
-                                                    <span class="label">EFECTUAR PAGO</span>
-                                                </button>	
-                                                <input type="hidden" id="cb-generationtime" data-encrypted-name="generationtime" value="2016-10-17T04:37:32+02:00"/>
-                                            </div>
-                                        </form>
-                                        <hr />
-                                    </section>
                                 </div>
                             </div>
-                        </section>
-                    </div>
-                    <footer id="footer">
-                        <ul class="icons">
-                            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-                            <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
-                        </ul>
-                        <ul class="copyright">
-                            <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
-                        </ul>
-                    </footer>
-                </section>                                 
-            </div> 
-        </section>
+                            <hr />
+                            <div class="row uniform 50%">
+                                <h1>Código de seguridad</h1>
+                                <div class="6u 12u(mobilep)">
+                                    <input id="amex-card-cvc" type ="password" class="form-control control-small" placeholder="••••" maxlength="4" type="tel">
+                                    <div class="form-tipsy tipsy-trigger">
+                                        <div class="popover popover-right">
+                                            <div  class="popover-body">
+                                                Tu código de seguridad de 4 dígitos está situado en la parte de arriba de tu tarjeta.
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="12u(mobilep)">
+                                <div class="row" hidden="true" id ="mensajeError">
+                                    <p> espacio para mensaje de error </p>
+                                </div>
+                                <button class="button" id="" type="submit">
+                                    <span class="label">EFECTUAR PAGO</span>
+                                </button>	
+                                <input type="hidden" id="horaTransaction"  value="2016-10-17T04:37:32+02:00"/>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </section>
+            <!-- Footer -->
+            <footer id="footer">
+                <ul class="icons">
+                    <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                    <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+                </ul>
+                <ul class="copyright">
+                    <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
+                </ul>
+            </footer>
+        </div> 
+        <!--</section>-->
         <!-- Scripts -->
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/jquery.dropotron.min.js"></script>
         <script src="assets/js/jquery.scrollgress.min.js"></script>
         <script src="assets/js/skel.min.js"></script>
         <script src="assets/js/util.js"></script>
-        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
         <script src="assets/js/main.js"></script>
-        <!--        </section>-->
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.scrollUp.min.js"></script>
