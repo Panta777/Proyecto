@@ -7,11 +7,6 @@
 <%@page import="modelo.Idioma"%>
 <%@page session = "true"%>
 <!DOCTYPE HTML>
-<!--
-        Alpha by HTML5 UP
-        html5up.net | @ajlkn
-        Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
     <head>
         <title>Contacto</title>
@@ -57,72 +52,68 @@
                 usuario = sesion.getAttribute("user").toString();
             }
 
-           // ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
+            // ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
 
         %>
         <div id="page-wrapper">
             <!-- Header -->
-                <header id="header">
-                    <h1><a href="#main">Muebleria Los Alpes</a></h1>
-                    <nav id="nav">
-                        <ul>
-                            <li><a href="index.jsp">Inicio</a></li>
-                            <li>
-                                <a href="#" class="icon fa-angle-down">Menu</a>
-                                <ul>
-                                    <% if (!(nivel.equals("2") || nivel.equals("1"))) {%>
-                                    <li> <a href="nuevoCliente.jsp" class ="actions"> Nuevo Cliente</a> </li>
-                                    <%}%>
-                                    <li><a href="#main">Catálogo Productos</a></li>
-                                    <li><a href="contact.jsp">Contacto</a></li>
-                                    <li>
-                                        <a href="#">Opciones</a>
-                                        <ul>
-                                            <li><a href="#">Buscar Productos</a></li>
-                                            <li><a href="productosCarrito.jsp#main">Ver Pedido</a></li>  
-                                            <li><a href="#">Comentarios</a></li>
-                                            <%if (nivel.equals("1")) {%>
-                                            <li><a href="#">Reporteria</a></li>
-                                            <li><a href="#">Administracion</a></li>
-                                            <%}%>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <%if (nivel.equals("2") || nivel.equals("1")) {%>
-                            <li>
-                                <a  class= "button special" >Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
-                                <ul>
-                                    <li> <a href="modificaCliente.jsp#main" class ="actions">Modificar mis Datos</a> </li>
-                                    <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
-                                </ul>
-                            </li>
-                            <%} else {%>
-                            <li>
-                                <a href="login.jsp#main" class= "button special"> Entrar <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
-                                <ul>
-                                    <li> <a href="nuevoCliente.jsp#main" class ="actions">Registrate</a> </li>
-                                </ul>
-                            </li>             
-                            <%}%>
-                        </ul>     
-                    </nav>
-                </header>
+            <header id="header">
+                <h1><a href="#main">Muebleria Los Alpes</a></h1>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.jsp">Inicio</a></li>
+                        <li>
+                            <a href="#" class="icon fa-angle-down">Menu</a>
+                            <ul>
+                                <% if (!(nivel.equals("2") || nivel.equals("1"))) {%>
+                                <li> <a href="nuevoCliente.jsp" class ="actions"> Nuevo Cliente</a> </li>
+                                <%}%>
+                                <li><a href="#main">Catálogo Productos</a></li>
+                                <li><a href="contact.jsp">Contacto</a></li>
+                                <li>
+                                    <a href="#">Opciones</a>
+                                    <ul>
+                                        <li><a href="#">Buscar Productos</a></li>
+                                        <li><a href="productosCarrito.jsp#main">Ver Pedido</a></li>  
+                                        <li><a href="#">Comentarios</a></li>
+                                        <%if (nivel.equals("1")) {%>
+                                        <li><a href="#">Reporteria</a></li>
+                                        <li><a href="#">Administracion</a></li>
+                                        <%}%>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <%if (nivel.equals("2") || nivel.equals("1")) {%>
+                        <li>
+                            <a  class= "button special" >Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <ul>
+                                <li> <a href="modificaCliente.jsp#main" class ="actions">Modificar mis Datos</a> </li>
+                                <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
+                            </ul>
+                        </li>
+                        <%} else {%>
+                        <li>
+                            <a href="login.jsp#main" class= "button special"> Entrar <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <ul>
+                                <li> <a href="nuevoCliente.jsp#main" class ="actions">Registrate</a> </li>
+                            </ul>
+                        </li>             
+                        <%}%>
+                    </ul>     
+                </nav>
+            </header>
             <!-- Banner -->
             <section id="banner" class ="box special">
                 <span class="image featured"><img src="images/logo.png" alt="log" /></span>
                 <p>Sirviendole con total amabilidad desde 1985.</p>
             </section>
             <!-- Main -->
-            <section class="box special">
+            <section class="box special" id="main">
                 <div class="box">
                     <h2>Ubicación</h2>
                     <p>Puedes encontrarnos en la siguiente dirección</p>
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247063.69281388656!2d-90.5068824!3d14.634914899999991!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x130d2fa32ad2286a!2sColegio+Biling%C3%BCe+IMB-PC!5e0!3m2!1ses-419!2sgt!4v1473730975168" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                </div>
-            </section>
-            <section class="box special" id="main">
-                <div class="box">
                     <h2>Contact Us</h2>
                     <p>Tell us what you think about our little operation.</p>
                     <form method="post" action="#">
@@ -152,6 +143,7 @@
                             </div>
                         </div>
                     </form>
+
                 </div>
             </section>
             <section class="box special">

@@ -30,8 +30,6 @@
     // ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
 %>
 <!DOCTYPE HTML>
-<!--
--->
 <html>
     <head>
         <title>Muebles Los Alpes</title>
@@ -49,7 +47,7 @@
                     <nav id="nav">
                         <ul>
                             <li>
-                                <a href="index.jsp">Inicio</a>
+                                <a href="index.jsp#main">Inicio</a>
                             </li>
                             <li>
                                 <a href="#" class="icon fa-angle-down">Menu</a>
@@ -63,8 +61,8 @@
                             <li>
                                 <a href="#" class="icon fa-angle-down">Administracion</a>
                                 <ul>
-                                    <li><a href="#">Reporteria</a></li>
-                                    <li><a href="#">Mantenimientos</a></li>
+                                    <li><a href="#reporteria">Reporteria</a></li>
+                                    <li><a href="#mantenimiento">Mantenimientos</a></li>
                                 </ul>
                             </li>
                             <%}%>
@@ -110,12 +108,11 @@
                 <section id="banner" class ="box">
                     <!--                    <span class="image featured"><img src="images/logo.png" alt="log" /></span>-->
                     <img class="image featured" src="images/logo.png" alt="log" />
-
                     <h2>Sirviendole con total amabilidad desde 1985.</h2>
                     <%if (nivel.equals("4") || nivel.equals("3") || nivel.equals("")) {%>
                     <ul class="actions" id = "botonesEntrada">
                         <li><a href="login.jsp#main" class="button special">Entrar</a></li>
-                        <li><a href="nuevoCliente.jsp" class="button">Registrarse</a></li>
+                        <li><a href="nuevoCliente.jsp#main" class="button">Registrarse</a></li>
                     </ul>
                     <%}%>
 
@@ -130,26 +127,52 @@
                         <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
                     </section>
                     <%if (nivel.equals("1")) {%>
-                    <div class="12u 20u(narrower)">
+                    <div class="12u 20u(narrower)" id ="reporteria">
                         <section class="box special">
                             <span class="icon major fa-area-chart accent3"></span>
                             <!-- <span class="image featured"><img src="images/pic03.jpg" alt="" /></span> -->
-                            <h3>REPORTERIA</h3>
-                            <p>VEA LOS REPORTES DE VENTAS, CLIENTES ACTIVOS  Y PRODUCTOS EN EL INVENTARIO</p>
-                            <ul class="actions">
-                                <li><a href="#" class="button alt">Más Información</a></li>
-                            </ul>
+                            <h2>REPORTERIA</h2>
+                            <h4>VEA LOS REPORTES DE VENTAS, CLIENTES ACTIVOS  Y PRODUCTOS EN EL INVENTARIO</h4>
+                            <div class="actions" >
+                                <ul class="actions vertical">
+                                    <li><a href="#" class="button">VER CLIENTES</a></li>
+                                    <li><a href="#" class="button special">VER PRODUCTOS</a></li>
+                                    <li><a href="#" class="button">VENTAS POR FECHA</a></li>
+                                    <li><a href="#" class="button special">VENTAS POR CIUDAD</a></li>
+                                    <li><a href="#" class="button ">VENTAS POR MUEBLE</a></li>
+                                    <li><a href="#" class="button special">PRODUCTOS POR CLIENTE</a></li>
+                                    <li><a href="#" class="button alt">PRODUCTO MAS VENDIDO POR CIUDAD</a></li>
+                                </ul>
+                            </div> 
+                            <!--                            <div class="row">
+                                                            <div class="3u 6u(narrower) 12u(mobilep)">
+                                                                <ul class="actions vertical">
+                                                                    <li><a href="#" class="button special">Default</a></li>
+                                                                    <li><a href="#" class="button">Default</a></li>
+                                                                    <li><a href="#" class="button alt">Default</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>-->
+
                         </section>
                     </div>
                     <div class="12u 20u(narrower)">
                         <section class="box special">
                             <span class="icon major fa-bolt accent2"></span>
                             <!-- <span class="image featured"><img src="images/pic03.jpg" alt="" /></span> -->
-                            <h3>ADMINISTRACIÓN</h3>
-                            <p>ACTUALIZACIÓN DE ESTADO DE CLIENTES, ESTADO DE PEDIOS, ETC. </p>
-                            <ul class="actions">
-                                <li><a href="#" class="button alt">Más Información</a></li>
-                            </ul>
+                            <h3>MANTENIMIENTOS</h3>
+                            <p>ACTUALIZACIÓN DE ESTADO DE CLIENTES, ESTADO DE PRODUCTOS NUEVOS, ETC. </p>
+                            <!--                            <ul class="actions">
+                                                            <li><a href="#" class="button">IR ALLÁ</a></li>
+                                                        </ul>-->
+                            <div class="actions" >
+                                <ul class="actions vertical">
+                                    <li><a href="#" class="button">ELIMINAR CLIENTES</a></li>
+                                    <li><a href="#" class="button special">ELIMINAR PRODUCTO</a></li>
+                                    <li><a href="#" class="button special">AGREGAR PRODUCTO</a></li>
+                                    <li><a href="#" class="button">ACTUALIZAR PRODUCTO</a></li>
+                                </ul>
+                            </div> 
                         </section>
                     </div>
                     <%}%>

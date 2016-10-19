@@ -45,12 +45,10 @@
             String nivel = "";
             if (sesion.getAttribute("nivel") != null) {
                 nivel = sesion.getAttribute("nivel").toString();
-                //  System.out.println("Hice esto");
             }
 
             if (nivel.equals("2") || nivel.equals("1")) {
                 response.sendRedirect("modificaCliente.jsp");
-                //  System.out.println("Ahora, Hice esto");
             }
         %>
         <section id="container" > 

@@ -11,7 +11,6 @@
 <%@page import="Controlador.controladorProducto"%>
 <%@page import="Controlador.EliminarProducto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <%
     HttpSession sesion = request.getSession(true);
     ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
@@ -174,12 +173,12 @@
                                 <thead>
                                     <tr>
                                         <th><h4>Cantidad</h4></th>
-                                        <th>Foto</th>
-                                        <th>Descripcion</th>
-                                        <th>Precio U</th>
-                                        <th>Subtotal</th>
-                                        <th>Eliminar</th>
-                                    </tr>
+                                <th>Foto</th>
+                                <th>Descripcion</th>
+                                <th>Precio U</th>
+                                <th>Subtotal</th>
+                                <th>Eliminar</th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                     <%

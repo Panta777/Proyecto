@@ -31,7 +31,12 @@
     </head>
     <body class="landing">
         <%
-            int tipo = Integer.parseInt(request.getParameter("tipo"));
+            int tipo = 0;
+            if (request.getParameter("tipo") != null)
+            {
+                tipo = Integer.parseInt(request.getParameter("tipo"));
+            }
+            
             Idioma idioma = null;
             HttpSession sesion = request.getSession(true);
             if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
@@ -101,7 +106,7 @@
                 <!-- Banner -->
                 <section id="banner" class ="box">
                     <img class="image featured" src="images/logo.png" alt="log" />
-                    <p>Sirviendole con total amabilidad desde 1985.</p>
+                    <h2>Sirviendole con total amabilidad desde 1985.</h2>
                 </section>
                 <!-- Main -->
                 <section id="main" class="container">
@@ -150,7 +155,7 @@
                             <h3>
                                 <%
                                     switch (tipo) {
-                                        case 1:
+                                        case 1: case 0:
                                             out.write("MUEBLES TRADICIONALES");
                                             break;
                                         case 2:

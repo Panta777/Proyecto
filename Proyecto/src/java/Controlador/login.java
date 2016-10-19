@@ -37,12 +37,12 @@ public class login extends HttpServlet {
                     case 1:
                         sesion.setAttribute("user", usu);
                         sesion.setAttribute("nivel", "1");
-                        response.sendRedirect("index.jsp");
+                        response.sendRedirect("index.jsp#main");
                         break;
                     case 2:
                         sesion.setAttribute("user", usu);
                         sesion.setAttribute("nivel", "2");
-                        response.sendRedirect("index.jsp");
+                        response.sendRedirect("index.jsp#main");
                         break;
                     case 3:
                         sesion.setAttribute("user", usu);
