@@ -135,13 +135,13 @@
                             <h4>VEA LOS REPORTES DE VENTAS, CLIENTES ACTIVOS  Y PRODUCTOS EN EL INVENTARIO</h4>
                             <div class="actions">
                                 <ul class="actions vertical">
-                                    <li><a href="#reporteria.jsp?Operacion=1#main" class="button">VER CLIENTES</a></li>
-                                    <li><a href="#reporteria.jsp?Operacion=2#main" class="button special">VER PRODUCTOS</a></li>
-                                    <li><a href="#reporteria.jsp?Operacion=3#main" class="button">VENTAS POR FECHA</a></li>
-                                    <li><a href="#reporteria.jsp?Operacion=4#main" class="button special">VENTAS POR CIUDAD</a></li>
-                                    <li><a href="#reporteria.jsp?Operacion=5#main" class="button ">VENTAS POR MUEBLE</a></li>
-                                    <li><a href="#reporteria.jsp?Operacion=6#main" class="button special">PRODUCTOS POR CLIENTE</a></li>
-                                    <li><a href="#reporteria.jsp?Operacion=7#main" class="button alt">PRODUCTO MAS VENDIDO POR CIUDAD</a></li>
+                                    <li><a href="reporteria.jsp?Operacion=1#main" class="button">VER CLIENTES</a></li>
+                                    <li><a href="reporteria.jsp?Operacion=2#main" class="button special">VER PRODUCTOS</a></li>
+                                    <li><a href="reporteria.jsp?Operacion=3#main" class="button">VENTAS POR FECHA</a></li>
+                                    <li><a href="reporteria.jsp?Operacion=4#main" class="button special">VENTAS POR CIUDAD</a></li>
+                                    <li><a href="reporteria.jsp?Operacion=5#main" class="button ">VENTAS POR MUEBLE</a></li>
+                                    <li><a href="reporteria.jsp?Operacion=6#main" class="button special">PRODUCTOS POR CLIENTE</a></li>
+                                    <li><a href="reporteria.jsp?Operacion=7#main" class="button alt">PRODUCTO MAS VENDIDO POR CIUDAD</a></li>
                                 </ul>
                             </div> 
                             <!--                            <div class="row">
