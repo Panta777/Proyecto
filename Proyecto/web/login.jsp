@@ -18,9 +18,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
-        <meta http-equiv="Cache-Control" content="no-cache">
-        <meta HTTP-EQUIV="Expires" CONTENT="Tue, 01 Jan 1980 1:00:00 GMT">
-        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <meta http-equiv="cache-control" content="max-age=0" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+        <meta http-equiv="pragma" content="no-cache" />
         <script type ="text/javascript">
             previene = function () {
                 window.stop;
@@ -62,8 +64,8 @@
                             <li>
                                 <a href="#" class="icon fa-angle-down">Menu</a>
                                 <ul>
-                                    <li><a href="catalogo.jsp">Catálogo Productos</a></li>
-                                    <li><a href="contact.jsp">Contacto</a></li>
+                                    <li><a href="catalogo.jsp#main">Catálogo Productos</a></li>
+                                    <li><a href="contact.jsp#main">Contacto</a></li>
                                     <li>
                                         <a href="#">Opciones</a>
                                         <ul>

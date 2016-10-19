@@ -11,7 +11,7 @@ package ClasesGenericas;
  */
 public class Producto {
 
-    public Producto(int ID_PRODUCTO, String NOMBRE,String REFERENCIA, String DESCRIPCION, String TIPO, String MATERIAL, String ALTO, String ANCHO, String PROFUNDIDAD, String COLOR, String PESO, String FOTO, String FECHA_ALTA, String FECHA_BAJA, String ESTADO, double PRECIOCOSTO, double PRECIOVENTA) {
+    public Producto(int ID_PRODUCTO, String NOMBRE,String REFERENCIA, String DESCRIPCION, String TIPO, String MATERIAL, String ALTO, String ANCHO, String PROFUNDIDAD, String COLOR, String PESO, String FOTO, String FECHA_ALTA, String FECHA_BAJA, String ESTADO, double PRECIOVENTA) {
         this.ID_PRODUCTO = ID_PRODUCTO;
         this.NOMBRE = NOMBRE;
         this.REFERENCIA = REFERENCIA;
@@ -27,7 +27,7 @@ public class Producto {
         this.FECHA_ALTA = FECHA_ALTA;
         this.FECHA_BAJA = FECHA_BAJA;
         this.ESTADO = ESTADO;
-        this.PRECIOCOSTO = PRECIOCOSTO;
+       // this.PRECIOCOSTO = PRECIOCOSTO;
         this.PRECIOVENTA = PRECIOVENTA;
     }
 

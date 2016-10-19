@@ -34,6 +34,7 @@ public class OperacionesProducto {
         try {
             //   String sql = "call selectProductos()";//SELECT * FROM PRODUCTO
             String sql = "SELECT * FROM PRODUCTO WHERE TIPO = '" + tipo + "'";//
+            System.out.println("Query:" + sql);
             pst = coneLocal.NewConnection().prepareCall(sql);
             rs = pst.executeQuery();
             while (rs.next()) {
@@ -41,7 +42,7 @@ public class OperacionesProducto {
                 productos.add(new Producto(rs.getInt("ID_PRODUCTO"),
                         rs.getString("NOMBRE"),
                         rs.getString("REFERENCIA"),
-                        rs.getString("DESCRIPCCION"),
+                        rs.getString("DESCRIPCION"),
                         rs.getString("TIPO"),
                         rs.getString("MATERIAL"),
                         rs.getString("ALTO"),
@@ -53,8 +54,7 @@ public class OperacionesProducto {
                         rs.getString("FECHA_ALTA"),
                         rs.getString("FECHA_BAJA"),
                         rs.getString("ESTADO"),
-                        rs.getDouble("PRECIO"),
-                        rs.getDouble("PRECIOVENTA")));
+                        rs.getDouble("PRECIO_VENTA")));
             }
         } catch (SQLException e) {
             System.out.println("Error en getAllProductos()" + e);
@@ -91,13 +91,13 @@ public class OperacionesProducto {
             String sql = "SELECT * FROM PRODUCTO WHERE ID_PRODUCTO = '" + id + "'";
             System.out.println("Consulta producto: " + sql);
             pst = coneLocal.NewConnection().prepareCall(sql);
-          //  pst.setInt(1, id);
+            //  pst.setInt(1, id);
             rs = pst.executeQuery();
             while (rs.next()) {
                 producto = new Producto(rs.getInt("ID_PRODUCTO"),
                         rs.getString("NOMBRE"),
                         rs.getString("REFERENCIA"),
-                        rs.getString("DESCRIPCCION"),
+                        rs.getString("DESCRIPCION"),
                         rs.getString("TIPO"),
                         rs.getString("MATERIAL"),
                         rs.getString("ALTO"),
@@ -109,11 +109,10 @@ public class OperacionesProducto {
                         rs.getString("FECHA_ALTA"),
                         rs.getString("FECHA_BAJA"),
                         rs.getString("ESTADO"),
-                        rs.getDouble("PRECIO"),
-                        rs.getDouble("PRECIOVENTA"));
+                        rs.getDouble("PRECIO_VENTA"));
             }
         } catch (Exception e) {
-                        System.out.println("Error en getProducto()" + e);
+            System.out.println("Error en getProducto()" + e);
         } finally {
             try {
                 if (rs != null) {

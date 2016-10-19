@@ -8,13 +8,12 @@
 <%
     int id = Integer.parseInt(request.getParameter("id"));
     Producto producto = new controladorProducto().getProducto(id);
-    
+
     Utileria algo = new Utileria();
-    
+
     System.out.println(algo.getLocalIpAddress());
     //System.out.println("prod:" + producto.getNOMBRE());
 %>
-
 <!DOCTYPE html>
 <html >
     <head>
@@ -32,6 +31,21 @@
                     };
                     window.back = previene();
                 </script>-->
+        <script>
+            function valida(e) {
+                tecla = (document.all) ? e.keyCode : e.which;
+
+                //Tecla de retroceso para borrar, siempre la permite
+                if (tecla == 8) {
+                    return true;
+                }
+
+                // Patron de entrada, en este caso solo acepta numeros
+                patron = /[0-9]/;
+                tecla_final = String.fromCharCode(tecla);
+                return patron.test(tecla_final);
+            }
+        </script>
     </head>
     <body class="landing">
         <%
@@ -133,12 +147,12 @@
                                                 <h4>Cantidad al Carrito:</h4>
                                                 <div class="3u">
                                                     <input type="hidden" value="<%= producto.getID_PRODUCTO()%>" name="idproducto">
-                                                    <input type="text" value="" id="txt-cantidad" name="cantidad" placeholder="???? ???? ???? ????"/>
-                                                 </div>
-                                                    <button type="submit" >
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                        AGREGAR
-                                                    </button>
+                                                    <input type="text" value="" id="txt-cantidad" name="cantidad" onkeypress="return valida(event)"/>
+                                                </div>
+                                                <button type="submit" >
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                    AGREGAR
+                                                </button>
                                             </form>
                                         </section>
                                     </div>                       

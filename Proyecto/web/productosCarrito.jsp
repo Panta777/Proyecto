@@ -40,7 +40,13 @@
         <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
+        <meta http-equiv="cache-control" content="max-age=0" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+        <meta http-equiv="pragma" content="no-cache" />
         <!--        <link rel="stylesheet" href="assets/css/otros.css" />
                 <link rel="stylesheet" href="assets/css/otros2.css" />-->
         <script type ="text/javascript">
@@ -53,6 +59,25 @@
         <script type="text/javascript">
             function mostrar() {
                 document.getElementById('pagotarjeta').style.display = 'block';
+            }
+
+            function mostrarNoLogueado() {
+                document.getElementById('NoLogueado').style.display = 'block';
+            }
+        </script>
+        <script>
+            function valida(e) {
+                tecla = (document.all) ? e.keyCode : e.which;
+
+                //Tecla de retroceso para borrar, siempre la permite
+                if (tecla == 8) {
+                    return true;
+                }
+
+                // Patron de entrada, en este caso solo acepta numeros
+                patron = /[0-9]/;
+                tecla_final = String.fromCharCode(tecla);
+                return patron.test(tecla_final);
             }
         </script>
     </head>
@@ -70,7 +95,7 @@
                         <li>
                             <a href="#" class="icon fa-angle-down">Menu</a>
                             <ul>
-                                <li><a href="#catalogo">Catálogo Productos</a></li>
+                                <li><a href="catalogo.jsp#main">Catálogo Productos</a></li>
                                 <li><a href="contact.jsp#main">Contacto</a></li>
                                 <li><a href="productosCarrito.jsp#main">Ver Pedido</a></li> 
                             </ul>
@@ -139,7 +164,7 @@
                 <div class="12u 20u(narrower)" id ="OrdenCompra">
                     <!--<div class="20u "> -->
                     <!-- Table -->
-                    <section class="box">
+                    <section class="box" >
                         <div class="table-wrapper">
                             <%
                                 controladorProducto cp = new controladorProducto();
@@ -149,12 +174,12 @@
                                 <thead>
                                     <tr>
                                         <th><h4>Cantidad</h4></th>
-                                <th>Foto</th>
-                                <th>Descripcion</th>
-                                <th>Precio U</th>
-                                <th>Subtotal</th>
-                                <th>Eliminar</th>
-                                </tr>
+                                        <th>Foto</th>
+                                        <th>Descripcion</th>
+                                        <th>Precio U</th>
+                                        <th>Subtotal</th>
+                                        <th>Eliminar</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     <%
@@ -206,8 +231,8 @@
                         </div>
                         <div class="row" >  
                             <div class="4u 12u(narrow)">
-                                <!-- <a class ="button" href="catalogo.jsp?tipo=1#muebles">-->
-                                <a class ="button special" href="#pagotarjeta" onclick="mostrar()">
+                                <a class ="button" href="catalogo.jsp?tipo=1#muebles">
+                                    <!--                                <a class ="button special" href="#pagotarjeta" onclick="mostrar()">-->
                                     Seguir Comprando &nbsp; <img src="images/ICONOS BLANCOS/FACTURA.png" width="25" height="21" alt ="FAC"> 
                                 </a>
                             </div>
@@ -220,11 +245,14 @@
                                     Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
                                 </a>
                             </div>
-                            <%} else if (articulos != null && articulos.size() > 0 && (nivel.equals("3") || nivel.equals("4"))) {%>
+                            <%} else if (articulos != null && articulos.size() > 0) {%>
                             <div class="4u 12u(mobilep)">
-                                <a class ="button special" href="#pagotarjeta">
+                                <a class ="button special" href="#OrdenCompra" onclick="mostrarNoLogueado()">
                                     Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
                                 </a>
+                                <div class="row" style ='display:none' id ="NoLogueado">
+                                    <h5 style ='color:red; font-weight:bold;' >(Debe estar logueado para completar la transacción)</h5>
+                                </div>
                             </div>
                             <%}%>
                         </div>
@@ -253,7 +281,7 @@
                             <hr />
                             <div class="12u(mobilep)">
                                 <h1>Número tarjeta bancaria</h1>
-                                <input id="cb-card-number"   placeholder="---- ---- ---- ----" type="text" value ="" maxlength="16">
+                                <input id="cb-card-number"   placeholder="---- ---- ---- ----" type="text" value ="" maxlength="16" onkeypress="return valida(event)" >
                             </div>
                             <hr />
                             <h1>Fecha de caducidad</h1>
@@ -307,10 +335,10 @@
                                 </div>
                             </div>
                             <hr />
+                            <h1>Código de seguridad</h1>
                             <div class="row uniform 50%">
-                                <h1>Código de seguridad</h1>
                                 <div class="6u 12u(mobilep)">
-                                    <input id="amex-card-cvc" type ="password" class="form-control control-small" placeholder="••••" maxlength="4" type="tel">
+                                    <input id="pas-card" type ="password" placeholder="••••" maxlength="4" onkeypress="return valida(event)"  >
                                     <div class="form-tipsy tipsy-trigger">
                                         <div class="popover popover-right">
                                             <div  class="popover-body">
@@ -319,13 +347,23 @@
                                         </div> 
                                     </div>
                                 </div>
+                                <div class="6u 12u(mobilep)">
+                                    <div class="select-wrapper">
+                                        <select  id="Tarjeta"  >
+                                            <option value="" disabled selected hidden>Tipo Tarjeta</option>
+                                            <option value="1">Visa</option>
+                                            <option value="2">MasterCard</option>
+                                            <option value="3">Otros</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <hr />
                             <div class="12u(mobilep)">
-                                <div class="row" hidden="true" id ="mensajeError">
+                                <div class="row" style ='display:none' id ="mensajeError">
                                     <p> espacio para mensaje de error </p>
                                 </div>
-                                <button class="button" id="" type="submit">
+                                <button class="button" id="EnviarPago" type="submit">
                                     <span class="label">EFECTUAR PAGO</span>
                                 </button>	
                                 <input type="hidden" id="horaTransaction"  value="2016-10-17T04:37:32+02:00"/>

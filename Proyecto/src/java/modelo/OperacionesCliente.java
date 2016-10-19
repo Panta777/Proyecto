@@ -21,44 +21,8 @@ public class OperacionesCliente {
     public OperacionesCliente() {
         this.coneLocal = new Conexion();
     }
-//
-//    /**
-//     * Retorna el tipo de Nivel de acceso, según el login de Usuario.
-//     *
-//     * @param usuario
-//     * @param contra
-//     * @return Nivel de Acceso
-//     * @throws java.sql.SQLException
-//     */
-//    public int loguear(String usuario, String contra) throws SQLException {
-//
-//        int nivel = 0;
-//        Connection cone = coneLocal.NewConnection();
-//
-//        if (cone != null) {
-//            try {
-//                cone.setAutoCommit(false);
-//                CallableStatement funcionLogin = cone.prepareCall("{ ?=call GET_TIPO_USUARIO(?,?) }");
-//                // cargar parametros de entrada
-//                funcionLogin.setString(2, usuario);
-//                funcionLogin.setString(3, contra);
-//                funcionLogin.registerOutParameter(1, Types.INTEGER);//Parametro de salida
-//                funcionLogin.execute();
-//
-//                cone.commit();// confirmar si se ejecuto sin errores
-//                nivel = funcionLogin.getInt(1);// obtener salida
-//            } catch (SQLException e) {
-//                nivel = 0;
-//                cone.rollback();// deshacer la ejecucion en caso de error
-//                System.out.println("Error al ejecutar función GET_TIPO_USUARIO por, " + e); // informar por consola
-//            } finally {
-//                cone.close();// cerrar la conexion
-//            }
-//        }
-//        return nivel;
-//    }
-    
-       /**
+
+    /**
      * Retorna el tipo de Nivel de acceso, según el login de Usuario.
      *
      * @param usuario
@@ -69,32 +33,67 @@ public class OperacionesCliente {
     public int loguear(String usuario, String contra) throws SQLException {
 
         int nivel = 0;
-            try {  
-                Connection cone = coneLocal.NewConnection(usuario, contra);
-                if(cone!= null)
-                { 
-                    nivel = 1;
-                    
-                }
-//                cone.setAutoCommit(false);
-//                CallableStatement funcionLogin = cone.prepareCall("{ ?=call GET_TIPO_USUARIO(?,?) }");
-//                // cargar parametros de entrada
-//                funcionLogin.setString(2, usuario);
-//                funcionLogin.setString(3, contra);
-//                funcionLogin.registerOutParameter(1, Types.INTEGER);//Parametro de salida
-//                funcionLogin.execute();
-//
-//                cone.commit();// confirmar si se ejecuto sin errores
-                // obtener salida
-            } catch (Exception e) {
+        Connection cone = coneLocal.NewConnection();
+
+        if (cone != null) {
+            try {
+                cone.setAutoCommit(false);
+                CallableStatement funcionLogin = cone.prepareCall("{ ?=call GET_TIPO_USUARIO(?,?) }");
+                // cargar parametros de entrada
+                funcionLogin.setString(2, usuario);
+                funcionLogin.setString(3, contra);
+                funcionLogin.registerOutParameter(1, Types.INTEGER);//Parametro de salida
+                funcionLogin.execute();
+
+                cone.commit();// confirmar si se ejecuto sin errores
+                nivel = funcionLogin.getInt(1);// obtener salida
+            } catch (SQLException e) {
                 nivel = 0;
-             //   cone.rollback();// deshacer la ejecucion en caso de error
+                cone.rollback();// deshacer la ejecucion en caso de error
                 System.out.println("Error al ejecutar función GET_TIPO_USUARIO por, " + e); // informar por consola
             } finally {
-               // cone.close();// cerrar la conexion
+                cone.close();// cerrar la conexion
             }
+        }
         return nivel;
     }
+    
+//       /**
+//     * Retorna el tipo de Nivel de acceso, según el login de Usuario.
+//     *
+//     * @param usuario
+//     * @param contra
+//     * @return Nivel de Acceso
+//     * @throws java.sql.SQLException
+//     */
+//    public int loguear(String usuario, String contra) throws SQLException {
+//
+//        int nivel = 0;
+//            try {  
+//                Connection cone = coneLocal.NewConnection(usuario, contra);
+//                if(cone!= null)
+//                { 
+//                    nivel = 1;
+//                }
+////                cone.setAutoCommit(false);
+////                CallableStatement funcionLogin = cone.prepareCall("{ ?=call GET_TIPO_USUARIO(?,?) }");
+////                // cargar parametros de entrada
+////                funcionLogin.setString(2, usuario);
+////                funcionLogin.setString(3, contra);
+////                funcionLogin.registerOutParameter(1, Types.INTEGER);//Parametro de salida
+////                funcionLogin.execute();
+////
+////                cone.commit();// confirmar si se ejecuto sin errores
+//                // obtener salida
+//            } catch (Exception e) {
+//                nivel = 0;
+//             //   cone.rollback();// deshacer la ejecucion en caso de error
+//                System.out.println("Error al ejecutar función GET_TIPO_USUARIO por, " + e); // informar por consola
+//            } finally {
+//               // cone.close();// cerrar la conexion
+//            }
+//        return nivel;
+//    }
 
     /**
      * Retorna determinado valor, según respuesta de la función para insertar
