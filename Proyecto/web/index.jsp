@@ -133,15 +133,15 @@
                             <!-- <span class="image featured"><img src="images/pic03.jpg" alt="" /></span> -->
                             <h2>REPORTERIA</h2>
                             <h4>VEA LOS REPORTES DE VENTAS, CLIENTES ACTIVOS  Y PRODUCTOS EN EL INVENTARIO</h4>
-                            <div class="actions" >
+                            <div class="actions">
                                 <ul class="actions vertical">
-                                    <li><a href="#" class="button">VER CLIENTES</a></li>
-                                    <li><a href="#" class="button special">VER PRODUCTOS</a></li>
-                                    <li><a href="#" class="button">VENTAS POR FECHA</a></li>
-                                    <li><a href="#" class="button special">VENTAS POR CIUDAD</a></li>
-                                    <li><a href="#" class="button ">VENTAS POR MUEBLE</a></li>
-                                    <li><a href="#" class="button special">PRODUCTOS POR CLIENTE</a></li>
-                                    <li><a href="#" class="button alt">PRODUCTO MAS VENDIDO POR CIUDAD</a></li>
+                                    <li><a href="#reporteria.jsp?Operacion=1#main" class="button">VER CLIENTES</a></li>
+                                    <li><a href="#reporteria.jsp?Operacion=2#main" class="button special">VER PRODUCTOS</a></li>
+                                    <li><a href="#reporteria.jsp?Operacion=3#main" class="button">VENTAS POR FECHA</a></li>
+                                    <li><a href="#reporteria.jsp?Operacion=4#main" class="button special">VENTAS POR CIUDAD</a></li>
+                                    <li><a href="#reporteria.jsp?Operacion=5#main" class="button ">VENTAS POR MUEBLE</a></li>
+                                    <li><a href="#reporteria.jsp?Operacion=6#main" class="button special">PRODUCTOS POR CLIENTE</a></li>
+                                    <li><a href="#reporteria.jsp?Operacion=7#main" class="button alt">PRODUCTO MAS VENDIDO POR CIUDAD</a></li>
                                 </ul>
                             </div> 
                             <!--                            <div class="row">
@@ -156,7 +156,7 @@
 
                         </section>
                     </div>
-                    <div class="12u 20u(narrower)">
+                    <div class="12u 20u(narrower)" id ="mantenimiento">
                         <section class="box special">
                             <span class="icon major fa-bolt accent2"></span>
                             <!-- <span class="image featured"><img src="images/pic03.jpg" alt="" /></span> -->
@@ -169,8 +169,8 @@
                                 <ul class="actions vertical">
                                     <li><a href="#" class="button">ELIMINAR CLIENTES</a></li>
                                     <li><a href="#" class="button special">ELIMINAR PRODUCTO</a></li>
-                                    <li><a href="#" class="button special">AGREGAR PRODUCTO</a></li>
-                                    <li><a href="#" class="button">ACTUALIZAR PRODUCTO</a></li>
+                                    <li><a href="#" class="button ">AGREGAR PRODUCTO</a></li>
+                                    <li><a href="#" class="button special">ACTUALIZAR PRODUCTO</a></li>
                                 </ul>
                             </div> 
                         </section>
@@ -221,9 +221,9 @@
                                     <span class="image featured"><img src="images/ICONOS/formas-de-pago.png" alt = "Formas de Pago"/></span>
                                     <h3>Formas de Pago</h3>
                                     <p>En Muebleria Los Alpes, contamos con varias facilidades de Pago, como lo son  Tarjetas de Crédito, Débito y Depósitos a nuestra cuenta. </p>
-                                    <ul class="actions">
+<!--                                    <ul class="actions">
                                         <li><a href="#" class="button">Más Información</a></li>
-                                    </ul>
+                                    </ul>-->
                                 </section>
                             </div>
                             <div class="6u 12u(narrower)">
@@ -231,9 +231,9 @@
                                     <span class="image featured"><img src="images/ICONOS/ENTREGA A DOMICILIO.png" alt="Entregas a Domicilio" /></span>
                                     <h3>Entregas a Domicilio</h3>
                                     <p>Para facilitarle la entrega de su pedido, contamos también con el servicio de entrega a cualquier parte de Centroamerica.</p>
-                                    <ul class="actions">
+<!--                                    <ul class="actions">
                                         <li><a href="#" class="button">Más Información</a></li>
-                                    </ul>
+                                    </ul>-->
                                 </section>
                             </div>
                         </div>
