@@ -80,7 +80,7 @@
             }
         </script>
     </head>
-    <body  class="landing">
+    <body >
         <!--        <section id="container" > -->
         <div id="page-wrapper">
             <!-- Header -->
@@ -160,102 +160,106 @@
                     </header>                
                 </section>
                 <!-- Tabla Productos del Carrito -->
-                <div class="12u 20u(narrower)" id ="OrdenCompra">
-                    <!--<div class="20u "> -->
-                    <!-- Table -->
-                    <section class="box" >
-                        <div class="table-wrapper">
-                            <%
-                                controladorProducto cp = new controladorProducto();
-                                double total = 0;
-                                if (articulos != null && articulos.size() > 0) {%>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th><h4>Cantidad</h4></th>
-                                <th>Foto</th>
-                                <th>Descripcion</th>
-                                <th>Precio U</th>
-                                <th>Subtotal</th>
-                                <th>Eliminar</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <%
-                                        for (Compra a : articulos) {
-                                            Producto producto = cp.getProducto(a.getIdProducto());
-                                            total += a.getCantidad() * producto.getPRECIOVENTA();
-                                    %>
-                                    <tr>
-                                        <td>
-                                            <div class="4u">
-                                                <h4><%= a.getCantidad()%> </h4>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="4u">
-                                                <img src="<%= producto.getFOTO()%>" alt="foto" width="80" height="80"> 
-                                            </div>
-                                        </td>
-                                        <td><%= producto.getNOMBRE()%></td>
-                                        <td>Q. <%= algo.convertirCantidad(producto.getPRECIOVENTA())%></td>
-                                        <td class="cart_total">
-                                            <p class="cart_total_price">Q. <%= algo.convertirCantidad(Math.round(producto.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0)%></p>
-                                        </td>
-                                        <td class="cart_delete">
-                                            <form method="post" action="EliminarProducto">
-                                                <span id="idarticulo" style="display:none;"><%=producto.getID_PRODUCTO()%></span>
-                                                <input type="hidden" value="<%= producto.getID_PRODUCTO()%>" name="idproducto">
-                                                <button type="submit" >
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <% }%>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="3"></td>
-                                        <td><h3>Total</h3></td>
-                                        <td><h3>Q. <%=algo.convertirCantidad(total)%></h3></td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                            <% } else {%>
-                            <h4>No hay Articulos en el carrito &nbsp;
-                                <img  src="images/404.png" alt=" Sin Muebles"  width="25" height="21" /></h4> 
-                                <%}%>
-                            &nbsp;
-                        </div>
-                        <div class="row" >  
-                            <div class="4u 12u(narrow)">
-                                <a class ="button" href="catalogo.jsp?tipo=1#muebles">
-                                    <!--                                <a class ="button special" href="#pagotarjeta" onclick="mostrar()">-->
-                                    Seguir Comprando &nbsp; <img src="images/ICONOS BLANCOS/FACTURA.png" width="25" height="21" alt ="FAC"> 
-                                </a>
+                <!--<div class="12u 20u(narrower)" id ="OrdenCompra">-->
+                <div class="row" id ="OrdenCompra">
+                    <div class="12u">
+                        <!-- Table -->
+                        <section class="box" >
+                            <div class="table-wrapper">
+                                <%
+                                    controladorProducto cp = new controladorProducto();
+                                    double total = 0;
+                                    if (articulos != null && articulos.size() > 0) {%>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th><h4>Cantidad</h4></th>
+                                            <th>Foto</th>
+                                            <th>Descripcion</th>
+                                            <th>Precio U</th>
+                                            <th>Subtotal</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                            for (Compra a : articulos) {
+                                                Producto producto = cp.getProducto(a.getIdProducto());
+                                                total += a.getCantidad() * producto.getPRECIOVENTA();
+                                        %>
+                                        <tr>
+                                            <td>
+                                                <div class="4u">
+                                                    <h4><%= a.getCantidad()%> </h4>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="4u">
+                                                    <img src="<%= producto.getFOTO()%>" alt="foto" width="80" height="80"> 
+                                                </div>
+                                            </td>
+                                            <td><%= producto.getNOMBRE()%></td>
+                                            <td>Q. <%= algo.convertirCantidad(producto.getPRECIOVENTA())%></td>
+                                            <td class="cart_total">
+                                                <p class="cart_total_price">Q. <%= algo.convertirCantidad(Math.round(producto.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0)%></p>
+                                            </td>
+                                            <td class="cart_delete">
+                                                <form method="post" action="EliminarProducto">
+                                                    <span id="idarticulo" style="display:none;"><%=producto.getID_PRODUCTO()%></span>
+                                                    <input type="hidden" value="<%= producto.getID_PRODUCTO()%>" name="idproducto">
+                                                    <button type="submit" >
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <% }%>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3"></td>
+                                            <td><h3>Total</h3></td>
+                                            <td><h3>Q. <%=algo.convertirCantidad(total)%></h3></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <% } else {%>
+                                <h4>No hay Articulos en el carrito &nbsp;
+                                    <img  src="images/404.png" alt=" Sin Muebles"  width="25" height="21" /></h4> 
+                                    <%}%>
+                                &nbsp;
                             </div>
-                            <div class="4u 12u(narrow)">
-                                <p></p>
-                            </div> 
-                            <%if (articulos != null && articulos.size() > 0 && (nivel.equals("2") || nivel.equals("1"))) {%>
-                            <div class="4u 12u(mobilep)">
-                                <a class ="button special" href="#pagotarjeta" onclick="mostrar()">
-                                    Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
-                                </a>
-                            </div>
-                            <%} else if (articulos != null && articulos.size() > 0) {%>
-                            <div class="4u 12u(mobilep)">
-                                <a class ="button special" href="#OrdenCompra" onclick="mostrarNoLogueado()">
-                                    Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
-                                </a>
-                                <div class="row" style ='display:none' id ="NoLogueado">
-                                    <h5 style ='color:red; font-weight:bold;' >(Debe estar logueado para completar la transacción)</h5>
+                            <div class="row" >  
+                                <div class="4u 12u(narrow)">
+                                    <a class ="button" href="catalogo.jsp?tipo=1#muebles">
+                                        <!--                                <a class ="button special" href="#pagotarjeta" onclick="mostrar()">-->
+                                        Seguir Comprando &nbsp; <img src="images/ICONOS BLANCOS/FACTURA.png" width="25" height="21" alt ="FAC"> 
+                                    </a>
                                 </div>
+                                <div class="4u 12u(narrow)">
+                                    <p></p>
+                                </div> 
+                                <%if (articulos != null && articulos.size() > 0 && (nivel.equals("2") || nivel.equals("1"))) {%>
+                                <div class="4u 12u(mobilep)">
+                                    <a class ="button special" href="#pagotarjeta" onclick="mostrar()">
+                                        Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
+                                    </a>
+                                </div>
+                                <%} else if (articulos != null && articulos.size() > 0) {%>
+                                <div class="4u 12u(mobilep)">
+                                    <a class ="button special" href="#OrdenCompra" onclick="mostrarNoLogueado()">
+                                        Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
+                                    </a>
+                                    <div class="row" style ='display:none' id ="NoLogueado">
+                                        <h5 style ='color:red; font-weight:bold;' >(Debe estar logueado para completar la transacción)</h5>
+                                    </div>
+                                </div>
+                                <%}%>
                             </div>
-                            <%}%>
-                        </div>
-                    </section>
+                        </section>
+                    </div>
+                    <!--<div class="20u "> -->
+
                     <!-- </div> -->
                 </div>
                 <!-- Formulario de Pago -->

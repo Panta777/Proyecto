@@ -3,6 +3,8 @@
     Created on : 9/10/2016, 08:45:11 PM
     Author     : panle
 --%>
+<%@page import="ClasesGenericas.Cliente"%>
+<%@page import="modelo.OperacionesCliente"%>
 <%@page import="modelo.Utileria"%>
 <%@page import="modelo.Idioma"%>
 <%@page import="ClasesGenericas.Producto"%>
@@ -34,6 +36,7 @@
         opera = Integer.parseInt(request.getParameter("Operacion"));
     }
     // controladorProducto cp = new controladorProducto();
+    OperacionesCliente oC = new OperacionesCliente();
     //   ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
 %>
 <!DOCTYPE html>
@@ -45,11 +48,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
-        <meta http-equiv="cache-control" content="max-age=0" />
-        <meta http-equiv="cache-control" content="no-cache" />
-        <meta http-equiv="expires" content="0" />
-        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-        <meta http-equiv="pragma" content="no-cache" />
         <!--        <link rel="stylesheet" href="assets/css/otros.css" />
                 <link rel="stylesheet" href="assets/css/otros2.css" />-->
         <script type ="text/javascript">
@@ -164,65 +162,77 @@
                     </header>                
                 </section>
                 <!-- Tabla Productos del Carrito -->
-                <div class="12u 20u(narrower)" id ="OrdenCompra">
+                <div class="12u 20u(narrower)" id ="verClientes">
                     <!--<div class="20u "> -->
                     <!-- Table -->
                     <section class="box" >
                         <div class="table-wrapper">
-                            <%
-                                controladorProducto cp = new controladorProducto();
-                                double total = 0;
-                                if (articulos != null && articulos.size() > 0) {%>
+                            <% if (opera == 1) {//VER CLIENTE%>
                             <table>
                                 <thead>
                                     <tr>
-                                        <th><h4>Cantidad</h4></th>
-                                <th>Foto</th>
-                                <th>Descripcion</th>
-                                <th>Precio U</th>
-                                <th>Subtotal</th>
-                                <th>Eliminar</th>
-                                </tr>
+                                        <th><h4>NOMBRE COMPLETO</h4></th>
+                                        <th>USUARIO</th>
+                                        <th>NO DOCUMENTO</th>
+                                        <th>TELÉFONO CELULAR</th>
+                                        <th>TELÉFONO RESIDENCIA</th>
+                                        <th>DIRECCIÓN</th>
+                                        <th>CIUDAD</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                    <%
-                                        for (Compra a : articulos) {
-                                            Producto producto = cp.getProducto(a.getIdProducto());
-                                            total += a.getCantidad() * producto.getPRECIOVENTA();
-                                    %>
-                                    <tr>
-                                        <td>
-                                            <div class="4u">
-                                                <h4><%= a.getCantidad()%> </h4>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="4u">
-                                                <img src="<%= producto.getFOTO()%>" alt="foto" width="80" height="80"> 
-                                            </div>
-                                        </td>
-                                        <td><%= producto.getNOMBRE()%></td>
-                                        <td>Q. <%= algo.convertirCantidad(producto.getPRECIOVENTA())%></td>
-                                        <td class="cart_total">
-                                            <p class="cart_total_price">Q. <%= algo.convertirCantidad(Math.round(producto.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0)%></p>
-                                        </td>
-                                        <td class="cart_delete">
-                                            <form method="post" action="EliminarProducto">
-                                                <span id="idarticulo" style="display:none;"><%=producto.getID_PRODUCTO()%></span>
-                                                <input type="hidden" value="<%= producto.getID_PRODUCTO()%>" name="idproducto">
-                                                <button type="submit" >
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <% }%>
+                                <div class="6u 12u(mobilep)">
+                                    <div class="select-wrapper">
+                                        <select  id="CampoFiltro">
+                                            <option value="" disabled selected hidden>Buscar Cliente por:</option>
+                                            <option value="NOMBRE">Nombre</option>
+                                            <option value="CIUDAD">Ciudad</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <%
+                                    //Cliente cliente = oC.mostrarDatosCliente();
+                                    ArrayList<Cliente> clientes = oC.mostrarDatosClienteReporte("NOMBRE", "A");
+                                    int conta = 0;
+
+                                    while (conta < clientes.size()) {
+
+                                        //    for (Compra a : articulos) {
+                                        //  total += a.getCantidad() * producto.getPRECIOVENTA();
+                                %>
+                                <tr>
+                                    <td>
+                                        <div class="4u">
+                                            <h4><%out.write(clientes.get(conta).getNOMBRE()+ " " + clientes.get(conta).getAPELLIDO());%> </h4>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="4u">
+                                            <%out.write(clientes.get(conta).getUSUARIO());%>
+                                        </div>
+                                    </td>
+                                    <td><%out.write(clientes.get(conta).getNUMERO_DOC());%></td>
+                                    <td>Q. <%//= algo.convertirCantidad(cliente.getPRECIOVENTA())%></td>
+                                    <td class="cart_total">
+                                        <p class="cart_total_price">Q. <%=// algo.convertirCantidad(Math.round(cliente.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0)%></p>
+                                    </td>
+                                    <td class="cart_delete">
+<!--                                        <form method="post" action="EliminarProducto">
+                                            <span id="idarticulo" style="display:none;"><%//=cliente.getID_PRODUCTO()%></span>
+                                            <input type="hidden" value="<%//= cliente.getID_PRODUCTO()%>" name="idcliente">
+                                            <button type="submit" >
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </form>-->
+                                    </td>
+                                </tr>
+                                <% }%>
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <td colspan="3"></td>
                                         <td><h3>Total</h3></td>
-                                        <td><h3>Q. <%=algo.convertirCantidad(total)%></h3></td>
+                                        <td><h3>Q. <%//=algo.convertirCantidad(total)%></h3></td>
                                     </tr>
                                 </tfoot>
                             </table>

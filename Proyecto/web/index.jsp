@@ -135,7 +135,7 @@
                             <h4>VEA LOS REPORTES DE VENTAS, CLIENTES ACTIVOS  Y PRODUCTOS EN EL INVENTARIO</h4>
                             <div class="actions">
                                 <ul class="actions vertical">
-                                    <li><a href="reporteria.jsp?Operacion=1#main" class="button">VER CLIENTES</a></li>
+                                    <li><a href="reporteria.jsp?Operacion=1#verClientes" class="button">VER CLIENTES</a></li>
                                     <li><a href="reporteria.jsp?Operacion=2#main" class="button special">VER PRODUCTOS</a></li>
                                     <li><a href="reporteria.jsp?Operacion=3#main" class="button">VENTAS POR FECHA</a></li>
                                     <li><a href="reporteria.jsp?Operacion=4#main" class="button special">VENTAS POR CIUDAD</a></li>
@@ -221,9 +221,9 @@
                                     <span class="image featured"><img src="images/ICONOS/formas-de-pago.png" alt = "Formas de Pago"/></span>
                                     <h3>Formas de Pago</h3>
                                     <p>En Muebleria Los Alpes, contamos con varias facilidades de Pago, como lo son  Tarjetas de Crédito, Débito y Depósitos a nuestra cuenta. </p>
-<!--                                    <ul class="actions">
-                                        <li><a href="#" class="button">Más Información</a></li>
-                                    </ul>-->
+                                    <!--                                    <ul class="actions">
+                                                                            <li><a href="#" class="button">Más Información</a></li>
+                                                                        </ul>-->
                                 </section>
                             </div>
                             <div class="6u 12u(narrower)">
@@ -231,9 +231,9 @@
                                     <span class="image featured"><img src="images/ICONOS/ENTREGA A DOMICILIO.png" alt="Entregas a Domicilio" /></span>
                                     <h3>Entregas a Domicilio</h3>
                                     <p>Para facilitarle la entrega de su pedido, contamos también con el servicio de entrega a cualquier parte de Centroamerica.</p>
-<!--                                    <ul class="actions">
-                                        <li><a href="#" class="button">Más Información</a></li>
-                                    </ul>-->
+                                    <!--                                    <ul class="actions">
+                                                                            <li><a href="#" class="button">Más Información</a></li>
+                                                                        </ul>-->
                                 </section>
                             </div>
                         </div>

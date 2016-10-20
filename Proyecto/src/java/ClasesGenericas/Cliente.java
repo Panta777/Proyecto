@@ -11,6 +11,7 @@ package ClasesGenericas;
 public class Cliente {
 
     private int ID_CLIENTE;
+
     private String USUARIO;
     private String CONTRASENA;
     private String NUMERO_DOC;
@@ -22,14 +23,6 @@ public class Cliente {
     private String NIT;
     private String DIRECCION;
     private String CIUDAD;
-
-    public String getCIUDAD() {
-        return CIUDAD;
-    }
-
-    public void setCIUDAD(String CIUDAD) {
-        this.CIUDAD = CIUDAD;
-    }
     private String PAIS;
     private String DEPARTAMENTO;
     private String PROFESION;
@@ -72,6 +65,29 @@ public class Cliente {
         this.CIUDAD = "";
     }
 
+    public Cliente(String NOMBRE,String APELLIDO,String NUMERO_DOC, String TIPODOCUMENTO, String TEL_RESIDENCIA, String TEL_CEL, String NIT, String DIRECCION,  String CIUDAD,String PAIS,String DEPARTAMENTO, String PROFESION) {
+        this.NOMBRE = NOMBRE;
+        this.APELLIDO = APELLIDO;
+        this.TIPODOCUMENTO = TIPODOCUMENTO;
+        this.NUMERO_DOC = NUMERO_DOC;
+        this.TEL_RESIDENCIA = TEL_RESIDENCIA;
+        this.TEL_CEL = TEL_CEL;
+        this.NIT = NIT;
+        this.DIRECCION = DIRECCION;
+        this.CIUDAD = CIUDAD;
+        this.PAIS = PAIS;
+        this.DEPARTAMENTO = DEPARTAMENTO;
+        this.PROFESION = PROFESION;
+    }
+
+    public String getCIUDAD() {
+        return CIUDAD;
+    }
+
+    public void setCIUDAD(String CIUDAD) {
+        this.CIUDAD = CIUDAD;
+    }
+
     public String getUSUARIO() {
         return USUARIO;
     }
@@ -86,7 +102,8 @@ public class Cliente {
 
     public void setCONTRASENA(String CONTRASENA) {
         this.CONTRASENA = CONTRASENA;
-    }    
+    }
+
     public int getID_CLIENTE() {
         return ID_CLIENTE;
     }

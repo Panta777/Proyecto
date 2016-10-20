@@ -6,9 +6,11 @@
 package modelo;
 
 import ClasesGenericas.Cliente;
+import ClasesGenericas.Producto;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -57,7 +59,7 @@ public class OperacionesCliente {
         }
         return nivel;
     }
-    
+
 //       /**
 //     * Retorna el tipo de Nivel de acceso, según el login de Usuario.
 //     *
@@ -94,7 +96,6 @@ public class OperacionesCliente {
 //            }
 //        return nivel;
 //    }
-
     /**
      * Retorna determinado valor, según respuesta de la función para insertar
      * Datos de Nuevo Cliente
@@ -350,7 +351,7 @@ public class OperacionesCliente {
                     cl.setCIUDAD(rsRecords.getString("IDCIUDAD"));
                     cl.setPAIS(rsRecords.getString("PAIS"));
                     cl.setDEPARTAMENTO(rsRecords.getString("DEPARTAMENTO"));
-                   cl.setPROFESION(rsRecords.getString("PROFESION"));
+                    cl.setPROFESION(rsRecords.getString("PROFESION"));
 //                    cl.setEMAIL(rsRecords.getString("EMAIL"));
 //                    cl.setUSUARIO(rsRecords.getString("NOMBRE"));
 //                    cl.setCONTRASENA(rsRecords.getString("NOMBRE"));
@@ -361,5 +362,101 @@ public class OperacionesCliente {
             }
         }
         return cl;
+    }
+
+    /**
+     * Muestra datos del Cliente, segun su usuario un Cliente por medio de su
+     * Id¿?
+     *
+     * @param campoFiltro
+     * @param dato
+     * @return 1 = exitoso 2 = error al procesar datos
+     * @throws java.sql.SQLException
+     */
+    public ArrayList<Cliente> mostrarDatosClienteReporte(String campoFiltro, String dato) throws SQLException {
+       // int respuesta = 0;
+        ArrayList<Cliente> clientes = new ArrayList<>();
+
+        Connection cone = coneLocal.NewConnection();
+
+        String queryString = "Select * From CLIENTE Where  ";
+        if (campoFiltro.equals("NOMBRE")) {
+            queryString += " NOMBRE LIKE '%" + campoFiltro + "'%";
+        }
+        if (campoFiltro.equals("CIUDAD")) {
+            queryString += " CIUDAD LIKE '%" + campoFiltro + "'%";
+        }
+        System.out.println("QUERY CLIENTE-FILTRO: " + queryString);
+
+        Statement stQuery = cone.createStatement();
+        ResultSet rsRecords = stQuery.executeQuery(queryString);
+        //  Cliente cl = new Cliente();
+        if (cone != null) {
+//            try {
+//                cone.setAutoCommit(false);
+//                CallableStatement funcionEliminarCliente = cone.prepareCall("");
+//
+//                // cargar parametros de entrada
+//                funcionEliminarCliente.setString(2, IdCliente);
+//                funcionEliminarCliente.registerOutParameter(1, Types.INTEGER);//Parametro de salida
+//                funcionEliminarCliente.execute();
+//
+//                cone.commit();// confirmar si se ejecuto sin errores
+//                respuesta = funcionEliminarCliente.getInt(1);// obtener salida
+//            } catch (SQLException e) {
+//                cone.rollback();// deshacer la ejecucion en caso de error
+//                System.out.println("Error al ejecutar función  por, " + e); // informar por consola
+//            } finally {
+//                cone.close();// cerrar la conexion
+//            }
+
+//            String queryString = "Select ID_USUARIO From USUARIO  Where USUARIO  = '" + campoFiltro + "'";
+//            System.out.println("QUERY 1: " + queryString);
+//
+//            try {
+//                Statement stQuery = cone.createStatement();
+//                ResultSet rsRecords = stQuery.executeQuery(queryString);
+//
+//                while (rsRecords.next()) {
+//                    campoFiltro = rsRecords.getNString("ID_USUARIO");
+//                }
+//            } catch (Exception ex1) {
+//                System.out.println("ERROR SQL1");
+//            }
+            try {
+                while (rsRecords.next()) {
+
+                    clientes.add(new Cliente(
+                            rsRecords.getString("NOMBRE"),
+                            rsRecords.getString("APELLIDO"),
+                            rsRecords.getString("TIPODOCUMENTO"),
+                            rsRecords.getString("NUMERO_DOC"),
+                            rsRecords.getString("TEL_RESIDENCIA"),
+                            rsRecords.getString("TEL_CEL"),
+                            rsRecords.getString("NIT"),
+                            rsRecords.getString("DIRECCION"),
+                            rsRecords.getString("IDCIUDAD"),
+                            rsRecords.getString("PAIS"),
+                            rsRecords.getString("DEPARTAMENTO"),
+                            rsRecords.getString("PROFESION")));
+                }
+            } catch (SQLException e) {
+                System.out.println("Error en getAllProductos()" + e);
+            } finally {
+                try {
+                    if (rsRecords != null) {
+                        rsRecords.close();
+                    }
+                    if (rsRecords != null) {
+                        rsRecords.close();
+                    }
+                    if (coneLocal.NewConnection() != null) {
+                        coneLocal.NewConnection().close();
+                    }
+                } catch (Exception e) {
+                }
+            }
+        }
+        return clientes;
     }
 }
