@@ -115,7 +115,6 @@
                         <li><a href="nuevoCliente.jsp#main" class="button">Registrarse</a></li>
                     </ul>
                     <%}%>
-
                 </section>
                 <!-- Main -->
                 <section id="main" class="container">

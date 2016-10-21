@@ -65,7 +65,7 @@ public class Cliente {
         this.CIUDAD = "";
     }
 
-    public Cliente(String NOMBRE,String APELLIDO,String NUMERO_DOC, String TIPODOCUMENTO, String TEL_RESIDENCIA, String TEL_CEL, String NIT, String DIRECCION,  String CIUDAD,String PAIS,String DEPARTAMENTO, String PROFESION) {
+    public Cliente(String NOMBRE,String APELLIDO,String TIPODOCUMENTO, String NUMERO_DOC, String TEL_RESIDENCIA, String TEL_CEL, String NIT, String DIRECCION,  String CIUDAD,String PAIS,String DEPARTAMENTO, String PROFESION) {
         this.NOMBRE = NOMBRE;
         this.APELLIDO = APELLIDO;
         this.TIPODOCUMENTO = TIPODOCUMENTO;

@@ -15,7 +15,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     HttpSession sesion = request.getSession(true);
-    ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
+    //ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
     Utileria algo = new Utileria();
 
     Idioma idioma = null;
@@ -32,11 +32,24 @@
         usuario = sesion.getAttribute("user").toString();
     }
     int opera = 0;
-    if (request.getAttribute("Operacion") != null) {
+    if (request.getParameter("Operacion") != null) {
         opera = Integer.parseInt(request.getParameter("Operacion"));
+    }
+
+    String datoBuscar = "";
+    if (request.getParameter("datoBuscar") != null) {
+        datoBuscar = request.getParameter("datoBuscar").toString();
+    }
+
+    String campoFiltro = "";
+    if (request.getParameter("campoFiltro") != null) {
+        campoFiltro = request.getParameter("campoFiltro").toString();
     }
     // controladorProducto cp = new controladorProducto();
     OperacionesCliente oC = new OperacionesCliente();
+    System.out.println("Operacion: " + opera);
+    System.out.println("datoBuscar: " + datoBuscar);
+    System.out.println("campoFiltro: " + campoFiltro);
     //   ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
 %>
 <!DOCTYPE html>
@@ -82,7 +95,7 @@
             }
         </script>
     </head>
-    <body  class="landing">
+    <body >
         <!--        <section id="container" > -->
         <div id="page-wrapper">
             <!-- Header -->
@@ -154,123 +167,110 @@
                 <p>Sirviendole con total amabilidad desde 1985.</p>
             </section>
             <!-- Main -->
-            <section class="container" id="main">
+            <section id="main" class="container">
                 <section class="box special">
                     <header class="major">
                         <h2>REPORTERIA</h2>
                         <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
                     </header>                
                 </section>
-                <!-- Tabla Productos del Carrito -->
-                <div class="12u 20u(narrower)" id ="verClientes">
-                    <!--<div class="20u "> -->
-                    <!-- Table -->
-                    <section class="box" >
-                        <div class="table-wrapper">
-                            <% if (opera == 1) {//VER CLIENTE%>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th><h4>NOMBRE COMPLETO</h4></th>
-                                        <th>USUARIO</th>
-                                        <th>NO DOCUMENTO</th>
-                                        <th>TELÉFONO CELULAR</th>
-                                        <th>TELÉFONO RESIDENCIA</th>
-                                        <th>DIRECCIÓN</th>
-                                        <th>CIUDAD</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <div class="6u 12u(mobilep)">
-                                    <div class="select-wrapper">
-                                        <select  id="CampoFiltro">
-                                            <option value="" disabled selected hidden>Buscar Cliente por:</option>
-                                            <option value="NOMBRE">Nombre</option>
-                                            <option value="CIUDAD">Ciudad</option>
-                                        </select>
+                <!-- //REPORTE 1, CLIENTES POR CIUDAD O NOMBRE -->
+                <div class="row">
+                    <div class="12u" id ="verClientes">
+                        <section class="box" >
+                            <%//VER CLIENTES = 1
+                                if (opera == 1) {
+                            %>
+                            <header class="major">
+                                <h2>REPORTE CLIENTES</h2>
+                            </header>
+                            <form method="POST" action="reporteria.jsp?Operacion=1#verClientes">
+                                <div class="row uniform 50%">
+                                    <div class="6u 12u(narrower)">
+                                        <div class="select-wrapper">
+                                            <select  id="CampoFiltro" name="campoFiltro" >
+                                                <option value="" disabled selected hidden>Buscar Cliente por:</option>
+                                                <option value="NOMBRE">Nombre</option>
+                                                <option value="CIUDAD">Ciudad</option>
+                                            </select>
+                                        </div>
                                     </div>
+                                    <div class="6u 12u(narrower)">
+                                        <input type="text" name="datoBuscar" id="datoBuscar" value="" placeholder="Que coincida con..." />
+                                    </div>
+                                    <ul class="actions">
+                                        <li><input type="submit" name ="Buscar" value="Buscar" /></li>
+                                    </ul>
                                 </div>
-                                <%
-                                    //Cliente cliente = oC.mostrarDatosCliente();
-                                    ArrayList<Cliente> clientes = oC.mostrarDatosClienteReporte("NOMBRE", "A");
-                                    int conta = 0;
+                            </form>
+                            <%
+                                ArrayList<Cliente> clientes = null;
+                                int conta = 0;
+                                if (!campoFiltro.equals("") && !datoBuscar.equals("")) {
+                                    clientes = oC.mostrarDatosClienteReporte(campoFiltro, datoBuscar);
+                                    if (clientes != null && clientes.size() != 0) {
+                            %>
+                            <p> &nbsp</p>
+                            <div class="table-wrapper">
+                                <table class="actions">
+                                    <thead>
+                                        <tr>
+                                            <th>NOMBRE COMPLETO</th>
+                                            <th>USUARIO</th>
+                                            <th>NO DOCUMENTO</th>
+                                            <th>PROFESION</th>
+                                            <th>TELÉFONO CELULAR</th>
+                                            <th>TELÉFONO RESIDENCIA</th>
+                                            <th>DIRECCIÓN</th>
+                                            <th>CIUDAD</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                            while (conta < clientes.size()) {
+                                        %>                               
+                                        <tr>
+                                            <td><%out.write(clientes.get(conta).getNOMBRE() + " " + clientes.get(conta).getAPELLIDO());%></td>
+                                            <td><%out.write(clientes.get(conta).getUSUARIO());%></td>
+                                            <td><%out.write(clientes.get(conta).getNUMERO_DOC());%></td>
+                                            <td><%out.write(clientes.get(conta).getPROFESION());%></td>
+                                            <td><%out.write(clientes.get(conta).getTEL_CEL());%></td>
+                                            <td><% out.write(clientes.get(conta).getTEL_RESIDENCIA());%></td>
+                                            <td><%out.write(clientes.get(conta).getDIRECCION());%></td>
+                                            <td><%out.write(clientes.get(conta).getCIUDAD());%></td>
+                                        </tr>
+                                        <%
+                                                conta++;
+                                            };
+                                        %>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3"> 
+                                                <%out.write("Se encontraron: " + conta + " coincidencias");
+                                                        } else {
+                                                            out.write(" <p> &nbsp</p> <h3>No se encontraron resultados</h3>");
 
-                                    while (conta < clientes.size()) {
-
-                                        //    for (Compra a : articulos) {
-                                        //  total += a.getCantidad() * producto.getPRECIOVENTA();
-                                %>
-                                <tr>
-                                    <td>
-                                        <div class="4u">
-                                            <h4><%out.write(clientes.get(conta).getNOMBRE()+ " " + clientes.get(conta).getAPELLIDO());%> </h4>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="4u">
-                                            <%out.write(clientes.get(conta).getUSUARIO());%>
-                                        </div>
-                                    </td>
-                                    <td><%out.write(clientes.get(conta).getNUMERO_DOC());%></td>
-                                    <td>Q. <%//= algo.convertirCantidad(cliente.getPRECIOVENTA())%></td>
-                                    <td class="cart_total">
-                                        <p class="cart_total_price">Q. <%=// algo.convertirCantidad(Math.round(cliente.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0)%></p>
-                                    </td>
-                                    <td class="cart_delete">
-<!--                                        <form method="post" action="EliminarProducto">
-                                            <span id="idarticulo" style="display:none;"><%//=cliente.getID_PRODUCTO()%></span>
-                                            <input type="hidden" value="<%//= cliente.getID_PRODUCTO()%>" name="idcliente">
-                                            <button type="submit" >
-                                                <i class="fa fa-times"></i>
-                                            </button>
-                                        </form>-->
-                                    </td>
-                                </tr>
-                                <% }%>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="3"></td>
-                                        <td><h3>Total</h3></td>
-                                        <td><h3>Q. <%//=algo.convertirCantidad(total)%></h3></td>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                                                        }
+                                                    }%>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table> 
+                            </div>
                             <% } else {%>
                             <h4>No hay Articulos en el carrito &nbsp;
-                                <img  src="images/404.png" alt=" Sin Muebles"  width="25" height="21" /></h4> 
-                                <%}%>
-                            &nbsp;
-                        </div>
-                        <div class="row" >  
-                            <div class="4u 12u(narrow)">
-                                <a class ="button" href="catalogo.jsp?tipo=1#muebles">
-                                    <!--                                <a class ="button special" href="#pagotarjeta" onclick="mostrar()">-->
-                                    Seguir Comprando &nbsp; <img src="images/ICONOS BLANCOS/FACTURA.png" width="25" height="21" alt ="FAC"> 
-                                </a>
-                            </div>
-                            <div class="4u 12u(narrow)">
-                                <p></p>
-                            </div> 
-                            <%if (articulos != null && articulos.size() > 0 && (nivel.equals("2") || nivel.equals("1"))) {%>
-                            <div class="4u 12u(mobilep)">
-                                <a class ="button special" href="#pagotarjeta" onclick="mostrar()">
-                                    Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
-                                </a>
-                            </div>
-                            <%} else if (articulos != null && articulos.size() > 0) {%>
-                            <div class="4u 12u(mobilep)">
-                                <a class ="button special" href="#OrdenCompra" onclick="mostrarNoLogueado()">
-                                    Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
-                                </a>
-                                <div class="row" style ='display:none' id ="NoLogueado">
-                                    <h5 style ='color:red; font-weight:bold;' >(Debe estar logueado para completar la transacción)</h5>
-                                </div>
-                            </div>
+                                <img  src="images/404.png" alt=" Sin Muebles"  width="25" height="21" />
+                            </h4> 
                             <%}%>
-                        </div>
-                    </section>
-                    <!-- </div> -->
+                            &nbsp;
+                            <div class="row" >  
+                                <div class="4u 12u(narrow)">
+                                    <p></p>
+                                </div> 
+                            </div>
+                        </section>
+                    </div>
                 </div>
             </section>
             <!-- Footer -->

@@ -379,83 +379,84 @@ public class OperacionesCliente {
 
         Connection cone = coneLocal.NewConnection();
 
-        String queryString = "Select * From CLIENTE Where  ";
-        if (campoFiltro.equals("NOMBRE")) {
-            queryString += " NOMBRE LIKE '%" + campoFiltro + "'%";
-        }
-        if (campoFiltro.equals("CIUDAD")) {
-            queryString += " CIUDAD LIKE '%" + campoFiltro + "'%";
-        }
-        System.out.println("QUERY CLIENTE-FILTRO: " + queryString);
-
-        Statement stQuery = cone.createStatement();
-        ResultSet rsRecords = stQuery.executeQuery(queryString);
+//        String queryString = "Select * From CLIENTE Where  ";
+//        if (campoFiltro.equals("NOMBRE")) {
+//            queryString += " NOMBRE LIKE '%" + dato + "%'";
+//        }
+//        if (campoFiltro.equals("CIUDAD")) {
+//            queryString += " CIUDAD LIKE '%" + dato + "%'";
+//        }
+//        System.out.println("QUERY CLIENTE-FILTRO: " + queryString);
+//
+//        Statement stQuery = cone.createStatement();
+//        ResultSet rsRecords = stQuery.executeQuery(queryString);
         //  Cliente cl = new Cliente();
         if (cone != null) {
-//            try {
-//                cone.setAutoCommit(false);
-//                CallableStatement funcionEliminarCliente = cone.prepareCall("");
-//
-//                // cargar parametros de entrada
-//                funcionEliminarCliente.setString(2, IdCliente);
-//                funcionEliminarCliente.registerOutParameter(1, Types.INTEGER);//Parametro de salida
-//                funcionEliminarCliente.execute();
-//
-//                cone.commit();// confirmar si se ejecuto sin errores
-//                respuesta = funcionEliminarCliente.getInt(1);// obtener salida
-//            } catch (SQLException e) {
-//                cone.rollback();// deshacer la ejecucion en caso de error
-//                System.out.println("Error al ejecutar función  por, " + e); // informar por consola
-//            } finally {
-//                cone.close();// cerrar la conexion
-//            }
-
-//            String queryString = "Select ID_USUARIO From USUARIO  Where USUARIO  = '" + campoFiltro + "'";
-//            System.out.println("QUERY 1: " + queryString);
-//
-//            try {
-//                Statement stQuery = cone.createStatement();
-//                ResultSet rsRecords = stQuery.executeQuery(queryString);
-//
-//                while (rsRecords.next()) {
-//                    campoFiltro = rsRecords.getNString("ID_USUARIO");
-//                }
-//            } catch (Exception ex1) {
-//                System.out.println("ERROR SQL1");
-//            }
             try {
-                while (rsRecords.next()) {
+                cone.setAutoCommit(false);
+                CallableStatement procMostrarClientes = cone.prepareCall("{CALL MOSTRARCLIENTESREPORTE(?,?,?,?,?,?,?,?,?)}");
 
-                    clientes.add(new Cliente(
-                            rsRecords.getString("NOMBRE"),
-                            rsRecords.getString("APELLIDO"),
-                            rsRecords.getString("TIPODOCUMENTO"),
-                            rsRecords.getString("NUMERO_DOC"),
-                            rsRecords.getString("TEL_RESIDENCIA"),
-                            rsRecords.getString("TEL_CEL"),
-                            rsRecords.getString("NIT"),
-                            rsRecords.getString("DIRECCION"),
-                            rsRecords.getString("IDCIUDAD"),
-                            rsRecords.getString("PAIS"),
-                            rsRecords.getString("DEPARTAMENTO"),
-                            rsRecords.getString("PROFESION")));
-                }
+                // cargar parametros de entrada
+                procMostrarClientes.setString(1, campoFiltro);
+                procMostrarClientes.setString(2, campoFiltro);
+                procMostrarClientes.registerOutParameter(1, Types.INTEGER);//Parametro de salida
+                procMostrarClientes.execute();
+
+                cone.commit();// confirmar si se ejecuto sin errores
+                respuesta = procMostrarClientes.getInt(1);// obtener salida
             } catch (SQLException e) {
-                System.out.println("Error en getAllProductos()" + e);
+                cone.rollback();// deshacer la ejecucion en caso de error
+                System.out.println("Error al ejecutar función  por, " + e); // informar por consola
             } finally {
-                try {
-                    if (rsRecords != null) {
-                        rsRecords.close();
-                    }
-                    if (rsRecords != null) {
-                        rsRecords.close();
-                    }
-                    if (coneLocal.NewConnection() != null) {
-                        coneLocal.NewConnection().close();
-                    }
-                } catch (Exception e) {
-                }
+                cone.close();// cerrar la conexion
             }
+
+            String queryString = "Select ID_USUARIO From USUARIO  Where USUARIO  = '" + campoFiltro + "'";
+            System.out.println("QUERY 1: " + queryString);
+
+            try {
+                Statement stQuery = cone.createStatement();
+                ResultSet rsRecords = stQuery.executeQuery(queryString);
+
+                while (rsRecords.next()) {
+                    campoFiltro = rsRecords.getNString("ID_USUARIO");
+                }
+            } catch (Exception ex1) {
+                System.out.println("ERROR SQL1");
+            }
+//            try {
+//                while (rsRecords.next()) {
+//
+//                    clientes.add(new Cliente(
+//                            rsRecords.getString("NOMBRE"),
+//                            rsRecords.getString("APELLIDO"),
+//                            rsRecords.getString("TIPODOCUMENTO"),
+//                            rsRecords.getString("NUMERO_DOC"),
+//                            rsRecords.getString("TEL_RESIDENCIA"),
+//                            rsRecords.getString("TEL_CEL"),
+//                            rsRecords.getString("NIT"),
+//                            rsRecords.getString("DIRECCION"),
+//                            rsRecords.getString("IDCIUDAD"),
+//                            rsRecords.getString("PAIS"),
+//                            rsRecords.getString("DEPARTAMENTO"),
+//                            rsRecords.getString("PROFESION")));
+//                }
+//            } catch (SQLException e) {
+//                System.out.println("Error en mostrarDatosClienteReporte()" + e);
+//            } finally {
+//                try {
+//                    if (rsRecords != null) {
+//                        rsRecords.close();
+//                    }
+//                    if (rsRecords != null) {
+//                        rsRecords.close();
+//                    }
+//                    if (coneLocal.NewConnection() != null) {
+//                        coneLocal.NewConnection().close();
+//                    }
+//                } catch (Exception e) {
+//                }
+//            }
         }
         return clientes;
     }
