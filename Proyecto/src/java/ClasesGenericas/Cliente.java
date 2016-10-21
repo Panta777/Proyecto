@@ -11,7 +11,6 @@ package ClasesGenericas;
 public class Cliente {
 
     private int ID_CLIENTE;
-
     private String USUARIO;
     private String CONTRASENA;
     private String NUMERO_DOC;
@@ -65,19 +64,17 @@ public class Cliente {
         this.CIUDAD = "";
     }
 
-    public Cliente(String NOMBRE,String APELLIDO,String TIPODOCUMENTO, String NUMERO_DOC, String TEL_RESIDENCIA, String TEL_CEL, String NIT, String DIRECCION,  String CIUDAD,String PAIS,String DEPARTAMENTO, String PROFESION) {
+    public Cliente(String NOMBRE, String APELLIDO, String USUARIO, String NUMERO_DOC,String PROFESION, String TEL_CEL, String TEL_RESIDENCIA, String NIT, String DIRECCION, String CIUDAD ) {
         this.NOMBRE = NOMBRE;
         this.APELLIDO = APELLIDO;
-        this.TIPODOCUMENTO = TIPODOCUMENTO;
+        this.USUARIO = USUARIO;
         this.NUMERO_DOC = NUMERO_DOC;
-        this.TEL_RESIDENCIA = TEL_RESIDENCIA;
+        this.PROFESION = PROFESION;
         this.TEL_CEL = TEL_CEL;
+        this.TEL_RESIDENCIA = TEL_RESIDENCIA;
         this.NIT = NIT;
         this.DIRECCION = DIRECCION;
         this.CIUDAD = CIUDAD;
-        this.PAIS = PAIS;
-        this.DEPARTAMENTO = DEPARTAMENTO;
-        this.PROFESION = PROFESION;
     }
 
     public String getCIUDAD() {

@@ -174,13 +174,14 @@
                         <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
                     </header>                
                 </section>
-                <!-- //REPORTE 1, CLIENTES POR CIUDAD O NOMBRE -->
+
                 <div class="row">
+                    <%//VER CLIENTES = 1
+                        if (opera == 1) {
+                    %>
+                    <!-- **** REPORTE 1, CLIENTES POR CIUDAD, NOMBRE, NIT **** -->
                     <div class="12u" id ="verClientes">
                         <section class="box" >
-                            <%//VER CLIENTES = 1
-                                if (opera == 1) {
-                            %>
                             <header class="major">
                                 <h2>REPORTE CLIENTES</h2>
                             </header>
@@ -191,7 +192,9 @@
                                             <select  id="CampoFiltro" name="campoFiltro" >
                                                 <option value="" disabled selected hidden>Buscar Cliente por:</option>
                                                 <option value="NOMBRE">Nombre</option>
+                                                <option value="APELLIDO">Apellido</option>
                                                 <option value="CIUDAD">Ciudad</option>
+                                                <option value="NIT">Nit</option>
                                             </select>
                                         </div>
                                     </div>
@@ -210,13 +213,13 @@
                                     clientes = oC.mostrarDatosClienteReporte(campoFiltro, datoBuscar);
                                     if (clientes != null && clientes.size() != 0) {
                             %>
-                            <p> &nbsp</p>
                             <div class="table-wrapper">
                                 <table class="actions">
                                     <thead>
                                         <tr>
                                             <th>NOMBRE COMPLETO</th>
                                             <th>USUARIO</th>
+                                            <th>NIT</th>
                                             <th>NO DOCUMENTO</th>
                                             <th>PROFESION</th>
                                             <th>TELÉFONO CELULAR</th>
@@ -232,10 +235,11 @@
                                         <tr>
                                             <td><%out.write(clientes.get(conta).getNOMBRE() + " " + clientes.get(conta).getAPELLIDO());%></td>
                                             <td><%out.write(clientes.get(conta).getUSUARIO());%></td>
+                                            <td><%out.write(clientes.get(conta).getNIT());%></td>
                                             <td><%out.write(clientes.get(conta).getNUMERO_DOC());%></td>
                                             <td><%out.write(clientes.get(conta).getPROFESION());%></td>
                                             <td><%out.write(clientes.get(conta).getTEL_CEL());%></td>
-                                            <td><% out.write(clientes.get(conta).getTEL_RESIDENCIA());%></td>
+                                            <td><%out.write(clientes.get(conta).getTEL_RESIDENCIA());%></td>
                                             <td><%out.write(clientes.get(conta).getDIRECCION());%></td>
                                             <td><%out.write(clientes.get(conta).getCIUDAD());%></td>
                                         </tr>
@@ -258,19 +262,107 @@
                                     </tfoot>
                                 </table> 
                             </div>
-                            <% } else {%>
-                            <h4>No hay Articulos en el carrito &nbsp;
-                                <img  src="images/404.png" alt=" Sin Muebles"  width="25" height="21" />
-                            </h4> 
-                            <%}%>
                             &nbsp;
-                            <div class="row" >  
-                                <div class="4u 12u(narrow)">
-                                    <p></p>
-                                </div> 
-                            </div>
                         </section>
                     </div>
+                    <!-- FIN REPORTE 1 -->
+                    <% } else if(opera ==2) {%>
+                   <!-- **** REPORTE 2, PRODUCTOS**** -->
+                    <div class="12u" id ="verClientes">
+                        <section class="box" >
+                            <header class="major">
+                                <h2>REPORTE CLIENTES</h2>
+                            </header>
+                            <form method="POST" action="reporteria.jsp?Operacion=1#verClientes">
+                                <div class="row uniform 50%">
+                                    <div class="6u 12u(narrower)">
+                                        <div class="select-wrapper">
+                                            <select  id="CampoFiltro" name="campoFiltro" >
+                                                <option value="" disabled selected hidden>Buscar Cliente por:</option>
+                                                <option value="NOMBRE">Nombre</option>
+                                                <option value="APELLIDO">Apellido</option>
+                                                <option value="CIUDAD">Ciudad</option>
+                                                <option value="NIT">Nit</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="6u 12u(narrower)">
+                                        <input type="text" name="datoBuscar" id="datoBuscar" value="" placeholder="Que coincida con..." />
+                                    </div>
+                                    <ul class="actions">
+                                        <li><input type="submit" name ="Buscar" value="Buscar" /></li>
+                                    </ul>
+                                </div>
+                            </form>
+                            <%
+                                ArrayList<Cliente> clientes = null;
+                                int conta = 0;
+                                if (!campoFiltro.equals("") && !datoBuscar.equals("")) {
+                                    clientes = oC.mostrarDatosClienteReporte(campoFiltro, datoBuscar);
+                                    if (clientes != null && clientes.size() != 0) {
+                            %>
+                            <div class="table-wrapper">
+                                <table class="actions">
+                                    <thead>
+                                        <tr>
+                                            <th>NOMBRE COMPLETO</th>
+                                            <th>USUARIO</th>
+                                            <th>NIT</th>
+                                            <th>NO DOCUMENTO</th>
+                                            <th>PROFESION</th>
+                                            <th>TELÉFONO CELULAR</th>
+                                            <th>TELÉFONO RESIDENCIA</th>
+                                            <th>DIRECCIÓN</th>
+                                            <th>CIUDAD</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                            while (conta < clientes.size()) {
+                                        %>                               
+                                        <tr>
+                                            <td><%out.write(clientes.get(conta).getNOMBRE() + " " + clientes.get(conta).getAPELLIDO());%></td>
+                                            <td><%out.write(clientes.get(conta).getUSUARIO());%></td>
+                                            <td><%out.write(clientes.get(conta).getNIT());%></td>
+                                            <td><%out.write(clientes.get(conta).getNUMERO_DOC());%></td>
+                                            <td><%out.write(clientes.get(conta).getPROFESION());%></td>
+                                            <td><%out.write(clientes.get(conta).getTEL_CEL());%></td>
+                                            <td><%out.write(clientes.get(conta).getTEL_RESIDENCIA());%></td>
+                                            <td><%out.write(clientes.get(conta).getDIRECCION());%></td>
+                                            <td><%out.write(clientes.get(conta).getCIUDAD());%></td>
+                                        </tr>
+                                        <%
+                                                conta++;
+                                            };
+                                        %>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3"> 
+                                                <%out.write("Se encontraron: " + conta + " coincidencias");
+                                                        } else {
+                                                            out.write(" <p> &nbsp</p> <h3>No se encontraron resultados</h3>");
+
+                                                        }
+                                                    }%>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table> 
+                            </div>
+                            &nbsp;
+                        </section>
+                    </div>
+                    <!-- FIN REPORTE 2 -->
+                     <%}else {%>
+                    <div class="12u">  
+                        <section class="box" >
+                            <h4>No hay Articulos en el carrito &nbsp;
+                                <img  src="images/404.png" alt=" Sin Muebles"  width="25" height="21" />
+                            </h4>
+                        </section> 
+                    </div>
+                    <%}%>
                 </div>
             </section>
             <!-- Footer -->

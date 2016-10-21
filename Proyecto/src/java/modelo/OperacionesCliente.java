@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Arrays;
+import oracle.jdbc.OracleTypes;
 
 /**
  * @author panle
@@ -365,98 +366,57 @@ public class OperacionesCliente {
     }
 
     /**
-     * Muestra datos del Cliente, segun su usuario un Cliente por medio de su
-     * Id¿?
+     * Muestra datos del Cliente, segun 
+     * diferentes criterios para el reporte
      *
      * @param campoFiltro
      * @param dato
-     * @return 1 = exitoso 2 = error al procesar datos
+     * @return registros Cliente
      * @throws java.sql.SQLException
      */
     public ArrayList<Cliente> mostrarDatosClienteReporte(String campoFiltro, String dato) throws SQLException {
-       // int respuesta = 0;
+        // int respuesta = 0;
         ArrayList<Cliente> clientes = new ArrayList<>();
-
         Connection cone = coneLocal.NewConnection();
 
-//        String queryString = "Select * From CLIENTE Where  ";
-//        if (campoFiltro.equals("NOMBRE")) {
-//            queryString += " NOMBRE LIKE '%" + dato + "%'";
-//        }
-//        if (campoFiltro.equals("CIUDAD")) {
-//            queryString += " CIUDAD LIKE '%" + dato + "%'";
-//        }
-//        System.out.println("QUERY CLIENTE-FILTRO: " + queryString);
-//
-//        Statement stQuery = cone.createStatement();
-//        ResultSet rsRecords = stQuery.executeQuery(queryString);
-        //  Cliente cl = new Cliente();
         if (cone != null) {
             try {
                 cone.setAutoCommit(false);
-                CallableStatement procMostrarClientes = cone.prepareCall("{CALL MOSTRARCLIENTESREPORTE(?,?,?,?,?,?,?,?,?)}");
+                CallableStatement procMostrarClientes = cone.prepareCall("{CALL DatosReporteCliente(?,?,?)}");
 
                 // cargar parametros de entrada
                 procMostrarClientes.setString(1, campoFiltro);
-                procMostrarClientes.setString(2, campoFiltro);
-                procMostrarClientes.registerOutParameter(1, Types.INTEGER);//Parametro de salida
-                procMostrarClientes.execute();
+                procMostrarClientes.setString(2, dato);
 
+                //parametro de salida
+                procMostrarClientes.registerOutParameter(3, OracleTypes.CURSOR);
+
+                procMostrarClientes.executeUpdate();
+                ResultSet rsRecords = (ResultSet) procMostrarClientes.getObject(3);
+
+                if (rsRecords != null) {
+                   // System.out.println("Hay data");
+                    while (rsRecords.next()) {// obtener salida
+                        clientes.add(new Cliente(
+                                rsRecords.getString("NOMBRE"),
+                                rsRecords.getString("APELLIDO"),
+                                rsRecords.getString("ID_USUARIO"),
+                                rsRecords.getString("NUMERO_DOC"),
+                                rsRecords.getString("PROFESION"),
+                                rsRecords.getString("TEL_CEL"),
+                                rsRecords.getString("TEL_RESIDENCIA"),
+                                rsRecords.getString("NIT"),
+                                rsRecords.getString("DIRECION"),
+                                rsRecords.getString("IDCIUDAD")));
+                    }
+                }
                 cone.commit();// confirmar si se ejecuto sin errores
-                respuesta = procMostrarClientes.getInt(1);// obtener salida
             } catch (SQLException e) {
                 cone.rollback();// deshacer la ejecucion en caso de error
-                System.out.println("Error al ejecutar función  por, " + e); // informar por consola
+                System.out.println("Error al ejecutar función MOSTRARCLIENTESREPORTE por, " + e); // informar por consola
             } finally {
                 cone.close();// cerrar la conexion
             }
-
-            String queryString = "Select ID_USUARIO From USUARIO  Where USUARIO  = '" + campoFiltro + "'";
-            System.out.println("QUERY 1: " + queryString);
-
-            try {
-                Statement stQuery = cone.createStatement();
-                ResultSet rsRecords = stQuery.executeQuery(queryString);
-
-                while (rsRecords.next()) {
-                    campoFiltro = rsRecords.getNString("ID_USUARIO");
-                }
-            } catch (Exception ex1) {
-                System.out.println("ERROR SQL1");
-            }
-//            try {
-//                while (rsRecords.next()) {
-//
-//                    clientes.add(new Cliente(
-//                            rsRecords.getString("NOMBRE"),
-//                            rsRecords.getString("APELLIDO"),
-//                            rsRecords.getString("TIPODOCUMENTO"),
-//                            rsRecords.getString("NUMERO_DOC"),
-//                            rsRecords.getString("TEL_RESIDENCIA"),
-//                            rsRecords.getString("TEL_CEL"),
-//                            rsRecords.getString("NIT"),
-//                            rsRecords.getString("DIRECCION"),
-//                            rsRecords.getString("IDCIUDAD"),
-//                            rsRecords.getString("PAIS"),
-//                            rsRecords.getString("DEPARTAMENTO"),
-//                            rsRecords.getString("PROFESION")));
-//                }
-//            } catch (SQLException e) {
-//                System.out.println("Error en mostrarDatosClienteReporte()" + e);
-//            } finally {
-//                try {
-//                    if (rsRecords != null) {
-//                        rsRecords.close();
-//                    }
-//                    if (rsRecords != null) {
-//                        rsRecords.close();
-//                    }
-//                    if (coneLocal.NewConnection() != null) {
-//                        coneLocal.NewConnection().close();
-//                    }
-//                } catch (Exception e) {
-//                }
-//            }
         }
         return clientes;
     }
