@@ -135,12 +135,12 @@
                             <div class="actions">
                                 <ul class="actions vertical">
                                     <li><a href="reporteria.jsp?Operacion=1#verClientes" class="button">VER CLIENTES</a></li>
-                                    <li><a href="reporteria.jsp?Operacion=2#main" class="button special">VER PRODUCTOS</a></li>
-                                    <li><a href="reporteria.jsp?Operacion=3#main" class="button">VENTAS POR FECHA</a></li>
-                                    <li><a href="reporteria.jsp?Operacion=4#main" class="button special">VENTAS POR CIUDAD</a></li>
-                                    <li><a href="reporteria.jsp?Operacion=5#main" class="button ">VENTAS POR MUEBLE</a></li>
-                                    <li><a href="reporteria.jsp?Operacion=6#main" class="button special">PRODUCTOS POR CLIENTE</a></li>
-                                    <li><a href="reporteria.jsp?Operacion=7#main" class="button alt">PRODUCTO MAS VENDIDO POR CIUDAD</a></li>
+                                    <li><a href="reporteria.jsp?Operacion=2#verProductos" class="button special">VER PRODUCTOS</a></li>
+                                    <li><a href="reporteria.jsp?Operacion=3#ventasFecha" class="button">VENTAS POR FECHA</a></li>
+                                    <li><a href="reporteria.jsp?Operacion=4#ventasCiudad" class="button special">VENTAS POR CIUDAD</a></li>
+                                    <li><a href="reporteria.jsp?Operacion=5#ventasMueble" class="button ">VENTAS POR MUEBLE</a></li>
+                                    <li><a href="reporteria.jsp?Operacion=6#productosCliente" class="button special">PRODUCTOS POR CLIENTE</a></li>
+                                    <li><a href="reporteria.jsp?Operacion=7#productoMasVendido" class="button alt">PRODUCTO MAS VENDIDO POR CIUDAD</a></li>
                                 </ul>
                             </div> 
                             <!--                            <div class="row">
@@ -181,7 +181,7 @@
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <span class="image featured"><img src="images/TRADICIONALES/MTradicionales.png" alt = "Muebles Tradicionales"/></span>
-                                    <h4><a href="catalogo.jsp?tipo=1#muebles" class= "button alt" >Muebles Tradicionales</a></h4>
+                                    <h4><a href="catalogo.jsp?tipo=TRADICIONALES#muebles" class= "button alt" >Muebles Tradicionales</a></h4>
                                     <p>Este tipo de muebles se caracterizan por contar con una estética conservadora y  detalles muy elegantes, como maderas brillantes y oscuras, diseño simétrico, tapicería delicada y curvas bien detalladas.</p>
                                 </section>
                             </div>
@@ -189,7 +189,7 @@
                                 <section class="box special">
                                     <!--  <span class="icon major fa-area-chart accent3"></span> -->
                                     <span class="image featured"><img src="images/MODERNOS/MModernos.png" alt = "Muebles Modernos"/></span>
-                                    <h4><a href="catalogo.jsp?tipo=2#muebles" class= "button alt" >Muebles Modernos</a></h4>
+                                    <h4><a href="catalogo.jsp?tipo=MODERNOS#muebles" class= "button alt" >Muebles Modernos</a></h4>
                                     <p>Los muebles de este estilo presentan líneas ligeras y son asociados con el minimalismo posmoderno. Son producidos para ser funcionales y prácticos,ajustandose a las necesidades de la actualidad.</p>
                                 </section>
                             </div>
@@ -199,7 +199,7 @@
                                 <section class="box special">
                                     <!--  <span class="icon major fa-cloud accent4"></span>-->
                                     <span class="image featured"><img src="images/COLONIALES/MColoniales.png" alt = "Muebles Coloniales"/></span>
-                                    <h4><a href="catalogo.jsp?tipo=3#muebles" class= "button alt" >Muebles Coloniales</a></h4>
+                                    <h4><a href="catalogo.jsp?tipo=COLONIALES#muebles" class= "button alt" >Muebles Coloniales</a></h4>
                                     <p>Son propios de las fincas y haciendas previas al siglo XX. Para su fabricación se recurre a materiales autóctonos, detalles artesanales, maderas macizas y toques exóticos que aún perduran en el tiempo.</p>
                                 </section>
                             </div>
@@ -207,7 +207,7 @@
                                 <section class="box special">
                                     <!--   <span class="icon major fa-lock accent5"></span>-->
                                     <span class="image featured"><img src="images/RUSTICOS/MRusticos.png" alt = "Muebles Rusticos"/></span>
-                                    <h4><a href="catalogo.jsp?tipo=4#muebles" class= "button alt" >Muebles Rústicos</a></h4>
+                                    <h4><a href="catalogo.jsp?tipo=RUSTICOS#muebles" class= "button alt" >Muebles Rústicos</a></h4>
                                     <p>Los muebles que cuentan con este estilo tienen una apariencia folklórica. Transmiten la sensación de ser muebles usados, sencillos o rudimentarios, además de dar una sensación hogareña.</p>
                                 </section>
                             </div>

@@ -8,6 +8,7 @@ package modelo;
 import ClasesGenericas.Producto;
 import java.sql.*;
 import java.util.ArrayList;
+import oracle.jdbc.OracleTypes;
 
 /**
  * @author panle
@@ -27,7 +28,7 @@ public class OperacionesProducto {
      * @throws java.sql.SQLException
      * @
      */
-    public ArrayList<Producto> getAllProductos(int tipo) {
+    public ArrayList<Producto> getAllProductos(String tipo) {
         ArrayList<Producto> productos = new ArrayList<>();
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -129,4 +130,66 @@ public class OperacionesProducto {
         }
         return producto;
     }
+
+    /**
+     * Muestra datos de los productos, segun diferentes criterios para el
+     * reporte
+     *
+     * @param campoFiltro
+     * @param dato
+     * @return registros Productos
+     * @throws java.sql.SQLException
+     */
+    public ArrayList<Producto> mostrarDatosProductoReporte(String campoFiltro, String dato) throws SQLException {
+        // int respuesta = 0;
+        ArrayList<Producto> productos = new ArrayList<>();
+        Connection cone = coneLocal.NewConnection();
+
+        if (cone != null) {
+            try {
+                cone.setAutoCommit(false);
+                CallableStatement procMostrarClientes = cone.prepareCall("{CALL DatosReporteProducto(?,?,?)}");
+
+                // cargar parametros de entrada
+                procMostrarClientes.setString(1, campoFiltro);
+                procMostrarClientes.setString(2, dato);
+
+                //parametro de salida
+                procMostrarClientes.registerOutParameter(3, OracleTypes.CURSOR);
+
+                procMostrarClientes.executeUpdate();
+                ResultSet rsRecords = (ResultSet) procMostrarClientes.getObject(3);
+
+                if (rsRecords != null) {
+                    // System.out.println("Hay data");
+                    while (rsRecords.next()) {// obtener salida
+                        productos.add(new Producto(rsRecords.getInt("ID_PRODUCTO"),
+                                rsRecords.getString("NOMBRE"),
+                                rsRecords.getString("REFERENCIA"),
+                                rsRecords.getString("DESCRIPCION"),
+                                rsRecords.getString("TIPO"),
+                                rsRecords.getString("MATERIAL"),
+                                rsRecords.getString("ALTO"),
+                                rsRecords.getString("ANCHO"),
+                                rsRecords.getString("PROFUNDIDAD"),
+                                rsRecords.getString("COLOR"),
+                                rsRecords.getString("PESO"),
+                                rsRecords.getString("FOTO"),
+                                rsRecords.getString("FECHA_ALTA"),
+                                rsRecords.getString("FECHA_BAJA"),
+                                rsRecords.getString("ESTADO"),
+                                rsRecords.getDouble("PRECIO_VENTA")));;
+                    }
+                }
+                cone.commit();// confirmar si se ejecuto sin errores
+            } catch (SQLException e) {
+                cone.rollback();// deshacer la ejecucion en caso de error
+                System.out.println("Error al ejecutar función MOSTRARCLIENTESREPORTE por, " + e); // informar por consola
+            } finally {
+                cone.close();// cerrar la conexion
+            }
+        }
+        return productos;
+    }
+
 }

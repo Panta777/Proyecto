@@ -13,7 +13,7 @@ import modelo.OperacionesProducto;
  */
 public class controladorProducto {
 
-    public String getProductos(int tipo) {
+    public String getProductos(String tipo) {
         OperacionesProducto mp = new OperacionesProducto();
         String htmlcode = "";
         for (Producto producto : mp.getAllProductos(tipo)) {

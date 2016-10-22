@@ -31,10 +31,10 @@
     </head>
     <body class="landing">
         <%
-            int tipo = 0;
+            String tipo = "";
             if (request.getParameter("tipo") != null)
             {
-                tipo = Integer.parseInt(request.getParameter("tipo"));
+                tipo = request.getParameter("tipo").toString();
             }
             
             Idioma idioma = null;
@@ -154,22 +154,22 @@
                     <section class="box special features" id = "muebles">
                             <h3>
                                 <%
-                                    switch (tipo) {
-                                        case 1: case 0:
-                                            out.write("MUEBLES TRADICIONALES");
-                                            break;
-                                        case 2:
-                                            out.write("MUEBLES MODERNOS");
-                                            break;
-                                        case 3:
-                                            out.write("MUEBLES COLONIALES");
-                                            break;
-                                        case 4:
-                                            out.write("MUEBLES RÚSTICOS");
-                                            break;
-                                        default:
-                                            out.write(idioma.getProperty("nombre"));
-                                    }
+//                                    switch (tipo) {
+//                                        case "TRADICIONALES": case "":
+//                                            out.write("MUEBLES TRADICIONALES");
+//                                            break;
+//                                        case "MODERNOS" :
+//                                            out.write("MUEBLES MODERNOS");
+//                                            break;
+//                                        case "COLONIALES":
+//                                            out.write("MUEBLES COLONIALES");
+//                                            break;
+//                                        case "RUSTICOS":
+//                                            out.write("MUEBLES RÚSTICOS");
+//                                            break;
+//                                        default:
+//                                            out.write(idioma.getProperty("nombre"));
+//                                    }
                                     
                                   %>
                             </h3>

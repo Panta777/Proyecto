@@ -3,6 +3,7 @@
     Created on : 9/10/2016, 08:45:11 PM
     Author     : panle
 --%>
+<%@page import="modelo.OperacionesProducto"%>
 <%@page import="ClasesGenericas.Cliente"%>
 <%@page import="modelo.OperacionesCliente"%>
 <%@page import="modelo.Utileria"%>
@@ -16,7 +17,7 @@
 <%
     HttpSession sesion = request.getSession(true);
     //ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
-    Utileria algo = new Utileria();
+    //Utileria algo = new Utileria();
 
     Idioma idioma = null;
     if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
@@ -45,8 +46,13 @@
     if (request.getParameter("campoFiltro") != null) {
         campoFiltro = request.getParameter("campoFiltro").toString();
     }
+
+    if (nivel.equals("3") || nivel.equals("4") || nivel == "") {
+        response.sendRedirect("index.jsp#main");
+    }
     // controladorProducto cp = new controladorProducto();
-    OperacionesCliente oC = new OperacionesCliente();
+
+    
     System.out.println("Operacion: " + opera);
     System.out.println("datoBuscar: " + datoBuscar);
     System.out.println("campoFiltro: " + campoFiltro);
@@ -61,41 +67,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
-        <!--        <link rel="stylesheet" href="assets/css/otros.css" />
-                <link rel="stylesheet" href="assets/css/otros2.css" />-->
-        <script type ="text/javascript">
-            previene = function () {
-                window.stop;
-                history.go(1);
-            };
-            window.back = previene();
-        </script>
-        <script type="text/javascript">
-            function mostrar() {
-                document.getElementById('pagotarjeta').style.display = 'block';
-            }
-
-            function mostrarNoLogueado() {
-                document.getElementById('NoLogueado').style.display = 'block';
-            }
-        </script>
-        <script>
-            function valida(e) {
-                tecla = (document.all) ? e.keyCode : e.which;
-
-                //Tecla de retroceso para borrar, siempre la permite
-                if (tecla == 8) {
-                    return true;
-                }
-
-                // Patron de entrada, en este caso solo acepta numeros
-                patron = /[0-9]/;
-                tecla_final = String.fromCharCode(tecla);
-                return patron.test(tecla_final);
-            }
-        </script>
     </head>
-    <body >
+    <body  >
         <!--        <section id="container" > -->
         <div id="page-wrapper">
             <!-- Header -->
@@ -208,6 +181,7 @@
                             </form>
                             <%
                                 ArrayList<Cliente> clientes = null;
+                                OperacionesCliente oC = new OperacionesCliente();
                                 int conta = 0;
                                 if (!campoFiltro.equals("") && !datoBuscar.equals("")) {
                                     clientes = oC.mostrarDatosClienteReporte(campoFiltro, datoBuscar);
@@ -266,23 +240,22 @@
                         </section>
                     </div>
                     <!-- FIN REPORTE 1 -->
-                    <% } else if(opera ==2) {%>
-                   <!-- **** REPORTE 2, PRODUCTOS**** -->
-                    <div class="12u" id ="verClientes">
+                    <% } else if (opera == 2) {%>
+                    <!-- **** REPORTE 2, PRODUCTOS**** -->
+                    <div class="12u" id ="verProductos">
                         <section class="box" >
                             <header class="major">
-                                <h2>REPORTE CLIENTES</h2>
+                                <h2>REPORTE PRODUCTOS</h2>
                             </header>
-                            <form method="POST" action="reporteria.jsp?Operacion=1#verClientes">
+                            <form method="POST" action="reporteria.jsp?Operacion=2#verProductos">
                                 <div class="row uniform 50%">
                                     <div class="6u 12u(narrower)">
                                         <div class="select-wrapper">
                                             <select  id="CampoFiltro" name="campoFiltro" >
-                                                <option value="" disabled selected hidden>Buscar Cliente por:</option>
+                                                <option value="" disabled selected hidden>Buscar Producto por:</option>
                                                 <option value="NOMBRE">Nombre</option>
-                                                <option value="APELLIDO">Apellido</option>
-                                                <option value="CIUDAD">Ciudad</option>
-                                                <option value="NIT">Nit</option>
+                                                <option value="REFERENCIA">Referencia</option>
+                                                <option value="TIPO">Categoria</option>
                                             </select>
                                         </div>
                                     </div>
@@ -295,41 +268,34 @@
                                 </div>
                             </form>
                             <%
-                                ArrayList<Cliente> clientes = null;
+                                ArrayList<Producto> productos = null;
+                                OperacionesProducto oP = new OperacionesProducto();
                                 int conta = 0;
                                 if (!campoFiltro.equals("") && !datoBuscar.equals("")) {
-                                    clientes = oC.mostrarDatosClienteReporte(campoFiltro, datoBuscar);
-                                    if (clientes != null && clientes.size() != 0) {
+                                    productos = oP.mostrarDatosProductoReporte(campoFiltro, datoBuscar);
+                                    if (productos != null && productos.size() != 0) {
                             %>
                             <div class="table-wrapper">
                                 <table class="actions">
                                     <thead>
                                         <tr>
-                                            <th>NOMBRE COMPLETO</th>
-                                            <th>USUARIO</th>
-                                            <th>NIT</th>
-                                            <th>NO DOCUMENTO</th>
-                                            <th>PROFESION</th>
-                                            <th>TELÉFONO CELULAR</th>
-                                            <th>TELÉFONO RESIDENCIA</th>
-                                            <th>DIRECCIÓN</th>
-                                            <th>CIUDAD</th>
+                                            <th>DESCRIPCIÓN PRODUCTO </th>
+                                            <th>REFERENCIA </th>
+                                            <th>TIPO</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <%
-                                            while (conta < clientes.size()) {
+                                            while (conta < productos.size()) {
+                                                int idProd = productos.get(conta).getID_PRODUCTO();
                                         %>                               
                                         <tr>
-                                            <td><%out.write(clientes.get(conta).getNOMBRE() + " " + clientes.get(conta).getAPELLIDO());%></td>
-                                            <td><%out.write(clientes.get(conta).getUSUARIO());%></td>
-                                            <td><%out.write(clientes.get(conta).getNIT());%></td>
-                                            <td><%out.write(clientes.get(conta).getNUMERO_DOC());%></td>
-                                            <td><%out.write(clientes.get(conta).getPROFESION());%></td>
-                                            <td><%out.write(clientes.get(conta).getTEL_CEL());%></td>
-                                            <td><%out.write(clientes.get(conta).getTEL_RESIDENCIA());%></td>
-                                            <td><%out.write(clientes.get(conta).getDIRECCION());%></td>
-                                            <td><%out.write(clientes.get(conta).getCIUDAD());%></td>
+                                            <td><%out.write(productos.get(conta).getDESCRIPCION()); %></td>
+                                            <td><a href="detalleproducto.jsp?id=<%=idProd%>#main" > 
+                                                    <% out.write(productos.get(conta).getREFERENCIA());%> 
+                                                </a>
+                                            </td>
+                                            <td><%out.write(productos.get(conta).getTIPO());%></td>
                                         </tr>
                                         <%
                                                 conta++;
@@ -354,15 +320,7 @@
                         </section>
                     </div>
                     <!-- FIN REPORTE 2 -->
-                     <%}else {%>
-                    <div class="12u">  
-                        <section class="box" >
-                            <h4>No hay Articulos en el carrito &nbsp;
-                                <img  src="images/404.png" alt=" Sin Muebles"  width="25" height="21" />
-                            </h4>
-                        </section> 
-                    </div>
-                    <%}%>
+                    <%} else {response.sendRedirect("index.jsp#reporteria");}%>
                 </div>
             </section>
             <!-- Footer -->
