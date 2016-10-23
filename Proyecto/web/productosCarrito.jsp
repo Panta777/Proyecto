@@ -231,7 +231,7 @@
                             </div>
                             <div class="row" >  
                                 <div class="4u 12u(narrow)">
-                                    <a class ="button" href="catalogo.jsp?tipo=1#muebles">
+                                    <a class ="button" href="index.jsp#catalogo">
                                         <!--                                <a class ="button special" href="#pagotarjeta" onclick="mostrar()">-->
                                         Seguir Comprando &nbsp; <img src="images/ICONOS BLANCOS/FACTURA.png" width="25" height="21" alt ="FAC"> 
                                     </a>
@@ -240,7 +240,7 @@
                                     <p></p>
                                 </div> 
                                 <%if (articulos != null && articulos.size() > 0 && (nivel.equals("2") || nivel.equals("1"))) {%>
-                                <div class="4u 12u(mobilep)">
+                                <div class="4u 12u(mobile2p)">
                                     <a class ="button special" href="#pagotarjeta" onclick="mostrar()">
                                         Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
                                     </a>
@@ -404,3 +404,4 @@
         <script src="js/carrito.js"></script>
     </body>
 </html>
+L
