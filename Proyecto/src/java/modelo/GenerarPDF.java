@@ -142,7 +142,8 @@ public class GenerarPDF {
             documento.add(tabla);
             documento.close();
 
-            File file = new File( nameFile + ".pdf");
+            File file = new File(nameFile + ".pdf");
+            System.out.println("Ruta: "+ file.getAbsolutePath());
             if (file.toString().endsWith(".pdf")) {
                 Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
             } else {

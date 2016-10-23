@@ -175,7 +175,7 @@
                                         <input type="text" name="datoBuscar" id="datoBuscar" value="" placeholder="Que coincida con..." />
                                     </div>
                                     <ul class="actions">
-                                        <li><input type="submit" name ="Buscar" value="Obtener Reporte" /></li>
+                                        <li><input type="submit" name ="Buscar" value="Buscar" /></li>
                                     </ul>
                                 </div>
                             </form>
@@ -264,7 +264,7 @@
                                         <input type="text" name="datoBuscar" id="datoBuscar" value="" placeholder="Que coincida con..." />
                                     </div>
                                     <ul class="actions">
-                                        <li><input type="submit" name ="Buscar" value="Obtener Reporte" /></li>
+                                        <li><input type="submit" name ="Buscar" value="Buscar" /></li>
                                     </ul>
                                 </div>
                             </form>
@@ -310,6 +310,16 @@
                                             <td colspan="3">
                                                 <p>&nbsp;</p>
                                                 <%          out.write("<h3>Se encontraron: " + conta + " coincidencias</h3>");
+                                                            out.write("<div class='row uniform 50%'>");
+                                                            //    out.write("<form method='post' action='report'>");
+                                                            out.write("<a href='' action='report'>");
+                                                            out.write(" <a class='actions'>");
+                                                            out.write("<input type='hidden' name ='fileName' value='ReporteProducto' />");
+                                                            out.write("<input type='submit' name ='Buscar' value='Generar PDF' />");
+                                                            //    out.write("</ul></form></div>");
+                                                            out.write("</ul></a></div>");
+                                                            out.write("</a></div>");
+
                                                         } else {
                                                             out.write(" <p> &nbsp</p> <h3>No se encontraron resultados</h3>");
                                                         }
@@ -366,7 +376,7 @@ ID_CLIENTE
                                     <div class="4u 12u(narrower)">
                                         <label></label>
                                         <ul class="actions">                           
-                                            <li><input type="submit" name ="Buscar" value="Obtener Reporte" /></li>
+                                            <li><input type="submit" name ="Buscar" value="Buscar" /></li>
                                         </ul>                                
                                     </div>
                                 </div>
