@@ -3,6 +3,7 @@
     Created on : 9/10/2016, 08:45:11 PM
     Author     : panle
 --%>
+<%@page import="modelo.GenerarPDF"%>
 <%@page import="modelo.OperacionesProducto"%>
 <%@page import="ClasesGenericas.Cliente"%>
 <%@page import="modelo.OperacionesCliente"%>
@@ -174,7 +175,7 @@
                                         <input type="text" name="datoBuscar" id="datoBuscar" value="" placeholder="Que coincida con..." />
                                     </div>
                                     <ul class="actions">
-                                        <li><input type="submit" name ="Buscar" value="Buscar" /></li>
+                                        <li><input type="submit" name ="Buscar" value="Obtener Reporte" /></li>
                                     </ul>
                                 </div>
                             </form>
@@ -185,6 +186,8 @@
                                 if (!campoFiltro.equals("") && !datoBuscar.equals("")) {
                                     clientes = oC.mostrarDatosClienteReporte(campoFiltro, datoBuscar);
                                     if (clientes != null && clientes.size() != 0) {
+                                        GenerarPDF gp = new GenerarPDF();
+                                        gp.nuevoReporteClientes("ReporteClientes", "REPORTE CLIENTES", clientes);
                             %>
                             <div class="table-wrapper">
                                 <table class="actions">
@@ -227,7 +230,6 @@
                                                 <%out.write("Se encontraron: " + conta + " coincidencias");
                                                         } else {
                                                             out.write(" <p> &nbsp</p> <h3>No se encontraron resultados</h3>");
-
                                                         }
                                                     }%>
                                             </td>
@@ -262,7 +264,7 @@
                                         <input type="text" name="datoBuscar" id="datoBuscar" value="" placeholder="Que coincida con..." />
                                     </div>
                                     <ul class="actions">
-                                        <li><input type="submit" name ="Buscar" value="Buscar" /></li>
+                                        <li><input type="submit" name ="Buscar" value="Obtener Reporte" /></li>
                                     </ul>
                                 </div>
                             </form>
@@ -272,7 +274,10 @@
                                 int conta = 0;
                                 if (!campoFiltro.equals("") && !datoBuscar.equals("")) {
                                     productos = oP.mostrarDatosProductoReporte(campoFiltro, datoBuscar);
+
                                     if (productos != null && productos.size() != 0) {
+                                        GenerarPDF gp = new GenerarPDF();
+                                        gp.nuevoReporteProductos("ReporteProductos", "REPORTE PRODUCTOS", productos);
                             %>
                             <div class="table-wrapper">
                                 <table class="actions">
@@ -284,8 +289,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <%
-                                            while (conta < productos.size()) {
+                                        <%      while (conta < productos.size()) {
                                                 int idProd = productos.get(conta).getID_PRODUCTO();
                                         %>                               
                                         <tr>
@@ -303,17 +307,17 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colspan="3"> 
-                                                <%out.write("Se encontraron: " + conta + " coincidencias");
+                                            <td colspan="3">
+                                                <p>&nbsp;</p>
+                                                <%          out.write("<h3>Se encontraron: " + conta + " coincidencias</h3>");
                                                         } else {
                                                             out.write(" <p> &nbsp</p> <h3>No se encontraron resultados</h3>");
-
                                                         }
                                                     }%>
                                             </td>
                                         </tr>
                                     </tfoot>
-                                </table> 
+                                </table>
                             </div>
                             &nbsp;
                         </section>
@@ -360,9 +364,9 @@ ID_CLIENTE
                                         <input type="date" name="FechaFinal" id="FechaFinal" value=""  />
                                     </div>
                                     <div class="4u 12u(narrower)">
-                                         <label></label>
+                                        <label></label>
                                         <ul class="actions">                           
-                                            <li><input type="submit" name ="Buscar" value="Buscar" /></li>
+                                            <li><input type="submit" name ="Buscar" value="Obtener Reporte" /></li>
                                         </ul>                                
                                     </div>
                                 </div>
