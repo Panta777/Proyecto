@@ -95,7 +95,6 @@
                     <section class="box special">
                         <header class="major">
                             <h2>INGRESO AL SISTEMA</h2>
-                            <!--                            <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>-->
                         </header>   
                         <div class="row">
                             <div class="12u">
@@ -105,10 +104,10 @@
                                     <form method="post" action="login">
                                         <div class="row uniform">
                                             <div class="12u">
-                                                <input type="text" name="user" id="query" value="" placeholder="Ingrese su Usuario" />
+                                                <input type="text" name="user" value="" placeholder="Ingrese su Usuario" />
                                             </div>
                                             <div class="12u">
-                                                <input type="password" name="password" id="query" value="" placeholder="Ingrese su contraseña" />
+                                                <input type="password" name="password" value="" placeholder="Ingrese su contraseña" />
                                             </div>
                                         </div>
                                         <div class="row uniform">
