@@ -39,15 +39,7 @@
         <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
-        <meta http-equiv="cache-control" content="max-age=0" />
-        <meta http-equiv="cache-control" content="no-cache" />
-        <meta http-equiv="expires" content="0" />
-        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-        <meta http-equiv="pragma" content="no-cache" />
-        <!--        <link rel="stylesheet" href="assets/css/otros.css" />
-                <link rel="stylesheet" href="assets/css/otros2.css" />-->
         <script type ="text/javascript">
             previene = function () {
                 window.stop;
@@ -80,7 +72,7 @@
             }
         </script>
     </head>
-    <body >
+    <body class="landing">
         <!--        <section id="container" > -->
         <div id="page-wrapper">
             <!-- Header -->
@@ -174,12 +166,12 @@
                                     <thead>
                                         <tr>
                                             <th><h4>Cantidad</h4></th>
-                                            <th>Foto</th>
-                                            <th>Descripcion</th>
-                                            <th>Precio U</th>
-                                            <th>Subtotal</th>
-                                            <th>Eliminar</th>
-                                        </tr>
+                                    <th>Foto</th>
+                                    <th>Descripcion</th>
+                                    <th>Precio U</th>
+                                    <th>Subtotal</th>
+                                    <th>Eliminar</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
                                         <%
@@ -258,150 +250,150 @@
                             </div>
                         </section>
                     </div>
-                    <!--<div class="20u "> -->
-
-                    <!-- </div> -->
                 </div>
                 <!-- Formulario de Pago -->
                 <div class="12u 20u(narrower)" id="pagotarjeta" style='display:none'>
                     <!-- Form -->
-                    <section class="box">
-                        <header class="major">
-                            <h2 style ='font-weight:bold;' >Pago con Tarjeta de Débito o Crédito</h2>
-                            <a class ="actions">
-                                <!--                                                <h2 class="actions">Tarjeta bancaria</h2>-->
-                                <img src="images/ICONOS/formas-de-pago.png" alt = "Formas de Pago"/>
-                            </a>
-                        </header>
-                        <form  id="formularioPago" method="post" action="pagarform">
-                            <h4 class="actions">Complete su transacción, llenando los datos de su tarjeta.</h4>
-                            <h4 style ='color:blue; font-weight:bold;' >(Verifique sus datos, antes de pagar)</h4>
-                            <p></br></p>
-                            <div class="12u(mobilep)">
-                                <h1>Nombre del titular de la tarjeta</h1>
-                                <input  type="text"  id="cb-holder-name"   value="">
-                            </div>
-                            <hr />
-                            <div class="12u(mobilep)">
-                                <h1>Número tarjeta bancaria</h1>
-                                <input id="cb-card-number"   placeholder="---- ---- ---- ----" type="text" value ="" maxlength="16" onkeypress="return valida(event)" >
-                            </div>
-                            <hr />
-                            <h1>Fecha de caducidad</h1>
-                            <div class="row uniform 50%">
-                                <div class="6u 12u(mobilep)">
-                                    <div class="select-wrapper">
-                                        <select  id="cb-card-expiration-month"  >
-                                            <option value="" disabled selected hidden>Mes</option>
-                                            <option value="01">01 - Enero</option>
-                                            <option value="02">02 - Febrero</option>
-                                            <option value="03">03 - Marzo</option>
-                                            <option value="04">04 - Abril</option>
-                                            <option value="05">05 - Mayo</option>
-                                            <option value="06">06 - Junio</option>
-                                            <option value="07">07 - Julio</option>
-                                            <option value="08">08 - Agosto</option>
-                                            <option value="09">09 - Septiembre</option>
-                                            <option value="10">10 - Octubre</option>
-                                            <option value="11">11 - Noviembre</option>
-                                            <option value="12">12 - Diciembre</option>
-                                        </select>
+                    <div class="row">
+                        <div class="12u">
+                            <section class="box">
+                                <header class="major">
+                                    <h2 style ='font-weight:bold;' >Pago con Tarjeta de Débito o Crédito</h2>
+                                    <a class ="actions">
+                                        <img src="images/ICONOS/formas-de-pago.png" alt = "Formas de Pago"/>
+                                    </a>
+                                </header>
+                                <form  id="formularioPago" method="post" action="pagarform" autocomplete="off">
+                                    <h4 class="actions">Complete su transacción, llenando los datos de su tarjeta.</h4>
+                                    <h4 style ='color:blue; font-weight:bold;' >(Verifique sus datos, antes de pagar)</h4>
+                                    <p></br></p>
+                                    <div class="12u(mobilep)">
+                                        <h1>Nombre del titular de la tarjeta</h1>
+                                        <input  type="text"  name="name_titular" value="" autocomplete="off">
                                     </div>
-                                </div>
-                                <div class="6u 12u(mobilep)">
-                                    <div class="select-wrapper">
-                                        <select id="cb-card-expiration-year" >
-                                            <option value="" disabled selected hidden>Año</option>
-                                            <option value="2016">2016</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2018">2018</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2020">2020</option>
-                                            <option value="2021">2021</option>
-                                            <option value="2022">2022</option>
-                                            <option value="2023">2023</option>
-                                            <option value="2024">2024</option>
-                                            <option value="2025">2025</option>
-                                            <option value="2026">2026</option>
-                                            <option value="2027">2027</option>
-                                            <option value="2028">2028</option>
-                                            <option value="2029">2029</option>
-                                            <option value="2030">2030</option>
-                                            <option value="2031">2031</option>
-                                            <option value="2032">2032</option>
-                                            <option value="2033">2033</option>
-                                            <option value="2034">2034</option>
-                                            <option value="2035">2035</option>
-                                            <option value="2036">2036</option>
-                                        </select>
+                                    <hr />
+                                    <div class="12u(mobilep)">
+                                        <h1>Número tarjeta bancaria</h1>
+                                        <input name="card-number"   placeholder="---- ---- ---- ----" type="text" value ="" maxlength="16" onkeypress="return valida(event)"  autocomplete="off">
                                     </div>
-                                </div>
-                            </div>
-                            <hr />
-                            <h1>Código de seguridad</h1>
-                            <div class="row uniform 50%">
-                                <div class="6u 12u(mobilep)">
-                                    <input id="pas-card" type ="password" placeholder="••••" maxlength="4" onkeypress="return valida(event)"  >
-                                    <div class="form-tipsy tipsy-trigger">
-                                        <div class="popover popover-right">
-                                            <div  class="popover-body">
-                                                Tu código de seguridad de 4 dígitos está situado en la parte de arriba de tu tarjeta.
+                                    <hr />
+                                    <h1>Fecha de caducidad</h1>
+                                    <div class="row uniform 50%">
+                                        <div class="6u 12u(mobilep)">
+                                            <div class="select-wrapper">
+                                                <select  id="cb-card-expiration-month"  >
+                                                    <option value="" disabled selected hidden>Mes</option>
+                                                    <option value="01">01 - Enero</option>
+                                                    <option value="02">02 - Febrero</option>
+                                                    <option value="03">03 - Marzo</option>
+                                                    <option value="04">04 - Abril</option>
+                                                    <option value="05">05 - Mayo</option>
+                                                    <option value="06">06 - Junio</option>
+                                                    <option value="07">07 - Julio</option>
+                                                    <option value="08">08 - Agosto</option>
+                                                    <option value="09">09 - Septiembre</option>
+                                                    <option value="10">10 - Octubre</option>
+                                                    <option value="11">11 - Noviembre</option>
+                                                    <option value="12">12 - Diciembre</option>
+                                                </select>
                                             </div>
-                                        </div> 
+                                        </div>
+                                        <div class="6u 12u(mobilep)">
+                                            <div class="select-wrapper">
+                                                <select id="cb-card-expiration-year" >
+                                                    <option value="" disabled selected hidden>Año</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2021">2021</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2023">2023</option>
+                                                    <option value="2024">2024</option>
+                                                    <option value="2025">2025</option>
+                                                    <option value="2026">2026</option>
+                                                    <option value="2027">2027</option>
+                                                    <option value="2028">2028</option>
+                                                    <option value="2029">2029</option>
+                                                    <option value="2030">2030</option>
+                                                    <option value="2031">2031</option>
+                                                    <option value="2032">2032</option>
+                                                    <option value="2033">2033</option>
+                                                    <option value="2034">2034</option>
+                                                    <option value="2035">2035</option>
+                                                    <option value="2036">2036</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="6u 12u(mobilep)">
-                                    <div class="select-wrapper">
-                                        <select  id="Tarjeta"  >
-                                            <option value="" disabled selected hidden>Tipo Tarjeta</option>
-                                            <option value="1">Visa</option>
-                                            <option value="2">MasterCard</option>
-                                            <option value="3">Otros</option>
-                                        </select>
+                                    <hr />
+                                    <h1>Código de seguridad</h1>
+                                    <div class="row uniform 50%">
+                                        <div class="6u 12u(mobilep)">
+                                            <input name="pas-card" type ="password" placeholder="••••" maxlength="4" onkeypress="return valida(event)" autocomplete="off"  >
+                                            <div class="form-tipsy tipsy-trigger">
+                                                <div class="popover popover-right">
+                                                    <div  class="popover-body">
+                                                        Tu código de seguridad de 4 dígitos está situado en la parte de arriba de tu tarjeta.
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="6u 12u(mobilep)">
+                                            <div class="select-wrapper">
+                                                <select  id="Tarjeta"  >
+                                                    <option value="" disabled selected hidden>Tipo Tarjeta</option>
+                                                    <option value="1">Visa</option>
+                                                    <option value="2">MasterCard</option>
+                                                    <option value="3">Otros</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <hr />
-                            <div class="12u(mobilep)">
-                                <div class="row" style ='display:none' id ="mensajeError">
-                                    <p> espacio para mensaje de error </p>
-                                </div>
-                                <button class="button" id="EnviarPago" type="submit">
-                                    <span class="label">EFECTUAR PAGO</span>
-                                </button>	
-                                <input type="hidden" id="horaTransaction"  value="2016-10-17T04:37:32+02:00"/>
-                            </div>
-                        </form>
-                    </section>
-                </div>
-            </section>
-            <!-- Footer -->
-            <footer id="footer">
-                <ul class="icons">
-                    <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                    <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                    <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-                    <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
-                </ul>
-                <ul class="copyright">
-                    <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
-                </ul>
-            </footer>
-        </div> 
-        <!--</section>-->
-        <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.dropotron.min.js"></script>
-        <script src="assets/js/jquery.scrollgress.min.js"></script>
-        <script src="assets/js/skel.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
-        <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.scrollUp.min.js"></script>
-        <script src="js/jquery.prettyPhoto.js"></script>
-        <script src="js/main.js"></script>
-        <script src="js/carrito.js"></script>
-    </body>
-</html>
-L
+                                    <hr />
+                                    <div class="12u(mobilep)">
+                                        <div class="row" style ='display:none' id ="mensajeError">
+                                            <p> espacio para mensaje de error </p>
+                                        </div>
+                                        <button class="button" id="EnviarPago" type="submit">
+                                            <span class="label">EFECTUAR PAGO</span>
+                                        </button>	
+                                        <input type="hidden" id="horaTransaction"  value="2016-10-17T04:37:32+02:00"/>
+                                    </div>
+                                </form>
+                            </section>
+                            </form>
+                            </section>
+                        </div>
+                        </section>
+                        <!-- Footer -->
+                        <footer id="footer">
+                            <ul class="icons">
+                                <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                                <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                                <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                                <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+                            </ul>
+                            <ul class="copyright">
+                                <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
+                            </ul>
+                        </footer>
+                    </div> 
+                    <!--</section>-->
+                    <!-- Scripts -->
+                    <script src="assets/js/jquery.min.js"></script>
+                    <script src="assets/js/jquery.dropotron.min.js"></script>
+                    <script src="assets/js/jquery.scrollgress.min.js"></script>
+                    <script src="assets/js/skel.min.js"></script>
+                    <script src="assets/js/util.js"></script>
+                    <script src="assets/js/main.js"></script>
+                    <script src="js/jquery.js"></script>
+                    <script src="js/bootstrap.min.js"></script>
+                    <script src="js/jquery.scrollUp.min.js"></script>
+                    <script src="js/jquery.prettyPhoto.js"></script>
+                    <script src="js/main.js"></script>
+                    <script src="js/carrito.js"></script>
+                    </body>
+                    </html>
+                    L
