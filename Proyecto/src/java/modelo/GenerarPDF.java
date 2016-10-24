@@ -34,19 +34,19 @@ import java.util.ArrayList;
  */
 public class GenerarPDF {
 
-    public void nuevoReporteClientes(String nameFile, String Titulo, ArrayList<Cliente> Datos) throws IOException {
+    public void nuevoReporteClientes( ArrayList<Cliente> Datos) throws IOException {
         // Se crea el documento Document documento = new Document();
         // Se crea el OutputStream para el fichero donde queremos dejar el pdf.
         Document documento = null;
         try {
-            FileOutputStream ficheroPdf = new FileOutputStream("C:\\Users\\panle\\Documents\\Diseño BD\\" + nameFile + ".pdf");
+            FileOutputStream ficheroPdf = new FileOutputStream("C:\\ReporteClientes.pdf");
             documento = new Document();       // Se asocia el documento al OutputStream y se indica que el espaciado entre
             // lineas sera de 20. Esta llamada debe hacerse antes de abrir el documento
             PdfWriter.getInstance(documento, ficheroPdf).setInitialLeading(20);
 
-// Se abre el documento.
+            // Se abre el documento.
             documento.open();
-            documento.add(new Paragraph(Titulo,
+            documento.add(new Paragraph("REPORTE CLIENTES",
                     FontFactory.getFont("ARIAL", // fuente
                             16, // tamaño
                             Font.ITALIC, // estilo
@@ -55,10 +55,13 @@ public class GenerarPDF {
             PdfPTable tabla = new PdfPTable(3);
             Font font = new Font(FontFamily.COURIER, 6, Font.BOLD, BaseColor.BLACK);
             PdfPCell cell = new PdfPCell(new Phrase("algo", font));
-
+            documento.add(new Paragraph("\n"));
+            
+            Image img = Image.getInstance("C:\\logo.png");
+            documento.add(img);
             documento.add(new Paragraph("\n"));
             int conta = 0;
-            //System.out.println(Datos.size());
+      
             cell.setBorder(Rectangle.TITLE);
             tabla.addCell("NOMBRE COMLETO");
             tabla.addCell("USUARIO");
@@ -87,45 +90,44 @@ public class GenerarPDF {
             documento.add(tabla);
             documento.close();
 
-            File file = new File("C:\\Users\\panle\\Documents\\Diseño BD\\" + nameFile + ".pdf");
-            if (file.toString().endsWith(".pdf")) {
-                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
-            } else {
-                Desktop desktop = Desktop.getDesktop();
-                desktop.open(file);
-            }
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | DocumentException e) {
+            System.out.println("Error al generar Reporte Clientes, por:" );
             e.printStackTrace();
-        } catch (DocumentException ex) {
-            ex.printStackTrace();
         }
     }
 
-    public void nuevoReporteProductos(String nameFile, String Titulo, ArrayList<Producto> Datos) throws IOException {
-        // Se crea el documento Document documento = new Document();
+    public void nuevoReporteProductos(ArrayList<Producto> Datos) throws IOException {
+        // Se crea el documento Document
         // Se crea el OutputStream para el fichero donde queremos dejar el pdf.
         Document documento = null;
         try {
-            FileOutputStream ficheroPdf = new FileOutputStream(nameFile + ".pdf");
-            documento = new Document();       // Se asocia el documento al OutputStream y se indica que el espaciado entre
+            //Direccion root
+            FileOutputStream ficheroPdf = new FileOutputStream("C:\\ReporteProductos.pdf");
+            documento = new Document();
+            // Se asocia el documento al OutputStream y se indica que el espaciado entre
             // lineas sera de 20. Esta llamada debe hacerse antes de abrir el documento
             PdfWriter.getInstance(documento, ficheroPdf).setInitialLeading(20);
 
-// Se abre el documento.
+            // Se abre el documento
             documento.open();
-            documento.add(new Paragraph(Titulo,
+            documento.add(new Paragraph("REPORTE PRODUCTOS",
                     FontFactory.getFont("ARIAL", // fuente
                             16, // tamaño
                             Font.ITALIC, // estilo
                             BaseColor.BLACK)));             // color
 
-            PdfPTable tabla = new PdfPTable(3);
+            PdfPTable tabla = new PdfPTable(3);//#campos(columnas) para la tabla
             Font font = new Font(FontFamily.COURIER, 6, Font.BOLD, BaseColor.BLACK);
-            PdfPCell cell = new PdfPCell(new Phrase("algo", font));
+            PdfPCell cell = new PdfPCell(new Phrase("Celdas", font));
 
             documento.add(new Paragraph("\n"));
+            
+            Image img = Image.getInstance("C:\\logo.png");
+            documento.add(img);
+            documento.add(new Paragraph("\n"));
+            
             int conta = 0;
-            //System.out.println(Datos.size());
+
             cell.setBorder(Rectangle.TITLE);
             tabla.addCell("DESCRIPCION");
             tabla.addCell("REFERENCIA");
@@ -142,18 +144,9 @@ public class GenerarPDF {
             documento.add(tabla);
             documento.close();
 
-            File file = new File(nameFile + ".pdf");
-            System.out.println("Ruta: "+ file.getAbsolutePath());
-            if (file.toString().endsWith(".pdf")) {
-                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
-            } else {
-                Desktop desktop = Desktop.getDesktop();
-                desktop.open(file);
-            }
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | DocumentException e) {
+            System.out.println("Error al generar Reporte Productos, por:" );
             e.printStackTrace();
-        } catch (DocumentException ex) {
-            ex.printStackTrace();
         }
     }
 

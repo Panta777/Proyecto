@@ -26,7 +26,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import modelo.GenerarPDF;
 import modelo.OperacionesCliente;
-import javax.ws.rs.core.Context;
 
 /**
  *
@@ -40,23 +39,22 @@ public class Reporte extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
 
-        String serverHomeDir = System.getenv("CATALINA_HOME");
-        //  String reportDestination = serverHomeDir + "/Reports/" + user + "_" + church + "_" + currdate + ".pdf";
-        String reportDestination = serverHomeDir + "/Reports/algo.pdf";
-
-        FileInputStream fis = new FileInputStream(new File(reportDestination));
-
-        // Fast way to copy a bytearray from InputStream to OutputStream
-//        org.apache.commons.io.IOUtils.copy(fis, response.getOutputStream());
-        response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "attachment; filename=" + reportDestination);
-        response.flushBuffer();
+//        String serverHomeDir = System.getenv("CATALINA_HOME");
+//        //  String reportDestination = serverHomeDir + "/Reports/" + user + "_" + church + "_" + currdate + ".pdf";
+//        String reportDestination = serverHomeDir + "/Reports/algo.pdf";
+//
+//        FileInputStream fis = new FileInputStream(new File(reportDestination));
+//
+//        // Fast way to copy a bytearray from InputStream to OutputStream
+////        org.apache.commons.io.IOUtils.copy(fis, response.getOutputStream());
+//        response.setContentType("application/pdf");
+//        response.setHeader("Content-Disposition", "attachment; filename=" + reportDestination);
+//        response.flushBuffer();
     }
 
     //método encargado de la gestión del método GET
     protected void processRequestGET(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         //me llega la url "proyecto/login/out"
 //        String action = (request.getPathInfo() != null ? request.getPathInfo() : "");
 //        HttpSession sesion = request.getSession();
@@ -69,53 +67,61 @@ public class Reporte extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the HTTP
+     * <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    public void doGet(HttpServletRequest request,
-            HttpServletResponse response) throws IOException {
-//        response.setContentType("application/pdf");
-//        response.setHeader("Content-Disposition",
-//                "attachment;filename=ReporteProductos.pdf");
-//        ServletContext ctx = getServletContext();
-//        InputStream is = ctx.getResourceAsStream("ReporteProductos.pdf");
-//
-//        int read = 0;
-//        byte[] bytes = new byte[1024];
-//        OutputStream os = response.getOutputStream();
-//
-//        while ((read = is.read(bytes)) != -1) {
-//            os.write(bytes, 0, read);
-//        }
-//        os.flush();
-//        os.close();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        performTask(request, response);
+    }
 
-//Crean el HSSFWorkbook y todo lo que vaya en él (hay mucha info en la web para hacer esto)
-// Escribir la hoja xls
-//        hlo_libro.write(hlo_sOut);
-//        hlo_sOut.flush();
-//        hlo_sOut.close();
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
+        performTask(request, response);
+    }
+
+    private void performTask(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
+
+        String fileName = request.getParameter("fileName");
+        System.out.println(fileName);
+        if (fileName != null) {
+            String pdfFileName = fileName+".pdf";
+            String contextPath = getServletContext().getRealPath(File.separator);
+            System.out.println(contextPath);
+            File pdfFile = new File("C:/" + pdfFileName);
+
+            response.setContentType("application/pdf");
+            response.addHeader("Content-Disposition", "attachment; filename=" + pdfFileName);
+            response.setContentLength((int) pdfFile.length());
+
+            FileInputStream fileInputStream = new FileInputStream(pdfFile);
+            OutputStream responseOutputStream = response.getOutputStream();
+            int bytes;
+            while ((bytes = fileInputStream.read()) != -1) {
+                responseOutputStream.write(bytes);
+            }
+        }
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP
+     * <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequestPOST(request, response);
-    }
-
+//    @Override
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        processRequestPOST(request, response);
+//    }
     /**
      * Returns a short description of the servlet.
      *

@@ -67,11 +67,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
-<!--        <script>
-            function abrir() {
-                open('pagina.html', '', 'top=300,left=300,width=300,height=300');
-            }
-        </script> -->
+        <script src="assets/js/jspdf.debug.js"></script>
     </head>
     <body >
         <!--        <section id="container" > -->
@@ -152,7 +148,6 @@
                         <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
                     </header>                
                 </section>
-
                 <div class="row">
                     <%//VER CLIENTES = 1
                         if (opera == 1) {
@@ -192,7 +187,7 @@
                                     clientes = oC.mostrarDatosClienteReporte(campoFiltro, datoBuscar);
                                     if (clientes != null && clientes.size() != 0) {
                                         GenerarPDF gp = new GenerarPDF();
-                                        gp.nuevoReporteClientes("ReporteClientes", "REPORTE CLIENTES", clientes);
+                                        gp.nuevoReporteClientes(clientes);
                             %>
                             <div class="table-wrapper">
                                 <table class="actions">
@@ -232,7 +227,17 @@
                                     <tfoot>
                                         <tr>
                                             <td colspan="3"> 
-                                                <%out.write("Se encontraron: " + conta + " coincidencias");
+                                                <p>&nbsp;</p>
+                                                <%
+                                                            out.write("<h3>Se encontraron: " + conta + " coincidencias</h3>");
+                                                            out.write("<div class='row uniform 50%'>");
+                                                            out.write("<form method='POST' action='report'>");
+                                                            out.write("<a class='actions'>");
+                                                            out.write("<input type='hidden' name ='fileName' value='ReporteClientes' />");
+                                                            out.write("<input type='submit' name ='Buscar' value='Obtener PDF'  />");
+                                                            out.write("</ul></form></div>");
+                                                            out.write("</ul></a></div>");
+                                                            out.write("</a></div>");
                                                         } else {
                                                             out.write(" <p> &nbsp</p> <h3>No se encontraron resultados</h3>");
                                                         }
@@ -269,7 +274,7 @@
                                         <input type="text" name="datoBuscar" id="datoBuscar" value="" placeholder="Que coincida con..." />
                                     </div>
                                     <ul class="actions">
-                                        <li><input type="submit" name ="Buscar" value="Buscar" /></li>
+                                        <li><input type="submit" name ="Buscar" value="Buscar"  /></li>
                                     </ul>
                                 </div>
                             </form>
@@ -282,10 +287,10 @@
 
                                     if (productos != null && productos.size() != 0) {
                                         GenerarPDF gp = new GenerarPDF();
-                                        gp.nuevoReporteProductos("ReporteProductos", "REPORTE PRODUCTOS", productos);
+                                        gp.nuevoReporteProductos(productos);
                             %>
                             <div class="table-wrapper">
-                                <table class="actions">
+                                <table class="actions" id="TablaProductos">
                                     <thead>
                                         <tr>
                                             <th>DESCRIPCIÓN PRODUCTO </th>
@@ -315,17 +320,15 @@
                                             <td colspan="3">
                                                 <p>&nbsp;</p>
                                                 <%
-                                                    out.write("<h3>Se encontraron: " + conta + " coincidencias</h3>");
-//                                                            out.write("<div class='row uniform 50%'>");
-//                                                            //    out.write("<form method='post' action='report'>");
-//                                                            out.write("<a href='' action='report'>");
-//                                                            out.write(" <a class='actions'>");
-//                                                            out.write("<input type='hidden' name ='fileName' value='ReporteProducto' />");
-//                                                            out.write("<input type='submit' name ='Buscar' value='Generar PDF' />");
-//                                                            //    out.write("</ul></form></div>");
-//                                                            out.write("</ul></a></div>");
-//                                                            out.write("</a></div>");
-
+                                                            out.write("<h3>Se encontraron: " + conta + " coincidencias</h3>");
+                                                            out.write("<div class='row uniform 50%'>");
+                                                            out.write("<form method='POST' action='report'>");
+                                                            out.write("<a class='actions'>");
+                                                            out.write("<input type='hidden' name ='fileName' value='ReporteProductos' />");
+                                                            out.write("<input type='submit' name ='Buscar' value='Obtener PDF'  />");
+                                                            out.write("</ul></form></div>");
+                                                            out.write("</ul></a></div>");
+                                                            out.write("</a></div>");
                                                         } else {
                                                             out.write(" <p> &nbsp</p> <h3>No se encontraron resultados</h3>");
                                                         }
@@ -341,16 +344,16 @@
                     <!-- FIN REPORTE 2 -->
                     <% } else if (opera == 3) {
                         /*
-ID_COMPRA
-DESCRIPCION
-FECHA_INICIO
-FECHA_FIN
-FORMA_PAGO
-VALOR_TOTAL
-ESTADO
-ID_PAGO
-ID_EMPRESA
-ID_CLIENTE
+                         ID_COMPRA
+                         DESCRIPCION
+                         FECHA_INICIO
+                         FECHA_FIN
+                         FORMA_PAGO
+                         VALOR_TOTAL
+                         ESTADO
+                         ID_PAGO
+                         ID_EMPRESA
+                         ID_CLIENTE
                          */
                     %>
                     <!-- **** REPORTE 3, VENTAS POR FECHA**** -->

@@ -23,8 +23,8 @@ public class OperacionesProducto {
 
     /**
      *
-     * @return Retorna el listado de productos existentes, se debe agregarlos a
-     * un listado de productos
+     * @return Retorna el listado de productos existentes, de cada categoria
+     * agregados a un listado de productos
      * @throws java.sql.SQLException
      * @
      */
@@ -184,7 +184,7 @@ public class OperacionesProducto {
                 cone.commit();// confirmar si se ejecuto sin errores
             } catch (SQLException e) {
                 cone.rollback();// deshacer la ejecucion en caso de error
-                System.out.println("Error al ejecutar función MOSTRARCLIENTESREPORTE por, " + e); // informar por consola
+                System.out.println("Error al ejecutar función DatosReporteProducto por, " + e); // informar por consola
             } finally {
                 cone.close();// cerrar la conexion
             }
