@@ -1,6 +1,6 @@
 <%-- 
-    Document   : productosCarrito
-    Created on : 9/10/2016, 08:45:11 PM
+    Document   : reporte
+    Created on : 23/10/2016, 07:25:37 PM
     Author     : panle
 --%>
 <%@page import="modelo.GenerarPDF"%>
@@ -67,13 +67,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
-<!--        <script>
+        <script>
             function abrir() {
                 open('pagina.html', '', 'top=300,left=300,width=300,height=300');
             }
-        </script> -->
+        </script> 
     </head>
-    <body >
+    <body onload="abrir()" >
         <!--        <section id="container" > -->
         <div id="page-wrapper">
             <!-- Header -->
@@ -96,8 +96,8 @@
                         <li>
                             <a href="#" class="icon fa-angle-down">Administracion</a>
                             <ul>
-                                <li><a href="index.jsp#reporteria">Reporteria</a></li>
-                                <li><a href="index.jsp#mantenimiento">Mantenimientos</a></li>
+                                <li><a href="#">Reporteria</a></li>
+                                <li><a href="#">Mantenimientos</a></li>
                             </ul>
                         </li>
                         <%}%>
@@ -314,8 +314,7 @@
                                         <tr>
                                             <td colspan="3">
                                                 <p>&nbsp;</p>
-                                                <%
-                                                    out.write("<h3>Se encontraron: " + conta + " coincidencias</h3>");
+                                                <%          out.write("<h3>Se encontraron: " + conta + " coincidencias</h3>");
 //                                                            out.write("<div class='row uniform 50%'>");
 //                                                            //    out.write("<form method='post' action='report'>");
 //                                                            out.write("<a href='' action='report'>");

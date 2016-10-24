@@ -97,6 +97,46 @@ public class OperacionesCliente {
 //            }
 //        return nivel;
 //    }
+    
+    /**
+     * Retorna determinado mensaje al registrar un nuevo usuario a la BD
+     *
+     * @param Usuario
+     * @param clave
+     * @return 1 = exitoso 2 = usuario ya existe 3 = error al procesar datos
+     * @throws java.sql.SQLException
+     */
+    public String insertarUsuarioDB(String Usuario, String clave) throws SQLException {
+        String respuesta = "";
+        Connection cone = coneLocal.NewConnection();
+
+        if (cone != null) {
+            try {
+                cone.setAutoCommit(false);
+                CallableStatement insertarUsuario = cone.prepareCall("{ call CREACION_USUARIO(?,?,?,?) }");
+
+                insertarUsuario.setString(1, Usuario);
+                insertarUsuario.setString(2, clave);
+                insertarUsuario.setString(3, "CLIENTE");
+                
+                insertarUsuario.registerOutParameter(4, OracleTypes.VARCHAR);//Parametro de salida
+                insertarUsuario.execute();
+
+                cone.commit();// confirmar si se ejecuto sin errores
+                respuesta = (String) insertarUsuario.getObject(4);// obtener salida
+//                insertarUsuario.executeUpdate();
+//                ResultSet rsRecords = (ResultSet) insertarUsuario.getObject(3);
+            } catch (SQLException e) {
+                cone.rollback();// deshacer la ejecucion en caso de error
+                System.out.println("Error al ejecutar función  por, " ); // informar por consola
+                e.printStackTrace();
+            } finally {
+                cone.close();// cerrar la conexion
+            }
+        }
+        return respuesta;
+    }
+
     /**
      * Retorna determinado valor, según respuesta de la función para insertar
      * Datos de Nuevo Cliente
@@ -366,8 +406,7 @@ public class OperacionesCliente {
     }
 
     /**
-     * Muestra datos del Cliente, segun 
-     * diferentes criterios para el reporte
+     * Muestra datos del Cliente, segun diferentes criterios para el reporte
      *
      * @param campoFiltro
      * @param dato
@@ -395,7 +434,7 @@ public class OperacionesCliente {
                 ResultSet rsRecords = (ResultSet) procMostrarClientes.getObject(3);
 
                 if (rsRecords != null) {
-                   // System.out.println("Hay data");
+                    // System.out.println("Hay data");
                     while (rsRecords.next()) {// obtener salida
                         clientes.add(new Cliente(
                                 rsRecords.getString("NOMBRE"),

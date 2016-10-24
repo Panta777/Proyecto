@@ -65,7 +65,7 @@
             if (nivel.equals("2") || nivel.equals("1")) {
                 response.sendRedirect("modificaCliente.jsp");
             }
-            
+
             if (sesion.getAttribute("resOper") != null) {
                 resOper = sesion.getAttribute("resOper").toString();
             }
@@ -188,15 +188,16 @@
                                         <label for="human">I am a human and not a robot</label>
                                     </div>
                                 </div>
-                                <div class="row uniform ">
+                                <div class="row uniform " id = "ResultadoNuevoCliente">
                                     <div class="12u">
                                         <ul class="actions">
                                             <li><input type="submit" name ="EnviaCliente" value="Send" disabled = true /></li>
                                         </ul>
                                     </div>
                                     <%
-                                        if (!resOper.equals("1") && !resOper.equals("")) {
-                                                out.write("<h5 style=\" color:red; font-weight:bold;\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>");
+                                        if (sesion.getAttribute("resOper") != null) {
+                                            out.write((String)sesion.getAttribute("resOper"));
+                                            // out.write("<h5 style=\" color:red; font-weight:bold;\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>");
                                         }
                                     %>
                                 </div>

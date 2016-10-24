@@ -4,14 +4,27 @@
  */
 package Controlador;
 
+import ClasesGenericas.Cliente;
 import ClasesGenericas.Producto;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import modelo.OperacionesCliente;
 import modelo.OperacionesProducto;
+
 
 /**
  *
  * @author DesarrolloPantaleon
  */
-public class controladorProducto {
+@WebServlet(name = "controladorProducto", urlPatterns = {"/controladorProducto"})
+public class controladorProducto extends HttpServlet{ 
 
     public String getProductos(String tipo) {
         OperacionesProducto mp = new OperacionesProducto();

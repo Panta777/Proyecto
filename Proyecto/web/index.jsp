@@ -19,7 +19,7 @@
         idioma = new Idioma("Ingles");
     }
 
-    String nivel = "", usuario = "", rol = null, foto = null;
+    String nivel = "", usuario = "";
     if (sesion.getAttribute("user") != null && sesion.getAttribute("nivel") != null) {
         nivel = sesion.getAttribute("nivel").toString();
         usuario = sesion.getAttribute("user").toString();
@@ -61,8 +61,8 @@
                             <li>
                                 <a href="#" class="icon fa-angle-down">Administracion</a>
                                 <ul>
-                                    <li><a href="#reporteria">Reporteria</a></li>
-                                    <li><a href="#mantenimiento">Mantenimientos</a></li>
+                                    <li><a href="index.jsp#reporteria">Reporteria</a></li>
+                                    <li><a href="index.jsp#mantenimiento">Mantenimientos</a></li>
                                 </ul>
                             </li>
                             <%}%>
@@ -143,16 +143,6 @@
                                     <li><a href="reporteria.jsp?Operacion=7#productoMasVendido" class="button alt">PRODUCTO MAS VENDIDO POR CIUDAD</a></li>
                                 </ul>
                             </div> 
-                            <!--                            <div class="row">
-                                                            <div class="3u 6u(narrower) 12u(mobilep)">
-                                                                <ul class="actions vertical">
-                                                                    <li><a href="#" class="button special">Default</a></li>
-                                                                    <li><a href="#" class="button">Default</a></li>
-                                                                    <li><a href="#" class="button alt">Default</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>-->
-
                         </section>
                     </div>
                     <div class="12u 20u(narrower)" id ="mantenimiento">
@@ -168,7 +158,7 @@
                                 <ul class="actions vertical">
                                     <li><a href="#" class="button">ELIMINAR CLIENTES</a></li>
                                     <li><a href="#" class="button special">ELIMINAR PRODUCTO</a></li>
-                                    <li><a href="#" class="button ">AGREGAR PRODUCTO</a></li>
+                                    <li><a href="nuevoProducto.jsp#main" class="button ">AGREGAR PRODUCTO</a></li>
                                     <li><a href="#" class="button special">ACTUALIZAR PRODUCTO</a></li>
                                 </ul>
                             </div> 
