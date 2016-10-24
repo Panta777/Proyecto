@@ -356,14 +356,25 @@
                                         <div class="row" style ='display:none' id ="mensajeError">
                                             <p> espacio para mensaje de error </p>
                                         </div>
-                                        <button class="button" id="EnviarPago" type="submit">
-                                            <span class="label">EFECTUAR PAGO</span>
-                                        </button>	
-                                        <input type="hidden" id="horaTransaction"  value="2016-10-17T04:37:32+02:00"/>
+                                        <div class="row uniform 50%">
+                                            <h4>Total Compra:</h4>
+                                            <h4 style='color:blue; font-weight:bold;' >Q.<%=algo.convertirCantidad(total)%></h4>
+                                        </div>
+                                        <div class="row uniform 50%)">
+                                            <h4>Envio:       </h4>
+                                             <h4 style='color:blue; font-weight:bold;' >Q.50.00</h4>
+                                        </div>
+                                        <div class="row uniform 50%)">
+                                            <h4>Total:</h4>
+                                            <h4 style='color:red; font-weight:bold;' >Q.<%=algo.convertirCantidad(total+50)%></h4>
+                                        </div>
+                                    </div>
+                                    <button class="button" id="EnviarPago" type="submit">
+                                        <span class="label">EFECTUAR PAGO</span>
+                                    </button>	
+                                    <input type="hidden" id="horaTransaction"  value="2016-10-17T04:37:32+02:00"/>
                                     </div>
                                 </form>
-                            </section>
-                            </form>
                             </section>
                         </div>
                         </section>
