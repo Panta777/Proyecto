@@ -8,7 +8,6 @@ package modelo;
 import ClasesGenericas.Cliente;
 import ClasesGenericas.Producto;
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.FontFactory;
@@ -21,8 +20,6 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Font.FontFamily;
-import java.awt.Desktop;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -152,4 +149,171 @@ public class GenerarPDF {
         }
     }
 
+    public void nuevoReporteVentasFecha(ArrayList<Producto> Datos) throws IOException {
+        // Se crea el documento Document
+        // Se crea el OutputStream para el fichero donde queremos dejar el pdf.
+        Document documento = null;
+        try {
+            //Direccion root
+            FileOutputStream ficheroPdf = new FileOutputStream("C:\\Users\\panle\\Documents\\ReporteVentasFecha.pdf");
+            //FileOutputStream ficheroPdf = new FileOutputStream("user.dir/tmp", "ReporteProductos.pdf");
+            //File tempfile = new File("user.dir/tmp", "tempfile.txt");    
+            documento = new Document();
+            // Se asocia el documento al OutputStream y se indica que el espaciado entre
+            // lineas sera de 20. Esta llamada debe hacerse antes de abrir el documento
+            PdfWriter.getInstance(documento, ficheroPdf).setInitialLeading(20);
+
+            // Se abre el documento
+            documento.open();
+            documento.add(new Paragraph("REPORTE VENTAS POR FECHA",
+                    FontFactory.getFont("ARIAL", // fuente
+                            16, // tamaño
+                            Font.ITALIC, // estilo
+                            BaseColor.BLACK)));             // color
+
+            PdfPTable tabla = new PdfPTable(3);//#campos(columnas) para la tabla
+            Font font = new Font(FontFamily.COURIER, 6, Font.BOLD, BaseColor.BLACK);
+            PdfPCell cell = new PdfPCell(new Phrase("Celdas", font));
+
+            documento.add(new Paragraph("\n"));
+
+            Image img = Image.getInstance("C:\\Users\\logo.png");
+            documento.add(img);
+            documento.add(new Paragraph("\n"));
+
+            int conta = 0;
+
+            cell.setBorder(Rectangle.TITLE);
+            tabla.addCell("DESCRIPCION");
+            tabla.addCell("REFERENCIA");
+            tabla.addCell("TIPO");
+
+            while (conta < Datos.size()) {
+                cell.setBorder(Rectangle.NO_BORDER);
+                tabla.addCell(Datos.get(conta).getDESCRIPCION());
+                tabla.addCell(Datos.get(conta).getREFERENCIA());
+                tabla.addCell(Datos.get(conta).getTIPO());
+                conta++;
+            }
+
+            documento.add(tabla);
+            documento.close();
+
+        } catch (FileNotFoundException | DocumentException e) {
+            System.out.println("Error al generar Reporte Productos, por:");
+            e.printStackTrace();
+        }
+    }
+    
+    public void nuevoReporteVentasCiudad(ArrayList<Producto> Datos) throws IOException {
+        // Se crea el documento Document
+        // Se crea el OutputStream para el fichero donde queremos dejar el pdf.
+        Document documento = null;
+        try {
+            //Direccion root
+            FileOutputStream ficheroPdf = new FileOutputStream("C:\\Users\\panle\\Documents\\ReporteVentasCiudad.pdf");
+            //FileOutputStream ficheroPdf = new FileOutputStream("user.dir/tmp", "ReporteProductos.pdf");
+            //File tempfile = new File("user.dir/tmp", "tempfile.txt");    
+            documento = new Document();
+            // Se asocia el documento al OutputStream y se indica que el espaciado entre
+            // lineas sera de 20. Esta llamada debe hacerse antes de abrir el documento
+            PdfWriter.getInstance(documento, ficheroPdf).setInitialLeading(20);
+
+            // Se abre el documento
+            documento.open();
+            documento.add(new Paragraph("REPORTE VENTAS POR CIUDAD",
+                    FontFactory.getFont("ARIAL", // fuente
+                            16, // tamaño
+                            Font.ITALIC, // estilo
+                            BaseColor.BLACK)));             // color
+
+            PdfPTable tabla = new PdfPTable(3);//#campos(columnas) para la tabla
+            Font font = new Font(FontFamily.COURIER, 6, Font.BOLD, BaseColor.BLACK);
+            PdfPCell cell = new PdfPCell(new Phrase("Celdas", font));
+
+            documento.add(new Paragraph("\n"));
+
+            Image img = Image.getInstance("C:\\Users\\logo.png");
+            documento.add(img);
+            documento.add(new Paragraph("\n"));
+
+            int conta = 0;
+
+            cell.setBorder(Rectangle.TITLE);
+            tabla.addCell("DESCRIPCION");
+            tabla.addCell("REFERENCIA");
+            tabla.addCell("TIPO");
+
+            while (conta < Datos.size()) {
+                cell.setBorder(Rectangle.NO_BORDER);
+                tabla.addCell(Datos.get(conta).getDESCRIPCION());
+                tabla.addCell(Datos.get(conta).getREFERENCIA());
+                tabla.addCell(Datos.get(conta).getTIPO());
+                conta++;
+            }
+
+            documento.add(tabla);
+            documento.close();
+
+        } catch (FileNotFoundException | DocumentException e) {
+            System.out.println("Error al generar Reporte Productos, por:");
+            e.printStackTrace();
+        }
+    }
+    
+    public void nuevoReporteVentasMueble(ArrayList<Producto> Datos) throws IOException {
+        // Se crea el documento Document
+        // Se crea el OutputStream para el fichero donde queremos dejar el pdf.
+        Document documento = null;
+        try {
+            //Direccion root
+            FileOutputStream ficheroPdf = new FileOutputStream("C:\\Users\\panle\\Documents\\ReporteVentasMueble.pdf");
+            //FileOutputStream ficheroPdf = new FileOutputStream("user.dir/tmp", "ReporteProductos.pdf");
+            //File tempfile = new File("user.dir/tmp", "tempfile.txt");    
+            documento = new Document();
+            // Se asocia el documento al OutputStream y se indica que el espaciado entre
+            // lineas sera de 20. Esta llamada debe hacerse antes de abrir el documento
+            PdfWriter.getInstance(documento, ficheroPdf).setInitialLeading(20);
+
+            // Se abre el documento
+            documento.open();
+            documento.add(new Paragraph("REPORTE VENTAS POR MUEBLE",
+                    FontFactory.getFont("ARIAL", // fuente
+                            16, // tamaño
+                            Font.ITALIC, // estilo
+                            BaseColor.BLACK)));             // color
+
+            PdfPTable tabla = new PdfPTable(3);//#campos(columnas) para la tabla
+            Font font = new Font(FontFamily.COURIER, 6, Font.BOLD, BaseColor.BLACK);
+            PdfPCell cell = new PdfPCell(new Phrase("Celdas", font));
+
+            documento.add(new Paragraph("\n"));
+
+            Image img = Image.getInstance("C:\\Users\\logo.png");
+            documento.add(img);
+            documento.add(new Paragraph("\n"));
+
+            int conta = 0;
+
+            cell.setBorder(Rectangle.TITLE);
+            tabla.addCell("DESCRIPCION");
+            tabla.addCell("REFERENCIA");
+            tabla.addCell("TIPO");
+
+            while (conta < Datos.size()) {
+                cell.setBorder(Rectangle.NO_BORDER);
+                tabla.addCell(Datos.get(conta).getDESCRIPCION());
+                tabla.addCell(Datos.get(conta).getREFERENCIA());
+                tabla.addCell(Datos.get(conta).getTIPO());
+                conta++;
+            }
+
+            documento.add(tabla);
+            documento.close();
+
+        } catch (FileNotFoundException | DocumentException e) {
+            System.out.println("Error al generar Reporte Productos, por:");
+            e.printStackTrace();
+        }
+    }
 }
