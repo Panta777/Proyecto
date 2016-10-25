@@ -101,13 +101,13 @@
                                 <!-- Form -->
                                 <section class="box">
                                     <h2><p>Ingrese sus datos registrados para poder realizar su compra.</p></h2>
-                                    <form method="post" action="login">
+                                    <form method="post" action="login"  >
                                         <div class="row uniform">
                                             <div class="12u">
-                                                <input type="text" name="user" value="" placeholder="Ingrese su Usuario" />
+                                                <input type="text" name="user" value="" placeholder="Ingrese su Usuario" id="myname" autocomplete='off'/>
                                             </div>
                                             <div class="12u">
-                                                <input type="password" name="password" value="" placeholder="Ingrese su contraseña" />
+                                                <input type="password" name="password" value="" placeholder="Ingrese su contraseña"  />
                                             </div>
                                         </div>
                                         <div class="row uniform">

@@ -93,7 +93,7 @@ public class Reporte extends HttpServlet {
             String pdfFileName = fileName+".pdf";
             String contextPath = getServletContext().getRealPath(File.separator);
             System.out.println(contextPath);
-            File pdfFile = new File("C:/" + pdfFileName);
+            File pdfFile = new File("C:\\Users\\panle\\Documents\\" + pdfFileName);
 
             response.setContentType("application/pdf");
             response.addHeader("Content-Disposition", "attachment; filename=" + pdfFileName);

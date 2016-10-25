@@ -34,6 +34,7 @@
 %>
 <!DOCTYPE html>
 <html>
+    
     <head>
         <title>Muebles Los Alpes</title>
         <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
@@ -70,6 +71,8 @@
                 tecla_final = String.fromCharCode(tecla);
                 return patron.test(tecla_final);
             }
+            $('input,form').attr('autocomplete','off');
+            
         </script>
     </head>
     <body class="landing">

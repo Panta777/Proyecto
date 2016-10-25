@@ -34,12 +34,12 @@ import java.util.ArrayList;
  */
 public class GenerarPDF {
 
-    public void nuevoReporteClientes( ArrayList<Cliente> Datos) throws IOException {
+    public void nuevoReporteClientes(ArrayList<Cliente> Datos) throws IOException {
         // Se crea el documento Document documento = new Document();
         // Se crea el OutputStream para el fichero donde queremos dejar el pdf.
         Document documento = null;
         try {
-            FileOutputStream ficheroPdf = new FileOutputStream("C:\\ReporteClientes.pdf");
+            FileOutputStream ficheroPdf = new FileOutputStream("C:\\Users\\panle\\Documents\\ReporteClientes.pdf");
             documento = new Document();       // Se asocia el documento al OutputStream y se indica que el espaciado entre
             // lineas sera de 20. Esta llamada debe hacerse antes de abrir el documento
             PdfWriter.getInstance(documento, ficheroPdf).setInitialLeading(20);
@@ -56,12 +56,12 @@ public class GenerarPDF {
             Font font = new Font(FontFamily.COURIER, 6, Font.BOLD, BaseColor.BLACK);
             PdfPCell cell = new PdfPCell(new Phrase("algo", font));
             documento.add(new Paragraph("\n"));
-            
+
             Image img = Image.getInstance("C:\\logo.png");
             documento.add(img);
             documento.add(new Paragraph("\n"));
             int conta = 0;
-      
+
             cell.setBorder(Rectangle.TITLE);
             tabla.addCell("NOMBRE COMLETO");
             tabla.addCell("USUARIO");
@@ -91,7 +91,7 @@ public class GenerarPDF {
             documento.close();
 
         } catch (FileNotFoundException | DocumentException e) {
-            System.out.println("Error al generar Reporte Clientes, por:" );
+            System.out.println("Error al generar Reporte Clientes, por:");
             e.printStackTrace();
         }
     }
@@ -102,7 +102,9 @@ public class GenerarPDF {
         Document documento = null;
         try {
             //Direccion root
-            FileOutputStream ficheroPdf = new FileOutputStream("C:\\ReporteProductos.pdf");
+            FileOutputStream ficheroPdf = new FileOutputStream("C:\\Users\\panle\\Documents\\ReporteProductos.pdf");
+            //FileOutputStream ficheroPdf = new FileOutputStream("user.dir/tmp", "ReporteProductos.pdf");
+            //File tempfile = new File("user.dir/tmp", "tempfile.txt");    
             documento = new Document();
             // Se asocia el documento al OutputStream y se indica que el espaciado entre
             // lineas sera de 20. Esta llamada debe hacerse antes de abrir el documento
@@ -121,11 +123,11 @@ public class GenerarPDF {
             PdfPCell cell = new PdfPCell(new Phrase("Celdas", font));
 
             documento.add(new Paragraph("\n"));
-            
-            Image img = Image.getInstance("C:\\logo.png");
+
+            Image img = Image.getInstance("C:\\Users\\logo.png");
             documento.add(img);
             documento.add(new Paragraph("\n"));
-            
+
             int conta = 0;
 
             cell.setBorder(Rectangle.TITLE);
@@ -145,7 +147,7 @@ public class GenerarPDF {
             documento.close();
 
         } catch (FileNotFoundException | DocumentException e) {
-            System.out.println("Error al generar Reporte Productos, por:" );
+            System.out.println("Error al generar Reporte Productos, por:");
             e.printStackTrace();
         }
     }
