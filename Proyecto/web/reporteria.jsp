@@ -435,7 +435,7 @@
                     </div>
                     <!-- FIN REPORTE 3 -->
                     <% } else if (opera == 4) {%>
-                    <!-- **** REPORTE 3, VENTAS POR CIUDAD**** -->
+                    <!-- **** REPORTE 4, VENTAS POR CIUDAD**** -->
                     <div class="12u" id ="ventasFecha">
                         <section class="box" >
                             <header class="major">
@@ -525,8 +525,284 @@
                             &nbsp;
                         </section>
                     </div>
-                    <!-- FIN REPORTE 3 -->
-                    <%} else {
+                    <!-- FIN REPORTE 4 -->
+                    <% } else if (opera == 5) {%>
+                    <!-- **** REPORTE 5, VENTAS POR MUEBLE**** -->
+                    <div class="12u" id ="ventasMueble">
+                        <section class="box" >
+                            <header class="major">
+                                <h2>REPORTE VENTAS POR MUEBLE</h2>
+                            </header>
+                            <form method="POST" action="reporteria.jsp?Operacion=3#ventasCiudad">
+                                <div class="row uniform 50%">
+                                    <div class="4u 12u(narrower)">
+                                        <h4>Fecha Inicial</h4>
+                                        <input type="date" name="FechaInicial" id="FechaInicial" value=""  />
+                                    </div>
+                                    <div class="4u 12u(narrower)">
+                                        <h4>Fecha Final</h4>
+                                        <input type="date" name="FechaFinal" id="FechaFinal" value=""  />
+                                    </div>
+                                    <div class="4u 12u(narrower)">
+                                        <label></label>
+                                        <ul class="actions">                           
+                                            <li><input type="submit" name ="Buscar" value="Buscar" /></li>
+                                        </ul>                                
+                                    </div>
+                                </div>
+                            </form>
+                            <%
+                                ArrayList<Producto> productos = null;
+                                OperacionesProducto oP = new OperacionesProducto();
+                                int conta = 0;
+                                if (!campoFiltro.equals("") && !datoBuscar.equals("")) {
+                                    productos = oP.mostrarDatosProductoReporte(campoFiltro, datoBuscar);
+                                    if (productos != null && productos.size() != 0) {
+                                        /*
+                                                             ID_COMPRA
+                                                             DESCRIPCION
+                                                             FECHA_INICIO
+                                                             FECHA_FIN
+                                                             FORMA_PAGO
+                                                             VALOR_TOTAL
+                                                             ESTADO
+                                                             ID_PAGO
+                                                             ID_EMPRESA
+                                                             ID_CLIENTE
+                                         */
+                            %>
+                            <div class="table-wrapper">
+                                <table class="actions">
+                                    <thead>
+                                        <tr>
+                                            <th>DESCRIPCIÓN VENTA </th>
+                                            <th>DEL </th>
+                                            <th>AL </th>
+                                            <th>VALOR TOTAL </th>
+                                            <th>ESTADO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                            while (conta < productos.size()) {
+                                                int idProd = productos.get(conta).getID_PRODUCTO();
+                                        %>                               
+                                        <tr>
+                                            <td><%out.write(productos.get(conta).getDESCRIPCION());%></td>
+                                            <td><a href="detalleproducto.jsp?id=<%=idProd%>#main" > 
+                                                    <% out.write(productos.get(conta).getREFERENCIA());%> 
+                                                </a>
+                                            </td>
+                                            <td><%out.write(productos.get(conta).getTIPO());%></td>
+                                        </tr>
+                                        <%
+                                                conta++;
+                                            };
+                                        %>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3"> 
+                                                <%out.write("Se encontraron: " + conta + " coincidencias");
+                                                        } else {
+                                                            out.write(" <p> &nbsp</p> <h3>No se encontraron resultados</h3>");
+
+                                                        }
+                                                    }%>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table> 
+                            </div>
+                            &nbsp;
+                        </section>
+                    </div>
+                    <!-- FIN REPORTE 5 -->
+                    <% } else if (opera == 6) {%>
+                    <!-- **** REPORTE 6, PRODUCTOS POR CLIENTE**** -->
+                    <div class="12u" id ="productosCliente">
+                        <section class="box" >
+                            <header class="major">
+                                <h2>REPORTE PRODUCTOS POR CLIENTE</h2>
+                            </header>
+                            <form method="POST" action="reporteria.jsp?Operacion=3#ventasCiudad">
+                                <div class="row uniform 50%">
+                                    <div class="4u 12u(narrower)">
+                                        <h4>Fecha Inicial</h4>
+                                        <input type="date" name="FechaInicial" id="FechaInicial" value=""  />
+                                    </div>
+                                    <div class="4u 12u(narrower)">
+                                        <h4>Fecha Final</h4>
+                                        <input type="date" name="FechaFinal" id="FechaFinal" value=""  />
+                                    </div>
+                                    <div class="4u 12u(narrower)">
+                                        <label></label>
+                                        <ul class="actions">                           
+                                            <li><input type="submit" name ="Buscar" value="Buscar" /></li>
+                                        </ul>                                
+                                    </div>
+                                </div>
+                            </form>
+                            <%
+                                ArrayList<Producto> productos = null;
+                                OperacionesProducto oP = new OperacionesProducto();
+                                int conta = 0;
+                                if (!campoFiltro.equals("") && !datoBuscar.equals("")) {
+                                    productos = oP.mostrarDatosProductoReporte(campoFiltro, datoBuscar);
+                                    if (productos != null && productos.size() != 0) {
+                                        /*
+                                                             ID_COMPRA
+                                                             DESCRIPCION
+                                                             FECHA_INICIO
+                                                             FECHA_FIN
+                                                             FORMA_PAGO
+                                                             VALOR_TOTAL
+                                                             ESTADO
+                                                             ID_PAGO
+                                                             ID_EMPRESA
+                                                             ID_CLIENTE
+                                         */
+                            %>
+                            <div class="table-wrapper">
+                                <table class="actions">
+                                    <thead>
+                                        <tr>
+                                            <th>DESCRIPCIÓN VENTA </th>
+                                            <th>DEL </th>
+                                            <th>AL </th>
+                                            <th>VALOR TOTAL </th>
+                                            <th>ESTADO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                            while (conta < productos.size()) {
+                                                int idProd = productos.get(conta).getID_PRODUCTO();
+                                        %>                               
+                                        <tr>
+                                            <td><%out.write(productos.get(conta).getDESCRIPCION());%></td>
+                                            <td><a href="detalleproducto.jsp?id=<%=idProd%>#main" > 
+                                                    <% out.write(productos.get(conta).getREFERENCIA());%> 
+                                                </a>
+                                            </td>
+                                            <td><%out.write(productos.get(conta).getTIPO());%></td>
+                                        </tr>
+                                        <%
+                                                conta++;
+                                            };
+                                        %>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3"> 
+                                                <%out.write("Se encontraron: " + conta + " coincidencias");
+                                                        } else {
+                                                            out.write(" <p> &nbsp</p> <h3>No se encontraron resultados</h3>");
+
+                                                        }
+                                                    }%>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table> 
+                            </div>
+                            &nbsp;
+                        </section>
+                    </div>
+                    <!-- FIN REPORTE 6 -->
+
+                    <% } else if (opera == 6) {%>
+                    <!-- **** REPORTE 7, PRODUCTOS MÁS VENDIDO POR CIUDAD*** -->
+                    <div class="12u" id ="ventasFecha">
+                        <section class="box" >
+                            <header class="major">
+                                <h2>REPORTE PRODUCTO MAS VENDIDO POR CIUDA</h2>
+                            </header>
+                            <form method="POST" action="reporteria.jsp?Operacion=3#productoMasVendido">
+                                <div class="row uniform 50%">
+                                    <div class="4u 12u(narrower)">
+                                        <h4>Fecha Inicial</h4>
+                                        <input type="date" name="FechaInicial" id="FechaInicial" value=""  />
+                                    </div>
+                                    <div class="4u 12u(narrower)">
+                                        <h4>Fecha Final</h4>
+                                        <input type="date" name="FechaFinal" id="FechaFinal" value=""  />
+                                    </div>
+                                    <div class="4u 12u(narrower)">
+                                        <label></label>
+                                        <ul class="actions">                           
+                                            <li><input type="submit" name ="Buscar" value="Buscar" /></li>
+                                        </ul>                                
+                                    </div>
+                                </div>
+                            </form>
+                            <%
+                                ArrayList<Producto> productos = null;
+                                OperacionesProducto oP = new OperacionesProducto();
+                                int conta = 0;
+                                if (!campoFiltro.equals("") && !datoBuscar.equals("")) {
+                                    productos = oP.mostrarDatosProductoReporte(campoFiltro, datoBuscar);
+                                    if (productos != null && productos.size() != 0) {
+                                        /*
+                                                             ID_COMPRA
+                                                             DESCRIPCION
+                                                             FECHA_INICIO
+                                                             FECHA_FIN
+                                                             FORMA_PAGO
+                                                             VALOR_TOTAL
+                                                             ESTADO
+                                                             ID_PAGO
+                                                             ID_EMPRESA
+                                                             ID_CLIENTE
+                                         */
+                            %>
+                            <div class="table-wrapper">
+                                <table class="actions">
+                                    <thead>
+                                        <tr>
+                                            <th>DESCRIPCIÓN VENTA </th>
+                                            <th>DEL </th>
+                                            <th>AL </th>
+                                            <th>VALOR TOTAL </th>
+                                            <th>ESTADO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%
+                                            while (conta < productos.size()) {
+                                                int idProd = productos.get(conta).getID_PRODUCTO();
+                                        %>                               
+                                        <tr>
+                                            <td><%out.write(productos.get(conta).getDESCRIPCION());%></td>
+                                            <td><a href="detalleproducto.jsp?id=<%=idProd%>#main" > 
+                                                    <% out.write(productos.get(conta).getREFERENCIA());%> 
+                                                </a>
+                                            </td>
+                                            <td><%out.write(productos.get(conta).getTIPO());%></td>
+                                        </tr>
+                                        <%
+                                                conta++;
+                                            };
+                                        %>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3"> 
+                                                <%out.write("Se encontraron: " + conta + " coincidencias");
+                                                        } else {
+                                                            out.write(" <p> &nbsp</p> <h3>No se encontraron resultados</h3>");
+
+                                                        }
+                                                    }%>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table> 
+                            </div>
+                            &nbsp;
+                        </section>
+                    </div>
+                    <!-- FIN REPORTE 7 -->                    <%} else {
                             response.sendRedirect("index.jsp#reporteria");
                         }%>
                 </div>
