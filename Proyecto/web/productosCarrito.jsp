@@ -34,7 +34,7 @@
 %>
 <!DOCTYPE html>
 <html>
-    
+
     <head>
         <title>Muebles Los Alpes</title>
         <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
@@ -71,8 +71,8 @@
                 tecla_final = String.fromCharCode(tecla);
                 return patron.test(tecla_final);
             }
-            $('input,form').attr('autocomplete','off');
-            
+            $('input,form').attr('autocomplete', 'off');
+
         </script>
     </head>
     <body class="landing">
@@ -169,12 +169,12 @@
                                     <thead>
                                         <tr>
                                             <th><h4>Cantidad</h4></th>
-                                    <th>Foto</th>
-                                    <th>Descripcion</th>
-                                    <th>Precio U</th>
-                                    <th>Subtotal</th>
-                                    <th>Eliminar</th>
-                                    </tr>
+                                            <th>Foto</th>
+                                            <th>Descripcion</th>
+                                            <th>Precio U</th>
+                                            <th>Subtotal</th>
+                                            <th>Eliminar</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         <%
@@ -246,7 +246,7 @@
                                         Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
                                     </a>
                                     <div class="row" style ='display:none' id ="NoLogueado">
-                                        <h5 style ='color:red; font-weight:bold;' >(Debe estar logueado para completar la transacción)</h5>
+                                        <a href="login.jsp#main">  <h5 style ='color:red; font-weight:bold;' > Debe estar logueado para completar la transacción)</h5></a>
                                     </div>
                                 </div>
                                 <%}%>
@@ -277,7 +277,7 @@
                                     <hr />
                                     <div class="12u(mobilep)">
                                         <h1>Número tarjeta bancaria</h1>
-                                        <input name="card-number"   placeholder="---- ---- ---- ----" type="text" value ="" maxlength="16" onkeypress="return valida(event)"  autocomplete="off">
+                                        <input name="card-number"   placeholder="---- ---- ---- ----" type="text" value =" " maxlength="16" onkeypress="return valida(event)"  autocomplete="off">
                                     </div>
                                     <hr />
                                     <h1>Fecha de caducidad</h1>
@@ -356,58 +356,50 @@
                                     </div>
                                     <hr />
                                     <div class="12u(mobilep)">
-                                        <div class="row" style ='display:none' id ="mensajeError">
-                                            <p> espacio para mensaje de error </p>
+                                        <div class="row" style ='display:none'  id ="mensajeError">
+                                            <h3 style='color:red; font-weight:bold;' > ----> Error, al efectuar transaccion <-----</h3>
                                         </div>
-                                        <div class="row uniform 50%">
-                                            <h4>Total Compra:</h4>
-                                            <h4 style='color:blue; font-weight:bold;' >Q.<%=algo.convertirCantidad(total)%></h4>
-                                        </div>
-                                        <div class="row uniform 50%)">
-                                            <h4>Envio:       </h4>
-                                             <h4 style='color:blue; font-weight:bold;' >Q.50.00</h4>
-                                        </div>
-                                        <div class="row uniform 50%)">
-                                            <h4>Total:</h4>
-                                            <h4 style='color:red; font-weight:bold;' >Q.<%=algo.convertirCantidad(total+50)%></h4>
-                                        </div>
+                                        <h4 style='color:blue; font-weight:bold;'>Total Compra: Q.<%=algo.convertirCantidad(total)%></h4>
+                                        <h4 style='color:blue; font-weight:bold;'>Envio: Q.50.00</h4>
+                                        <h4 style='color:red; font-weight:bold;' >Total: Q.<%=algo.convertirCantidad(total + 50)%></h4>
                                     </div>
                                     <button class="button" id="EnviarPago" type="submit">
                                         <span class="label">EFECTUAR PAGO</span>
                                     </button>	
                                     <input type="hidden" id="horaTransaction"  value="2016-10-17T04:37:32+02:00"/>
-                                    </div>
                                 </form>
                             </section>
                         </div>
-                        </section>
-                        <!-- Footer -->
-                        <footer id="footer">
-                            <ul class="icons">
-                                <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                                <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                                <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-                                <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
-                            </ul>
-                            <ul class="copyright">
-                                <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
-                            </ul>
-                        </footer>
-                    </div> 
-                    <!--</section>-->
-                    <!-- Scripts -->
-                    <script src="assets/js/jquery.min.js"></script>
-                    <script src="assets/js/jquery.dropotron.min.js"></script>
-                    <script src="assets/js/jquery.scrollgress.min.js"></script>
-                    <script src="assets/js/skel.min.js"></script>
-                    <script src="assets/js/util.js"></script>
-                    <script src="assets/js/main.js"></script>
-                    <script src="js/jquery.js"></script>
-                    <script src="js/bootstrap.min.js"></script>
-                    <script src="js/jquery.scrollUp.min.js"></script>
-                    <script src="js/jquery.prettyPhoto.js"></script>
-                    <script src="js/main.js"></script>
-                    <script src="js/carrito.js"></script>
-                    </body>
-                    </html>
-                    L
+                    </div>
+                </div>
+            </section>
+            <!-- Footer -->
+            <footer id="footer">
+                <ul class="icons">
+                    <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                    <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+                </ul>
+                <ul class="copyright">
+                    <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
+                </ul>
+            </footer>
+        </div> 
+        <!--</section>-->
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/jquery.scrollgress.min.js"></script>
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.scrollUp.min.js"></script>
+        <script src="js/jquery.prettyPhoto.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/carrito.js"></script>
+    </body>
+</html>
+L

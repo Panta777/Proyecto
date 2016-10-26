@@ -108,7 +108,7 @@
                 <section id="banner" class ="box">
                     <!--                    <span class="image featured"><img src="images/logo.png" alt="log" /></span>-->
                     <img class="image featured" src="images/logo.png" alt="log" />
-                    <h2>Sirviendole con total amabilidad desde 1985.</h2>
+                    <<p>Sirviendole con total amabilidad desde 1985.</p>
                     <%if (nivel.equals("4") || nivel.equals("3") || nivel.equals("")) {%>
                     <ul class="actions" id = "botonesEntrada">
                         <li><a href="login.jsp#main" class="button special">Entrar</a></li>
@@ -151,9 +151,6 @@
                             <!-- <span class="image featured"><img src="images/pic03.jpg" alt="" /></span> -->
                             <h3>MANTENIMIENTOS</h3>
                             <p>ACTUALIZACIÓN DE ESTADO DE CLIENTES, ESTADO DE PRODUCTOS NUEVOS, ETC. </p>
-                            <!--                            <ul class="actions">
-                                                            <li><a href="#" class="button">IR ALLÁ</a></li>
-                                                        </ul>-->
                             <div class="actions" >
                                 <ul class="actions vertical">
                                     <li><a href="#" class="button">ELIMINAR CLIENTES</a></li>
