@@ -15,7 +15,6 @@
     HttpSession sesion = request.getSession(true);
     ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
     Utileria algo = new Utileria();
-
     Idioma idioma = null;
     if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
         sesion.setAttribute("Idioma", "Español");
@@ -23,7 +22,6 @@
     } else {
         idioma = new Idioma("Ingles");
     }
-
     String nivel = "", usuario = "", rol = null, foto = null;
     if (sesion.getAttribute("user") != null && sesion.getAttribute("nivel") != null) {
         nivel = sesion.getAttribute("nivel").toString();
@@ -52,7 +50,6 @@
             function mostrar() {
                 document.getElementById('pagotarjeta').style.display = 'block';
             }
-
             function mostrarNoLogueado() {
                 document.getElementById('NoLogueado').style.display = 'block';
             }
@@ -60,19 +57,16 @@
         <script>
             function valida(e) {
                 tecla = (document.all) ? e.keyCode : e.which;
-
                 //Tecla de retroceso para borrar, siempre la permite
                 if (tecla == 8) {
                     return true;
                 }
-
                 // Patron de entrada, en este caso solo acepta numeros
                 patron = /[0-9]/;
                 tecla_final = String.fromCharCode(tecla);
                 return patron.test(tecla_final);
             }
             $('input,form').attr('autocomplete', 'off');
-
         </script>
     </head>
     <body class="landing">
@@ -402,4 +396,3 @@
         <script src="js/carrito.js"></script>
     </body>
 </html>
-L
