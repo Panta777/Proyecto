@@ -70,6 +70,11 @@
             if (sesion.getAttribute("resOper") != null) {
                 resOper = sesion.getAttribute("resOper").toString();
             }
+
+            int opera = 0;
+            if (request.getParameter("Operacion") != null) {
+                opera = Integer.parseInt(request.getParameter("Operacion"));
+            }
         %>
     </head>
     <body class="landing">
@@ -152,23 +157,27 @@
                 </section>
                 <div class="row">
                     <div class="12u">
-                        <!-- Form -->
+                        <!-- Form Nuevo PRODUCTO -->
+                    <%//VER Nuevo PRODUCTO  = 1
+                        if (opera == 1)
+                        {
+                    %>
                         <section class="box">
                             <h3><p>Ingrese los siguientes Datos</p></h3>
                             <form method="post" action="controladorProducto">
                                 <div class="row uniform 50%">
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="" id="NoDoc" value="" placeholder="Referencia" />
+                                        <input type="text" name="" id="in_REFERENCIA" value="" placeholder="Referencia" />
                                     </div>                               
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="FName" id="FName" value="" placeholder="<%out.write(idioma.getProperty("nombre"));%>" />
+                                        <input type="text" name="FName" id="in_NOMBRE" value="" placeholder="<%out.write(idioma.getProperty("nombre"));%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="LName" id="LName" value="" placeholder="Descripcion"  />
+                                        <input type="text" name="LName" id="in_DESCRIPCION" value="" placeholder="Descripcion"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
                                         <div class="select-wrapper">
-                                            <select  name="TipoProd" id="TipoProd" >
+                                            <select  name="in_TIPO" id="TipoProd" >
                                                 <option value="" disabled selected hidden>-Categoria-</option>
                                                 <option value="Tradicionales">Tradicionales</option>
                                                 <option value="Modernos">Modernos</option>
@@ -178,35 +187,35 @@
                                         </div>
                                     </div> 
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="TelRes" id="TelRes" value="" placeholder="MATERIAL" />
+                                        <input type="text" name="in_MATERIAL" id="in_MATERIAL" value="" placeholder="MATERIAL" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="TelCel" id="TelCel" value="" placeholder="ALTO"  />
+                                        <input type="text" name="in_ALTO" id="in_ALTO" value="" placeholder="ALTO"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="Nit" id="Nit" value="" placeholder="ANCHO" />
+                                        <input type="text" name="in_ANCHO" id="in_ANCHO" value="" placeholder="ANCHO" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="Direccion" id="Direccion" value="" placeholder="PROFUNDIDAD"  />
+                                        <input type="text" name="in_PROFUNDIDAD" id="in_PROFUNDIDAD" value="" placeholder="PROFUNDIDAD"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="Ciudad" id="Ciudad" value="" placeholder="COLOR" />
+                                        <input type="text" name="in_COLOR" id="in_COLOR" value="" placeholder="COLOR" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="Departamento" id="Departamento" value="" placeholder="PESO"  />
+                                        <input type="text" name="in_PESO" id="in_PESO" value="" placeholder="PESO"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="Pais" id="Pais" value="" placeholder="FOTO" />
+                                        <input type="text" name="in_FOTO" id="in_FOTO" value="" placeholder="FOTO" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="Profesion" id="Profesion" value="" placeholder="FECHA_ALTA"  />
+                                        <input type="text" name="FECHA_ALTA" id="FECHA_ALTA" value="" placeholder="FECHA ALTA"  />
                                     </div>
 
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="Direccion" id="Direccion" value="" placeholder="ESTADO"  />
+                                        <input type="text" name="ESTADO" id="ESTADO" value="" placeholder="ESTADO"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="Ciudad" id="Ciudad" value="" placeholder="PRECIOVENTA" />
+                                        <input type="text" name="PRECIOVENTA" id="PRECIOVENTA" value="" placeholder="PRECIOVENTA" />
                                     </div>
                                     <div class="row uniform " id = "ResultadoNuevoCliente">
                                         <div class="12u">
@@ -224,6 +233,89 @@
                                 </div>
                             </form>
                         </section>
+                       <%
+                            }
+                        %>
+                         <!-- FIN NUEVO PRODUCTO-->
+                        <!-- Form Modificar PRODUCTO -->
+                    <%//VER  Modificar PRODUCTO  = 2
+                        if (opera == 2)
+                        {
+                    %>
+                                          <section class="box">
+                                                <h3><p>Modifique los datos que considere:</p></h3>
+                                                <form method="post" action="controladorProducto">
+                                                    <div class="row uniform 50%">
+                                                        <div class="6u 12u(narrower)">
+                                                            <input type="text" name="" id="in_REFERENCIA" value="" placeholder="Referencia" />
+                                                        </div>
+                                                        <div class="6u 12u(narrower)">
+                                                            <input type="text" name="FName" id="in_NOMBRE" value="" placeholder="<%out.write(idioma.getProperty("nombre"));%>" />
+                                                        </div>
+                                                        <div class="6u 12u(narrower)">
+                                                            <input type="text" name="LName" id="in_DESCRIPCION" value="" placeholder="Descripcion"  />
+                                                        </div>
+                                                        <div class="6u 12u(narrower)">
+                                                            <div class="select-wrapper">
+                                                                <select  name="in_TIPO" id="TipoProd" >
+                                                                    <option value="" disabled selected hidden>-Categoria-</option>
+                                                                    <option value="Tradicionales">Tradicionales</option>
+                                                                    <option value="Modernos">Modernos</option>
+                                                                    <option value="Coloniales">Coloniales</option>
+                                                                    <option value="Rusticos">Rusticos</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="6u 12u(narrower)">
+                                                            <input type="text" name="in_MATERIAL" id="in_MATERIAL" value="" placeholder="MATERIAL" />
+                                                        </div>
+                                                        <div class="6u 12u(narrower)">
+                                                            <input type="text" name="in_ALTO" id="in_ALTO" value="" placeholder="ALTO"  />
+                                                        </div>
+                                                        <div class="6u 12u(narrower)">
+                                                            <input type="text" name="in_ANCHO" id="in_ANCHO" value="" placeholder="ANCHO" />
+                                                        </div>
+                                                        <div class="6u 12u(narrower)">
+                                                            <input type="text" name="in_PROFUNDIDAD" id="in_PROFUNDIDAD" value="" placeholder="PROFUNDIDAD"  />
+                                                        </div>
+                                                        <div class="6u 12u(narrower)">
+                                                            <input type="text" name="in_COLOR" id="in_COLOR" value="" placeholder="COLOR" />
+                                                        </div>
+                                                        <div class="6u 12u(narrower)">
+                                                            <input type="text" name="in_PESO" id="in_PESO" value="" placeholder="PESO"  />
+                                                        </div>
+                                                        <div class="6u 12u(narrower)">
+                                                            <input type="text" name="in_FOTO" id="in_FOTO" value="" placeholder="FOTO" />
+                                                        </div>
+                                                        <div class="6u 12u(narrower)">
+                                                            <input type="text" name="FECHA_ALTA" id="FECHA_ALTA" value="" placeholder="FECHA ALTA"  />
+                                                        </div>
+
+                                                        <div class="6u 12u(narrower)">
+                                                            <input type="text" name="ESTADO" id="ESTADO" value="" placeholder="ESTADO"  />
+                                                        </div>
+                                                        <div class="6u 12u(narrower)">
+                                                            <input type="text" name="PRECIOVENTA" id="PRECIOVENTA" value="" placeholder="PRECIOVENTA" />
+                                                        </div>
+                                                        <div class="row uniform " id = "ResultadoNuevoCliente">
+                                                            <div class="12u">
+                                                                <ul class="actions">
+                                                                    <li><input type="submit" name ="Enviar" value="Enviar" /></li>
+                                                                </ul>
+                                                            </div>
+                                                            <%
+                                                                if (sesion.getAttribute("resOper") != null) {
+                                                                    out.write((String) sesion.getAttribute("resOper"));
+                                                                    // out.write("<h5 style=\" color:red; font-weight:bold;\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>");
+                                                                }
+                                                            %>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </section>
+                                           <%
+                                                }
+                                            %>
                     </div>
                     <hr />
                 </div>
