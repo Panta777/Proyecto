@@ -406,6 +406,96 @@ public class OperacionesCliente {
     }
 
     /**
+     * Muestra pais 
+     *
+liente
+     * @return 
+     * @throws java.sql.SQLException
+     */
+    public ArrayList<String > mostrarPais() throws SQLException {
+        // int respuesta = 0;
+        ArrayList<String> pais = new ArrayList<>();
+        Connection cone = coneLocal.NewConnection();
+
+        if (cone != null) {
+            try {
+                cone.setAutoCommit(false);
+                CallableStatement procMostrarPais = cone.prepareCall("{CALL verPaises(?)}");
+
+                // cargar parametros de entrada
+//                procMostrarClientes.setString(1, campoFiltro);
+//                procMostrarClientes.setString(2, dato);
+
+                //parametro de salida
+                procMostrarPais.registerOutParameter(1, OracleTypes.CURSOR);
+
+                procMostrarPais.executeUpdate();
+                ResultSet rsRecords = (ResultSet) procMostrarPais.getObject(1);
+
+                if (rsRecords != null) {
+                    // System.out.println("Hay data");
+                    while (rsRecords.next()) {// obtener salida
+                        pais.add( rsRecords.getString("IDPAIS")+";"+rsRecords.getString("PAIS"));
+                    }
+                }
+                cone.commit();// confirmar si se ejecuto sin errores
+            } catch (SQLException e) {
+                cone.rollback();// deshacer la ejecucion en caso de error
+                System.out.println("Error al ejecutar función VERPAIS por, " + e); // informar por consola
+            } finally {
+                cone.close();// cerrar la conexion
+            }
+        }
+        return pais;
+    }
+
+    
+        /**
+     * Muestra pais 
+     *
+liente
+     * @return 
+     * @throws java.sql.SQLException
+     */
+    public ArrayList<String > mostrarDepartamento(int p) throws SQLException {
+        // int respuesta = 0;
+        ArrayList<String> pais = new ArrayList<>();
+        Connection cone = coneLocal.NewConnection();
+
+        if (cone != null) {
+            try {
+                cone.setAutoCommit(false);
+                CallableStatement procMostrarDepa = cone.prepareCall("{CALL verDepartamentos(?,?)}");
+
+                // cargar parametros de entrada
+                procMostrarDepa.setInt(1, p);
+//                procMostrarClientes.setString(2, dato);
+
+                //parametro de salida
+                procMostrarDepa.registerOutParameter(2, OracleTypes.CURSOR);
+
+                procMostrarDepa.executeUpdate();
+                ResultSet rsRecords = (ResultSet) procMostrarDepa.getObject(2);
+
+                if (rsRecords != null) {
+                     System.out.println("Hay data");
+                    while (rsRecords.next()) {// obtener salida
+                        System.out.println("Ha" + rsRecords.getString("IDDEPARTAMENTO")+";"+rsRecords.getString("NOMBREDEPARTAMENTO"));
+                        pais.add( rsRecords.getString("IDDEPARTAMENTO")+";"+rsRecords.getString("NOMBREDEPARTAMENTO"));
+                    }
+                }
+                cone.commit();// confirmar si se ejecuto sin errores
+            } catch (SQLException e) {
+                cone.rollback();// deshacer la ejecucion en caso de error
+                System.out.println("Error al ejecutar función verDepartamentos por, " + e); // informar por consola
+            } finally {
+                cone.close();// cerrar la conexion
+            }
+        }
+        return pais;
+    }
+
+    /**
      * Muestra datos del Cliente, segun diferentes criterios para el reporte
      *
      * @param campoFiltro
@@ -459,4 +549,6 @@ public class OperacionesCliente {
         }
         return clientes;
     }
+
+
 }

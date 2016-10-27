@@ -4,6 +4,7 @@
     Author     : panle
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="modelo.Idioma"%>
 <%@page import="modelo.OperacionesCliente"%>
 <%@page session = "true"%>
@@ -157,13 +158,67 @@
                                         <input type="text" name="Direccion" id="Direccion" value="" placeholder="Direccion<% out.write(idioma.getProperty("email"));%>"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
+                                        <div class="select-wrapper">
+                                            <select  name="Pais" id="Pais" >
+                                                <option value="" onChange ="<%
+                                                    System.out.println(pas[0]);
+                                                    OperacionesCliente oc2 = new OperacionesCliente();
+                                                    ArrayList<String> depas = oc.mostrarDepartamento(1);
+                                                    int conta2 = 0;
+                                                    String pas2[] = null;
+                                                    if (depas != null && depas.size() > 0) {
+                                                        while (conta2 < depas.size()) {
+                                                            System.out.println("id: " + depas.get(conta2));
+                                                            pas2 = depas.get(conta2).split(";");
+                                                            conta2++;
+                                                        %>">-Pais- <%out.write(idioma.getProperty("nombre"));%></option>
+                                                <%
+                                                    OperacionesCliente oc = new OperacionesCliente();
+                                                    ArrayList<String> paises = oc.mostrarPais();
+                                                    int conta = 0;
+                                                    String pas[] = null;
+                                                    if (paises != null && paises.size() > 0) {
+                                                        while (conta < paises.size()) {
+                                                            // System.out.println("id: " + paises.get(conta));
+                                                            pas = paises.get(conta).split(";");
+                                                            conta++;
+                                                %>
+
+                                                <option value="<%out.write(pas[0]);%>"> <%out.write(pas[1]);%></option>
+                                                <%
+                                                        }
+                                                    }
+                                                %>
+                                            </select>
+                                        </div>
+                                    </div>                                    
+                                    <div class="6u 12u(narrower)">
+                                        <div class="select-wrapper">
+                                            <select  name="Departamento" id="Departamento" >
+                                                <option value="">-Departamento- <%out.write(idioma.getProperty("nombre"));%></option>
+                                                <%
+                                                    System.out.println(pas[0]);
+//                                                    OperacionesCliente oc2 = new OperacionesCliente();
+//                                                    ArrayList<String> depas = oc.mostrarDepartamento(1);
+//                                                    int conta2 = 0;
+//                                                    String pas2[] = null;
+                                                    if (depas != null && depas.size() > 0) {
+                                                        while (conta2 < depas.size()) {
+                                                            System.out.println("id: " + depas.get(conta2));
+                                                            pas2 = depas.get(conta2).split(";");
+                                                            conta2++;
+                                                %>
+
+                                                <option value="<%out.write(pas2[0]);%>"> <%out.write(pas2[1]);%></option>
+                                                <%
+                                                        }
+                                                    }
+                                                %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="6u 12u(narrower)">
                                         <input type="text" name="Ciudad" id="Ciudad" value="" placeholder="Ciudad <%out.write(idioma.getProperty("nombre"));%>" />
-                                    </div>
-                                    <div class="6u 12u(narrower)">
-                                        <input type="text" name="Departamento" id="Departamento" value="" placeholder="Departamento<% out.write(idioma.getProperty("email"));%>"  />
-                                    </div>
-                                    <div class="6u 12u(narrower)">
-                                        <input type="text" name="Pais" id="Pais" value="" placeholder="Pais<%out.write(idioma.getProperty("nombre"));%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
                                         <input type="text" name="Profesion" id="Profesion" value="" placeholder="Profesion<% out.write(idioma.getProperty("email"));%>"  />
@@ -196,7 +251,7 @@
                                     </div>
                                     <%
                                         if (sesion.getAttribute("resOper") != null) {
-                                            out.write((String)sesion.getAttribute("resOper"));
+                                            out.write((String) sesion.getAttribute("resOper"));
                                             // out.write("<h5 style=\" color:red; font-weight:bold;\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>");
                                         }
                                     %>
