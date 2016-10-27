@@ -21,6 +21,41 @@
         <meta HTTP-EQUIV="Expires" CONTENT="Tue, 01 Jan 1980 1:00:00 GMT">
         <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
         <script type="text/javascript">
+            var countryLists = new Array(4) 
+            countryLists["-Pais-"] = ["Seleccione un Pais"]; 
+            countryLists["1"] = ["Guatemala", "El Quiche", "El Petén"]; 
+            countryLists["2"] = ["Copan", "San Pedro Sula", "Morazan"]; 
+            //            countryLists["Asia"] = ["Russia", "China", "Japan"]; 
+            //            countryLists["Europe"]= ["Britain", "France", "Spain", "Germany"]; 
+            function countryChange(selectObj) { 
+                // get the index of the selected option 
+                var idx = selectObj.selectedIndex; 
+                // get the value of the selected option 
+                var which = selectObj.options[idx].value; 
+                // use the selected option value to retrieve the list of items from the countryLists array 
+                cList = countryLists[which]; 
+                // get the country select element via its known id 
+                var cSelect = document.getElementById("Departamento"); 
+                // remove the current options from the country select 
+                var len=cSelect.options.length; 
+                while (cSelect.options.length > 0) { 
+                    cSelect.remove(0); 
+                } 
+                var newOption; 
+                // create new options 
+                for (var i=0; i<cList.length; i++) { 
+                    newOption = document.createElement("option"); 
+                    newOption.value = cList[i];  // assumes option string and value are the same 
+                    newOption.text=cList[i]; 
+                    // add the new option 
+                    try { 
+                        cSelect.add(newOption);  // this will fail in DOM browsers but is needed for IE 
+                    } 
+                    catch (e) { 
+                        cSelect.appendChild(newOption); 
+                    } 
+                } 
+            } 
             function AutenticaSiEsHumano(form)
             {
                 if (form.human.checked === true)
@@ -43,11 +78,13 @@
                     return false;
                 }
             }
-            previene = function () {
-                window.stop;
-                history.go(1);
-            };
-            window.back = previene();
+           
+                
+            //            previene = function () {
+            //                window.stop;
+            //                history.go(1);
+            //            };
+            //            window.back = previene();
         </script>        
         <%
             Idioma idioma = null;
@@ -119,11 +156,11 @@
                         <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
                     </header>                
                 </section>
-                <div class="row">
+                <div class="row" id ="formularioNuevo">
                     <div class="12u">
                         <!-- Form -->
                         <section class="box">
-                            <h3><p>Ingrese sus Datos</p></h3>
+                            <h3><p >Ingrese sus Datos</p></h3>
                             <form method="post" action="controladorCliente">
                                 <div class="row uniform 50%">
                                     <div class="6u 12u(mobilep)">
@@ -159,49 +196,50 @@
                                     </div>
                                     <div class="6u 12u(narrower)">
                                         <div class="select-wrapper">
-                                            <select  name="Pais" id="Pais" >
-                                                <option value="" onChange ="<%
-                                                    System.out.println(pas[0]);
-                                                    OperacionesCliente oc2 = new OperacionesCliente();
-                                                    ArrayList<String> depas = oc.mostrarDepartamento(1);
-                                                    int conta2 = 0;
-                                                    String pas2[] = null;
-                                                    if (depas != null && depas.size() > 0) {
-                                                        while (conta2 < depas.size()) {
-                                                            System.out.println("id: " + depas.get(conta2));
-                                                            pas2 = depas.get(conta2).split(";");
-                                                            conta2++;
-                                                        %>">-Pais- <%out.write(idioma.getProperty("nombre"));%></option>
+                                            <!--                                        <form name="form1" action="SERVLET" method="POST">-->
+                                            <!--                                            <select  name="Pais" id="Pais" onChange ="countryChange(this)">-->
+                                            <select  name="Pais" id="Pais" onChange ="location.href='nuevoCliente.jsp?#formularioNuevo'">
+                                                <option value="-Pais-" >-Pais-<%out.write(idioma.getProperty("nombre"));%></option>
                                                 <%
                                                     OperacionesCliente oc = new OperacionesCliente();
                                                     ArrayList<String> paises = oc.mostrarPais();
                                                     int conta = 0;
-                                                    String pas[] = null;
+                                                    String pas[] = {"", ""};
                                                     if (paises != null && paises.size() > 0) {
                                                         while (conta < paises.size()) {
-                                                            // System.out.println("id: " + paises.get(conta));
-                                                            pas = paises.get(conta).split(";");
-                                                            conta++;
-                                                %>
 
-                                                <option value="<%out.write(pas[0]);%>"> <%out.write(pas[1]);%></option>
+                                                            pas = paises.get(conta).split(";");
+                                                %>
+                                                countryLists[<%= conta%>] = "<%= pas[0]%>"; 
+                                                <%
+                                                    conta++;
+                                                %>
+                                                <option value="<%=Integer.valueOf(pas[0].replaceAll(" ", ""))%>" id ="pais<%out.write(pas[0]);%>"> <%out.write(pas[1]);%></option>
                                                 <%
                                                         }
                                                     }
+                                                    sesion.setAttribute("Pais",Integer.valueOf(pas[0].replaceAll(" ", "")));
                                                 %>
                                             </select>
+                                            <!--                                            </form>-->
                                         </div>
                                     </div>                                    
                                     <div class="6u 12u(narrower)">
                                         <div class="select-wrapper">
-                                            <select  name="Departamento" id="Departamento" >
-                                                <option value="">-Departamento- <%out.write(idioma.getProperty("nombre"));%></option>
+                                            <select  name="Departamento" id="Departamento"  >
+                                                <option value="">-Departamento-<%out.write(idioma.getProperty("nombre"));%></option>
                                                 <%
-                                                    System.out.println(pas[0]);
-//                                                    OperacionesCliente oc2 = new OperacionesCliente();
-//                                                    ArrayList<String> depas = oc.mostrarDepartamento(1);
-//                                                    int conta2 = 0;
-//                                                    String pas2[] = null;
+                                                    int idpais = 0;
+                                                    System.out.println("id: " + sesion.getAttribute("Pais") );
+
+                                                    if (sesion.getAttribute("Pais") != null) {
+                                                        idpais = Integer.parseInt(sesion.getAttribute("Pais").toString());
+                                                    }
+
+                                                    OperacionesCliente oc2 = new OperacionesCliente();
+                                                    ArrayList<String> depas = oc2.mostrarDepartamento(idpais);
+                                                    int conta2 = 0;
+                                                    String pas2[] = {"", ""};
                                                     if (depas != null && depas.size() > 0) {
                                                         while (conta2 < depas.size()) {
                                                             System.out.println("id: " + depas.get(conta2));

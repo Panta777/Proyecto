@@ -412,7 +412,7 @@ liente
      * @return 
      * @throws java.sql.SQLException
      */
-    public ArrayList<String > mostrarPais() throws SQLException {
+    public ArrayList<String> mostrarPais() throws SQLException {
         // int respuesta = 0;
         ArrayList<String> pais = new ArrayList<>();
         Connection cone = coneLocal.NewConnection();
@@ -440,6 +440,7 @@ liente
                 }
                 cone.commit();// confirmar si se ejecuto sin errores
             } catch (SQLException e) {
+                pais.add(" ; SIN PAISES");
                 cone.rollback();// deshacer la ejecucion en caso de error
                 System.out.println("Error al ejecutar función VERPAIS por, " + e); // informar por consola
             } finally {
