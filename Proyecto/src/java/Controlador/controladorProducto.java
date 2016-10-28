@@ -18,13 +18,12 @@ import javax.servlet.http.HttpSession;
 import modelo.OperacionesProducto;
 import modelo.OperacionesProducto;
 
-
 /**
  *
  * @author DesarrolloPantaleon
  */
 @WebServlet(name = "controladorProducto", urlPatterns = {"/controladorProducto"})
-public class controladorProducto extends HttpServlet{ 
+public class controladorProducto extends HttpServlet {
 
     public String getProductos(String tipo) {
         OperacionesProducto mp = new OperacionesProducto();
@@ -33,13 +32,12 @@ public class controladorProducto extends HttpServlet{
             htmlcode += "                                    <div class=\"4u 12u(narrower)\">\n"
                     + "                                <section class=\"box special\">\n"
                     + "                                    <span class=\"image featured\"><img src=\"" + producto.getFOTO() + "\" alt=\"Muebles Tradicionales\" /></span>\n"
-                    + "                                    <h3>" + producto.getNOMBRE()+ "</h3>                                                <ul class=\"actions\">\n"
+                    + "                                    <h3>" + producto.getNOMBRE() + "</h3>                                                <ul class=\"actions\">\n"
                     + "                                        <li><a href=\"detalleproducto.jsp?id=" + producto.getID_PRODUCTO() + "#main\" class= \"button \" >VER DETALLES</a></li>\n"
                     + "                                    </ul>\n"
                     + "                                </section></div>";
         }
-        if(htmlcode.equals(""))
-        {
+        if (htmlcode.equals("")) {
             htmlcode = "<h3>NO HAY MUEBLES EN ESTA CATEGORIA</h3> ";
             htmlcode += "<span class=\"image featured\"><img src=\"images/404.png\" alt=\"Sin Muebles\" /></span>\n ";
         }
@@ -51,8 +49,8 @@ public class controladorProducto extends HttpServlet{
     public Producto getProducto(int id) {
         return new OperacionesProducto().getProducto(id);
     }
-    
-        //metodo encargado de la gestión del método POST
+
+    //metodo encargado de la gestión del método POST
     //Recibe los parametros de la paginas para el mantenimiento del Producto
     protected void processRequestPOST(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -66,69 +64,63 @@ public class controladorProducto extends HttpServlet{
 //                    response.sendRedirect("nuevoProducto.jsp");
 //                } else {
 
-                    producto.setREFERENCIA(request.getParameter("FName"));
-                    producto.setNOMBRE(request.getParameter("FName"));
-                    producto.setDESCRIPCION(request.getParameter("FName"));
-                   producto.setTIPO(request.getParameter("FName"));
-                    producto.setMATERIAL(request.getParameter("FName"));
-                     producto.setALTO(request.getParameter("FName"));
-                    producto.setANCHO(request.getParameter("FName"));
-                     producto.setPROFUNDIDAD(request.getParameter("FName"));
-                    producto.setCOLOR(request.getParameter("FName"));
-                     producto.setPESO(request.getParameter("FName"));
-                     producto.setFOTO(request.getParameter("FName"));
-                     producto.setESTADO(request.getParameter("FName"));
-                     producto.setPRECIOVENTA(Double.valueOf(request.getParameter("FName")));
-                
-                    HttpSession sesion = request.getSession();
-                    String respuesta = opproducto.insertarProducto(producto);
-                    if(respuesta.equals(""))
-                    {
-                        sesion.setAttribute("resOper", "out.write(\"<h5 style=\\\" color:red; font-weight:bold;\\\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>\");\n" );
-                    }
-                    else
-                    {
-                        
-                    }
-                    sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" +respuesta+ "</p></h5>");
-                    response.sendRedirect("nuevoProducto.jsp#ResultadoNuevoProducto");
-                //}
-            } else if (request.getParameter("modificaProducto") != null) {
-                if (request.getParameter("pass") == null ? request.getParameter("pass2") != null : !request.getParameter("pass").equals(request.getParameter("pass2"))) {
-                    response.sendRedirect("modificarProducto.jsp");
-                } else {
-                    producto.setREFERENCIA(request.getParameter("FName"));
-                    producto.setNOMBRE(request.getParameter("FName"));
-                    producto.setDESCRIPCION(request.getParameter("FName"));
-                   producto.setTIPO(request.getParameter("FName"));
-                    producto.setMATERIAL(request.getParameter("FName"));
-                     producto.setALTO(request.getParameter("FName"));
-                    producto.setANCHO(request.getParameter("FName"));
-                     producto.setPROFUNDIDAD(request.getParameter("FName"));
-                    producto.setCOLOR(request.getParameter("FName"));
-                     producto.setPESO(request.getParameter("FName"));
-                     producto.setFOTO(request.getParameter("FName"));
-                     producto.setESTADO(request.getParameter("FName"));
-                     producto.setPRECIOVENTA(Double.valueOf(request.getParameter("FName")));
-                
+                producto.setREFERENCIA(request.getParameter("in_REFERENCIA"));
+                producto.setNOMBRE(request.getParameter("in_NOMBRE"));
+                producto.setDESCRIPCION(request.getParameter("in_DESCRIPCION"));
+                producto.setTIPO(request.getParameter("in_TIPO"));
+                producto.setMATERIAL(request.getParameter("in_MATERIAL"));
+                producto.setALTO(request.getParameter("in_ALTO"));
+                producto.setANCHO(request.getParameter("in_ANCHO"));
+                producto.setPROFUNDIDAD(request.getParameter("in_PROFUNDIDAD"));
+                producto.setCOLOR(request.getParameter("in_COLOR"));
+                producto.setPESO(request.getParameter("in_PESO"));
+                producto.setFOTO(request.getParameter("in_FOTO"));
+                producto.setESTADO(request.getParameter("ESTADO"));
+                producto.setPRECIOVENTA(Double.valueOf(request.getParameter("PRECIOVENTA")));
 
-                    HttpSession sesion = request.getSession();
-                    switch (opproducto.insertarProducto(producto)) {
-                        case "":
-//                            sesion.setAttribute("user", usu);//                            sesion.setAttribute("nivel", "1");
-                            System.out.println("Prueba Modificacion");
-                            System.out.println("Exito");
-                            sesion.setAttribute("resOper", "1");
-                            break;
-                        default:
-                            sesion.setAttribute("resOper", "2");
-                            break;
-                    }
+                HttpSession sesion = request.getSession();
+                String respuesta = opproducto.insertarProducto(producto);
+                if (respuesta.equals("")) {
+                    sesion.setAttribute("resOper", "out.write(\"<h5 style=\\\" color:red; font-weight:bold;\\\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>\");\n");
+                } else {
+
+                    sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta + "</p></h5>");
+                    response.sendRedirect("nuevoProducto.jsp#ResultadoNuevoProducto");
+                }
+                //}
+            } else if (request.getParameter("EnviarMP") != null) {
+//                if (request.getParameter("pass") == null ? request.getParameter("pass2") != null : !request.getParameter("pass").equals(request.getParameter("pass2"))) {
+//                    response.sendRedirect("modificarProducto.jsp");
+//                } else {
+                    producto.setREFERENCIA(request.getParameter("in_REFERENCIA"));
+                    producto.setNOMBRE(request.getParameter("in_NOMBRE"));
+                    producto.setDESCRIPCION(request.getParameter("in_DESCRIPCION"));
+                    producto.setTIPO(request.getParameter("in_TIPO"));
+                    producto.setMATERIAL(request.getParameter("in_MATERIAL"));
+                    producto.setALTO(request.getParameter("in_ALTO"));
+                    producto.setANCHO(request.getParameter("in_ANCHO"));
+                    producto.setPROFUNDIDAD(request.getParameter("in_PROFUNDIDAD"));
+                    producto.setCOLOR(request.getParameter("in_COLOR"));
+                    producto.setPESO(request.getParameter("in_PESO"));
+                    producto.setFOTO(request.getParameter("in_FOTO"));
+                    producto.setESTADO(request.getParameter("ESTADO"));
+                    producto.setPRECIOVENTA(Double.valueOf(request.getParameter("PRECIOVENTA")));
+
+
+                  HttpSession sesion = request.getSession();
+                String respuesta = opproducto.insertarProducto(producto);
+                if (respuesta.equals("")) {
+                    sesion.setAttribute("resOper", "out.write(\"<h5 style=\\\" color:red; font-weight:bold;\\\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>\");\n");
+                } else {
+
+                    sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta + "</p></h5>");
+                    response.sendRedirect("nuevoProducto.jsp#ResultadoNuevoProducto");
+                }
                     response.sendRedirect("modificaProducto.jsp");
                 }
-            }
+            //}
         } catch (SQLException e) {
-            out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Error login desde Base de Datos</p></h5>");
+            out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Error desde Base de Datos</p></h5>");
         } finally {
             out.close();
         }
@@ -149,7 +141,8 @@ public class controladorProducto extends HttpServlet{
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the HTTP
+     * <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -163,7 +156,8 @@ public class controladorProducto extends HttpServlet{
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP
+     * <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response

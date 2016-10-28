@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Registro de Nuevo Cliente</title>
+        <title>Mantenimiento Productos</title>
         <link rel="shortcut icon" href="images/ICONOS/ICO.ico "/>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -63,9 +63,9 @@
                 nivel = sesion.getAttribute("nivel").toString();
                 usuario = sesion.getAttribute("user").toString();
             }
-            if (!nivel.equals("2") && !nivel.equals("1")) {
-                response.sendRedirect("index.jsp#main");
-            }
+//            if (!nivel.equals("2") && !nivel.equals("1")) {
+//                response.sendRedirect("index.jsp#main");
+//            }
 
             if (sesion.getAttribute("resOper") != null) {
                 resOper = sesion.getAttribute("resOper").toString();
@@ -151,7 +151,7 @@
             <section id="main" class="container">
                 <section class="box special">
                     <header class="major">
-                        <h2>REGISTRO NUEVO PRODUCTO</h2>
+                        <h2>MANTENIMIENTO PRODUCTOS</h2>
                         <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
                     </header>                
                 </section>
@@ -162,6 +162,7 @@
                             if (opera == 1) {
                         %>
                         <section class="box">
+                            <h2>NUEVO PRODUCTO</h2>
                             <h3><p>Ingrese los siguientes Datos</p></h3>
                             <form method="post" action="controladorProducto">
                                 <div class="row uniform 50%">
@@ -241,7 +242,87 @@
                             if (opera == 2) {
                         %>
                         <section class="box">
+                            <h2>MANTENIMIENTO PRODUCTOS</h2>
                             <h3><p>Modifique los datos que considere:</p></h3>
+                            <form method="post" action="controladorProducto">
+                                <div class="row uniform 50%">
+                                    <div class="6u 12u(narrower)">
+                                        <input type="text" name="" id="in_REFERENCIA" value="" placeholder="Referencia" />
+                                    </div>
+                                    <div class="6u 12u(narrower)">
+                                        <input type="text" name="FName" id="in_NOMBRE" value="" placeholder="<%out.write(idioma.getProperty("nombre"));%>" />
+                                    </div>
+                                    <div class="6u 12u(narrower)">
+                                        <input type="text" name="LName" id="in_DESCRIPCION" value="" placeholder="Descripcion"  />
+                                    </div>
+                                    <div class="6u 12u(narrower)">
+                                        <div class="select-wrapper">
+                                            <select  name="in_TIPO" id="TipoProd" >
+                                                <option value="" disabled selected hidden>-Categoria-</option>
+                                                <option value="Tradicionales">Tradicionales</option>
+                                                <option value="Modernos">Modernos</option>
+                                                <option value="Coloniales">Coloniales</option>
+                                                <option value="Rusticos">Rusticos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="6u 12u(narrower)">
+                                        <input type="text" name="in_MATERIAL" id="in_MATERIAL" value="" placeholder="MATERIAL" />
+                                    </div>
+                                    <div class="6u 12u(narrower)">
+                                        <input type="text" name="in_ALTO" id="in_ALTO" value="" placeholder="ALTO"  />
+                                    </div>
+                                    <div class="6u 12u(narrower)">
+                                        <input type="text" name="in_ANCHO" id="in_ANCHO" value="" placeholder="ANCHO" />
+                                    </div>
+                                    <div class="6u 12u(narrower)">
+                                        <input type="text" name="in_PROFUNDIDAD" id="in_PROFUNDIDAD" value="" placeholder="PROFUNDIDAD"  />
+                                    </div>
+                                    <div class="6u 12u(narrower)">
+                                        <input type="text" name="in_COLOR" id="in_COLOR" value="" placeholder="COLOR" />
+                                    </div>
+                                    <div class="6u 12u(narrower)">
+                                        <input type="text" name="in_PESO" id="in_PESO" value="" placeholder="PESO"  />
+                                    </div>
+                                    <div class="6u 12u(narrower)">
+                                        <input type="text" name="in_FOTO" id="in_FOTO" value="" placeholder="FOTO" />
+                                    </div>
+                                    <div class="6u 12u(narrower)">
+                                        <input type="text" name="FECHA_ALTA" id="FECHA_ALTA" value="" placeholder="FECHA ALTA"  />
+                                    </div>
+
+                                    <div class="6u 12u(narrower)">
+                                        <input type="text" name="ESTADO" id="ESTADO" value="" placeholder="ESTADO"  />
+                                    </div>
+                                    <div class="6u 12u(narrower)">
+                                        <input type="text" name="PRECIOVENTA" id="PRECIOVENTA" value="" placeholder="PRECIOVENTA" />
+                                    </div>
+                                    <div class="row uniform " id = "ResultadoNuevoProducto">
+                                        <div class="12u">
+                                            <ul class="actions">
+                                                <li><input type="submit" name ="EnviarMP" value="Enviar" /></li>
+                                            </ul>
+                                        </div>
+                                        <%
+                                            if (sesion.getAttribute("resOper") != null) {
+                                                out.write((String) sesion.getAttribute("resOper"));
+                                                // out.write("<h5 style=\" color:red; font-weight:bold;\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>");
+                                            }
+                                        %>
+                                    </div>
+                                </div>
+                            </form>
+                        </section>
+                        <%
+                            }
+                        %>
+                        <!-- Form Modificar PRODUCTO -->
+                        <%//VER  ELIMINAR PRODUCTO  = 3
+                            if (opera == 3) {
+                        %>
+                        <section class="box">
+                            <h2>MANTENIMIENTO PRODUCTOS</h2>
+                            <h3><p>BUSQUE EL PRODUCTO QUE DESEA DAR DE BAJA</p></h3>
                             <form method="post" action="controladorProducto">
                                 <div class="row uniform 50%">
                                     <div class="6u 12u(narrower)">
