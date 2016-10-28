@@ -163,12 +163,12 @@
                                     <thead>
                                         <tr>
                                             <th><h4>Cantidad</h4></th>
-                                            <th>Foto</th>
-                                            <th>Descripcion</th>
-                                            <th>Precio U</th>
-                                            <th>Subtotal</th>
-                                            <th>Eliminar</th>
-                                        </tr>
+                                    <th>Foto</th>
+                                    <th>Descripcion</th>
+                                    <th>Precio U</th>
+                                    <th>Subtotal</th>
+                                    <th>Eliminar</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
                                         <%
@@ -228,7 +228,8 @@
                                 <div class="4u 12u(narrow)">
                                     <p></p>
                                 </div> 
-                                <%if (articulos != null && articulos.size() > 0 && (nivel.equals("2") || nivel.equals("1"))) {%>
+                                <%if (articulos != null && articulos.size() > 0 && (nivel.equals("2") || nivel.equals("1"))) {
+                                    //if (articulos != null && articulos.size() > 0) {%>
                                 <div class="4u 12u(mobile2p)">
                                     <a class ="button special" href="#pagotarjeta" onclick="mostrar()">
                                         Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
@@ -240,7 +241,7 @@
                                         Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
                                     </a>
                                     <div class="row" style ='display:none' id ="NoLogueado">
-                                        <a href="login.jsp#main">  <h5 style ='color:red; font-weight:bold;' > Debe estar logueado para completar la transacción)</h5></a>
+                                        <a href="login.jsp#main">  <h5 style ='color:red; font-weight:bold;' > (Debe estar logueado para completar la transacción)</h5></a>
                                     </div>
                                 </div>
                                 <%}%>
@@ -263,6 +264,9 @@
                                 <form  id="formularioPago" method="post" action="pagarform" autocomplete="off">
                                     <h4 class="actions">Complete su transacción, llenando los datos de su tarjeta.</h4>
                                     <h4 style ='color:blue; font-weight:bold;' >(Verifique sus datos, antes de pagar)</h4>
+                                    <a class ="actions">
+                                        <img src="images/ICONOS/lap.png" alt = "lap" width="25" height ="25"/>
+                                    </a>
                                     <p></br></p>
                                     <div class="12u(mobilep)">
                                         <h1>Nombre del titular de la tarjeta</h1>
