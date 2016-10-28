@@ -39,14 +39,14 @@ public class controladorCliente extends HttpServlet {
                 } else {
                     cliente.setNOMBRE(request.getParameter("FName"));
                     cliente.setAPELLIDO(request.getParameter("LName"));
-                    cliente.setTIPODOCUMENTO(request.getParameter("TipoDoc"));
+//                    cliente.setTIPODOCUMENTO(request.getParameter("TipoDoc"));
                     cliente.setNUMERO_DOC(request.getParameter("NoDoc"));
                     cliente.setTEL_RESIDENCIA(request.getParameter("TelRes"));
                     cliente.setTEL_CEL(request.getParameter("TelCel"));
                     cliente.setNIT(request.getParameter("Nit"));
                     cliente.setDIRECCION(request.getParameter("Direccion"));
                     cliente.setCIUDAD(request.getParameter("Ciudad"));
-                    cliente.setDEPARTAMENTO(request.getParameter("Departamento"));
+                    cliente.setIddepartamento(Integer.valueOf(request.getParameter("Departamento")));
                     cliente.setPAIS(request.getParameter("Pais"));
                     cliente.setPROFESION(request.getParameter("Profesion"));
                     cliente.setEMAIL(request.getParameter("email"));
@@ -54,19 +54,23 @@ public class controladorCliente extends HttpServlet {
                     cliente.setCONTRASENA(request.getParameter("pass"));
 
                     HttpSession sesion = request.getSession();
-                    String respuesta = opcliente.insertarUsuarioDB(request.getParameter("usuario"), request.getParameter("pass"));
-                    if(respuesta.equals(""))
-                    {
-                        sesion.setAttribute("resOper", "out.write(\"<h5 style=\\\" color:red; font-weight:bold;\\\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>\");\n" );
-                    }
-                    else
-                    {
-                        
-                    }
-                    sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" +respuesta+ "</p></h5>");
-                    
-                    response.sendRedirect("nuevoCliente.jsp#ResultadoNuevoCliente");
+//                    String respuesta = opcliente.insertarUsuarioDB(cliente.getUSUARIO(), cliente.getCONTRASENA());
+//                    if (respuesta.equals("")) {
+//                        sesion.setAttribute("resOper", "out.write(\"<h5 style=\\\" color:red; font-weight:bold;\\\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>\");\n");
+//                    } else {
+                    String respuesta2 = opcliente.insertarCliente(cliente);
 
+                    if (respuesta2.equals("")) {
+                        // sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta + "</p></h5>");
+                        sesion.setAttribute("resOper", "<h5 style=\\\" color:red; font-weight:bold;\\\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>;\n");
+                        response.sendRedirect("nuevoCliente.jsp#ResultadoNuevoCliente");
+                    } else {
+                        sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta2 + "</p></h5>");
+                        response.sendRedirect("nuevoCliente.jsp#ResultadoNuevoCliente");
+                    }
+//                        sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta2 + "</p></h5>");
+//                        response.sendRedirect("nuevoCliente.jsp#ResultadoNuevoCliente");
+                    // }
                 }
             } else if (request.getParameter("modificaCliente") != null) {
                 if (request.getParameter("pass") == null ? request.getParameter("pass2") != null : !request.getParameter("pass").equals(request.getParameter("pass2"))) {
@@ -90,7 +94,7 @@ public class controladorCliente extends HttpServlet {
 
                     HttpSession sesion = request.getSession();
                     switch (opcliente.insertarCliente(cliente)) {
-                        case 1:
+                        case "":
 //                            sesion.setAttribute("user", usu);//                            sesion.setAttribute("nivel", "1");
                             System.out.println("Prueba Modificacion");
                             System.out.println("Exito");

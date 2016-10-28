@@ -197,8 +197,8 @@
                                     <div class="6u 12u(narrower)">
                                         <div class="select-wrapper">
                                             <!--                                        <form name="form1" action="SERVLET" method="POST">-->
-                                            <!--                                            <select  name="Pais" id="Pais" onChange ="countryChange(this)">-->
-                                            <select  name="Pais" id="Pais" onChange ="location.href='nuevoCliente.jsp?#formularioNuevo'">
+                                            <!--                                            <select  name="Pais" id="Pais" onChange ="countryChange(this)" onChange ="location.href='nuevoCliente.jsp?#formularioNuevo'">-->
+                                            <select  name="Pais" id="Pais" >
                                                 <option value="-Pais-" >-Pais-<%out.write(idioma.getProperty("nombre"));%></option>
                                                 <%
                                                     OperacionesCliente oc = new OperacionesCliente();
@@ -237,7 +237,7 @@
                                                     }
 
                                                     OperacionesCliente oc2 = new OperacionesCliente();
-                                                    ArrayList<String> depas = oc2.mostrarDepartamento(idpais);
+                                                    ArrayList<String> depas = oc2.mostrarDepartamento(1);
                                                     int conta2 = 0;
                                                     String pas2[] = {"", ""};
                                                     if (depas != null && depas.size() > 0) {

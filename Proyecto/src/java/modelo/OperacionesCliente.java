@@ -35,30 +35,55 @@ public class OperacionesCliente {
      */
     public int loguear(String usuario, String contra) throws SQLException {
 
-        int nivel = 0;
+        String respuesta = "";
+        int tipo = 0;
         Connection cone = coneLocal.NewConnection();
 
+//        if (cone != null) {
+//            try {
+//                cone.setAutoCommit(false);
+//                CallableStatement funcionLogin = cone.prepareCall("{ ?=call GET_TIPO_USUARIO(?) }");
+//                // cargar parametros de entrada
+//              //  funcionLogin.setString(2, usuario);
+//               // funcionLogin.setString(3, contra);
+//                funcionLogin.setString(2, usuario);
+//                funcionLogin.registerOutParameter(1, Types.INTEGER);//Parametro de salida
+//                funcionLogin.execute();
+//
+//                cone.commit();// confirmar si se ejecuto sin errores
+//                nivel = funcionLogin.getInt(1);// obtener salida
+//            } catch (SQLException e) {
+//                nivel = 0;
+//                cone.rollback();// deshacer la ejecucion en caso de error
+//                System.out.println("Error al ejecutar función GET_TIPO_USUARIO por, " + e); // informar por consola
+//            } finally {
+//                cone.close();// cerrar la conexion
+//            }
+//        }
         if (cone != null) {
             try {
                 cone.setAutoCommit(false);
-                CallableStatement funcionLogin = cone.prepareCall("{ ?=call GET_TIPO_USUARIO(?,?) }");
+                CallableStatement funcionLogin = cone.prepareCall("{ call VALIDA_USUARIO(?,?,?,?) }");
                 // cargar parametros de entrada
-                funcionLogin.setString(2, usuario);
-                funcionLogin.setString(3, contra);
-                funcionLogin.registerOutParameter(1, Types.INTEGER);//Parametro de salida
+                funcionLogin.setString(1, usuario);
+                funcionLogin.setString(2, contra);
+                //    funcionLogin.setString(2, usuario);
+
+                funcionLogin.registerOutParameter(3, OracleTypes.INTEGER);//Parametro de salida
+                funcionLogin.registerOutParameter(4, OracleTypes.VARCHAR);//Parametro de salida
                 funcionLogin.execute();
 
                 cone.commit();// confirmar si se ejecuto sin errores
-                nivel = funcionLogin.getInt(1);// obtener salida
+                respuesta = funcionLogin.getString(4);// obtener salida
+                tipo = funcionLogin.getInt(3);// obtener salida
             } catch (SQLException e) {
-                nivel = 0;
                 cone.rollback();// deshacer la ejecucion en caso de error
-                System.out.println("Error al ejecutar función GET_TIPO_USUARIO por, " + e); // informar por consola
+                System.out.println("Error al ejecutar función VALIDA_USUARIO por, " + e); // informar por consola
             } finally {
                 cone.close();// cerrar la conexion
             }
         }
-        return nivel;
+        return tipo;
     }
 
 //       /**
@@ -97,7 +122,6 @@ public class OperacionesCliente {
 //            }
 //        return nivel;
 //    }
-    
     /**
      * Retorna determinado mensaje al registrar un nuevo usuario a la BD
      *
@@ -118,17 +142,20 @@ public class OperacionesCliente {
                 insertarUsuario.setString(1, Usuario);
                 insertarUsuario.setString(2, clave);
                 insertarUsuario.setString(3, "CLIENTE");
-                
+
                 insertarUsuario.registerOutParameter(4, OracleTypes.VARCHAR);//Parametro de salida
                 insertarUsuario.execute();
 
                 cone.commit();// confirmar si se ejecuto sin errores
                 respuesta = (String) insertarUsuario.getObject(4);// obtener salida
+
+                System.out.println("esta respuesta " + respuesta);
 //                insertarUsuario.executeUpdate();
 //                ResultSet rsRecords = (ResultSet) insertarUsuario.getObject(3);
             } catch (SQLException e) {
+                respuesta = "";
                 cone.rollback();// deshacer la ejecucion en caso de error
-                System.out.println("Error al ejecutar función  por, " ); // informar por consola
+                System.out.println("Error al ejecutar función CREACION_USUARIO  por, "); // informar por consola
                 e.printStackTrace();
             } finally {
                 cone.close();// cerrar la conexion
@@ -145,59 +172,95 @@ public class OperacionesCliente {
      * @return 1 = exitoso 2 = usuario ya existe 3 = error al procesar datos
      * @throws java.sql.SQLException
      */
-    public int insertarCliente(Cliente cliente) throws SQLException {
-        int respuesta = 0;
+    public String insertarCliente(Cliente cliente) throws SQLException {
+        String respuesta = "";
         Connection cone = coneLocal.NewConnection();
 
-        if (cliente.getUSUARIO().equals("prueba")) {
-            return 1;
-        }
+        System.out.println("Dato: " + cliente.getNOMBRE());
+        System.out.println("Dato: " + cliente.getAPELLIDO());
+        System.out.println("Dato: " + cliente.getTIPODOCUMENTO());
+        System.out.println("Dato: " + cliente.getNUMERO_DOC());
+        System.out.println("Dato: " + cliente.getTEL_RESIDENCIA());
+        System.out.println("Dato: " + cliente.getTEL_CEL());
+        System.out.println("Dato: " + cliente.getNIT());
+        System.out.println("Dato: " + cliente.getDIRECCION());
+        System.out.println("Dato: " + cliente.getCIUDAD());
+        System.out.println("Dato: " + cliente.getDEPARTAMENTO());
+        System.out.println("Dato: " + cliente.getPAIS());
+        System.out.println("Dato: " + cliente.getPROFESION());
+        System.out.println("Dato: " + cliente.getEMAIL());
+        System.out.println("Dato: " + cliente.getUSUARIO());
+        System.out.println("Dato: " + cliente.getCONTRASENA());
+
+//        if (cliente.getUSUARIO().equals("prueba")) {
+//            return "";
+//        }
         if (cone != null) {
+
             try {
                 cone.setAutoCommit(false);
-                CallableStatement InsertarCliente = cone.prepareCall("{ call xxxxx(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+                CallableStatement insertarUsuario = cone.prepareCall("{ call CREACION_USUARIO(?,?,?,?) }");
 
-//                System.out.println("Dato: " + cliente.getNOMBRE());
-//                System.out.println("Dato: " + cliente.getAPELLIDO());
-//                System.out.println("Dato: " + cliente.getTIPODOCUMENTO());
-//                System.out.println("Dato: " + cliente.getNUMERO_DOC());
-//                System.out.println("Dato: " + cliente.getTEL_RESIDENCIA());
-//                System.out.println("Dato: " + cliente.getTEL_CEL());
-//                System.out.println("Dato: " + cliente.getNIT());
-//                System.out.println("Dato: " + cliente.getDIRECCION());
-//                System.out.println("Dato: " + cliente.getCIUDAD());
-//                System.out.println("Dato: " + cliente.getDEPARTAMENTO());
-//                System.out.println("Dato: " + cliente.getPAIS());
-//                System.out.println("Dato: " + cliente.getPROFESION());
-//                System.out.println("Dato: " + cliente.getEMAIL());
-//                System.out.println("Dato: " + cliente.getUSUARIO());
-//                System.out.println("Dato: " + cliente.getCONTRASENA());
-                // cargar parametros de entrada
-                InsertarCliente.setString(2, cliente.getNUMERO_DOC());
-                InsertarCliente.setString(3, cliente.getTIPODOCUMENTO());
-                InsertarCliente.setString(4, cliente.getNOMBRE());
-                InsertarCliente.setString(5, cliente.getAPELLIDO());
-                InsertarCliente.setString(6, cliente.getTEL_RESIDENCIA());
-                InsertarCliente.setString(7, cliente.getTEL_CEL());
-                InsertarCliente.setString(8, cliente.getNIT());
-                InsertarCliente.setString(9, cliente.getDIRECCION());
-                InsertarCliente.setString(10, cliente.getCIUDAD());
-                InsertarCliente.setString(11, cliente.getDEPARTAMENTO());
-                InsertarCliente.setString(12, cliente.getPAIS());
-                InsertarCliente.setString(13, cliente.getPROFESION());
-                InsertarCliente.setString(14, cliente.getEMAIL());
-                InsertarCliente.setString(15, cliente.getUSUARIO());
-                InsertarCliente.setString(16, cliente.getCONTRASENA());
+                insertarUsuario.setString(1, cliente.getUSUARIO());
+                insertarUsuario.setString(2, cliente.getCONTRASENA());
+                insertarUsuario.setString(3, "CLIENTE");
 
-                InsertarCliente.registerOutParameter(1, Types.INTEGER);//Parametro de salida
-                InsertarCliente.execute();
+                insertarUsuario.registerOutParameter(4, OracleTypes.VARCHAR);//Parametro de salida
+                insertarUsuario.execute();
 
                 cone.commit();// confirmar si se ejecuto sin errores
-                respuesta = InsertarCliente.getInt(1);// obtener salida
+                respuesta = (String) insertarUsuario.getObject(4);// obtener salida
+                System.out.println("esta respuesta " + respuesta);
+//                insertarUsuario.executeUpdate();
+//                ResultSet rsRecords = (ResultSet) insertarUsuario.getObject(3);
+                // }
+//            } catch (SQLException e) {
+//                cone.rollback();// deshacer la ejecucion en caso de error
+//                System.out.println("Error al ejecutar función  por, "); // informar por consola
+//                e.printStackTrace();
+//            } finally {
+//                cone.close();// cerrar la conexion
+//            }
+
+                //  try {
+                if (respuesta.contains("EXITOSAMENTE")) {
+                    cone.setAutoCommit(false);
+                    CallableStatement InsertarCliente = cone.prepareCall("{ call InsertarCliente(?,?,?,?,?," + "?,?,?,?,?, " + "?,?,?,?,?," + "?,?,?,?,?,?)}");
+
+                    // cargar parametros de entrada
+                    InsertarCliente.setString(1, cliente.getTIPODOCUMENTO());
+                    InsertarCliente.setString(2, cliente.getNUMERO_DOC());
+                    InsertarCliente.setString(3, cliente.getNOMBRE());
+                    InsertarCliente.setString(4, cliente.getAPELLIDO());
+                    InsertarCliente.setString(5, cliente.getTEL_RESIDENCIA());
+                    InsertarCliente.setString(6, cliente.getTEL_CEL());
+                    InsertarCliente.setString(7, cliente.getNIT());
+                    InsertarCliente.setString(8, cliente.getDIRECCION());
+                    InsertarCliente.setString(9, cliente.getPROFESION());
+                    InsertarCliente.setString(10, cliente.getEMAIL());
+                    InsertarCliente.setString(11, "0");//InsertarCliente.setString(14, cliente.getCUENTA_BANCO());
+                    InsertarCliente.setString(12, "0");//InsertarCliente.setString(14, cliente.getNUMERO_TARJETA());
+                    InsertarCliente.setString(13, "ACTIVO");//InsertarCliente.setInt(14, cliente.getESTADO());
+                    InsertarCliente.setInt(14, 1);//Banco
+                    InsertarCliente.setInt(15, 2);//estado
+                    InsertarCliente.setInt(16, cliente.getIddepartamento());
+                    InsertarCliente.setInt(17, 1);//tarjeta
+                    InsertarCliente.setInt(18, Integer.valueOf(cliente.getPAIS()));
+                    InsertarCliente.setString(19, cliente.getCIUDAD());
+                    InsertarCliente.setString(20, cliente.getUSUARIO());
+                    //InsertarCliente.setString(16, cliente.getCONTRASENA());
+
+                    InsertarCliente.registerOutParameter(21, OracleTypes.VARCHAR);//Parametro de salida
+                    InsertarCliente.execute();
+
+                    cone.commit();// confirmar si se ejecuto sin errores
+                    respuesta = InsertarCliente.getObject(21).toString();// obtener salida
+                    System.out.println("esta otra respuesta " + respuesta);
+                }
             } catch (SQLException e) {
-                respuesta = 0;
+                respuesta = "";
                 cone.rollback();// deshacer la ejecucion en caso de error
-                System.out.println("Error al ejecutar función  por, " + Arrays.toString(e.getStackTrace())); // informar por consola
+                System.out.println("Error al ejecutar InsertarCliente  por, " + e); // informar por consola
             } finally {
                 cone.close();// cerrar la conexion
             }
@@ -406,10 +469,11 @@ public class OperacionesCliente {
     }
 
     /**
-     * Muestra pais 
+     * Muestra pais
      *
-liente
-     * @return 
+     * liente
+     *
+     * @return
      * @throws java.sql.SQLException
      */
     public ArrayList<String> mostrarPais() throws SQLException {
@@ -425,7 +489,6 @@ liente
                 // cargar parametros de entrada
 //                procMostrarClientes.setString(1, campoFiltro);
 //                procMostrarClientes.setString(2, dato);
-
                 //parametro de salida
                 procMostrarPais.registerOutParameter(1, OracleTypes.CURSOR);
 
@@ -435,7 +498,7 @@ liente
                 if (rsRecords != null) {
                     // System.out.println("Hay data");
                     while (rsRecords.next()) {// obtener salida
-                        pais.add( rsRecords.getString("IDPAIS")+";"+rsRecords.getString("PAIS"));
+                        pais.add(rsRecords.getString("IDPAIS") + ";" + rsRecords.getString("PAIS"));
                     }
                 }
                 cone.commit();// confirmar si se ejecuto sin errores
@@ -450,15 +513,15 @@ liente
         return pais;
     }
 
-    
-        /**
-     * Muestra pais 
+    /**
+     * Muestra pais
      *
-liente
-     * @return 
+     * liente
+     *
+     * @return
      * @throws java.sql.SQLException
      */
-    public ArrayList<String > mostrarDepartamento(int p) throws SQLException {
+    public ArrayList<String> mostrarDepartamento(int p) throws SQLException {
         // int respuesta = 0;
         ArrayList<String> pais = new ArrayList<>();
         Connection cone = coneLocal.NewConnection();
@@ -479,10 +542,10 @@ liente
                 ResultSet rsRecords = (ResultSet) procMostrarDepa.getObject(2);
 
                 if (rsRecords != null) {
-                     System.out.println("Hay data");
+                    System.out.println("Hay data");
                     while (rsRecords.next()) {// obtener salida
-                        System.out.println("Ha" + rsRecords.getString("IDDEPARTAMENTO")+";"+rsRecords.getString("NOMBREDEPARTAMENTO"));
-                        pais.add( rsRecords.getString("IDDEPARTAMENTO")+";"+rsRecords.getString("NOMBREDEPARTAMENTO"));
+                        System.out.println("Ha" + rsRecords.getString("IDDEPARTAMENTO") + ";" + rsRecords.getString("NOMBREDEPARTAMENTO"));
+                        pais.add(rsRecords.getString("IDDEPARTAMENTO") + ";" + rsRecords.getString("NOMBREDEPARTAMENTO"));
                     }
                 }
                 cone.commit();// confirmar si se ejecuto sin errores
@@ -550,6 +613,5 @@ liente
         }
         return clientes;
     }
-
 
 }
