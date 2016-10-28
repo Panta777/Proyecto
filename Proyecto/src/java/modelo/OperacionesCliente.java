@@ -314,7 +314,7 @@ public class OperacionesCliente {
             } catch (SQLException e) {
                 respuesta = "";
                 cone.rollback();// deshacer la ejecucion en caso de error
-                System.out.println("Error al ejecutar InsertarCliente  por, " + e); // informar por consola
+                System.out.println("Error al ejecutar ActualizarCliente  por, " + e); // informar por consola
             } finally {
                 cone.close();// cerrar la conexion
             }

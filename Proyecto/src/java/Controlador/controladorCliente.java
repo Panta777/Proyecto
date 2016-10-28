@@ -58,14 +58,14 @@ public class controladorCliente extends HttpServlet {
 //                    if (respuesta.equals("")) {
 //                        sesion.setAttribute("resOper", "out.write(\"<h5 style=\\\" color:red; font-weight:bold;\\\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>\");\n");
 //                    } else {
-                    String respuesta2 = opcliente.insertarCliente(cliente);
+                    String respuesta = opcliente.insertarCliente(cliente);
 
-                    if (respuesta2.equals("")) {
+                    if (respuesta.equals("")) {
                         // sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta + "</p></h5>");
                         sesion.setAttribute("resOper", "<h5 style=\\\" color:red; font-weight:bold;\\\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>;\n");
                         response.sendRedirect("nuevoCliente.jsp#ResultadoNuevoCliente");
                     } else {
-                        sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta2 + "</p></h5>");
+                        sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta + "</p></h5>");
                         response.sendRedirect("nuevoCliente.jsp#ResultadoNuevoCliente");
                     }
 //                        sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta2 + "</p></h5>");
@@ -73,39 +73,51 @@ public class controladorCliente extends HttpServlet {
                     // }
                 }
             } else if (request.getParameter("modificaCliente") != null) {
-                if (request.getParameter("pass") == null ? request.getParameter("pass2") != null : !request.getParameter("pass").equals(request.getParameter("pass2"))) {
-                    response.sendRedirect("modificarCliente.jsp");
-                } else {
-                    cliente.setNOMBRE(request.getParameter("FName"));
-                    cliente.setAPELLIDO(request.getParameter("LName"));
-                    cliente.setTIPODOCUMENTO(request.getParameter("TipoDoc"));
-                    cliente.setNUMERO_DOC(request.getParameter("NoDoc"));
-                    cliente.setTEL_RESIDENCIA(request.getParameter("TelRes"));
-                    cliente.setTEL_CEL(request.getParameter("TelCel"));
-                    cliente.setNIT(request.getParameter("Nit"));
-                    cliente.setDIRECCION(request.getParameter("Direccion"));
-                    //cliente.setCIUDAD(request.getParameter("Ciudad"));
-                    cliente.setDEPARTAMENTO(request.getParameter("Departamento"));
-                    cliente.setPAIS(request.getParameter("Pais"));
-                    cliente.setPROFESION(request.getParameter("Profesion"));
-                    cliente.setEMAIL(request.getParameter("email"));
-                    cliente.setUSUARIO(request.getParameter("usuario"));
-                    cliente.setCONTRASENA(request.getParameter("pass"));
+//                if (request.getParameter("pass") == null ? request.getParameter("pass2") != null : !request.getParameter("pass").equals(request.getParameter("pass2"))) {
+//                    response.sendRedirect("modificarCliente.jsp");
+//                } else {
+                cliente.setNOMBRE(request.getParameter("FName"));
+                cliente.setAPELLIDO(request.getParameter("LName"));
+                cliente.setTIPODOCUMENTO(request.getParameter("TipoDoc"));
+                cliente.setNUMERO_DOC(request.getParameter("NoDoc"));
+                cliente.setTEL_RESIDENCIA(request.getParameter("TelRes"));
+                cliente.setTEL_CEL(request.getParameter("TelCel"));
+                cliente.setNIT(request.getParameter("Nit"));
+                cliente.setDIRECCION(request.getParameter("Direccion"));
+                //cliente.setCIUDAD(request.getParameter("Ciudad"));
+                cliente.setDEPARTAMENTO(request.getParameter("Departamento"));
+                cliente.setPAIS(request.getParameter("Pais"));
+                cliente.setPROFESION(request.getParameter("Profesion"));
+                cliente.setEMAIL(request.getParameter("email"));
+                cliente.setUSUARIO(request.getParameter("usuario"));
+                cliente.setCONTRASENA(request.getParameter("pass"));
 
-                    HttpSession sesion = request.getSession();
-                    switch (opcliente.insertarCliente(cliente)) {
-                        case "":
-//                            sesion.setAttribute("user", usu);//                            sesion.setAttribute("nivel", "1");
-                            System.out.println("Prueba Modificacion");
-                            System.out.println("Exito");
-                            sesion.setAttribute("resOper", "1");
-                            break;
-                        default:
-                            sesion.setAttribute("resOper", "2");
-                            break;
-                    }
-                    response.sendRedirect("modificaCliente.jsp");
+                HttpSession sesion = request.getSession();
+//                    switch (opcliente.insertarCliente(cliente)) {
+//                        case "":
+////                            sesion.setAttribute("user", usu);
+//                            //sesion.setAttribute("nivel", "1");
+//                            System.out.println("Prueba Modificacion");
+//                            System.out.println("Fallo");
+//                            sesion.setAttribute("resOper", "<h5 style=\\\" color:red; font-weight:bold;\\\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>;\n");
+//                            break;
+//                        default:
+//                            sesion.setAttribute("resOper", "2");
+//                            break;
+//                    }
+
+                String respuesta = opcliente.ModificarCliente(cliente);
+
+                if (respuesta.equals("")) {
+                    // sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta + "</p></h5>");
+                    sesion.setAttribute("resOper", "<h5 style=\\\" color:red; font-weight:bold;\\\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>;\n");
+                    response.sendRedirect("nuevoCliente.jsp#ResultadoNuevoCliente");
+                } else {
+                    sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta + "</p></h5>");
+                    response.sendRedirect("nuevoCliente.jsp#ResultadoNuevoCliente");
                 }
+                response.sendRedirect("modificaCliente.jsp");
+                //}
             }
         } catch (SQLException e) {
             out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Error login desde Base de Datos</p></h5>");
@@ -129,7 +141,8 @@ public class controladorCliente extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the HTTP
+     * <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -143,7 +156,8 @@ public class controladorCliente extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP
+     * <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response

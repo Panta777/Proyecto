@@ -71,13 +71,13 @@
             }
 
             OperacionesCliente oper = new OperacionesCliente();
-            Cliente clMostrar = oper.mostrarDatosCliente(usuario); 
-         //   new Cliente();clMostrar = 
+            Cliente clMostrar = oper.mostrarDatosCliente(usuario);
+            //   new Cliente();clMostrar = 
 //            if(oper.mostrarDatosCliente(usuario) != null)
 //            {
-            
+
 //            };
-        %>
+%>
         <section id="container"> 
             <div id="page-wrapper">
                 <!-- Header -->
@@ -185,14 +185,14 @@
                                             <h1>Ciudad:</h1>
                                             <input type="text" name="Ciudad" id="Ciudad" value="<%out.write(clMostrar.getCIUDAD());%>" />
                                         </div>
-<!--                                        <div class="6u 12u(narrower)">
-                                            <h1>Departamento: </h1>
-                                            <input type="text" name="Departamento" id="Departamento" value="<%out.write(clMostrar.getDEPARTAMENTO());%>"   />
-                                        </div>
-                                        <div class="6u 12u(narrower)">
-                                            <h1>País: </h1>
-                                            <input type="text" name="Pais" id="Pais" value="<%out.write(clMostrar.getPAIS());%>"  />
-                                        </div>-->
+                                        <!--                                        <div class="6u 12u(narrower)">
+                                                                                    <h1>Departamento: </h1>
+                                                                                    <input type="text" name="Departamento" id="Departamento" value="<%out.write(clMostrar.getDEPARTAMENTO());%>"   />
+                                                                                </div>
+                                                                                <div class="6u 12u(narrower)">
+                                                                                    <h1>País: </h1>
+                                                                                    <input type="text" name="Pais" id="Pais" value="<%out.write(clMostrar.getPAIS());%>"  />
+                                                                                </div>-->
                                         <div class="6u 12u(narrower)">
                                             <h1>Profesion: </h1>
                                             <input type="text" name="Profesion" id="Profesion" value="<%out.write(clMostrar.getPROFESION());%>"   />
@@ -228,10 +228,14 @@
                                             </ul>
                                         </div>
                                         <%
-                                            if (!resOper.equals("1") && !resOper.equals("")) {
-                                                out.write("<h5 style=\" color:red; font-weight:bold;\"><p> FALLO AL MODIFICAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>");
-                                            } else if (resOper.equals("1")) {
-                                                out.write("<h5 style=\" color:blue; font-weight:bold;\"><p> DATOS MODIFICADOS EXITOSAMENTE</p></h5>");
+//                                            if (!resOper.equals("1") && !resOper.equals("")) {
+//                                                out.write("<h5 style=\" color:red; font-weight:bold;\"><p> FALLO AL MODIFICAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>");
+//                                            } else if (resOper.equals("1")) {
+//                                                out.write("<h5 style=\" color:blue; font-weight:bold;\"><p> DATOS MODIFICADOS EXITOSAMENTE</p></h5>");
+//                                            }
+
+                                            if (sesion.getAttribute("resOper") != null) {
+                                                out.write((String) sesion.getAttribute("resOper"));
                                             }
                                         %>
                                     </div>

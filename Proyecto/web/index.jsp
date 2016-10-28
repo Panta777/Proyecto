@@ -153,10 +153,10 @@
                             <p>ACTUALIZACIÓN DE ESTADO DE CLIENTES, ESTADO DE PRODUCTOS NUEVOS, ETC. </p>
                             <div class="actions" >
                                 <ul class="actions vertical">
-                                    <li><a href="ClienteInterfaz.jsp?Operacion=3#main#" class="button">ELIMINAR CLIENTES</a></li>
-                                    <li><a href="productoInterfaz.jsp?Operacion=3#main" class="button special">ELIMINAR PRODUCTO</a></li>
-                                    <li><a href="productoInterfaz.jsp?Operacion=1#main" class="button ">AGREGAR PRODUCTO</a></li>
-                                    <li><a href="productoInterfaz.jsp?Operacion=2#main" class="button special">ACTUALIZAR PRODUCTO</a></li>
+                                    <li><a href="mantenimientosInterfaz.jsp?Operacion=4#main#" class="button">ELIMINAR CLIENTES</a></li>
+                                    <li><a href="mantenimientosInterfaz.jsp?Operacion=3#main" class="button special">ELIMINAR PRODUCTO</a></li>
+                                    <li><a href="mantenimientosInterfaz.jsp?Operacion=1#main" class="button ">AGREGAR PRODUCTO</a></li>
+                                    <li><a href="mantenimientosInterfaz.jsp?Operacion=2#main" class="button special">ACTUALIZAR PRODUCTO</a></li>
                                 </ul>
                             </div> 
                         </section>
