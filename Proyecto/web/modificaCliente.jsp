@@ -46,7 +46,7 @@
             window.back = previene();
         </script>
     </head>
-    <body class="landing" class="landing" oncontextmenu='return false'>
+    <body class="landing" oncontextmenu='return false'>
         <%
             Idioma idioma = null;
             HttpSession sesion = request.getSession(true);
@@ -185,14 +185,14 @@
                                             <h1>Ciudad:</h1>
                                             <input type="text" name="Ciudad" id="Ciudad" value="<%out.write(clMostrar.getCIUDAD());%>" />
                                         </div>
-                                        <div class="6u 12u(narrower)">
+<!--                                        <div class="6u 12u(narrower)">
                                             <h1>Departamento: </h1>
                                             <input type="text" name="Departamento" id="Departamento" value="<%out.write(clMostrar.getDEPARTAMENTO());%>"   />
                                         </div>
                                         <div class="6u 12u(narrower)">
                                             <h1>País: </h1>
                                             <input type="text" name="Pais" id="Pais" value="<%out.write(clMostrar.getPAIS());%>"  />
-                                        </div>
+                                        </div>-->
                                         <div class="6u 12u(narrower)">
                                             <h1>Profesion: </h1>
                                             <input type="text" name="Profesion" id="Profesion" value="<%out.write(clMostrar.getPROFESION());%>"   />
@@ -210,11 +210,11 @@
                                         </div>
                                         <div class="12u">
                                             <h1>Contraseña: </h1>
-                                            <input type="Password" name="pass" id="pass" value="<%out.write(clMostrar.getCONTRASENA());%>"   />
+                                            <input type="Password" name="pass" id="pass" value="<%//out.write(clMostrar.getCONTRASENA());%>"   />
                                         </div>
                                         <div class="12u">
                                             <h1>Confirme Contraseña: </h1>
-                                            <input type="Password" name="pass2" id="pass2" value="<%out.write(clMostrar.getCONTRASENA());%>"   />
+                                            <input type="Password" name="pass2" id="pass2" value="<%//out.write(clMostrar.getCONTRASENA());%>"   />
                                         </div>
                                         <div class="12u">
                                             <input type="checkbox" id="human" name="human"  onClick="AutenticaSiEsHumano(this.form)">

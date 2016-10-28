@@ -92,22 +92,22 @@ public class controladorProducto extends HttpServlet {
 //                if (request.getParameter("pass") == null ? request.getParameter("pass2") != null : !request.getParameter("pass").equals(request.getParameter("pass2"))) {
 //                    response.sendRedirect("modificarProducto.jsp");
 //                } else {
-                    producto.setREFERENCIA(request.getParameter("in_REFERENCIA"));
-                    producto.setNOMBRE(request.getParameter("in_NOMBRE"));
-                    producto.setDESCRIPCION(request.getParameter("in_DESCRIPCION"));
-                    producto.setTIPO(request.getParameter("in_TIPO"));
-                    producto.setMATERIAL(request.getParameter("in_MATERIAL"));
-                    producto.setALTO(request.getParameter("in_ALTO"));
-                    producto.setANCHO(request.getParameter("in_ANCHO"));
-                    producto.setPROFUNDIDAD(request.getParameter("in_PROFUNDIDAD"));
-                    producto.setCOLOR(request.getParameter("in_COLOR"));
-                    producto.setPESO(request.getParameter("in_PESO"));
-                    producto.setFOTO(request.getParameter("in_FOTO"));
-                    producto.setESTADO(request.getParameter("ESTADO"));
-                    producto.setPRECIOVENTA(Double.valueOf(request.getParameter("PRECIOVENTA")));
+                producto.setREFERENCIA(request.getParameter("in_REFERENCIA"));
+                producto.setNOMBRE(request.getParameter("in_NOMBRE"));
+                producto.setDESCRIPCION(request.getParameter("in_DESCRIPCION"));
+                producto.setTIPO(request.getParameter("in_TIPO"));
+                producto.setMATERIAL(request.getParameter("in_MATERIAL"));
+                producto.setALTO(request.getParameter("in_ALTO"));
+                producto.setANCHO(request.getParameter("in_ANCHO"));
+                producto.setPROFUNDIDAD(request.getParameter("in_PROFUNDIDAD"));
+                producto.setCOLOR(request.getParameter("in_COLOR"));
+                producto.setPESO(request.getParameter("in_PESO"));
+                producto.setFOTO(request.getParameter("in_FOTO"));
+                producto.setESTADO(request.getParameter("ESTADO"));
+                producto.setPRECIOVENTA(Double.valueOf(request.getParameter("PRECIOVENTA")));
 
 
-                  HttpSession sesion = request.getSession();
+                HttpSession sesion = request.getSession();
                 String respuesta = opproducto.insertarProducto(producto);
                 if (respuesta.equals("")) {
                     sesion.setAttribute("resOper", "out.write(\"<h5 style=\\\" color:red; font-weight:bold;\\\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>\");\n");
@@ -116,8 +116,8 @@ public class controladorProducto extends HttpServlet {
                     sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta + "</p></h5>");
                     response.sendRedirect("nuevoProducto.jsp#ResultadoNuevoProducto");
                 }
-                    response.sendRedirect("modificaProducto.jsp");
-                }
+                response.sendRedirect("modificaProducto.jsp");
+            }
             //}
         } catch (SQLException e) {
             out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Error desde Base de Datos</p></h5>");

@@ -81,15 +81,13 @@ public class OperacionesCliente {
                 System.out.println("resp:" + respuesta); // informar por consola
                 System.out.println("d:" + tipo); // informar por consola
 
-                if(respuesta.contains("EXITOSAMENTE") && tipo!=0)
-                {
+                if (respuesta.contains("EXITOSAMENTE") && tipo != 0) {
                     cone.close();
                     System.out.println("crear nueva conexión");
-                     coneCliente = coneLocal.NewConnection(usuario,contra);
-                     if(coneCliente == null)
-                     {
-                         tipo = 0;
-                     }
+                    coneCliente = coneLocal.NewConnection(usuario, contra);
+                    if (coneCliente == null) {
+                        tipo = 0;
+                    }
                 }
             } catch (SQLException e) {
                 cone.rollback();// deshacer la ejecucion en caso de error
@@ -101,42 +99,6 @@ public class OperacionesCliente {
         return tipo;
     }
 
-//       /**
-//     * Retorna el tipo de Nivel de acceso, según el login de Usuario.
-//     *
-//     * @param usuario
-//     * @param contra
-//     * @return Nivel de Acceso
-//     * @throws java.sql.SQLException
-//     */
-//    public int loguear(String usuario, String contra) throws SQLException {
-//
-//        int nivel = 0;
-//            try {  
-//                Connection cone = coneLocal.NewConnection(usuario, contra);
-//                if(cone!= null)
-//                { 
-//                    nivel = 1;
-//                }
-////                cone.setAutoCommit(false);
-////                CallableStatement funcionLogin = cone.prepareCall("{ ?=call GET_TIPO_USUARIO(?,?) }");
-////                // cargar parametros de entrada
-////                funcionLogin.setString(2, usuario);
-////                funcionLogin.setString(3, contra);
-////                funcionLogin.registerOutParameter(1, Types.INTEGER);//Parametro de salida
-////                funcionLogin.execute();
-////
-////                cone.commit();// confirmar si se ejecuto sin errores
-//                // obtener salida
-//            } catch (Exception e) {
-//                nivel = 0;
-//             //   cone.rollback();// deshacer la ejecucion en caso de error
-//                System.out.println("Error al ejecutar función GET_TIPO_USUARIO por, " + e); // informar por consola
-//            } finally {
-//               // cone.close();// cerrar la conexion
-//            }
-//        return nivel;
-//    }
     /**
      * Retorna determinado mensaje al registrar un nuevo usuario a la BD
      *
@@ -291,48 +253,72 @@ public class OperacionesCliente {
      * @return 1 = exitoso 2 = usuario ya existe 3 = error al procesar datos
      * @throws java.sql.SQLException
      */
-    public int ModificarCliente(Cliente cliente) throws SQLException {
-        int respuesta = 0;
+    public String ModificarCliente(Cliente cliente) throws SQLException {
+        String respuesta = "";
         Connection cone = coneLocal.NewConnection();
 
-        if (cliente.getUSUARIO().equals("prueba")) {
-            respuesta = 1;
-        }
+        System.out.println("Dato: " + cliente.getNOMBRE());
+        System.out.println("Dato: " + cliente.getAPELLIDO());
+        System.out.println("Dato: " + cliente.getTIPODOCUMENTO());
+        System.out.println("Dato: " + cliente.getNUMERO_DOC());
+        System.out.println("Dato: " + cliente.getTEL_RESIDENCIA());
+        System.out.println("Dato: " + cliente.getTEL_CEL());
+        System.out.println("Dato: " + cliente.getNIT());
+        System.out.println("Dato: " + cliente.getDIRECCION());
+        System.out.println("Dato: " + cliente.getCIUDAD());
+        System.out.println("Dato: " + cliente.getDEPARTAMENTO());
+        System.out.println("Dato: " + cliente.getPAIS());
+        System.out.println("Dato: " + cliente.getPROFESION());
+        System.out.println("Dato: " + cliente.getEMAIL());
+        System.out.println("Dato: " + cliente.getUSUARIO());
+        System.out.println("Dato: " + cliente.getCONTRASENA());
 
+//        if (cliente.getUSUARIO().equals("prueba")) {
+//            return "";
+//        }
         if (cone != null) {
+
             try {
                 cone.setAutoCommit(false);
-                CallableStatement ModificarCliente = cone.prepareCall("{ ?=call xxxxx(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+                CallableStatement ModificarCliente = cone.prepareCall("{ call ActualizarCliente(?,?,?,?,?," + "?,?,?,?,?, " + "?,?,?,?,?," + "?,?,?,?,?,?)}");
 
                 // cargar parametros de entrada
+                ModificarCliente.setString(1, cliente.getTIPODOCUMENTO());
                 ModificarCliente.setString(2, cliente.getNUMERO_DOC());
-                ModificarCliente.setString(3, cliente.getTIPODOCUMENTO());
-                ModificarCliente.setString(4, cliente.getNOMBRE());
-                ModificarCliente.setString(5, cliente.getAPELLIDO());
-                ModificarCliente.setString(6, cliente.getTEL_RESIDENCIA());
-                ModificarCliente.setString(7, cliente.getTEL_CEL());
-                ModificarCliente.setString(8, cliente.getNIT());
-                ModificarCliente.setString(9, cliente.getDIRECCION());
-                ModificarCliente.setString(10, cliente.getCIUDAD());
-                ModificarCliente.setString(11, cliente.getDEPARTAMENTO());
-                ModificarCliente.setString(12, cliente.getPAIS());
-                ModificarCliente.setString(13, cliente.getPROFESION());
-                ModificarCliente.setString(14, cliente.getEMAIL());
-                ModificarCliente.setString(15, cliente.getUSUARIO());
-                ModificarCliente.setString(16, cliente.getCONTRASENA());
+                ModificarCliente.setString(3, cliente.getNOMBRE());
+                ModificarCliente.setString(4, cliente.getAPELLIDO());
+                ModificarCliente.setString(5, cliente.getTEL_RESIDENCIA());
+                ModificarCliente.setString(6, cliente.getTEL_CEL());
+                ModificarCliente.setString(7, cliente.getNIT());
+                ModificarCliente.setString(8, cliente.getDIRECCION());
+                ModificarCliente.setString(9, cliente.getPROFESION());
+                ModificarCliente.setString(10, cliente.getEMAIL());
+                ModificarCliente.setString(11, "0");//ModificarCliente.setString(14, cliente.getCUENTA_BANCO());
+                ModificarCliente.setString(12, "0");//ModificarCliente.setString(14, cliente.getNUMERO_TARJETA());
+                ModificarCliente.setInt(13, 1);//ModificarCliente.setInt(14, cliente.getESTADO());
+                ModificarCliente.setInt(14, 1);//Banco
+                ModificarCliente.setInt(15, 2);//tipousuario
+                ModificarCliente.setInt(16, cliente.getIddepartamento());
+                ModificarCliente.setInt(17, 1);//tarjeta
+                ModificarCliente.setInt(18, Integer.valueOf(cliente.getPAIS()));
+                ModificarCliente.setString(19, cliente.getCIUDAD());
+                ModificarCliente.setString(20, cliente.getUSUARIO());
+                //ModificarCliente.setString(16, cliente.getCONTRASENA());
 
-                ModificarCliente.registerOutParameter(1, Types.INTEGER);//Parametro de salida
+                ModificarCliente.registerOutParameter(21, OracleTypes.VARCHAR);//Parametro de salida
                 ModificarCliente.execute();
+
                 cone.commit();// confirmar si se ejecuto sin errores
-                respuesta = ModificarCliente.getInt(1);// obtener salida
+                respuesta = ModificarCliente.getObject(21).toString();// obtener salida
+                System.out.println("esta otra respuesta " + respuesta);
             } catch (SQLException e) {
+                respuesta = "";
                 cone.rollback();// deshacer la ejecucion en caso de error
-                System.out.println("Error al ejecutar función  por, " + e); // informar por consola
+                System.out.println("Error al ejecutar InsertarCliente  por, " + e); // informar por consola
             } finally {
                 cone.close();// cerrar la conexion
             }
         }
-
         return respuesta;
     }
 
@@ -406,81 +392,57 @@ public class OperacionesCliente {
 
     /**
      * Muestra datos del Cliente, segun su usuario un Cliente por medio de su
-     * Id¿?
-     *
-     * @param IdCliente
      * @param Usuario
-     * @return 1 = exitoso 2 = error al procesar datos
+
      * @throws java.sql.SQLException
      */
     public Cliente mostrarDatosCliente(String Usuario) throws SQLException {
-        int respuesta = 0;
+        // int respuesta = 0;
         Connection cone = coneLocal.NewConnection();
 
-        Cliente cl = new Cliente();
+        Cliente cliente = new Cliente();
         if (cone != null) {
-//            try {
-//                cone.setAutoCommit(false);
-//                CallableStatement funcionEliminarCliente = cone.prepareCall("");
-//
-//                // cargar parametros de entrada
-//                funcionEliminarCliente.setString(2, IdCliente);
-//                funcionEliminarCliente.registerOutParameter(1, Types.INTEGER);//Parametro de salida
-//                funcionEliminarCliente.execute();
-//
-//                cone.commit();// confirmar si se ejecuto sin errores
-//                respuesta = funcionEliminarCliente.getInt(1);// obtener salida
-//            } catch (SQLException e) {
-//                cone.rollback();// deshacer la ejecucion en caso de error
-//                System.out.println("Error al ejecutar función  por, " + e); // informar por consola
-//            } finally {
-//                cone.close();// cerrar la conexion
-//            }
-
-            String queryString = "Select ID_USUARIO From USUARIO  Where USUARIO  = '" + Usuario + "'";
-            System.out.println("QUERY 1: " + queryString);
-
             try {
-                Statement stQuery = cone.createStatement();
-                ResultSet rsRecords = stQuery.executeQuery(queryString);
+                cone.setAutoCommit(false);
+                CallableStatement mostrarDatosCliente = cone.prepareCall("{ call ConsultaCliente(?,?) } ");
 
-                while (rsRecords.next()) {
-                    Usuario = rsRecords.getNString("ID_USUARIO");
+                // cargar parametros de entrada
+                mostrarDatosCliente.setString(1, Usuario);
+                mostrarDatosCliente.registerOutParameter(2, OracleTypes.CURSOR);//Parametro de salida
+                //mostrarDatosCliente.execute();
+
+                mostrarDatosCliente.executeUpdate();
+                ResultSet rsRecords = (ResultSet) mostrarDatosCliente.getObject(2);
+
+                if (rsRecords != null) {
+                     System.out.println("Hay data");
+                    while (rsRecords.next()) {
+                        cliente.setNOMBRE(rsRecords.getString("NOMBRE"));
+                        cliente.setAPELLIDO(rsRecords.getString("APELLIDO"));
+                        cliente.setTIPODOCUMENTO(rsRecords.getString("TIPODOCUMENTO"));
+                        cliente.setNUMERO_DOC(rsRecords.getString("NUMERO_DOC"));
+                        cliente.setTEL_RESIDENCIA(rsRecords.getString("TEL_RESIDENCIA"));
+                        cliente.setTEL_CEL(rsRecords.getString("TEL_CEL"));
+                        cliente.setNIT(rsRecords.getString("NIT"));
+                        cliente.setDIRECCION(rsRecords.getString("DIRECCION"));
+                        cliente.setCIUDAD(rsRecords.getString("CIUDAD_RESIDENCIA"));
+//                        cliente.setPAIS(rsRecords.getString("PAIS"));
+//                        cliente.setDEPARTAMENTO(rsRecords.getString("DEPARTAMENTO"));
+                        cliente.setPROFESION(rsRecords.getString("PROFESION"));
+                        cliente.setUSUARIO(rsRecords.getString("USUARIO"));
+                     //   cliente.setCONTRASENA(rsRecords.getString("PASSWORD"));
+                    }
                 }
-            } catch (Exception ex1) {
-                System.out.println("ERROR SQL1");
-            }
-
-            queryString = "Select *";
-            queryString += " From CLIENTE";
-            queryString += " Where ID_USUARIO  = '" + Usuario + "'";
-            System.out.println("QUERY 2: " + queryString);
-            try {
-                Statement stQuery = cone.createStatement();
-                ResultSet rsRecords = stQuery.executeQuery(queryString);
-                while (rsRecords.next()) {
-                    cl.setNOMBRE(rsRecords.getString("NOMBRE"));
-                    cl.setAPELLIDO(rsRecords.getString("APELLIDO"));
-                    cl.setTIPODOCUMENTO(rsRecords.getString("TIPODOCUMENTO"));
-                    cl.setNUMERO_DOC(rsRecords.getString("NUMERO_DOC"));
-                    cl.setTEL_RESIDENCIA(rsRecords.getString("TEL_RESIDENCIA"));
-                    cl.setTEL_CEL(rsRecords.getString("TEL_CEL"));
-                    cl.setNIT(rsRecords.getString("NIT"));
-                    cl.setDIRECCION(rsRecords.getString("DIRECCION"));
-                    cl.setCIUDAD(rsRecords.getString("IDCIUDAD"));
-                    cl.setPAIS(rsRecords.getString("PAIS"));
-                    cl.setDEPARTAMENTO(rsRecords.getString("DEPARTAMENTO"));
-                    cl.setPROFESION(rsRecords.getString("PROFESION"));
-//                    cl.setEMAIL(rsRecords.getString("EMAIL"));
-//                    cl.setUSUARIO(rsRecords.getString("NOMBRE"));
-//                    cl.setCONTRASENA(rsRecords.getString("NOMBRE"));
-                }
-            } catch (Exception ex1) {
-                System.out.println("ERROR SQL2: " + ex1);
-
+                
+                cone.commit();// confirmar si se ejecuto sin errores
+            } catch (SQLException e) {
+                cone.rollback();// deshacer la ejecucion en caso de error
+                System.out.println("Error al ejecutar función ConsultaCliente por, " + e); // informar por consola
+            } finally {
+                cone.close();// cerrar la conexion
             }
         }
-        return cl;
+        return cliente;
     }
 
     /**
@@ -628,5 +590,4 @@ public class OperacionesCliente {
         }
         return clientes;
     }
-
 }
