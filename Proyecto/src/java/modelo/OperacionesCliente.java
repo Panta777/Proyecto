@@ -76,6 +76,19 @@ public class OperacionesCliente {
                 cone.commit();// confirmar si se ejecuto sin errores
                 respuesta = funcionLogin.getString(4);// obtener salida
                 tipo = funcionLogin.getInt(3);// obtener salida
+                System.out.println("resp:" + respuesta); // informar por consola
+                System.out.println("d:" + tipo); // informar por consola
+
+                if(respuesta.contains("EXITOSAMENTE") && tipo!=0)
+                {
+                    cone.close();
+                    System.out.println("crear nueva conexión");
+                     Connection cone2 = coneLocal.NewConnection(usuario,contra);
+                     if(cone2 == null)
+                     {
+                         tipo = 0;
+                     }
+                }
             } catch (SQLException e) {
                 cone.rollback();// deshacer la ejecucion en caso de error
                 System.out.println("Error al ejecutar función VALIDA_USUARIO por, " + e); // informar por consola
@@ -240,9 +253,9 @@ public class OperacionesCliente {
                     InsertarCliente.setString(10, cliente.getEMAIL());
                     InsertarCliente.setString(11, "0");//InsertarCliente.setString(14, cliente.getCUENTA_BANCO());
                     InsertarCliente.setString(12, "0");//InsertarCliente.setString(14, cliente.getNUMERO_TARJETA());
-                    InsertarCliente.setString(13, "ACTIVO");//InsertarCliente.setInt(14, cliente.getESTADO());
+                    InsertarCliente.setInt(13, 1);//InsertarCliente.setInt(14, cliente.getESTADO());
                     InsertarCliente.setInt(14, 1);//Banco
-                    InsertarCliente.setInt(15, 2);//estado
+                    InsertarCliente.setInt(15, 2);//tipousuario
                     InsertarCliente.setInt(16, cliente.getIddepartamento());
                     InsertarCliente.setInt(17, 1);//tarjeta
                     InsertarCliente.setInt(18, Integer.valueOf(cliente.getPAIS()));
