@@ -29,7 +29,7 @@
                     window.back = previene();
                 </script>-->
     </head>
-    <body class="landing">
+    <body class="landing" oncontextmenu='return false'>
         <%
             String tipo = "";
             if (request.getParameter("tipo") != null)

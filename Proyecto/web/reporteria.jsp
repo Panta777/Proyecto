@@ -15,7 +15,19 @@
 <%@page import="Controlador.controladorProducto"%>
 <%@page import="Controlador.EliminarProducto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Muebles Los Alpes</title>
+        <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <script src="assets/js/jspdf.debug.js"></script>
+    </head>
+    <body oncontextmenu='return false'>
+        <%
     HttpSession sesion = request.getSession(true);
     //ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
     //Utileria algo = new Utileria();
@@ -28,11 +40,13 @@
         idioma = new Idioma("Ingles");
     }
 
-    String nivel = "", usuario = "", rol = null, foto = null;
+    String nivel = "", usuario = "";
     if (sesion.getAttribute("user") != null && sesion.getAttribute("nivel") != null) {
         nivel = sesion.getAttribute("nivel").toString();
         usuario = sesion.getAttribute("user").toString();
     }
+    
+    
     int opera = 0;
     if (request.getParameter("Operacion") != null) {
         opera = Integer.parseInt(request.getParameter("Operacion"));
@@ -47,9 +61,9 @@
     if (request.getParameter("campoFiltro") != null) {
         campoFiltro = request.getParameter("campoFiltro").toString();
     }
-
+ 
     if (nivel.equals("3") || nivel.equals("4") || nivel == "") {
-        response.sendRedirect("index.jsp#main");
+       response.sendRedirect("index.jsp#reporteria");
     }
     // controladorProducto cp = new controladorProducto();
 
@@ -58,18 +72,6 @@
     System.out.println("campoFiltro: " + campoFiltro);
     //   ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
 %>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Muebles Los Alpes</title>
-        <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <script src="assets/js/jspdf.debug.js"></script>
-    </head>
-    <body >
         <!--        <section id="container" > -->
         <div id="page-wrapper">
             <!-- Header -->
@@ -710,8 +712,7 @@
                         </section>
                     </div>
                     <!-- FIN REPORTE 6 -->
-
-                    <% } else if (opera == 6) {%>
+                    <% } else if (opera == 7) {%>
                     <!-- **** REPORTE 7, PRODUCTOS MÁS VENDIDO POR CIUDAD*** -->
                     <div class="12u" id ="ventasFecha">
                         <section class="box" >
@@ -802,8 +803,9 @@
                             &nbsp;
                         </section>
                     </div>
-                    <!-- FIN REPORTE 7 -->                    <%} else {
-                            response.sendRedirect("index.jsp#reporteria");
+                    <!-- FIN REPORTE 7 -->                    
+                    <%} else {
+                          //  response.sendRedirect("index.jsp#reporteria");
                         }%>
                 </div>
             </section>

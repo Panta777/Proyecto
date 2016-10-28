@@ -69,7 +69,7 @@
             $('input,form').attr('autocomplete', 'off');
         </script>
     </head>
-    <body class="landing">
+    <body class="landing" oncontextmenu='return false'>
         <!--        <section id="container" > -->
         <div id="page-wrapper">
             <!-- Header -->

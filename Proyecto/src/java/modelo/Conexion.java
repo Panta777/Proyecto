@@ -67,7 +67,7 @@ public class Conexion {
             System.out.println("Conexion Exitosa");
         } catch (Exception e) {
             currentConnection = null;
-            System.out.println("Error al tratar de loguear: " + e);//  utileria.escribirLog("N/A", "", "\n\nConnectionBD->getConnection()..Error..: " + ex.getMessage())
+            System.out.println("Error al tratar de loguear cliente: " + e);//  utileria.escribirLog("N/A", "", "\n\nConnectionBD->getConnection()..Error..: " + ex.getMessage())
         }
         return currentConnection;
     }

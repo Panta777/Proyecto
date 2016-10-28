@@ -77,7 +77,7 @@
             }
         %>
     </head>
-    <body class="landing">
+    <body class="landing" oncontextmenu='return false'>
         <div id="page-wrapper">
             <!-- Header -->
             <header id="header" >

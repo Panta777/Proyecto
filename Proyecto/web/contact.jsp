@@ -34,7 +34,7 @@
 
         </script>
     </head>
-    <body class ="landing">
+    <body class ="landing" oncontextmenu='return false'>
         <%
             HttpSession sesion = request.getSession(true);
             Idioma idioma = null;

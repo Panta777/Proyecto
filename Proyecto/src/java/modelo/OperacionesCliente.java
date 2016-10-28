@@ -20,9 +20,11 @@ import oracle.jdbc.OracleTypes;
 public class OperacionesCliente {
 
     private Conexion coneLocal;
+    private Connection coneCliente;
 
     public OperacionesCliente() {
         this.coneLocal = new Conexion();
+        this.coneCliente = null;
     }
 
     /**
@@ -83,8 +85,8 @@ public class OperacionesCliente {
                 {
                     cone.close();
                     System.out.println("crear nueva conexión");
-                     Connection cone2 = coneLocal.NewConnection(usuario,contra);
-                     if(cone2 == null)
+                     coneCliente = coneLocal.NewConnection(usuario,contra);
+                     if(coneCliente == null)
                      {
                          tipo = 0;
                      }

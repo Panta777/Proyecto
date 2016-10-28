@@ -46,7 +46,7 @@
             window.back = previene();
         </script>
     </head>
-    <body class="landing">
+    <body class="landing" class="landing" oncontextmenu='return false'>
         <%
             Idioma idioma = null;
             HttpSession sesion = request.getSession(true);
