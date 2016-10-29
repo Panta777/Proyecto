@@ -273,9 +273,9 @@ public class OperacionesCliente {
         System.out.println("DatogetUSUARIO: " + cliente.getUSUARIO());
         System.out.println("DatogetCONTRASENA: " + cliente.getCONTRASENA());
 
-//        if (cliente.getUSUARIO().equals("prueba")) {
-//            return "";
-//        }
+        if (cliente.getUSUARIO().equals("prueba")) {
+            return "";
+        }
         if (cone != null) {
 
             try {
