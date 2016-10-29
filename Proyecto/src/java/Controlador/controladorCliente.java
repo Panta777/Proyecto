@@ -84,13 +84,13 @@ public class controladorCliente extends HttpServlet {
                 cliente.setTEL_CEL(request.getParameter("TelCel"));
                 cliente.setNIT(request.getParameter("Nit"));
                 cliente.setDIRECCION(request.getParameter("Direccion"));
-                //cliente.setCIUDAD(request.getParameter("Ciudad"));
-                cliente.setDEPARTAMENTO(request.getParameter("Departamento"));
-                cliente.setPAIS(request.getParameter("Pais"));
+                cliente.setCIUDAD(request.getParameter("Ciudad"));
+                //cliente.setDEPARTAMENTO(request.getParameter("Departamento"));
+                //cliente.setPAIS(request.getParameter("Pais"));
                 cliente.setPROFESION(request.getParameter("Profesion"));
                 cliente.setEMAIL(request.getParameter("email"));
-                cliente.setUSUARIO(request.getParameter("usuario"));
-                cliente.setCONTRASENA(request.getParameter("pass"));
+               // cliente.setUSUARIO(request.getParameter("usuario"));
+                //cliente.setCONTRASENA(request.getParameter("pass"));
 
                 HttpSession sesion = request.getSession();
 //                    switch (opcliente.insertarCliente(cliente)) {
@@ -141,8 +141,7 @@ public class controladorCliente extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -156,8 +155,7 @@ public class controladorCliente extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response

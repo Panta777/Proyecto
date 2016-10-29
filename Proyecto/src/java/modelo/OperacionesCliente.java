@@ -272,7 +272,22 @@ public class OperacionesCliente {
         System.out.println("DatogetEMAIL: " + cliente.getEMAIL());
         System.out.println("DatogetUSUARIO: " + cliente.getUSUARIO());
         System.out.println("DatogetCONTRASENA: " + cliente.getCONTRASENA());
-
+/*
+                   cliente.setNOMBRE(request.getParameter("FName"));
+                cliente.setAPELLIDO(request.getParameter("LName"));
+                cliente.setTIPODOCUMENTO(request.getParameter("TipoDoc"));
+                cliente.setNUMERO_DOC(request.getParameter("NoDoc"));
+                cliente.setTEL_RESIDENCIA(request.getParameter("TelRes"));
+                cliente.setTEL_CEL(request.getParameter("TelCel"));
+                cliente.setNIT(request.getParameter("Nit"));
+                cliente.setDIRECCION(request.getParameter("Direccion"));
+                cliente.setCIUDAD(request.getParameter("Ciudad"));
+                //cliente.setDEPARTAMENTO(request.getParameter("Departamento"));
+                //cliente.setPAIS(request.getParameter("Pais"));
+                cliente.setPROFESION(request.getParameter("Profesion"));
+                cliente.setEMAIL(request.getParameter("email"));
+               // cliente.setUSUARIO(request.getParameter("usuario"));
+                //cliente.setCONTRASENA(request.getParameter("pass"));*/
         if (cliente.getUSUARIO().equals("prueba")) {
             return "";
         }
