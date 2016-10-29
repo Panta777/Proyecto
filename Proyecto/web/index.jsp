@@ -71,11 +71,13 @@
                                 <ul>
                                     <li>
                                         <a href="cambioEspanol.jsp" class ="actions" >
+                                            <img class = "image featured" src="images/ICONOS/ESPANOL.png" width="25" height="21" alt ="carrito">
                                             <% out.write(idioma.getProperty("espanol"));%>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="cambioIngles.jsp" class ="actions"> 
+                                            <img  class = "image featured" src="images/ICONOS/INGLES.png" width="25" height="21" alt ="carrito">
                                             <% out.write(idioma.getProperty("ingles"));%>
                                         </a>
                                     </li>
@@ -248,7 +250,7 @@
                         <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
                     </ul>
                     <ul class="copyright">
-                         <li>&copy; <% out.write(idioma.getProperty("TodoslosDerechosReservados"));%></li><li><% out.write(idioma.getProperty("Diseñadopor"));%> <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
+                        <li>&copy; <% out.write(idioma.getProperty("TodoslosDerechosReservados"));%></li><li><% out.write(idioma.getProperty("Diseñadopor"));%> <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
                     </ul>
                 </footer>
             </div>

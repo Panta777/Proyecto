@@ -129,7 +129,7 @@ public class controladorProducto extends HttpServlet {
                     sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta + "</p></h5>");
                     response.sendRedirect("nuevoProducto.jsp#ResultadoNuevoProducto");
                 }
-                response.sendRedirect("modificaProducto.jsp");
+                response.sendRedirect("mantenimientosInterfaz.jsp");
             }
             //}
         } catch (SQLException e) {

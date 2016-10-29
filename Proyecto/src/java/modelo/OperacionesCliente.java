@@ -288,9 +288,9 @@ public class OperacionesCliente {
                 cliente.setEMAIL(request.getParameter("email"));
                // cliente.setUSUARIO(request.getParameter("usuario"));
                 //cliente.setCONTRASENA(request.getParameter("pass"));*/
-        if (cliente.getUSUARIO().equals("prueba")) {
-            return "";
-        }
+//        if (cliente.getUSUARIO().equals("prueba")) {
+//            return "";
+//        }
         if (cone != null) {
 
             try {

@@ -16,9 +16,9 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="assets/css/main.css" />
-        <meta http-equiv="Cache-Control" content="no-cache">
+<!--        <meta http-equiv="Cache-Control" content="no-cache">
         <meta HTTP-EQUIV="Expires" CONTENT="Tue, 01 Jan 1980 1:00:00 GMT">
-        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">-->
         <script type="text/javascript">
             function AutenticaSiEsHumano(form)
             {

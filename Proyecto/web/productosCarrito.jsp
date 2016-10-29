@@ -258,7 +258,7 @@
                                 <header class="major">
                                     <h2 style ='font-weight:bold;' >Pago con Tarjeta de Débito o Crédito</h2>
                                     <a class ="actions">
-                                        <img src="images/ICONOS/formas-de-pago.png" alt = "Formas de Pago"/>
+                                        <img src="images/ICONOS/formas.png" alt = "Formas de Pago"/>
                                     </a>
                                 </header>
                                 <form  id="formularioPago" method="post" action="pagarform" autocomplete="off">
