@@ -258,7 +258,7 @@ public class OperacionesCliente {
         Connection cone = coneLocal.NewConnection();
 
         System.out.println("Dato getNOMBRE: " + cliente.getNOMBRE());
-        System.out.println("DatogetNOMBRE: " + cliente.getAPELLIDO());
+        System.out.println("Dato getAPELLIDO: " + cliente.getAPELLIDO());
         System.out.println("DatogetTIPODOCUMENTO: " + cliente.getTIPODOCUMENTO());
         System.out.println("DatogetNUMERO_DOC: " + cliente.getNUMERO_DOC());
         System.out.println("DatogetTEL_RESIDENCIA: " + cliente.getTEL_RESIDENCIA());
@@ -419,7 +419,7 @@ public class OperacionesCliente {
                     System.out.println("Hay data");
                     while (rsRecords.next()) {
                         cliente.setNOMBRE(rsRecords.getString("NOMBRE"));
-                        System.out.println("nomb " +cliente.getNOMBRE());
+                        //System.out.println("nomb " +cliente.getNOMBRE());
                         cliente.setAPELLIDO(rsRecords.getString("APELLIDO"));
                         cliente.setTIPODOCUMENTO(rsRecords.getString("TIPODOCUMENTO"));
                         cliente.setNUMERO_DOC(rsRecords.getString("NUMERO_DOC"));
