@@ -9,10 +9,29 @@
 <%@page import="modelo.OperacionesCliente"%>
 <%@page session = "true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    Idioma idioma = null;
+    HttpSession sesion = request.getSession(true);
+    if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
+        sesion.setAttribute("Idioma", "Español");
+        idioma = new Idioma("Español");
+    } else {
+        idioma = new Idioma("Ingles");
+    }
+
+    String nivel = "";
+    if (sesion.getAttribute("nivel") != null) {
+        nivel = sesion.getAttribute("nivel").toString();
+    }
+
+    if (nivel.equals("2") || nivel.equals("1")) {
+        response.sendRedirect("modificaCliente.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Ingresar al Sistema</title>
+        <title><% out.write(idioma.getProperty("INGRESOALSISTEMA"));%></title>
         <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -32,53 +51,38 @@
         </script>
     </head>
     <body class="landing" oncontextmenu='return false'>
-        <%
-            Idioma idioma = null;
-            HttpSession sesion = request.getSession(true);
-            if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
-                sesion.setAttribute("Idioma", "Español");
-                idioma = new Idioma("Español");
-            } else {
-                idioma = new Idioma("Ingles");
-            }
 
-            String nivel = "";
-            if (sesion.getAttribute("nivel") != null) {
-                nivel = sesion.getAttribute("nivel").toString();
-            }
-
-            if (nivel.equals("2") || nivel.equals("1")) {
-                response.sendRedirect("modificaCliente.jsp");
-            }
-        %>
         <section id="container" > 
             <div id="page-wrapper">
                 <!-- Header -->
                 <header id="header" >
-                    <h1><a href="#main">Muebleria Los Alpes</a></h1>
+                    <h1><a href="#main"><% out.write(idioma.getProperty("mueblierialosalpes"));%></a></h1>
                     <nav id="nav">
-                        <ul>
-                            <li><a href="index.jsp">Inicio</a></li>
+                        <ul>    
+                            <li><a href="index.jsp"><% out.write(idioma.getProperty("inicio"));%></a></li>
                             <li>
                                 <a href="#" class="icon fa-angle-down">Menu</a>
                                 <ul>
-                                    <li><a href="catalogo.jsp#main">Catálogo Productos</a></li>
-                                    <li><a href="contact.jsp#main">Contacto</a></li>
+                                    <li><a href="catalogo.jsp#main"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
+                                    <li><a href="contact.jsp#main"><% out.write(idioma.getProperty("Contacto"));%></a></li>
                                     <li>
-                                        <a href="#">Opciones</a>
-                                        <ul>
-                                            <li><a href="catalogo.jsp">Buscar Productos</a></li>
-                                            <li><a href="#">Ver Pedido</a></li>  
-                                            <li><a href="#">Comentarios</a></li>
+                                        <a  href="#"><% out.write(idioma.getProperty("Opciones"));%></a>
+                                        <ul>                                            
+                                            <li><a  href="catalogo.jsp"><% out.write(idioma.getProperty("BuscarProductos"));%></a></li>
+
+                                            <li><a  href="#"><% out.write(idioma.getProperty("VerPedido"));%></a></li>
+
+                                            <li><a  href="#"><% out.write(idioma.getProperty("Comentarios"));%></a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
                             <% if (nivel.equals("3") || nivel.equals("4") || nivel.equals("")) {%>
                             <li>
-                                <a href="login.jsp" class= "button special"> Entrar <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <a href="login.jsp" class= "button special"><% out.write(idioma.getProperty("Entrar"));%> <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
-                                    <li> <a href="nuevoCliente.jsp" class ="actions">Registrate</a> </li>
+                                    <li> <a href="nuevoCliente.jsp" class ="actions"><% out.write(idioma.getProperty("Registrate"));%></a> </li>
+
                                 </ul>
                             </li>             
                             <%}%>
@@ -88,26 +92,26 @@
                 <!-- Banner -->
                 <section id="banner" class ="box">
                     <img class="image featured" src="images/logo.png" alt="log" />
-                    <p>Sirviendole con total amabilidad desde 1985.</p>
+                    <p><% out.write(idioma.getProperty("Sirviendolecon"));%></p>
                 </section>                    
                 <!-- Main -->
                 <section id="main" class="container">
                     <section class="box special">
                         <header class="major">
-                            <h2>INGRESO AL SISTEMA</h2>
+                            <h2><% out.write(idioma.getProperty("INGRESOALSISTEMA"));%></h2>
                         </header>   
                         <div class="row">
                             <div class="12u">
                                 <!-- Form -->
                                 <section class="box">
-                                    <h2><p>Ingrese sus datos registrados para poder realizar su compra.</p></h2>
+                                    <h2><p><% out.write(idioma.getProperty("Ingresesusdatos"));%></p></h2>
                                     <form method="post" action="login"  >
                                         <div class="row uniform">
                                             <div class="12u">
-                                                <input type="text" name="user" value="" placeholder="Ingrese su Usuario" id="myname" autocomplete='off'/>
+                                                <input type="text" name="user" value="" placeholder=<% out.write(idioma.getProperty("Usuario"));%> id="myname" autocomplete='off'/>
                                             </div>
                                             <div class="12u">
-                                                <input type="password" name="password" value="" placeholder="Ingrese su contraseña"  />
+                                                <input type="password" name="password" value="" placeholder=<% out.write(idioma.getProperty("Contraseña"));%>  />
                                             </div>
                                         </div>
                                         <div class="row uniform">
@@ -147,7 +151,7 @@
                         <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
                     </ul>
                     <ul class="copyright">
-                        <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Pantaleón Medrano</a></li>
+                        <li>&copy; <% out.write(idioma.getProperty("TodoslosDerechosReservados"));%></li><li><% out.write(idioma.getProperty("Diseñadopor"));%> <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
                     </ul>
                 </footer>
             </div>

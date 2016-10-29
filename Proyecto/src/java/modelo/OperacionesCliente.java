@@ -257,21 +257,21 @@ public class OperacionesCliente {
         String respuesta = "";
         Connection cone = coneLocal.NewConnection();
 
-        System.out.println("Dato: " + cliente.getNOMBRE());
-        System.out.println("Dato: " + cliente.getAPELLIDO());
-        System.out.println("Dato: " + cliente.getTIPODOCUMENTO());
-        System.out.println("Dato: " + cliente.getNUMERO_DOC());
-        System.out.println("Dato: " + cliente.getTEL_RESIDENCIA());
-        System.out.println("Dato: " + cliente.getTEL_CEL());
-        System.out.println("Dato: " + cliente.getNIT());
-        System.out.println("Dato: " + cliente.getDIRECCION());
-        System.out.println("Dato: " + cliente.getCIUDAD());
-        System.out.println("Dato: " + cliente.getDEPARTAMENTO());
-        System.out.println("Dato: " + cliente.getPAIS());
-        System.out.println("Dato: " + cliente.getPROFESION());
-        System.out.println("Dato: " + cliente.getEMAIL());
-        System.out.println("Dato: " + cliente.getUSUARIO());
-        System.out.println("Dato: " + cliente.getCONTRASENA());
+        System.out.println("Dato getNOMBRE: " + cliente.getNOMBRE());
+        System.out.println("DatogetNOMBRE: " + cliente.getAPELLIDO());
+        System.out.println("DatogetTIPODOCUMENTO: " + cliente.getTIPODOCUMENTO());
+        System.out.println("DatogetNUMERO_DOC: " + cliente.getNUMERO_DOC());
+        System.out.println("DatogetTEL_RESIDENCIA: " + cliente.getTEL_RESIDENCIA());
+        System.out.println("DatogetTEL_CEL: " + cliente.getTEL_CEL());
+        System.out.println("DatogetNIT: " + cliente.getNIT());
+        System.out.println("DatogetDIRECCION: " + cliente.getDIRECCION());
+        System.out.println("DatogetCIUDAD: " + cliente.getCIUDAD());
+        System.out.println("DatogetDEPARTAMENTO: " + cliente.getDEPARTAMENTO());
+        System.out.println("DatogetPAIS: " + cliente.getPAIS());
+        System.out.println("DatogetPROFESION: " + cliente.getPROFESION());
+        System.out.println("DatogetEMAIL: " + cliente.getEMAIL());
+        System.out.println("DatogetUSUARIO: " + cliente.getUSUARIO());
+        System.out.println("DatogetCONTRASENA: " + cliente.getCONTRASENA());
 
 //        if (cliente.getUSUARIO().equals("prueba")) {
 //            return "";
@@ -392,8 +392,9 @@ public class OperacionesCliente {
 
     /**
      * Muestra datos del Cliente, segun su usuario un Cliente por medio de su
+     *
      * @param Usuario
-
+     *
      * @throws java.sql.SQLException
      */
     public Cliente mostrarDatosCliente(String Usuario) throws SQLException {
@@ -415,9 +416,10 @@ public class OperacionesCliente {
                 ResultSet rsRecords = (ResultSet) mostrarDatosCliente.getObject(2);
 
                 if (rsRecords != null) {
-                     System.out.println("Hay data");
+                    System.out.println("Hay data");
                     while (rsRecords.next()) {
                         cliente.setNOMBRE(rsRecords.getString("NOMBRE"));
+                        System.out.println("nomb " +cliente.getNOMBRE());
                         cliente.setAPELLIDO(rsRecords.getString("APELLIDO"));
                         cliente.setTIPODOCUMENTO(rsRecords.getString("TIPODOCUMENTO"));
                         cliente.setNUMERO_DOC(rsRecords.getString("NUMERO_DOC"));
@@ -430,10 +432,11 @@ public class OperacionesCliente {
 //                        cliente.setDEPARTAMENTO(rsRecords.getString("DEPARTAMENTO"));
                         cliente.setPROFESION(rsRecords.getString("PROFESION"));
                         cliente.setUSUARIO(rsRecords.getString("USUARIO"));
-                     //   cliente.setCONTRASENA(rsRecords.getString("PASSWORD"));
+                        cliente.setEMAIL(rsRecords.getString("EMAIL"));
+                        //   cliente.setCONTRASENA(rsRecords.getString("PASSWORD"));
                     }
                 }
-                
+
                 cone.commit();// confirmar si se ejecuto sin errores
             } catch (SQLException e) {
                 cone.rollback();// deshacer la ejecucion en caso de error
@@ -563,21 +566,44 @@ public class OperacionesCliente {
 
                 procMostrarClientes.executeUpdate();
                 ResultSet rsRecords = (ResultSet) procMostrarClientes.getObject(3);
-
+                /*
+                ID_CLIENTE
+TIPODOCUMENTO
+NUMERO_DOC
+NOMBRE
+APELLIDO
+TEL_RESIDENCIA
+TEL_CEL
+NIT
+DIRECCION
+PROFESION
+FECHA_ALTA
+EMAIL
+FECHA_BAJA
+CUENTA_BANCO
+NUMERO_TARJETA
+ESTADO
+IDBANCO
+IDTIPO_USUARIO
+IDDEPARTAMENTO
+IDTARJETA
+IDPAIS
+CIUDAD_RESIDENCIA
+                 */
                 if (rsRecords != null) {
-                    // System.out.println("Hay data");
+                    System.out.println("Hay data");
                     while (rsRecords.next()) {// obtener salida
                         clientes.add(new Cliente(
                                 rsRecords.getString("NOMBRE"),
                                 rsRecords.getString("APELLIDO"),
-                                rsRecords.getString("ID_USUARIO"),
+                                rsRecords.getString("USUARIO"),
                                 rsRecords.getString("NUMERO_DOC"),
                                 rsRecords.getString("PROFESION"),
                                 rsRecords.getString("TEL_CEL"),
                                 rsRecords.getString("TEL_RESIDENCIA"),
                                 rsRecords.getString("NIT"),
-                                rsRecords.getString("DIRECION"),
-                                rsRecords.getString("IDCIUDAD")));
+                                rsRecords.getString("DIRECCION"),
+                                rsRecords.getString("CIUDAD_RESIDENCIA")));
                     }
                 }
                 cone.commit();// confirmar si se ejecuto sin errores

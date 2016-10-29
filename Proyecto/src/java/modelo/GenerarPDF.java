@@ -49,12 +49,12 @@ public class GenerarPDF {
                             Font.ITALIC, // estilo
                             BaseColor.BLACK)));             // color
 
-            PdfPTable tabla = new PdfPTable(3);
+            PdfPTable tabla = new PdfPTable(9);
             Font font = new Font(FontFamily.COURIER, 6, Font.BOLD, BaseColor.BLACK);
             PdfPCell cell = new PdfPCell(new Phrase("algo", font));
             documento.add(new Paragraph("\n"));
 
-            Image img = Image.getInstance("C:\\logo.png");
+            Image img = Image.getInstance("C:\\Users\\panle\\Documents\\logo.png");
             documento.add(img);
             documento.add(new Paragraph("\n"));
             int conta = 0;

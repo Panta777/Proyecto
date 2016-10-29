@@ -32,7 +32,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Muebles Los Alpes</title>
+        <title><% out.write(idioma.getProperty("mueblierialosalpes"));%></title>
         <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -47,22 +47,22 @@
                     <nav id="nav">
                         <ul>
                             <li>
-                                <a href="index.jsp#main">Inicio</a>
+                                <a href="index.jsp#main"><% out.write(idioma.getProperty("inicio"));%></a>
                             </li>
                             <li>
                                 <a href="#" class="icon fa-angle-down">Menu</a>
                                 <ul>
-                                    <li><a href="#catalogo">Catálogo Productos</a></li>
-                                    <li><a href="contact.jsp#main">Contacto</a></li>
-                                    <li><a href="productosCarrito.jsp#OrdenCompra">Ver Pedido</a></li> 
+                                    <li><a href="#catalogo"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
+                                    <li><a href="contact.jsp#main"><% out.write(idioma.getProperty("Contacto"));%></a></li>
+                                    <li><a href="productosCarrito.jsp#OrdenCompra"><% out.write(idioma.getProperty("VerPedido"));%></a></li> 
                                 </ul>
                             </li>
                             <%if (nivel.equals("1")) {%>
                             <li>
-                                <a href="#" class="icon fa-angle-down">Administracion</a>
+                                <a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("Administracion"));%></a>
                                 <ul>
-                                    <li><a href="index.jsp#reporteria">Reporteria</a></li>
-                                    <li><a href="index.jsp#mantenimiento">Mantenimientos</a></li>
+                                    <li><a href="index.jsp#reporteria"><% out.write(idioma.getProperty("Reporteria"));%></a></li>
+                                    <li><a href="index.jsp#mantenimiento"><% out.write(idioma.getProperty("Mantenimientos"));%></a></li>
                                 </ul>
                             </li>
                             <%}%>
@@ -83,21 +83,21 @@
                             </li>
                             <%if (nivel.equals("2") || nivel.equals("1")) {%>
                             <li>
-                                <a  class= "button special" >Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
-                                <ul>
-
-                                    <li> <a href="modificaCliente.jsp#main" class ="actions">Modificar mis Datos</a> </li>
-                                    <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
+                                <a  class= "button special" ><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <ul> 
+                                    <li> <a href="modificaCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("ModificarmisDatos"));%></a> </li>
+                                    <li> <a href="logout.jsp" class ="actions"><% out.write(idioma.getProperty("CerrarSesión"));%></a> </li>
                                 </ul>
                             </li>
                             <%} else {%>
                             <li>
-                                <a href="#" class= "icon fa-angle-down">Ingresa o Registrate<img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <a href="#" class= "icon fa-angle-down"><% out.write(idioma.getProperty("IngresaroRegistrarse"));%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
                                     <li>
-                                        <a href="login.jsp#main" class= "actions"> Entrar  </a>
+                                        <a href="login.jsp#main" class= "actions"> <% out.write(idioma.getProperty("Entrar"));%></a>
+
                                     </li>
-                                    <li> <a href="nuevoCliente.jsp#main" class ="actions">Registrate</a> </li>
+                                    <li> <a href="nuevoCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("Registrate"));%></a> </li>
                                 </ul>
                             </li>             
                             <%}%>
@@ -108,11 +108,11 @@
                 <section id="banner" class ="box">
                     <!--                    <span class="image featured"><img src="images/logo.png" alt="log" /></span>-->
                     <img class="image featured" src="images/logo.png" alt="log" />
-                    <p>Sirviendole con total amabilidad desde 1985.</p>
+                    <p><% out.write(idioma.getProperty("Sirviendolecon"));%></p>
                     <%if (nivel.equals("4") || nivel.equals("3") || nivel.equals("")) {%>
                     <ul class="actions" id = "botonesEntrada">
-                        <li><a href="login.jsp#main" class="button special">Entrar</a></li>
-                        <li><a href="nuevoCliente.jsp#main" class="button">Registrarse</a></li>
+                        <li><a href="login.jsp#main" class="button special"><% out.write(idioma.getProperty("Entrar"));%></a></li>
+                        <li><a href="nuevoCliente.jsp#main" class="button"><% out.write(idioma.getProperty("Registrate"));%></a></li>
                     </ul>
                     <%}%>
                 </section>
@@ -120,8 +120,8 @@
                 <section id="main" class="container">
                     <section class="box special">
                         <header class="major">
-                            <h2>Pagina Oficial de Muebleria Los Alpes<br /></h2>
-                            <blockquote><h3>En nuestro catálogo de productos podrá encontrar una gran variedad de muebles para su hogar</h3></blockquote>
+                            <h2><% out.write(idioma.getProperty("paginaOficial"));%><br /></h2>
+                            <blockquote><h3><% out.write(idioma.getProperty("Ennuestrocatálogodeproductos"));%></h3></blockquote>
                         </header>
                         <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
                     </section>
@@ -130,17 +130,17 @@
                         <section class="box special">
                             <span class="icon major fa-area-chart accent3"></span>
                             <!-- <span class="image featured"><img src="images/pic03.jpg" alt="" /></span> -->
-                            <h2>REPORTERIA</h2>
-                            <h4>VEA LOS REPORTES DE VENTAS, CLIENTES ACTIVOS  Y PRODUCTOS EN EL INVENTARIO</h4>
+                            <h2><% out.write(idioma.getProperty("Reporteria"));%></h2>
+                            <h4><% out.write(idioma.getProperty("Reportesde"));%></h4>
                             <div class="actions">
                                 <ul class="actions vertical">
-                                    <li><a href="reporteria.jsp?Operacion=1#verClientes" class="button">VER CLIENTES</a></li>
-                                    <li><a href="reporteria.jsp?Operacion=2#verProductos" class="button special">VER PRODUCTOS</a></li>
-                                    <li><a href="reporteria.jsp?Operacion=3#ventasFecha" class="button">VENTAS POR FECHA</a></li>
-                                    <li><a href="reporteria.jsp?Operacion=4#ventasCiudad" class="button special">VENTAS POR CIUDAD</a></li>
-                                    <li><a href="reporteria.jsp?Operacion=5#ventasMueble" class="button ">VENTAS POR MUEBLE</a></li>
-                                    <li><a href="reporteria.jsp?Operacion=6#productosCliente" class="button special">PRODUCTOS POR CLIENTE</a></li>
-                                    <li><a href="reporteria.jsp?Operacion=7#productoMasVendido" class="button alt">PRODUCTO MAS VENDIDO POR CIUDAD</a></li>
+                                    <li><a href="reporteria.jsp?Operacion=1#verClientes" class="button"><% out.write(idioma.getProperty("VERCLIENTES"));%></a></li>
+                                    <li><a href="reporteria.jsp?Operacion=2#verProductos" class="button special"><% out.write(idioma.getProperty("VERPRODUCTOS"));%></a></li>
+                                    <li><a href="reporteria.jsp?Operacion=3#ventasFecha" class="button"><% out.write(idioma.getProperty("VENTASPORFECHA"));%></a></li>
+                                    <li><a href="reporteria.jsp?Operacion=4#ventasCiudad" class="button special"><% out.write(idioma.getProperty("VENTASPORCIUDAD"));%></a></li>
+                                    <li><a href="reporteria.jsp?Operacion=5#ventasMueble" class="button "><% out.write(idioma.getProperty("VENTASPORMUEBLE"));%></a></li>
+                                    <li><a href="reporteria.jsp?Operacion=6#productosCliente" class="button special"><% out.write(idioma.getProperty("PRODUCTOSPORCLIENTE"));%></a></li>
+                                    <li><a href="reporteria.jsp?Operacion=7#productoMasVendido" class="button alt"><% out.write(idioma.getProperty("PRODUCTOMASVENDIDOPORCIUDAD"));%></a></li>
                                 </ul>
                             </div> 
                         </section>
@@ -149,35 +149,35 @@
                         <section class="box special">
                             <span class="icon major fa-bolt accent2"></span>
                             <!-- <span class="image featured"><img src="images/pic03.jpg" alt="" /></span> -->
-                            <h3>MANTENIMIENTOS</h3>
-                            <p>ACTUALIZACIÓN DE ESTADO DE CLIENTES, ESTADO DE PRODUCTOS NUEVOS, ETC. </p>
+                            <h3><% out.write(idioma.getProperty("Mantenimientos"));%></h3>
+                            <p><% out.write(idioma.getProperty("ACTUALIZACIÓNDEESTADODECLIENTES"));%></p>
                             <div class="actions" >
                                 <ul class="actions vertical">
-                                    <li><a href="mantenimientosInterfaz.jsp?Operacion=4#main#" class="button">ELIMINAR CLIENTES</a></li>
-                                    <li><a href="mantenimientosInterfaz.jsp?Operacion=3#main" class="button special">ELIMINAR PRODUCTO</a></li>
-                                    <li><a href="mantenimientosInterfaz.jsp?Operacion=1#main" class="button ">AGREGAR PRODUCTO</a></li>
-                                    <li><a href="mantenimientosInterfaz.jsp?Operacion=2#main" class="button special">ACTUALIZAR PRODUCTO</a></li>
+                                    <li><a href="mantenimientosInterfaz.jsp?Operacion=4#main" class="button"><% out.write(idioma.getProperty("ELIMINARCLIENTES"));%></a></li>
+                                    <li><a href="mantenimientosInterfaz.jsp?Operacion=3#main" class="button special"><% out.write(idioma.getProperty("ELIMINARPRODUCTO"));%></a></li>
+                                    <li><a href="mantenimientosInterfaz.jsp?Operacion=1#main" class="button "><% out.write(idioma.getProperty("AGREGARPRODUCTO"));%></a></li>
+                                    <li><a href="mantenimientosInterfaz.jsp?Operacion=2#main" class="button special"><% out.write(idioma.getProperty("ACTUALIZARPRODUCTO"));%></a></li>
                                 </ul>
                             </div> 
                         </section>
                     </div>
                     <%}%>
                     <section class="box special features" id = "catalogo">
-                        <h3>CATALOGO DE PRODUCTOS</h3>
+                        <h3><% out.write(idioma.getProperty("CATDPRODUC"));%></h3>
                         <div class="row">
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <span class="image featured"><img src="images/TRADICIONALES/MTradicionales.png" alt = "Muebles Tradicionales"/></span>
-                                    <h4><a href="catalogo.jsp?tipo=TRADICIONALES#muebles" class= "button alt" >Muebles Tradicionales</a></h4>
-                                    <p>Este tipo de muebles se caracterizan por contar con una estética conservadora y  detalles muy elegantes, como maderas brillantes y oscuras, diseño simétrico, tapicería delicada y curvas bien detalladas.</p>
+                                    <h4><a href="catalogo.jsp?tipo=TRADICIONALES#muebles" class= "button" ><% out.write(idioma.getProperty("MueblesTradicionales"));%></a></h4>
+                                    <p><% out.write(idioma.getProperty("TradicionalesEsteMueble"));%></p>
                                 </section>
                             </div>
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <!--  <span class="icon major fa-area-chart accent3"></span> -->
                                     <span class="image featured"><img src="images/MODERNOS/MModernos.png" alt = "Muebles Modernos"/></span>
-                                    <h4><a href="catalogo.jsp?tipo=MODERNOS#muebles" class= "button alt" >Muebles Modernos</a></h4>
-                                    <p>Los muebles de este estilo presentan líneas ligeras y son asociados con el minimalismo posmoderno. Son producidos para ser funcionales y prácticos,ajustandose a las necesidades de la actualidad.</p>
+                                    <h4><a href="catalogo.jsp?tipo=MODERNOS#muebles" class= "button" ><% out.write(idioma.getProperty("MueblesModernos"));%></a></h4>
+                                    <p><% out.write(idioma.getProperty("ModernosesEsteMueble"));%></p>
                                 </section>
                             </div>
                         </div>
@@ -186,16 +186,16 @@
                                 <section class="box special">
                                     <!--  <span class="icon major fa-cloud accent4"></span>-->
                                     <span class="image featured"><img src="images/COLONIALES/MColoniales.png" alt = "Muebles Coloniales"/></span>
-                                    <h4><a href="catalogo.jsp?tipo=COLONIALES#muebles" class= "button alt" >Muebles Coloniales</a></h4>
-                                    <p>Son propios de las fincas y haciendas previas al siglo XX. Para su fabricación se recurre a materiales autóctonos, detalles artesanales, maderas macizas y toques exóticos que aún perduran en el tiempo.</p>
+                                    <h4><a href="catalogo.jsp?tipo=COLONIALES#muebles" class= "button" ><% out.write(idioma.getProperty("MueblesColoniales"));%></a></h4>  
+                                    <p><% out.write(idioma.getProperty("ColonialesEsteMueble"));%></p>
                                 </section>
                             </div>
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <!--   <span class="icon major fa-lock accent5"></span>-->
                                     <span class="image featured"><img src="images/RUSTICOS/MRusticos.png" alt = "Muebles Rusticos"/></span>
-                                    <h4><a href="catalogo.jsp?tipo=RUSTICOS#muebles" class= "button alt" >Muebles Rústicos</a></h4>
-                                    <p>Los muebles que cuentan con este estilo tienen una apariencia folklórica. Transmiten la sensación de ser muebles usados, sencillos o rudimentarios, además de dar una sensación hogareña.</p>
+                                    <h4><a href="catalogo.jsp?tipo=RUSTICOS#muebles" class= "button" ><% out.write(idioma.getProperty("MueblesRústicos"));%></a></h4>     
+                                    <p><% out.write(idioma.getProperty("RusticusEsteMueble"));%></p>
                                 </section>
                             </div>
                         </div>
@@ -205,21 +205,15 @@
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <span class="image featured"><img src="images/ICONOS/formas-de-pago.png" alt = "Formas de Pago"/></span>
-                                    <h3>Formas de Pago</h3>
-                                    <p>En Muebleria Los Alpes, contamos con varias facilidades de Pago, como lo son  Tarjetas de Crédito, Débito y Depósitos a nuestra cuenta. </p>
-                                    <!--                                    <ul class="actions">
-                                                                            <li><a href="#" class="button">Más Información</a></li>
-                                                                        </ul>-->
+                                    <h3><% out.write(idioma.getProperty("FormasdePago"));%></h3>
+                                    <p><% out.write(idioma.getProperty("LosAlpescontamoscon"));%></p>
                                 </section>
                             </div>
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <span class="image featured"><img src="images/ICONOS/ENTREGA A DOMICILIO.png" alt="Entregas a Domicilio" /></span>
-                                    <h3>Entregas a Domicilio</h3>
-                                    <p>Para facilitarle la entrega de su pedido, contamos también con el servicio de entrega a cualquier parte de Centroamerica.</p>
-                                    <!--                                    <ul class="actions">
-                                                                            <li><a href="#" class="button">Más Información</a></li>
-                                                                        </ul>-->
+                                    <h3><% out.write(idioma.getProperty("EntregasDomicilio"));%></h3>
+                                    <p><% out.write(idioma.getProperty("Parafacilitarlelaentrega"));%></p>
                                 </section>
                             </div>
                         </div>
@@ -254,7 +248,7 @@
                         <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
                     </ul>
                     <ul class="copyright">
-                        <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
+                         <li>&copy; <% out.write(idioma.getProperty("TodoslosDerechosReservados"));%></li><li><% out.write(idioma.getProperty("Diseñadopor"));%> <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
                     </ul>
                 </footer>
             </div>

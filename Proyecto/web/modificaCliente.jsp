@@ -77,7 +77,7 @@
 //            {
 
 //            };
-%>
+        %>
         <section id="container"> 
             <div id="page-wrapper">
                 <!-- Header -->
@@ -145,18 +145,20 @@
                                         <div class="6u 12u(mobilep)">
                                             <h1>No Documento: </h1>
                                             <input type="text" name="NoDoc" id="NoDoc" value="<%out.write(clMostrar.getNUMERO_DOC());%>"/>
-                                        </div>
+                                        </div>   
                                         <div class="6u 12u(mobilep)">
-                                            <h1>Tipo Documento: </h1>
                                             <div class="select-wrapper">
+                                                <h1><% out.write(idioma.getProperty("TipoDocumento"));%>: </h1>
                                                 <select  name="TipoDoc" id="TipoDoc" >
-                                                    <option value="">-TipoDoc- <%out.write(idioma.getProperty("nombre"));%></option>
-                                                    <option value="DPI">DPI <%out.write(idioma.getProperty("nombre"));%></option>
-                                                    <option value="Pasaporte">Pasaporte <%out.write(idioma.getProperty("nombre"));%></option>
-                                                    <option value="Otro(Licencia Conducir...etc)">Otro(Licencia Conducir...etc) <%out.write(idioma.getProperty("nombre"));%></option>
+                                                    <option value="" selected ><%out.write(clMostrar.getTIPODOCUMENTO());%></option>
+                                                    <%if (clMostrar.getTIPODOCUMENTO().contains("DPI")||clMostrar.getTIPODOCUMENTO().contains("DCI")) {%>
+                                                    <option value="DPI"><% out.write(idioma.getProperty("DPI"));%></option>
+                                                    <option value="Pasaporte"><% out.write(idioma.getProperty("Pasaporte"));%></option>
+                                                    <option value="Otros"><% out.write(idioma.getProperty("Otrosdoc"));%></option>
+                                                    <%}%>
                                                 </select>
                                             </div>
-                                        </div>                                
+                                        </div>    
                                         <div class="6u 12u(narrower)">
                                             <h1>Nombres: </h1>
                                             <input type="text" name="FName" id="FName" value="<%out.write(clMostrar.getNOMBRE());%>"  />
@@ -201,24 +203,24 @@
                                             <h1>Correo Electrónico: </h1>
                                             <input type="text" name="email" id="email" value="<%out.write(clMostrar.getEMAIL());%>"  />
                                         </div>
-                                        <div class="12u">
-                                            <h3>Datos para Ingreso al Sistema</h3> 
-                                        </div>
-                                        <div class="12u">
-                                            <h1>Usuario: </h1>
-                                            <input type="text" name="usuario" id="usuario" value="<%out.write(clMostrar.getUSUARIO());%>"/>
-                                        </div>
-                                        <div class="12u">
-                                            <h1>Contraseña: </h1>
-                                            <input type="Password" name="pass" id="pass" value="<%//out.write(clMostrar.getCONTRASENA());%>"   />
-                                        </div>
-                                        <div class="12u">
-                                            <h1>Confirme Contraseña: </h1>
-                                            <input type="Password" name="pass2" id="pass2" value="<%//out.write(clMostrar.getCONTRASENA());%>"   />
-                                        </div>
+                                        <!--                                        <div class="12u">
+                                                                                   <h3>Datos para Ingreso al Sistema</h3> 
+                                                                               </div>
+                                                                              <div class="12u">
+                                                                                   <h1>Usuario: </h1>
+                                                                                   <input type="text" name="usuario" id="usuario" value="<%out.write(clMostrar.getUSUARIO());%>"/>
+                                                                               </div>
+                                                                               <div class="12u">
+                                                                                   <h1>Contraseña: </h1>
+                                                                                   <input type="Password" name="pass" id="pass" value="<%//out.write(clMostrar.getCONTRASENA());%>"   />
+                                                                               </div>
+                                                                               <div class="12u">
+                                                                                   <h1>Confirme Contraseña: </h1>
+                                                                                   <input type="Password" name="pass2" id="pass2" value="<%//out.write(clMostrar.getCONTRASENA());%>"   />
+                                                                               </div>-->
                                         <div class="12u">
                                             <input type="checkbox" id="human" name="human"  onClick="AutenticaSiEsHumano(this.form)">
-                                            <label for="human">I am a human and not a robot</label>
+                                            <label for="human">Soy humano y no un robot</label>
                                         </div>
                                     </div>
                                     <div class="row uniform ">

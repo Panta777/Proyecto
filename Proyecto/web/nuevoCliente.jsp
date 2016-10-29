@@ -21,41 +21,6 @@
         <meta HTTP-EQUIV="Expires" CONTENT="Tue, 01 Jan 1980 1:00:00 GMT">
         <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
         <script type="text/javascript">
-            var countryLists = new Array(4) 
-            countryLists["-Pais-"] = ["Seleccione un Pais"]; 
-            countryLists["1"] = ["Guatemala", "El Quiche", "El Petén"]; 
-            countryLists["2"] = ["Copan", "San Pedro Sula", "Morazan"]; 
-            //            countryLists["Asia"] = ["Russia", "China", "Japan"]; 
-            //            countryLists["Europe"]= ["Britain", "France", "Spain", "Germany"]; 
-            function countryChange(selectObj) { 
-                // get the index of the selected option 
-                var idx = selectObj.selectedIndex; 
-                // get the value of the selected option 
-                var which = selectObj.options[idx].value; 
-                // use the selected option value to retrieve the list of items from the countryLists array 
-                cList = countryLists[which]; 
-                // get the country select element via its known id 
-                var cSelect = document.getElementById("Departamento"); 
-                // remove the current options from the country select 
-                var len=cSelect.options.length; 
-                while (cSelect.options.length > 0) { 
-                    cSelect.remove(0); 
-                } 
-                var newOption; 
-                // create new options 
-                for (var i=0; i<cList.length; i++) { 
-                    newOption = document.createElement("option"); 
-                    newOption.value = cList[i];  // assumes option string and value are the same 
-                    newOption.text=cList[i]; 
-                    // add the new option 
-                    try { 
-                        cSelect.add(newOption);  // this will fail in DOM browsers but is needed for IE 
-                    } 
-                    catch (e) { 
-                        cSelect.appendChild(newOption); 
-                    } 
-                } 
-            } 
             function AutenticaSiEsHumano(form)
             {
                 if (form.human.checked === true)
@@ -78,13 +43,11 @@
                     return false;
                 }
             }
-           
-                
-            //            previene = function () {
-            //                window.stop;
-            //                history.go(1);
-            //            };
-            //            window.back = previene();
+            previene = function () {
+                window.stop;
+                history.go(1);
+            };
+            window.back = previene();
         </script>        
         <%
             Idioma idioma = null;
@@ -109,34 +72,34 @@
             }
         %>
     </head>
-    <body class="landing" oncontextmenu='return false'>
+    <body class="landing">
         <div id="page-wrapper">
             <!-- Header -->
             <header id="header" >
-                <h1><a href="#main">Muebleria Los Alpes</a></h1>
+                <h1><a href="#main"><% out.write(idioma.getProperty("mueblierialosalpes"));%></a></h1>
                 <nav id="nav">
                     <ul>
-                        <li><a href="index.jsp">Inicio</a></li>
+                        <li><a href="index.jsp"><% out.write(idioma.getProperty("inicio"));%></a></li>
                         <li>
                             <a href="#" class="icon fa-angle-down">Menu</a>
                             <ul>
-                                <li><a href="catalogo.jsp">Catálogo Productos</a></li>
-                                <li><a href="contact.jsp">Contacto</a></li>
+                                <li><a href="catalogo.jsp"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
+                                <li><a href="contact.jsp"><% out.write(idioma.getProperty("Contacto"));%></a></li>
                                 <li>
                                     <a href="#">Opciones</a>
                                     <ul>
-                                        <li><a href="catalogo.jsp">Buscar Productos</a></li>
-                                        <li><a href="#">Ver Pedido</a></li>  
-                                        <li><a href="#">Comentarios</a></li>
+                                        <li><a href="catalogo.jsp"><% out.write(idioma.getProperty("BuscarProductos"));%></a></li>
+                                        <li><a href="#"><% out.write(idioma.getProperty("VerPedido"));%></a></li>  
+                                        <li><a href="#"><% out.write(idioma.getProperty("Comentarios"));%></a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
                         <% if (nivel.equals("3") || nivel.equals("4") || nivel.equals("")) {%>
                         <li>
-                            <a href="login.jsp" class= "button special"> Entrar <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <a href="login.jsp" class= "button special"> <% out.write(idioma.getProperty("Entrar"));%>  <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                             <ul>
-                                <li> <a href="nuevoCliente.jsp" class ="actions">Registrate</a> </li>
+                                <li> <a href="nuevoCliente.jsp" class ="actions"><% out.write(idioma.getProperty("Registrate"));%></a> </li>
                             </ul>
                         </li>             
                         <%}%>
@@ -146,60 +109,60 @@
             <!-- Banner -->
             <section id="banner" class ="box special">
                 <span class="image featured"><img src="images/logo.png" alt="log" /></span>
-                <p>Sirviendole con total amabilidad desde 1985.</p>
+                <p><% out.write(idioma.getProperty("Sirviendolecon"));%></p>
             </section>
             <!-- Main -->
             <section id="main" class="container">
                 <section class="box special">
                     <header class="major">
-                        <h2>REGISTRO NUEVO CLIENTE</h2>
+                        <h2><% out.write(idioma.getProperty("REGISTRONUEVOCLIENTE"));%></h2>
                         <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
                     </header>                
                 </section>
-                <div class="row" id ="formularioNuevo">
+                <div class="row">
                     <div class="12u">
                         <!-- Form -->
                         <section class="box">
-                            <h3><p >Ingrese sus Datos</p></h3>
+                            <h3><p><%out.write(idioma.getProperty("Ingresesusdatos"));%></p></h3>    
                             <form method="post" action="controladorCliente">
                                 <div class="row uniform 50%">
                                     <div class="6u 12u(mobilep)">
-                                        <input type="text" name="NoDoc" id="NoDoc" value="" placeholder="Docto <%out.write(idioma.getProperty("nombre"));%>" />
+                                        <input type="text" name="NoDoc" id="NoDoc" value="" placeholder="<%out.write(idioma.getProperty("NoDocumento"));%>" />
                                     </div>
                                     <div class="6u 12u(mobilep)">
                                         <div class="select-wrapper">
                                             <select  name="TipoDoc" id="TipoDoc" >
-                                                <option value="">-TipoDoc- <%out.write(idioma.getProperty("nombre"));%></option>
-                                                <option value="DPI">DPI <%out.write(idioma.getProperty("nombre"));%></option>
-                                                <option value="Pasaporte">Pasaporte <%out.write(idioma.getProperty("nombre"));%></option>
-                                                <option value="Otros">Otro(Licencia Conducir...etc) <%out.write(idioma.getProperty("nombre"));%></option>
+                                                <option value=""><% out.write(idioma.getProperty("TipoDocumento"));%></option>
+                                                <option value="DPI"><% out.write(idioma.getProperty("DPI"));%></option>
+                                                <option value="Pasaporte"><% out.write(idioma.getProperty("Pasaporte"));%></option>
+                                                <option value="Otros"><% out.write(idioma.getProperty("Otrosdoc"));%></option>
                                             </select>
                                         </div>
                                     </div>                                
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="FName" id="FName" value="" placeholder="<%out.write(idioma.getProperty("nombre"));%>" />
+                                        <input type="text" name="FName" id="FName" value="" placeholder=" <%out.write(idioma.getProperty("Nombres"));%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="LName" id="LName" value="" placeholder="Lname <% out.write(idioma.getProperty("email"));%>"  />
+                                        <input type="text" name="LName" id="LName" value="" placeholder="<% out.write(idioma.getProperty("Apellidos"));%>"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="TelRes" id="TelRes" value="" placeholder="TelRes<%out.write(idioma.getProperty("nombre"));%>" />
+                                        <input type="text" name="TelRes" id="TelRes" value="" placeholder="<%out.write(idioma.getProperty("TeléfonoResidencia"));%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="TelCel" id="TelCel" value="" placeholder="TelCel <% out.write(idioma.getProperty("email"));%>"  />
+                                        <input type="text" name="TelCel" id="TelCel" value="" placeholder=" <% out.write(idioma.getProperty("TeléfonoCelular"));%>"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="Nit" id="Nit" value="" placeholder="Nit<%out.write(idioma.getProperty("nombre"));%>" />
+                                        <input type="text" name="Nit" id="Nit" value="" placeholder="<%out.write(idioma.getProperty("NIT"));%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="Direccion" id="Direccion" value="" placeholder="Direccion<% out.write(idioma.getProperty("email"));%>"  />
+                                        <input type="text" name="Direccion" id="Direccion" value="" placeholder="<% out.write(idioma.getProperty("Dirección"));%>"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
                                         <div class="select-wrapper">
                                             <!--                                        <form name="form1" action="SERVLET" method="POST">-->
                                             <!--                                            <select  name="Pais" id="Pais" onChange ="countryChange(this)" onChange ="location.href='nuevoCliente.jsp?#formularioNuevo'">-->
                                             <select  name="Pais" id="Pais" >
-                                                <option value="-Pais-" >-Pais-<%out.write(idioma.getProperty("nombre"));%></option>
+                                                <option value="-Pais-" ><%out.write(idioma.getProperty("Pais"));%></option>
                                                 <%
                                                     OperacionesCliente oc = new OperacionesCliente();
                                                     ArrayList<String> paises = oc.mostrarPais();
@@ -218,7 +181,7 @@
                                                 <%
                                                         }
                                                     }
-                                                    sesion.setAttribute("Pais",Integer.valueOf(pas[0].replaceAll(" ", "")));
+                                                    sesion.setAttribute("Pais", Integer.valueOf(pas[0].replaceAll(" ", "")));
                                                 %>
                                             </select>
                                             <!--                                            </form>-->
@@ -227,10 +190,10 @@
                                     <div class="6u 12u(narrower)">
                                         <div class="select-wrapper">
                                             <select  name="Departamento" id="Departamento"  >
-                                                <option value="">-Departamento-<%out.write(idioma.getProperty("nombre"));%></option>
+                                                <option value=""><% out.write(idioma.getProperty("Departamento"));%></option>
                                                 <%
                                                     int idpais = 0;
-                                                    System.out.println("id: " + sesion.getAttribute("Pais") );
+                                                    System.out.println("id: " + sesion.getAttribute("Pais"));
 
                                                     if (sesion.getAttribute("Pais") != null) {
                                                         idpais = Integer.parseInt(sesion.getAttribute("Pais").toString());
@@ -256,43 +219,43 @@
                                         </div>
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="Ciudad" id="Ciudad" value="" placeholder="Ciudad <%out.write(idioma.getProperty("nombre"));%>" />
+                                        <input type="text" name="Ciudad" id="Ciudad" value="" placeholder="<%out.write(idioma.getProperty("Ciudad"));%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="Profesion" id="Profesion" value="" placeholder="Profesion<% out.write(idioma.getProperty("email"));%>"  />
+                                        <input type="text" name="Profesion" id="Profesion" value="" placeholder="<% out.write(idioma.getProperty("Profesion"));%>"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
                                         <input type="text" name="email" id="email" value="" placeholder="<%out.write(idioma.getProperty("email"));%>" />
                                     </div>
                                     <div class="12u">
-                                        <h3>Datos para Ingreso al Sistema</h3> 
+                                        <h3><% out.write(idioma.getProperty("DatosparaIngresoalSistema"));%></h3> 
                                     </div>
                                     <div class="12u">
-                                        <input type="text" name="usuario" id="usuario" value="" placeholder="usuario <% out.write(idioma.getProperty("email"));%>"  />
+                                        <input type="text" name="usuario" id="usuario" value="" placeholder="<% out.write(idioma.getProperty("Usuario"));%>"  />
                                     </div>
                                     <div class="12u">
-                                        <input type="Password" name="pass" id="pass" value="" placeholder="Password <% out.write(idioma.getProperty("email"));%>"  />
+                                        <input type="Password" name="pass" id="pass" value="" placeholder="<% out.write(idioma.getProperty("Contraseña"));%>"  />
                                     </div>
                                     <div class="12u">
-                                        <input type="Password" name="pass2" id="pass2" value="" placeholder="Confirme Password <% out.write(idioma.getProperty("email"));%> " onBlur ="CompruebaContras(this.form)" />
+                                        <input type="Password" name="pass2" id="pass2" value="" placeholder="<% out.write(idioma.getProperty("ConfirmeContraseña"));%> " onBlur ="CompruebaContras(this.form)" />
                                     </div>
                                     <div class="12u">
                                         <input type="checkbox" id="human" name="human"  onClick="AutenticaSiEsHumano(this.form)">
-                                        <label for="human">I am a human and not a robot</label>
+                                        <label for="human"><% out.write(idioma.getProperty("soyhumanonorobot"));%> </label>
                                     </div>
-                                </div>
-                                <div class="row uniform " id = "ResultadoNuevoCliente">
-                                    <div class="12u">
-                                        <ul class="actions">
-                                            <li><input type="submit" name ="EnviaCliente" value="Send" disabled = true /></li>
-                                        </ul>
+                                    <div class="row uniform " id = "ResultadoNuevoCliente">
+                                        <div class="12u">
+                                            <ul class="actions">
+                                                <li><input type="submit" name ="EnviaCliente" value="Send" disabled = true /></li>
+                                            </ul>
+                                        </div>
+                                        <%
+                                            if (sesion.getAttribute("resOper") != null) {
+                                                out.write((String) sesion.getAttribute("resOper"));
+                                                // out.write("<h5 style=\" color:red; font-weight:bold;\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>");
+                                            }
+                                        %>
                                     </div>
-                                    <%
-                                        if (sesion.getAttribute("resOper") != null) {
-                                            out.write((String) sesion.getAttribute("resOper"));
-                                            // out.write("<h5 style=\" color:red; font-weight:bold;\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>");
-                                        }
-                                    %>
                                 </div>
                             </form>
                             <hr />
@@ -309,7 +272,7 @@
                     <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
                 </ul>
                 <ul class="copyright">
-                    <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Pantaleón Medrano</a></li>
+                    <li>&copy; <% out.write(idioma.getProperty("TodoslosDerechosReservados"));%></li><li><% out.write(idioma.getProperty("Diseñadopor"));%> <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
                 </ul>
             </footer>
         </div>
