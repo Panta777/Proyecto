@@ -62,9 +62,9 @@
         campoFiltro = request.getParameter("campoFiltro").toString();
     }
  
-//    if (nivel.equals("3") || nivel.equals("4") || nivel == "") {
-//       response.sendRedirect("index.jsp#reporteria");
-//    }
+    if (nivel.equals("3") || nivel.equals("4") || nivel == "") {
+       response.sendRedirect("index.jsp#reporteria");
+    }
     // controladorProducto cp = new controladorProducto();
 
     System.out.println("Operacion: " + opera);

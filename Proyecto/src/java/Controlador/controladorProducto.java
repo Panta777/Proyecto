@@ -28,15 +28,20 @@ public class controladorProducto extends HttpServlet {
     public String getProductos(String tipo) {
         OperacionesProducto mp = new OperacionesProducto();
         String htmlcode = "";
-        for (Producto producto : mp.getAllProductos(tipo)) {
-            htmlcode += "                                    <div class=\"4u 12u(narrower)\">\n"
-                    + "                                <section class=\"box special\">\n"
-                    + "                                    <span class=\"image featured\"><img src=\"" + producto.getFOTO() + "\" alt=\"Muebles Tradicionales\" /></span>\n"
-                    + "                                    <h3>" + producto.getNOMBRE() + "</h3>                                                <ul class=\"actions\">\n"
-                    + "                                        <li><a href=\"detalleproducto.jsp?id=" + producto.getID_PRODUCTO() + "#main\" class= \"button \" >VER DETALLES</a></li>\n"
-                    + "                                    </ul>\n"
-                    + "                                </section></div>";
+        try {
+            for (Producto producto : mp.getAllProductos(tipo)) {
+                htmlcode += "                                    <div class=\"4u 12u(narrower)\">\n"
+                        + "                                <section class=\"box special\">\n"
+                        + "                                    <span class=\"image featured\"><img src=\"" + producto.getFOTO() + "\" alt=\"Muebles Tradicionales\" /></span>\n"
+                        + "                                    <h3>" + producto.getNOMBRE() + "</h3>                                                <ul class=\"actions\">\n"
+                        + "                                        <li><a href=\"detalleproducto.jsp?id=" + producto.getID_PRODUCTO() + "#main\" class= \"button \" >VER DETALLES</a></li>\n"
+                        + "                                    </ul>\n"
+                        + "                                </section></div>";
+            }
+        } catch (SQLException e) {
+            System.out.println("Error :" + e);
         }
+
         if (htmlcode.equals("")) {
             htmlcode = "<h3>NO HAY MUEBLES EN ESTA CATEGORIA</h3> ";
             htmlcode += "<span class=\"image featured\"><img src=\"images/404.png\" alt=\"Sin Muebles\" /></span>\n ";
@@ -47,7 +52,16 @@ public class controladorProducto extends HttpServlet {
     }
 
     public Producto getProducto(int id) {
-        return new OperacionesProducto().getProducto(id);
+
+        Producto p = new Producto();
+        OperacionesProducto op = new OperacionesProducto();
+
+        try {
+            p = op.getProducto(id);
+        } catch (SQLException e) {
+            System.out.println("Error :" + e);
+        }
+        return p;
     }
 
     //metodo encargado de la gestión del método POST
@@ -59,7 +73,7 @@ public class controladorProducto extends HttpServlet {
             OperacionesProducto opproducto = new OperacionesProducto();
             Producto producto = new Producto();
 
-            if (request.getParameter("EnviarNP") != null) {
+            if (request.getParameter("EnviarMP") != null) {
 //                if (request.getParameter("pass") == null ? request.getParameter("pass2") != null : !request.getParameter("pass").equals(request.getParameter("pass2"))) {
 //                    response.sendRedirect("nuevoProducto.jsp");
 //                } else {
@@ -106,7 +120,6 @@ public class controladorProducto extends HttpServlet {
                 producto.setESTADO(request.getParameter("ESTADO"));
                 producto.setPRECIOVENTA(Double.valueOf(request.getParameter("PRECIOVENTA")));
 
-
                 HttpSession sesion = request.getSession();
                 String respuesta = opproducto.insertarProducto(producto);
                 if (respuesta.equals("")) {
@@ -141,8 +154,7 @@ public class controladorProducto extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -156,8 +168,7 @@ public class controladorProducto extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response

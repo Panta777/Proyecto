@@ -217,7 +217,7 @@
                                                                                </div>
                                                                               <div class="12u">
                                                                                    <h1>Usuario: </h1>
-                                                                                   <input type="text" name="usuario" id="usuario" value="<%out.write(clMostrar.getUSUARIO());%>"/>
+                                                                                   <input type="text" name="usuario" id="usuario" value="<%//out.write(clMostrar.getUSUARIO());%>"/>
                                                                                </div>
                                                                                <div class="12u">
                                                                                    <h1>Contraseña: </h1>
