@@ -241,7 +241,7 @@
                                         Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
                                     </a>
                                     <div class="row" style ='display:none' id ="NoLogueado">
-                                        <a href="login.jsp#main">  <h5 style ='color:red; font-weight:bold;' > (Debe estar logueado para completar la transacción)</h5></a>
+                                        <a href="login.jsp#main">  <h5 style ='color:red; font-weight:bold;' >Para completar la transaccion debe estar logueado </h5></a>
                                     </div>
                                 </div>
                                 <%}%>
