@@ -71,13 +71,13 @@
                                 <ul>
                                     <li>
                                         <a href="cambioEspanol.jsp" class ="actions" >
-                                            <img class = "image featured" src="images/ICONOS/ESPANOL.png" width="25" height="21" alt ="carrito">
-                                            <% out.write(idioma.getProperty("espanol"));%>
+                                            <img class = "image featured" src="images/ICONOS/ESPANOL.png" width="25" height="25" alt ="<% out.write(idioma.getProperty("espanol"));%>">
+                                              <% out.write(idioma.getProperty("espanol"));%>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="cambioIngles.jsp" class ="actions"> 
-                                            <img  class = "image featured" src="images/ICONOS/INGLES.png" width="25" height="21" alt ="carrito">
+                                            <img  class = "image featured" src="images/ICONOS/INGLES.png" width="25" height="25" alt ="<% out.write(idioma.getProperty("ingles"));%>">
                                             <% out.write(idioma.getProperty("ingles"));%>
                                         </a>
                                     </li>
@@ -206,7 +206,7 @@
                         <div class="row">
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
-                                    <span class="image featured"><img src="images/ICONOS/formas-de-pago.png" alt = "Formas de Pago"/></span>
+                                    <span class="image featured"><img src="images/ICONOS/formas.png" alt = "Formas de Pago"/></span>
                                     <h3><% out.write(idioma.getProperty("FormasdePago"));%></h3>
                                     <p><% out.write(idioma.getProperty("LosAlpescontamoscon"));%></p>
                                 </section>
