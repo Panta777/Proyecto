@@ -70,7 +70,6 @@
         </script>
     </head>
     <body class="landing" oncontextmenu='return false'>
-        <!--        <section id="container" > -->
         <div id="page-wrapper">
             <!-- Header -->
             <header id="header" >
@@ -78,22 +77,22 @@
                 <nav id="nav">
                     <ul>
                         <li>
-                            <a href="index.jsp">Inicio</a>
+                            <a href="index.jsp#main"><% out.write(idioma.getProperty("inicio"));%></a>
                         </li>
                         <li>
                             <a href="#" class="icon fa-angle-down">Menu</a>
                             <ul>
-                                <li><a href="catalogo.jsp#main">Catálogo Productos</a></li>
-                                <li><a href="contact.jsp#main">Contacto</a></li>
-                                <li><a href="productosCarrito.jsp#main">Ver Pedido</a></li> 
+                                <li><a href="#catalogo"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
+                                <li><a href="contact.jsp#main"><% out.write(idioma.getProperty("Contacto"));%></a></li>
+                                <li><a href="productosCarrito.jsp#OrdenCompra"><% out.write(idioma.getProperty("VerPedido"));%></a></li> 
                             </ul>
                         </li>
                         <%if (nivel.equals("1")) {%>
                         <li>
-                            <a href="#" class="icon fa-angle-down">Administracion</a>
+                            <a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("Administracion"));%></a>
                             <ul>
-                                <li><a href="#">Reporteria</a></li>
-                                <li><a href="#">Mantenimientos</a></li>
+                                <li><a href="index.jsp#reporteria"><% out.write(idioma.getProperty("Reporteria"));%></a></li>
+                                <li><a href="index.jsp#mantenimiento"><% out.write(idioma.getProperty("Mantenimientos"));%></a></li>
                             </ul>
                         </li>
                         <%}%>
@@ -102,11 +101,13 @@
                             <ul>
                                 <li>
                                     <a href="cambioEspanol.jsp" class ="actions" >
+                                        <img class = "image featured" src="images/ICONOS/ESPANOL.png" width="25" height="25" alt ="<% out.write(idioma.getProperty("espanol"));%>">
                                         <% out.write(idioma.getProperty("espanol"));%>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="cambioIngles.jsp" class ="actions"> 
+                                        <img  class = "image featured" src="images/ICONOS/INGLES.png" width="25" height="25" alt ="<% out.write(idioma.getProperty("ingles"));%>">
                                         <% out.write(idioma.getProperty("ingles"));%>
                                     </a>
                                 </li>
@@ -114,21 +115,21 @@
                         </li>
                         <%if (nivel.equals("2") || nivel.equals("1")) {%>
                         <li>
-                            <a  class= "button special" >Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
-                            <ul>
-
-                                <li> <a href="modificaCliente.jsp#main" class ="actions">Modificar mis Datos</a> </li>
-                                <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
+                            <a  class= "button special" ><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <ul> 
+                                <li> <a href="modificaCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("ModificarmisDatos"));%></a> </li>
+                                <li> <a href="logout.jsp" class ="actions"><% out.write(idioma.getProperty("CerrarSesión"));%></a> </li>
                             </ul>
                         </li>
                         <%} else {%>
                         <li>
-                            <a href="#" class= "icon fa-angle-down">Ingresa o Registrate<img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <a href="#" class= "icon fa-angle-down"><% out.write(idioma.getProperty("IngresaroRegistrarse"));%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                             <ul>
                                 <li>
-                                    <a href="login.jsp#main" class= "actions"> Entrar  </a>
+                                    <a href="login.jsp#main" class= "actions"> <% out.write(idioma.getProperty("Entrar"));%></a>
+
                                 </li>
-                                <li> <a href="nuevoCliente.jsp#main" class ="actions">Registrate</a> </li>
+                                <li> <a href="nuevoCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("Registrate"));%></a> </li>
                             </ul>
                         </li>             
                         <%}%>
@@ -229,7 +230,7 @@
                                     <p></p>
                                 </div> 
                                 <%if (articulos != null && articulos.size() > 0 && (nivel.equals("2") || nivel.equals("1"))) {
-                                    //if (articulos != null && articulos.size() > 0) {%>
+                                        //if (articulos != null && articulos.size() > 0) {%>
                                 <div class="4u 12u(mobile2p)">
                                     <a class ="button special" href="#pagotarjeta" onclick="mostrar()">
                                         Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
