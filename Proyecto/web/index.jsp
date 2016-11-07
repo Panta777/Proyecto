@@ -250,7 +250,7 @@
                         <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
                     </ul>
                     <ul class="copyright">
-                        <li>&copy; <% out.write(idioma.getProperty("TodoslosDerechosReservados"));%></li><li><% out.write(idioma.getProperty("Diseñadopor"));%> <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
+                        <li>&copy; <% out.write(idioma.getProperty("TodoslosDerechosReservados"));%></li><li><% out.write(idioma.getProperty("Diseñadopor"));%> <a href="#">Panta Medrano</a></li>
                     </ul>
                 </footer>
             </div>

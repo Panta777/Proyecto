@@ -117,7 +117,7 @@
                                         <div class="row uniform">
                                             <div class="12u">
                                                 <ul class="actions">
-                                                    <li> <input type="submit" value="Ingresar" class="fit" name = "Enviar"/></li>
+                                                    <li> <input type="submit" value="<% out.write(idioma.getProperty("Enviar"));%>" class="fit" name = "Enviar"/></li>
                                                 </ul>
                                             </div>
                                             <%

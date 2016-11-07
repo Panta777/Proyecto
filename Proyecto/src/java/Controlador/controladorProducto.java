@@ -34,19 +34,13 @@ public class controladorProducto extends HttpServlet {
                         + "                                <section class=\"box special\">\n"
                         + "                                    <span class=\"image featured\"><img src=\"" + producto.getFOTO() + "\" alt=\"Muebles Tradicionales\" /></span>\n"
                         + "                                    <h3>" + producto.getNOMBRE() + "</h3>                                                <ul class=\"actions\">\n"
-                        + "                                        <li><a href=\"detalleproducto.jsp?id=" + producto.getID_PRODUCTO() + "#main\" class= \"button \" >VER DETALLES</a></li>\n"
+                        + "                                        <li><a href=\"detalleproducto.jsp?id=" + producto.getID_PRODUCTO() + "#main\" class= \"button \" ><% out.write(idioma.getProperty(\"VERDETALLES\"));%></a></li>\n"
                         + "                                    </ul>\n"
                         + "                                </section></div>";
             }
         } catch (SQLException e) {
             System.out.println("Error :" + e);
         }
-
-        if (htmlcode.equals("")) {
-            htmlcode = "<h3>NO HAY MUEBLES EN ESTA CATEGORIA</h3> ";
-            htmlcode += "<span class=\"image featured\"><img src=\"images/404.png\" alt=\"Sin Muebles\" /></span>\n ";
-        }
-        //System.out.println("Resultado:" + htmlcode);
         return htmlcode;
 
     }

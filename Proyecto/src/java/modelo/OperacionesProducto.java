@@ -72,7 +72,7 @@ public class OperacionesProducto {
                 cone.commit();// confirmar si se ejecuto sin errores
             } catch (SQLException e) {
                 cone.rollback();// deshacer la ejecucion en caso de error
-                System.out.println("Error al ejecutar función DatosReporteProducto por, " + e); // informar por consola
+                System.out.println("Error al ejecutar función CONSULTA_PRODUCTOTIPO por, " + e); // informar por consola
             } finally {
                 cone.close();// cerrar la conexion
             }

@@ -14,29 +14,12 @@
 -->
 <html >
     <head>
-        <title>Muebles Los Alpes</title>
-        <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-        <!--        <script type ="text/javascript">
-                    previene = function () {
-                        window.stop;
-                        history.go(1);
-                    };
-                    window.back = previene();
-                </script>-->
-    </head>
-    <body class="landing">
         <%
             String tipo = "";
-            if (request.getParameter("tipo") != null)
-            {
+            if (request.getParameter("tipo") != null) {
                 tipo = request.getParameter("tipo").toString();
             }
-            
+
             Idioma idioma = null;
             HttpSession sesion = request.getSession(true);
             if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
@@ -52,64 +35,75 @@
                 usuario = sesion.getAttribute("user").toString();
             }
             controladorProducto cp = new controladorProducto();
-           // ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
+            // ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
         %>
+        <title><% out.write(idioma.getProperty("mueblierialosalpes"));%></title>
+        <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+    </head>
+    <body class="landing">
         <section id="container" > 
             <div id="page-wrapper">
                 <!-- Header -->
-                <header id="header">
+                <header id="header" >
                     <h1><a href="#main"><% out.write(idioma.getProperty("mueblierialosalpes"));%></a></h1>
                     <nav id="nav">
                         <ul>
-                          <!--  <li><a href="index.jsp">Inicio</a></li>-->
-                           <li><a href="index.jsp"><% out.write(idioma.getProperty("inicio"));%></a></li>
+                            <li>
+                                <a href="index.jsp#main"><% out.write(idioma.getProperty("inicio"));%></a>
+                            </li>
                             <li>
                                 <a href="#" class="icon fa-angle-down">Menu</a>
                                 <ul>
-                                    <% if (!(nivel.equals("2") || nivel.equals("1"))) {%>
-                                    <!--<li> <a href="nuevoCliente.jsp" class ="actions"> Nuevo Cliente</a> </li>-->
-                                    <li><a href="nuevoCliente.jsp"class ="actions"> <% out.write(idioma.getProperty("NuevoCliente"));%></a></li>
-                                    <%}%>
-                                    <li><a href="#main"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
-                                   <!-- <li><a href="contact.jsp">Contacto</a></li>-->
-                                    <li><a href="contact.jsp"><% out.write(idioma.getProperty("Contacto"));%></a></li>
+                                    <li><a href="#catalogo"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
+                                    <li><a href="contact.jsp#main"><% out.write(idioma.getProperty("Contacto"));%></a></li>
+                                    <li><a href="productosCarrito.jsp#OrdenCompra"><% out.write(idioma.getProperty("VerPedido"));%></a></li> 
+                                </ul>
+                            </li>
+                            <%if (nivel.equals("1")) {%>
+                            <li>
+                                <a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("Administracion"));%></a>
+                                <ul>
+                                    <li><a href="index.jsp#reporteria"><% out.write(idioma.getProperty("Reporteria"));%></a></li>
+                                    <li><a href="index.jsp#mantenimiento"><% out.write(idioma.getProperty("Mantenimientos"));%></a></li>
+                                </ul>
+                            </li>
+                            <%}%>
+                            <li>
+                                <a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
+                                <ul>
                                     <li>
-                                       <!-- <a href="#">Opciones</a>-->
-                                        <a  href="#"><% out.write(idioma.getProperty("Opciones"));%></a>
-                                        <ul>
-                                           <!-- <li><a href="#">Buscar Productos</a></li>-->
-                                            <li><a  href="#"><% out.write(idioma.getProperty("BuscarProductos"));%></a></li>
-                                           <!--  <li><a href="productosCarrito.jsp#main">Ver Pedido</a></li>-->  
-                                            <li><a  href="productosCarrito.jsp#main"><% out.write(idioma.getProperty("VerPedido"));%></a></li>
-                                           <!--<li><a href="#">Comentarios</a></li>-->
-                                           <li><a  href="#"><% out.write(idioma.getProperty("Comentarios"));%></a></li>
-                                            <%if (nivel.equals("1")) {%>                                            
-                                           <!--  <li><a href="#">Reporteria</a></li>-->
-                                            <li><a  href="#"><% out.write(idioma.getProperty("Reporteria"));%></a></li>
-                                           <!--  <li><a href="#">Administracion</a></li>-->
-                                            <li><a  href="#"><% out.write(idioma.getProperty("Administracion"));%></a></li>
-                                            <%}%>
-                                        </ul>
+                                        <a href="cambioEspanol.jsp" class ="actions" >
+                                            <img class = "image featured" src="images/ICONOS/ESPANOL.png" width="25" height="25" alt ="<% out.write(idioma.getProperty("espanol"));%>">
+                                            <% out.write(idioma.getProperty("espanol"));%>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="cambioIngles.jsp" class ="actions"> 
+                                            <img  class = "image featured" src="images/ICONOS/INGLES.png" width="25" height="25" alt ="<% out.write(idioma.getProperty("ingles"));%>">
+                                            <% out.write(idioma.getProperty("ingles"));%>
+                                        </a>
                                     </li>
                                 </ul>
                             </li>
                             <%if (nivel.equals("2") || nivel.equals("1")) {%>
                             <li>
-                                <!--<a  class= "button special" >Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>-->
                                 <a  class= "button special" ><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
-                                <ul>
-                                    <!--<li> <a href="modificaCliente.jsp#main" class ="actions">Modificar mis Datos</a> </li>-->
+                                <ul> 
                                     <li> <a href="modificaCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("ModificarmisDatos"));%></a> </li>
-                                   <!-- <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>-->
                                     <li> <a href="logout.jsp" class ="actions"><% out.write(idioma.getProperty("CerrarSesión"));%></a> </li>
                                 </ul>
                             </li>
                             <%} else {%>
                             <li>
-                                <!--<a href="login.jsp#main" class= "button special"> Entrar <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>-->
-                                <a href="login.jsp#main" class= "button special"><% out.write(idioma.getProperty("Entrar"));%> <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <a href="#" class= "icon fa-angle-down"><% out.write(idioma.getProperty("IngresaroRegistrarse"));%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
-                                   <!--  <li> <a href="nuevoCliente.jsp#main" class ="actions">Registrate</a> </li>-->
+                                    <li>
+                                        <a href="login.jsp#main" class= "actions"> <% out.write(idioma.getProperty("Entrar"));%></a>
+
+                                    </li>
                                     <li> <a href="nuevoCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("Registrate"));%></a> </li>
                                 </ul>
                             </li>             
@@ -134,19 +128,19 @@
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <span class="image featured"><img src="images/TRADICIONALES/MTradicionales.png" alt = "Muebles Tradicionales"/></span>
-                                   <!-- <h4><a href="catalogo.jsp?tipo=TRADICIONALES#muebles" class= "button" >Muebles Tradicionales</a></h4>-->
+                                    <!-- <h4><a href="catalogo.jsp?tipo=TRADICIONALES#muebles" class= "button" >Muebles Tradicionales</a></h4>-->
                                     <h4><a href="catalogo.jsp?tipo=TRADICIONALES#muebles" class= "button" ><% out.write(idioma.getProperty("MueblesTradicionales"));%></a></h4>
-                                   <p><% out.write(idioma.getProperty("TradicionalesEsteMueble"));%></p>
+                                    <p><% out.write(idioma.getProperty("TradicionalesEsteMueble"));%></p>
                                 </section>
                             </div>
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <!--  <span class="icon major fa-area-chart accent3"></span> -->
                                     <span class="image featured"><img src="images/MODERNOS/MModernos.png" alt = "Muebles Modernos"/></span>
-                               <!--    <h4><a href="catalogo.jsp?tipo=MODERNOS#muebles" class= "button" >Muebles Modernos</a></h4>-->
+                                    <!--    <h4><a href="catalogo.jsp?tipo=MODERNOS#muebles" class= "button" >Muebles Modernos</a></h4>-->
                                     <h4><a href="catalogo.jsp?tipo=MODERNOS#muebles" class= "button" ><% out.write(idioma.getProperty("MueblesModernos"));%></a></h4>
                                     <p><% out.write(idioma.getProperty("ModernosesEsteMueble"));%></p>
-                                    </section>
+                                </section>
                             </div>
                         </div>
                         <div class="row">
@@ -154,25 +148,25 @@
                                 <section class="box special">
                                     <!--  <span class="icon major fa-cloud accent4"></span>-->
                                     <span class="image featured"><img src="images/COLONIALES/MColoniales.png" alt = "Muebles Coloniales"/></span>
-                                   <!--   <h4><a href="catalogo.jsp?tipo=COLONIALES#muebles" class= "button" >Muebles Coloniales</a></h4>-->
-                                      <h4><a href="catalogo.jsp?tipo=COLONIALES#muebles" class= "button" ><% out.write(idioma.getProperty("MueblesColoniales"));%></a></h4>  
-                                      <p><% out.write(idioma.getProperty("ColonialesEsteMueble"));%></p>
-                                      </section>
+                                    <!--   <h4><a href="catalogo.jsp?tipo=COLONIALES#muebles" class= "button" >Muebles Coloniales</a></h4>-->
+                                    <h4><a href="catalogo.jsp?tipo=COLONIALES#muebles" class= "button" ><% out.write(idioma.getProperty("MueblesColoniales"));%></a></h4>  
+                                    <p><% out.write(idioma.getProperty("ColonialesEsteMueble"));%></p>
+                                </section>
                             </div>
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <!--   <span class="icon major fa-lock accent5"></span>-->
                                     <span class="image featured"><img src="images/RUSTICOS/MRusticos.png" alt = "Muebles Rusticos"/></span>
-                                  <!--  <h4><a href="catalogo.jsp?tipo=RUSTICOS#muebles" class= "button" >Muebles Rústicos</a></h4>-->
-                                  <h4><a href="catalogo.jsp?tipo=RUSTICOS#muebles" class= "button" ><% out.write(idioma.getProperty("MueblesRústicos"));%></a></h4>     
-                                  <p><% out.write(idioma.getProperty("RusticusEsteMueble"));%></p>
-                                  </section>
+                                    <!--  <h4><a href="catalogo.jsp?tipo=RUSTICOS#muebles" class= "button" >Muebles Rústicos</a></h4>-->
+                                    <h4><a href="catalogo.jsp?tipo=RUSTICOS#muebles" class= "button" ><% out.write(idioma.getProperty("MueblesRústicos"));%></a></h4>     
+                                    <p><% out.write(idioma.getProperty("RusticusEsteMueble"));%></p>
+                                </section>
                             </div>
                         </div>
                     </section>
                     <section class="box special features" id = "muebles">
-                            <h3>
-                                <%
+                        <h3>
+                            <%
 //                                    switch (tipo) {
 //                                        case "TRADICIONALES": case "":
 //                                            out.write("MUEBLES TRADICIONALES");
@@ -189,11 +183,14 @@
 //                                        default:
 //                                            out.write(idioma.getProperty("nombre"));
 //                                    }
-                                    
-                                  %>
-                            </h3>
+
+                            %>
+                        </h3>
                         <div class="row">
-                            <%= cp.getProductos(tipo)%>
+                            <% if (cp.getProductos(tipo).equals("")) {%>
+                            <h3> <% out.write(idioma.getProperty("NOHAYMUEBLESENESTACATEGORIA"));%> </h3> 
+                            <span class="image featured"><img src="images/404.png" alt="Sin Muebles" /></span>
+                            <%}else {cp.getProductos(tipo);}%>
                         </div>
                     </section>
                 </section>
