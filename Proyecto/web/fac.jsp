@@ -35,7 +35,7 @@
                 <div style='padding: 2px;width:100%;  float:left; line-height: 1em;'>&nbsp</div>
                 <div style='padding: 2px;width:100%; float:left; line-height: 1em;'>Cantidad ...........: &nbsp;</div>
                 <div style='padding: 2px;width:100%; float:left; line-height: 1em;'>DOSCIENTOS TREINTA Y TRES QUETZALES CON 96/100</div>
-                <div style='padding: 2px;width:100%; float:left; line-height: 1em;'>HECHO POR USUARIO...: DESAWSPMEDRANO</div>
+                <div style='padding: 2px;width:100%; float:left; line-height: 1em;'>USUARIO...: DESAWSPMEDRANO</div>
                 <div style='padding: 2px;width:100%; float:left; line-height: 1em;'>Fecha Y Hora .......: 20/07/2016 15:53:33</div>
 <!--                <table width="750px" border="0px">
                     <tr>
@@ -84,7 +84,7 @@
                         </td>
                     </tr>
                 </table>-->
-                <table>
+<!--                <table>
                     <tr>
                         <td >
                             <div style='width:100%; float:left; line-height: 1em;'>Fecha Vencimiento de la Couta: 15/04/2016</div>
@@ -93,7 +93,7 @@
                             <div style='width:100%; float:left; line-height: 1em;'></div>
                         </td>
                     </tr>
-                </table>
+                </table>-->
                 <br />
             </div>
     </body>
