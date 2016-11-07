@@ -142,7 +142,7 @@
                                 <div class="row" >
                                     <div class="6u 12u(mobilep)">
                                         <section class="box special">
-                                            <div class="image featured"><img src="<%=producto.getFOTO()%>" alt="Muebles Tradicionales" /></div>
+                                            <div class="image featured"><img src="<%=producto.getFOTO()%>" alt="=<%=producto.getFOTO()%>" /></div>
                                         </section>
                                     </div>
                                     <div class="6u 12u(mobilep)">
