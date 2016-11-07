@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import modelo.OperacionesProducto;
-import modelo.OperacionesProducto;
+import modelo.Idioma;
 
 /**
  *
@@ -25,16 +25,21 @@ import modelo.OperacionesProducto;
 @WebServlet(name = "controladorProducto", urlPatterns = {"/controladorProducto"})
 public class controladorProducto extends HttpServlet {
 
-    public String getProductos(String tipo) {
+    public String getProductos(String tipo, String idi) {
         OperacionesProducto mp = new OperacionesProducto();
+        Idioma idioma = new Idioma(idi);
         String htmlcode = "";
         try {
             for (Producto producto : mp.getAllProductos(tipo)) {
                 htmlcode += "                                    <div class=\"4u 12u(narrower)\">\n"
-                        + "                                <section class=\"box special\">\n"
-                        + "                                    <span class=\"image featured\"><img src=\"" + producto.getFOTO() + "\" alt=\"Muebles Tradicionales\" /></span>\n"
-                        + "                                    <h3>" + producto.getNOMBRE() + "</h3>                                                <ul class=\"actions\">\n"
-                        + "                                        <li><a href=\"detalleproducto.jsp?id=" + producto.getID_PRODUCTO() + "#main\" class= \"button \" ><% out.write(idioma.getProperty(\"VERDETALLES\"));%></a></li>\n"
+                        + "                                <section class=\"box special\">\n";
+                if (producto.getFOTO() != null && producto.getFOTO().length() == 0) {
+                    htmlcode += "                                    <span class=\"image featured\"><img src=\"" + producto.getFOTO() + "\" alt=\"" + producto.getTIPO() + " /></span>\n";
+                } else {
+                    htmlcode += "                                    <span class=\"image featured\"><img src=\"images/404.png\" alt=\"Sin Muebles\" /></span>\n";
+                }
+                htmlcode += "                                    <h3>" + producto.getNOMBRE() + "</h3>                                                <ul class=\"actions\">\n"
+                        + "                                        <li><a href=\"detalleproducto.jsp?id=" + producto.getID_PRODUCTO() + "#main\" class= \"button \" >"+idioma.getProperty("VERDETALLES")+"</a></li>\n"
                         + "                                    </ul>\n"
                         + "                                </section></div>";
             }
@@ -148,7 +153,8 @@ public class controladorProducto extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the HTTP
+     * <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -162,7 +168,8 @@ public class controladorProducto extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP
+     * <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response

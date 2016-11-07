@@ -187,10 +187,10 @@
                             %>
                         </h3>
                         <div class="row">
-                            <% if (cp.getProductos(tipo).equals("")) {%>
+                            <% if (cp.getProductos(tipo, session.getAttribute("Idioma").toString()).equals("")) {%>
                             <h3> <% out.write(idioma.getProperty("NOHAYMUEBLESENESTACATEGORIA"));%> </h3> 
                             <span class="image featured"><img src="images/404.png" alt="Sin Muebles" /></span>
-                            <%}else {cp.getProductos(tipo);}%>
+                            <%}else {cp.getProductos(tipo,session.getAttribute("Idioma").toString() );}%>
                         </div>
                     </section>
                 </section>

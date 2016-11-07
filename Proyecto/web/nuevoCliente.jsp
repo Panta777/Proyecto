@@ -246,7 +246,7 @@
                                     <div class="row uniform " id = "ResultadoNuevoCliente">
                                         <div class="12u">
                                             <ul class="actions">
-                                                <li><input type="submit" name ="EnviaCliente" value="Send" disabled = true /></li>
+                                                <li><input type="submit" name ="EnviaCliente" disabled = true value="<% out.write(idioma.getProperty("Enviar"));%> "  /></li>
                                             </ul>
                                         </div>
                                         <%

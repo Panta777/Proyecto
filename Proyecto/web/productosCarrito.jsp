@@ -3,6 +3,7 @@
     Created on : 9/10/2016, 08:45:11 PM
     Author     : panle
 --%>
+<%@page import="java.util.Calendar"%>
 <%@page import="modelo.Utileria"%>
 <%@page import="modelo.Idioma"%>
 <%@page import="ClasesGenericas.Producto"%>
@@ -27,6 +28,9 @@
         nivel = sesion.getAttribute("nivel").toString();
         usuario = sesion.getAttribute("user").toString();
     }
+
+    Calendar now = Calendar.getInstance();
+    String tmpTxt = "";
     // controladorProducto cp = new controladorProducto();
     //   ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
 %>
@@ -34,7 +38,7 @@
 <html>
 
     <head>
-        <title>Muebles Los Alpes</title>
+        <title><% out.write(idioma.getProperty("mueblierialosalpes"));%></title>
         <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -139,13 +143,13 @@
             <!-- Banner -->
             <section id="banner" class ="box">
                 <img class="image featured" src="images/logo.png" alt="log" />
-                <p>Sirviendole con total amabilidad desde 1985.</p>
+                <p><% out.write(idioma.getProperty("Sirviendolecon"));%></p>
             </section>
             <!-- Main -->
             <section class="container" id="main">
                 <section class="box special">
                     <header class="major">
-                        <h2>ORDEN   Y PAGO DE COMPRA</h2>
+                        <h2><% out.write(idioma.getProperty("ORDENyPAGODECOMPRA"));%></h2>
                         <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
                     </header>                
                 </section>
@@ -163,12 +167,12 @@
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th><h4>Cantidad</h4></th>
-                                    <th>Foto</th>
-                                    <th>Descripcion</th>
-                                    <th>Precio U</th>
-                                    <th>Subtotal</th>
-                                    <th>Eliminar</th>
+                                            <th><h4><% out.write(idioma.getProperty("Cantidad"));%></h4></th>
+                                    <th><% out.write(idioma.getProperty("Foto"));%></th>
+                                    <th><% out.write(idioma.getProperty("Descripcion"));%></th>
+                                    <th><% out.write(idioma.getProperty("PrecioU"));%></th>
+                                    <th><% out.write(idioma.getProperty("Subtotal"));%></th>
+                                    <th><% out.write(idioma.getProperty("Eliminar"));%>}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -214,7 +218,7 @@
                                     </tfoot>
                                 </table>
                                 <% } else {%>
-                                <h4>No hay Articulos en el carrito &nbsp;
+                                <h4><% out.write(idioma.getProperty("NohayArticulos"));%> &nbsp;
                                     <img  src="images/404.png" alt=" Sin Muebles"  width="25" height="21" /></h4> 
                                     <%}%>
                                 &nbsp;
@@ -223,7 +227,7 @@
                                 <div class="4u 12u(narrow)">
                                     <a class ="button" href="index.jsp#catalogo">
                                         <!--                                <a class ="button special" href="#pagotarjeta" onclick="mostrar()">-->
-                                        Seguir Comprando &nbsp; <img src="images/ICONOS BLANCOS/FACTURA.png" width="25" height="21" alt ="FAC"> 
+                                        <% out.write(idioma.getProperty("SeguirComprando"));%> &nbsp; <img src="images/ICONOS BLANCOS/FACTURA.png" width="25" height="21" alt ="FAC"> 
                                     </a>
                                 </div>
                                 <div class="4u 12u(narrow)">
@@ -233,16 +237,16 @@
                                         //if (articulos != null && articulos.size() > 0) {%>
                                 <div class="4u 12u(mobile2p)">
                                     <a class ="button special" href="#pagotarjeta" onclick="mostrar()">
-                                        Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
+                                        <% out.write(idioma.getProperty("TerminarCompra"));%>  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
                                     </a>
                                 </div>
                                 <%} else if (articulos != null && articulos.size() > 0) {%>
                                 <div class="4u 12u(mobilep)">
                                     <a class ="button special" href="#OrdenCompra" onclick="mostrarNoLogueado()">
-                                        Terminar Compra  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
+                                        <% out.write(idioma.getProperty("TerminarCompra"));%> &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
                                     </a>
                                     <div class="row" style ='display:none' id ="NoLogueado">
-                                        <a href="login.jsp#main">  <h5 style ='color:red; font-weight:bold;' >Para completar la transaccion debe estar logueado </h5></a>
+                                        <a href="login.jsp#main">  <h5 style ='color:red; font-weight:bold;' ><% out.write(idioma.getProperty("Debeestarlogueado"));%> &nbsp; </h5></a>
                                     </div>
                                 </div>
                                 <%}%>
@@ -257,14 +261,14 @@
                         <div class="12u">
                             <section class="box">
                                 <header class="major">
-                                    <h2 style ='font-weight:bold;' >Pago con Tarjeta de Débito o Crédito</h2>
+                                    <h2 style ='font-weight:bold;' ><% out.write(idioma.getProperty("PagoconTarjeta"));%></h2>
                                     <a class ="actions">
                                         <img src="images/ICONOS/formas.png" alt = "Formas de Pago"/>
                                     </a>
                                 </header>
                                 <form  id="formularioPago" method="post" action="pagarform" autocomplete="off">
-                                    <h4 class="actions">Complete su transacción, llenando los datos de su tarjeta.</h4>
-                                    <h4 style ='color:blue; font-weight:bold;' >(Verifique sus datos, antes de pagar)</h4>
+                                    <h4 class="actions"><% out.write(idioma.getProperty("Completesutransacción"));%></h4>
+                                    <h4 style ='color:blue; font-weight:bold;' >(<% out.write(idioma.getProperty("VerifiquesusDatos"));%></h4>
                                     <a class ="actions">
                                         <img src="images/ICONOS/lap.png" alt = "lap" width="25" height ="25"/>
                                     </a>
@@ -365,7 +369,31 @@
                                     <button class="button" id="EnviarPago" type="submit">
                                         <span class="label">EFECTUAR PAGO</span>
                                     </button>	
-                                    <input type="hidden" id="horaTransaction"  value="2016-10-17T04:37:32+02:00"/>
+                                    <input type="hidden" id="FechahoraTransaction"  value=<%
+
+
+                                        int dia_i = now.get(Calendar.DATE);
+                                        String dia = "" + dia_i;
+                                        if (dia.length() == 1) {
+                                            dia = "0" + dia;
+                                        }
+                                        tmpTxt += dia + "/";
+                                        int mes_i = now.get(Calendar.MONTH) + 1;
+
+                                        String mes = "" + mes_i;
+                                        if (mes.length() == 1) {
+                                            mes = "0" + mes;
+                                        }
+                                        tmpTxt += mes + "/";
+                                        tmpTxt = tmpTxt + now.get(Calendar.YEAR) + " ";
+
+
+                                        tmpTxt = tmpTxt + now.get(Calendar.HOUR_OF_DAY) + ":";
+                                        tmpTxt = tmpTxt + now.get(Calendar.MINUTE) + ":";
+                                        tmpTxt = tmpTxt + now.get(Calendar.SECOND);
+
+                                        // System.out.println("Dia, hora : " + tmpTxt);
+%>/>
                                 </form>
                             </section>
                         </div>
@@ -381,7 +409,7 @@
                     <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
                 </ul>
                 <ul class="copyright">
-                    <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
+                    <li>&copy; <% out.write(idioma.getProperty("TodoslosDerechosReservados"));%></li><li><% out.write(idioma.getProperty("Diseñadopor"));%> <a href="#">Panta Medrano</a></li>
                 </ul>
             </footer>
         </div> 
