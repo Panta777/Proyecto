@@ -272,59 +272,30 @@ public class OperacionesCliente {
         System.out.println("DatogetEMAIL: " + cliente.getEMAIL());
         System.out.println("DatogetUSUARIO: " + cliente.getUSUARIO());
         System.out.println("DatogetCONTRASENA: " + cliente.getCONTRASENA());
-/*
-                   cliente.setNOMBRE(request.getParameter("FName"));
-                cliente.setAPELLIDO(request.getParameter("LName"));
-                cliente.setTIPODOCUMENTO(request.getParameter("TipoDoc"));
-                cliente.setNUMERO_DOC(request.getParameter("NoDoc"));
-                cliente.setTEL_RESIDENCIA(request.getParameter("TelRes"));
-                cliente.setTEL_CEL(request.getParameter("TelCel"));
-                cliente.setNIT(request.getParameter("Nit"));
-                cliente.setDIRECCION(request.getParameter("Direccion"));
-                cliente.setCIUDAD(request.getParameter("Ciudad"));
-                //cliente.setDEPARTAMENTO(request.getParameter("Departamento"));
-                //cliente.setPAIS(request.getParameter("Pais"));
-                cliente.setPROFESION(request.getParameter("Profesion"));
-                cliente.setEMAIL(request.getParameter("email"));
-               // cliente.setUSUARIO(request.getParameter("usuario"));
-                //cliente.setCONTRASENA(request.getParameter("pass"));*/
-//        if (cliente.getUSUARIO().equals("prueba")) {
-//            return "";
-//        }
         if (cone != null) {
 
             try {
                 cone.setAutoCommit(false);
-                CallableStatement ModificarCliente = cone.prepareCall("{ call ActualizarCliente(?,?,?,?,?," + "?,?,?,?,?, " + "?,?,?,?,?," + "?,?,?,?,?,?)}");
-
+                CallableStatement ModificarCliente = cone.prepareCall("{ call ActualizarCliente(?,?,?,?,?," + "?,?,?,?,?, " + "?,?,?)}");
                 // cargar parametros de entrada
-                ModificarCliente.setString(1, cliente.getTIPODOCUMENTO());
-                ModificarCliente.setString(2, cliente.getNUMERO_DOC());
-                ModificarCliente.setString(3, cliente.getNOMBRE());
-                ModificarCliente.setString(4, cliente.getAPELLIDO());
-                ModificarCliente.setString(5, cliente.getTEL_RESIDENCIA());
-                ModificarCliente.setString(6, cliente.getTEL_CEL());
-                ModificarCliente.setString(7, cliente.getNIT());
-                ModificarCliente.setString(8, cliente.getDIRECCION());
-                ModificarCliente.setString(9, cliente.getPROFESION());
-                ModificarCliente.setString(10, cliente.getEMAIL());
-                ModificarCliente.setString(11, "0");//ModificarCliente.setString(14, cliente.getCUENTA_BANCO());
-                ModificarCliente.setString(12, "0");//ModificarCliente.setString(14, cliente.getNUMERO_TARJETA());
-                ModificarCliente.setInt(13, 1);//ModificarCliente.setInt(14, cliente.getESTADO());
-                ModificarCliente.setInt(14, 1);//Banco
-                ModificarCliente.setInt(15, 2);//tipousuario
-                ModificarCliente.setInt(16, cliente.getIddepartamento());
-                ModificarCliente.setInt(17, 1);//tarjeta
-                ModificarCliente.setInt(18, Integer.valueOf(cliente.getPAIS()));
-                ModificarCliente.setString(19, cliente.getCIUDAD());
-                ModificarCliente.setString(20, cliente.getUSUARIO());
-                //ModificarCliente.setString(16, cliente.getCONTRASENA());
+                ModificarCliente.setInt(1, cliente.getID_CLIENTE());
+                ModificarCliente.setString(2, cliente.getTIPODOCUMENTO());
+                ModificarCliente.setString(3, cliente.getNUMERO_DOC());
+                ModificarCliente.setString(4, cliente.getNOMBRE());
+                ModificarCliente.setString(5, cliente.getAPELLIDO());
+                ModificarCliente.setString(6, cliente.getTEL_RESIDENCIA());
+                ModificarCliente.setString(7, cliente.getTEL_CEL());
+                ModificarCliente.setString(8, cliente.getNIT());
+                ModificarCliente.setString(9, cliente.getDIRECCION());
+                ModificarCliente.setString(10, cliente.getPROFESION());
+                ModificarCliente.setString(11, cliente.getEMAIL());
+                ModificarCliente.setString(12, cliente.getCIUDAD());
 
-                ModificarCliente.registerOutParameter(21, OracleTypes.VARCHAR);//Parametro de salida
+                ModificarCliente.registerOutParameter(13, OracleTypes.VARCHAR);//Parametro de salida
                 ModificarCliente.execute();
 
                 cone.commit();// confirmar si se ejecuto sin errores
-                respuesta = ModificarCliente.getObject(21).toString();// obtener salida
+                respuesta = ModificarCliente.getObject(13).toString();// obtener salida
                 System.out.println("esta otra respuesta " + respuesta);
             } catch (SQLException e) {
                 respuesta = "";
@@ -424,17 +395,14 @@ public class OperacionesCliente {
 
                 // cargar parametros de entrada
                 mostrarDatosCliente.setString(1, Usuario);
-                mostrarDatosCliente.registerOutParameter(2, OracleTypes.CURSOR);//Parametro de salida
-                //mostrarDatosCliente.execute();
+                mostrarDatosCliente.registerOutParameter(2, OracleTypes.CURSOR);//Parametro de salid
 
                 mostrarDatosCliente.executeUpdate();
                 ResultSet rsRecords = (ResultSet) mostrarDatosCliente.getObject(2);
 
                 if (rsRecords != null) {
-                    System.out.println("Hay data");
                     while (rsRecords.next()) {
                         cliente.setNOMBRE(rsRecords.getString("NOMBRE"));
-                        //System.out.println("nomb " +cliente.getNOMBRE());
                         cliente.setAPELLIDO(rsRecords.getString("APELLIDO"));
                         cliente.setTIPODOCUMENTO(rsRecords.getString("TIPODOCUMENTO"));
                         cliente.setNUMERO_DOC(rsRecords.getString("NUMERO_DOC"));
@@ -443,12 +411,9 @@ public class OperacionesCliente {
                         cliente.setNIT(rsRecords.getString("NIT"));
                         cliente.setDIRECCION(rsRecords.getString("DIRECCION"));
                         cliente.setCIUDAD(rsRecords.getString("CIUDAD_RESIDENCIA"));
-//                        cliente.setPAIS(rsRecords.getString("PAIS"));
-//                        cliente.setDEPARTAMENTO(rsRecords.getString("DEPARTAMENTO"));
                         cliente.setPROFESION(rsRecords.getString("PROFESION"));
                         cliente.setUSUARIO(rsRecords.getString("USUARIO"));
                         cliente.setEMAIL(rsRecords.getString("EMAIL"));
-                        //   cliente.setCONTRASENA(rsRecords.getString("PASSWORD"));
                     }
                 }
 
