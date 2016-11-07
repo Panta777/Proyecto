@@ -108,7 +108,7 @@
                                     <form method="post" action="login"  >
                                         <div class="row uniform">
                                             <div class="12u">
-                                                <input type="text" name="user" value="" placeholder=<% out.write(idioma.getProperty("Usuario"));%> id="myname" autocomplete='off'/>
+                                                <input type="text" name="user" value="" id="myname" autocomplete='off' placeholder=<% out.write(idioma.getProperty("Usuario"));%>  />
                                             </div>
                                             <div class="12u">
                                                 <input type="password" name="password" value="" placeholder=<% out.write(idioma.getProperty("Contraseña"));%>  />
