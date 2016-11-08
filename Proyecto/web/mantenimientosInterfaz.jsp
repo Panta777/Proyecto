@@ -259,18 +259,18 @@
                             <form method="post" action="controladorProducto">
                                 <div class="row uniform 50%">
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="" id="in_REFERENCIA" value="" placeholder="<%out.write(prodMostrar.getREFERENCIA());%>" />
+                                        <input type="text" name="" id="in_REFERENCIA"  value="<%out.write(prodMostrar.getREFERENCIA());%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="FName" id="in_NOMBRE" value="" placeholder="<%out.write(idioma.getProperty("nombre"));%>" />
+                                        <input type="text" name="FName" id="in_NOMBRE"  placeholder="<%out.write(idioma.getProperty("nombre"));%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="LName" id="in_DESCRIPCION" value="" placeholder="Descripcion"  />
+                                        <input type="text" name="LName" id="in_DESCRIPCION"  placeholder="Descripcion"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
                                         <div class="select-wrapper">
                                             <select  name="in_TIPO" id="TipoProd" >
-                                                <option value="" disabled selected hidden>-Categoria-</option>
+                                                <option  disabled selected hidden>-Categoria-</option>
                                                 <option value="Tradicionales">Tradicionales</option>
                                                 <option value="Modernos">Modernos</option>
                                                 <option value="Coloniales">Coloniales</option>
@@ -279,35 +279,34 @@
                                         </div>
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="in_MATERIAL" id="in_MATERIAL" value="" placeholder="MATERIAL" />
+                                        <input type="text" name="in_MATERIAL" id="in_MATERIAL"  placeholder="MATERIAL" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="in_ALTO" id="in_ALTO" value="" placeholder="ALTO"  />
+                                        <input type="text" name="in_ALTO" id="in_ALTO"  placeholder="ALTO"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="in_ANCHO" id="in_ANCHO" value="" placeholder="ANCHO" />
+                                        <input type="text" name="in_ANCHO" id="in_ANCHO"  placeholder="ANCHO" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="in_PROFUNDIDAD" id="in_PROFUNDIDAD" value="" placeholder="PROFUNDIDAD"  />
+                                        <input type="text" name="in_PROFUNDIDAD" id="in_PROFUNDIDAD"  placeholder="PROFUNDIDAD"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="in_COLOR" id="in_COLOR" value="" placeholder="COLOR" />
+                                        <input type="text" name="in_COLOR" id="in_COLOR"  placeholder="COLOR" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="in_PESO" id="in_PESO" value="" placeholder="PESO"  />
+                                        <input type="text" name="in_PESO" id="in_PESO"  placeholder="PESO"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="in_FOTO" id="in_FOTO" value="" placeholder="FOTO" />
+                                        <input type="text" name="in_FOTO" id="in_FOTO"  placeholder="FOTO" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="FECHA_ALTA" id="FECHA_ALTA" value="" placeholder="FECHA ALTA"  />
-                                    </div>
-
-                                    <div class="6u 12u(narrower)">
-                                        <input type="text" name="ESTADO" id="ESTADO" value="" placeholder="ESTADO"  />
+                                        <input type="text" name="FECHA_ALTA" id="FECHA_ALTA"  placeholder="FECHA ALTA"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="PRECIOVENTA" id="PRECIOVENTA" value="" placeholder="PRECIOVENTA" />
+                                        <input type="text" name="ESTADO" id="ESTADO"  placeholder="ESTADO"  />
+                                    </div>
+                                    <div class="6u 12u(narrower)">
+                                        <input type="text" name="PRECIOVENTA" id="PRECIOVENTA"  placeholder="PRECIOVENTA" />
                                     </div>
                                     <div class="row uniform " id = "ResultadoNuevoProducto">
                                         <div class="12u">
