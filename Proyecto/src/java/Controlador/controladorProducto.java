@@ -99,7 +99,7 @@ public class controladorProducto extends HttpServlet {
                 } else {
 
                     sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta + "</p></h5>");
-                    response.sendRedirect("nuevoProducto.jsp#ResultadoNuevoProducto");
+                    response.sendRedirect("nuevoProducto.jsp#ResultadoUpdateProducto");
                 }
                 //}
             } else if (request.getParameter("EnviarMP") != null) {

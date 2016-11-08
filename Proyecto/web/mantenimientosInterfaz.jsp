@@ -8,6 +8,11 @@
 <%@page import="modelo.OperacionesProducto"%>
 <%@page import="modelo.Idioma"%>
 <%@page import="modelo.OperacionesCliente"%>
+<%@page import="ClasesGenericas.Producto"%>
+<%@page import="ClasesGenericas.Compra"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Controlador.controladorProducto"%>
+<%@page import="Controlador.EliminarProducto"%>
 <%@page session = "true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -81,6 +86,20 @@
             int idProd = 0;
             if (request.getParameter("idProd") != null) {
                 idProd = Integer.parseInt(request.getParameter("idProd"));
+            }
+
+            String datoBuscar = "";
+            if (request.getParameter("datoBuscar") != null) {
+                datoBuscar = request.getParameter("datoBuscar").toString();
+            }
+
+            String campoFiltro = "";
+            if (request.getParameter("campoFiltro") != null) {
+                campoFiltro = request.getParameter("campoFiltro").toString();
+            }
+
+            if (nivel.equals("3") || nivel.equals("4") || nivel == "") {
+                response.sendRedirect("index.jsp#mantenimiento");
             }
         %>
     </head>
@@ -226,7 +245,7 @@
                                     <div class="6u 12u(narrower)">
                                         <input type="text" name="PRECIOVENTA" id="PRECIOVENTA" value="" placeholder="PRECIOVENTA" />
                                     </div>
-                                    <div class="row uniform " id = "ResultadoNuevoCliente">
+                                    <div class="row uniform " id = "ResultadoNuevoProducto">
                                         <div class="12u">
                                             <ul class="actions">
                                                 <li><input type="submit" name ="EnviarNP" value="<% out.write(idioma.getProperty("Enviar"));%> " /></li>
@@ -279,18 +298,30 @@
                                             <%if (prodMostrar.getTIPO() != null) {
                                                     if (prodMostrar.getTIPO().contains("Tradicionales") || prodMostrar.getTIPO().contains("Traditional")) {%>
                                             <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
+                                            <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
+                                            <option value="Coloniales"><% out.write(idioma.getProperty("Coloniales"));%></option>
+                                            <option value="Rusticos"><% out.write(idioma.getProperty("Rusticos"));%></option>
 
                                             <%}%>
                                             <%if (prodMostrar.getTIPO().contains("Modernos") || prodMostrar.getTIPO().contains("Modern")) {%>
                                             <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
+                                            <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
+                                            <option value="Coloniales"><% out.write(idioma.getProperty("Coloniales"));%></option>
+                                            <option value="Rusticos"><% out.write(idioma.getProperty("Rusticos"));%></option>
 
                                             <%}%>
                                             <%if (prodMostrar.getTIPO().contains("Coloniales") || prodMostrar.getTIPO().contains("Colonial")) {%>
                                             <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
+                                            <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
+                                            <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
+                                            <option value="Rusticos"><% out.write(idioma.getProperty("Rusticos"));%></option>
 
                                             <%}
                                                 if (prodMostrar.getTIPO().contains("Rusticos") || prodMostrar.getTIPO().contains("Rustic")) {%>
                                             <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
+                                            <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
+                                            <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
+                                            <option value="Coloniales"><% out.write(idioma.getProperty("Coloniales"));%></option>
                                             <%}
                                             } else {%>
                                             <option  disabled selected hidden>-<% out.write(idioma.getProperty("Categoria"));%>-</option>
@@ -302,46 +333,46 @@
                                         </div>
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
-                                        <input type="text" name="in_MATERIAL" id="in_MATERIAL"  placeholder="MATERIAL" />
+                                        <h1><%out.write(idioma.getProperty("Material"));%>: </h1>
+                                        <input type="text" name="in_MATERIAL" id="in_MATERIAL"  value ="<%out.write(prodMostrar.getMATERIAL());%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
-                                        <input type="text" name="in_ALTO" id="in_ALTO"  placeholder="ALTO"  />
+                                        <h1><%out.write(idioma.getProperty("ALTO"));%>: </h1>
+                                        <input type="text" name="in_ALTO" id="in_ALTO"  value ="<%out.write(prodMostrar.getALTO());%>"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
-                                        <input type="text" name="in_ANCHO" id="in_ANCHO"  placeholder="ANCHO" />
+                                        <h1><%out.write(idioma.getProperty("ANCHO"));%>: </h1>
+                                        <input type="text" name="in_ANCHO" id="in_ANCHO"  value ="<%out.write(prodMostrar.getANCHO());%>"/>
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
-                                        <input type="text" name="in_PROFUNDIDAD" id="in_PROFUNDIDAD"  placeholder="PROFUNDIDAD"  />
+                                        <h1><%out.write(idioma.getProperty("PROFUNDIDAD"));%>: </h1>
+                                        <input type="text" name="in_PROFUNDIDAD" id="in_PROFUNDIDAD" value ="<%out.write(prodMostrar.getPROFUNDIDAD());%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
-                                        <input type="text" name="in_COLOR" id="in_COLOR"  placeholder="COLOR" />
+                                        <h1><%out.write(idioma.getProperty("COLOR"));%>: </h1>
+                                        <input type="text" name="in_COLOR" id="in_COLOR"  value ="<%out.write(prodMostrar.getCOLOR());%>"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
-                                        <input type="text" name="in_PESO" id="in_PESO"  placeholder="PESO"  />
+                                        <h1><%out.write(idioma.getProperty("PESO"));%>: </h1>
+                                        <input type="text" name="in_PESO" id="in_PESO"  value ="<%out.write(prodMostrar.getPESO());%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
-                                        <input type="text" name="in_FOTO" id="in_FOTO"  placeholder="FOTO" />
+                                        <h1><%out.write(idioma.getProperty("FOTO"));%>: </h1>
+                                        <input type="text" name="in_FOTO" id="in_FOTO"  value ="<%out.write(prodMostrar.getFOTO());%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
-                                        <input type="text" name="FECHA_ALTA" id="FECHA_ALTA"  placeholder="FECHA ALTA"  />
+                                        <h1><%out.write(idioma.getProperty("FechaAlta"));%>: </h1>
+                                        <input type="text" name="FECHA_ALTA" id="FECHA_ALTA"  value ="<%out.write(prodMostrar.getFECHA_ALTA());%>"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
-                                        <input type="text" name="ESTADO" id="ESTADO"  placeholder="ESTADO"  />
+                                        <h1><%out.write(idioma.getProperty("ESTADO"));%>: </h1>
+                                        <input type="text" name="ESTADO" id="ESTADO"  value ="<%out.write(prodMostrar.getESTADO());%>"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
-                                        <input type="text" name="PRECIOVENTA" id="PRECIOVENTA"  placeholder="PRECIOVENTA" />
+                                        <h1><%out.write(idioma.getProperty("PrecioU"));%>: </h1>
+                                        <input type="text" name="PRECIOVENTA" id="PRECIOVENTA"  value ="<%out.write(Double.toString(prodMostrar.getPRECIOVENTA()));%>"/>
                                     </div>
-                                    <div class="row uniform " id = "ResultadoNuevoProducto">
+                                    <div class="row uniform " id = "ResultadoUpdateProducto">
                                         <div class="12u">
                                             <ul class="actions">
                                                 <li><input type="submit" name ="EnviarMP" value="<% out.write(idioma.getProperty("Enviar"));%> "  /></li>
@@ -350,7 +381,6 @@
                                         <%
                                             if (sesion.getAttribute("resOper") != null) {
                                                 out.write((String) sesion.getAttribute("resOper"));
-                                                // out.write("<h5 style=\" color:red; font-weight:bold;\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>");
                                             }
                                         %>
                                     </div>
@@ -364,78 +394,89 @@
                         <%//VER  ELIMINAR PRODUCTO  = 3
                             if (opera == 3) {
                         %>
-                        <section class="box">
-                            <h2>MANTENIMIENTO PRODUCTOS</h2>
-                            <h3>BUSQUE EL PRODUCTO QUE DESEA DAR DE BAJA</h3>
-                            <form method="post" action="controladorProducto">
-                                <div class="row uniform 50%">
-                                    <div class="6u 12u(narrower)">
-                                        <input type="text" name="" id="in_REFERENCIA" value="" placeholder="Referencia" />
-                                    </div>
-                                    <div class="6u 12u(narrower)">
-                                        <input type="text" name="FName" id="in_NOMBRE" value="" placeholder="<%out.write(idioma.getProperty("nombre"));%>" />
-                                    </div>
-                                    <div class="6u 12u(narrower)">
-                                        <input type="text" name="LName" id="in_DESCRIPCION" value="" placeholder="Descripcion"  />
-                                    </div>
-                                    <div class="6u 12u(narrower)">
-                                        <div class="select-wrapper">
-                                            <select  name="in_TIPO" id="TipoProd" >
-                                                <option value="" disabled selected hidden>-Categoria-</option>
-                                                <option value="Tradicionales">Tradicionales</option>
-                                                <option value="Modernos">Modernos</option>
-                                                <option value="Coloniales">Coloniales</option>
-                                                <option value="Rusticos">Rusticos</option>
-                                            </select>
+                        <div class="12u" id ="eliminaProductos">
+                            <section class="box" >
+                                <header class="major">
+                                    <h2> BAJA A PRODUCTOS</h2>
+                                    <h3>BUSQUE EL PRODUCTO QUE DESEA DAR DE BAJA</h3>
+                                </header>
+                                <form method="POST" action="mantenimientosInterfaz.jsp?Operacion=3#eliminaProductos">
+                                    <div class="row uniform 50%">
+                                        <div class="6u 12u(narrower)">
+                                            <div class="select-wrapper">
+                                                <select  id="CampoFiltro" name="campoFiltro" >
+                                                    <option value="" disabled selected hidden>Buscar Producto por:</option>
+                                                    <option value="NOMBRE">Nombre</option>
+                                                    <option value="REFERENCIA">Referencia</option>
+                                                    <option value="TIPO">Categoria</option>
+                                                </select>
+                                            </div>
                                         </div>
+                                        <div class="6u 12u(narrower)">
+                                            <input type="text" name="datoBuscar" id="datoBuscar" value="" placeholder="Que coincida con..." />
+                                        </div>
+                                        <ul class="actions">
+                                            <li><input type="submit" name ="Buscar" value="Buscar"  /></li>
+                                        </ul>
                                     </div>
-                                    <div class="6u 12u(narrower)">
-                                        <input type="text" name="in_MATERIAL" id="in_MATERIAL" value="" placeholder="MATERIAL" />
-                                    </div>
-                                    <div class="6u 12u(narrower)">
-                                        <input type="text" name="in_ALTO" id="in_ALTO" value="" placeholder="ALTO"  />
-                                    </div>
-                                    <div class="6u 12u(narrower)">
-                                        <input type="text" name="in_ANCHO" id="in_ANCHO" value="" placeholder="ANCHO" />
-                                    </div>
-                                    <div class="6u 12u(narrower)">
-                                        <input type="text" name="in_PROFUNDIDAD" id="in_PROFUNDIDAD" value="" placeholder="PROFUNDIDAD"  />
-                                    </div>
-                                    <div class="6u 12u(narrower)">
-                                        <input type="text" name="in_COLOR" id="in_COLOR" value="" placeholder="COLOR" />
-                                    </div>
-                                    <div class="6u 12u(narrower)">
-                                        <input type="text" name="in_PESO" id="in_PESO" value="" placeholder="PESO"  />
-                                    </div>
-                                    <div class="6u 12u(narrower)">
-                                        <input type="text" name="in_FOTO" id="in_FOTO" value="" placeholder="FOTO" />
-                                    </div>
-                                    <div class="6u 12u(narrower)">
-                                        <input type="text" name="FECHA_ALTA" id="FECHA_ALTA" value="" placeholder="FECHA ALTA"  />
-                                    </div>
+                                </form>
+                                <%
+                                    ArrayList<Producto> productos = null;
+                                    OperacionesProducto oP = new OperacionesProducto();
+                                    int conta = 0;
+                                    if (!campoFiltro.equals("") && !datoBuscar.equals("")) {
+                                        productos = oP.mostrarDatosProductoReporte(campoFiltro, datoBuscar);
 
-                                    <div class="6u 12u(narrower)">
-                                        <input type="text" name="ESTADO" id="ESTADO" value="" placeholder="ESTADO"  />
-                                    </div>
-                                    <div class="6u 12u(narrower)">
-                                        <input type="text" name="PRECIOVENTA" id="PRECIOVENTA" value="" placeholder="PRECIOVENTA" />
-                                    </div>
-                                    <div class="row uniform " id = "ResultadoNuevoProducto">
-                                        <div class="12u">
-                                            <ul class="actions">
-                                                <li><input type="submit" name ="EnviarNP" value="Enviar" /></li>
-                                            </ul>
-                                        </div>
-                                        <%
-                                            if (sesion.getAttribute("resOper") != null) {
-                                                out.write((String) sesion.getAttribute("resOper"));
-                                                // out.write("<h5 style=\" color:red; font-weight:bold;\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>");
-                                            }
-                                        %>
-                                    </div>
+                                        if (productos != null && productos.size() != 0) {
+                                %>
+                                <div class="table-wrapper">
+                                    <table class="actions" id="TablaProductos">
+                                        <thead>
+                                            <tr>
+                                                <th>DESCRIPCIÓN PRODUCTO </th>
+                                                <th>REFERENCIA </th>
+                                                <th>TIPO</th>
+                                                <th>ELIMINACION</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%      while (conta < productos.size()) {
+                                                    int idProd2 = productos.get(conta).getID_PRODUCTO();
+                                            %>                               
+                                            <tr>
+                                                <td><%out.write(productos.get(conta).getDESCRIPCION());%></td>
+                                                <td><% out.write(productos.get(conta).getREFERENCIA());%></td>
+                                                <td><%out.write(productos.get(conta).getTIPO());%></td>
+                                                <td><a href="detalleproducto.jsp?id=<%=idProd2%>#main" > 
+                                                        ELIMINAR 
+                                                    </a>
+                                                </td>
+                                                
+                                            </tr>
+                                            <%
+                                                    conta++;
+                                                };
+                                            %>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <p>&nbsp;</p>
+                                                    <%
+                                                                out.write("<h3>Se encontraron: " + conta + " coincidencias</h3>");
+
+                                                            } else {
+                                                                out.write(" <p> &nbsp</p> <h3>No se encontraron resultados</h3>");
+                                                            }
+                                                        }%>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
                                 </div>
-                            </form>
-                        </section>
+                                &nbsp;
+                            </section>
+                        </div>
                         <%
                             }
                         %>

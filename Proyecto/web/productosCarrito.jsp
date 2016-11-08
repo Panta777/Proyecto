@@ -195,7 +195,7 @@
                                             <td><%= producto.getNOMBRE()%></td>
                                             <td>Q. <%= algo.convertirCantidad(producto.getPRECIOVENTA())%></td>
                                             <td class="cart_total">
-                                                <p class="cart_total_price">Q. <%= algo.convertirCantidad(Math.round(producto.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0)%></p>
+                                                <p class="cart_total_price"><% out.write(idioma.getProperty("VALORMONEDA"));%> <%= algo.convertirCantidad(Math.round(producto.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0)%></p>
                                             </td>
                                             <td class="cart_delete">
                                                 <form method="post" action="EliminarProducto">
@@ -213,7 +213,7 @@
                                         <tr>
                                             <td colspan="3"></td>
                                             <td><h3>Total</h3></td>
-                                            <td><h3>Q. <%=algo.convertirCantidad(total)%></h3></td>
+                                            <td><h3><% out.write(idioma.getProperty("VALORMONEDA"));%> <%=algo.convertirCantidad(total)%></h3></td>
                                         </tr>
                                     </tfoot>
                                 </table>
