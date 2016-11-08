@@ -33,6 +33,7 @@
 
     OperacionesCliente oper = new OperacionesCliente();
     Cliente clMostrar = oper.mostrarDatosCliente(usuario);
+    System.out.println("id2: " + clMostrar.getID_CLIENTE()+ ".");
 %>
 <!DOCTYPE html>
 <html>
@@ -190,7 +191,7 @@
                                         <div class="6u 12u(narrower)">
                                             <h1><% out.write(idioma.getProperty("email"));%></h1>
                                             <input type="text" name="email" id="email" value="<%out.write(clMostrar.getEMAIL());%>"  />
-                                            <input type="text" name="idcliente" id="idcliente" value="<%out.write(clMostrar.getID_CLIENTE());%>" />
+                                            <input type="hidden" name="idcliente" id="idcliente" value=<%=clMostrar.getID_CLIENTE()%> />
                                         </div>
                                         <div class="12u">
                                             <input type="checkbox" id="human" name="human"  onClick="AutenticaSiEsHumano(this.form)">
@@ -206,6 +207,7 @@
                                         <%
                                             if (sesion.getAttribute("resOper") != null) {
                                                 out.write((String) sesion.getAttribute("resOper"));
+                                                sesion.setAttribute("resOper",null);
                                             }
                                         %>
                                     </div>
