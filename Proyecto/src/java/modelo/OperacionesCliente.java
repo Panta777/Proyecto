@@ -404,7 +404,6 @@ public class OperacionesCliente {
                 if (rsRecords != null) {
                     while (rsRecords.next()) {
                         cliente.setID_CLIENTE(Integer.valueOf(rsRecords.getString("ID_CLIENTE")));
-                        System.out.println("id: " +rsRecords.getString("ID_CLIENTE") );
                         cliente.setNOMBRE(rsRecords.getString("NOMBRE"));
                         cliente.setAPELLIDO(rsRecords.getString("APELLIDO"));
                         cliente.setTIPODOCUMENTO(rsRecords.getString("TIPODOCUMENTO"));

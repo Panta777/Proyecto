@@ -33,7 +33,6 @@
 
     OperacionesCliente oper = new OperacionesCliente();
     Cliente clMostrar = oper.mostrarDatosCliente(usuario);
-    System.out.println("id2: " + clMostrar.getID_CLIENTE()+ ".");
 %>
 <!DOCTYPE html>
 <html>
@@ -152,7 +151,11 @@
                                                     <option value="Pasaporte"><% out.write(idioma.getProperty("Pasaporte"));%></option>
                                                     <option value="DPI"><% out.write(idioma.getProperty("DPI"));%></option>
                                                     <%}
-                                                        }%>
+                                                    } else {%>
+                                                    <option value="DPI"><% out.write(idioma.getProperty("DPI"));%></option>
+                                                    <option value="Pasaporte"><% out.write(idioma.getProperty("Pasaporte"));%></option>
+                                                    <option value="Otros"><% out.write(idioma.getProperty("Otrosdoc"));%></option>
+                                                    <%} %>
                                                 </select>
                                             </div>
                                         </div>    
@@ -205,9 +208,9 @@
                                             </ul>
                                         </div>
                                         <%
-                                            if (sesion.getAttribute("resOper") != null) {
+                                            if (resOper != null) {
                                                 out.write((String) sesion.getAttribute("resOper"));
-                                                sesion.setAttribute("resOper",null);
+                                                sesion.setAttribute("resOper", null);
                                             }
                                         %>
                                     </div>

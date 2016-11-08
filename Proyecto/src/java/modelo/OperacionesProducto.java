@@ -37,7 +37,7 @@ public class OperacionesProducto {
         if (cone != null) {
             try {
                 cone.setAutoCommit(false);
-                CallableStatement procMostrarProductos= cone.prepareCall("{CALL Consulta_productoTipo(?,?)}");
+                CallableStatement procMostrarProductos = cone.prepareCall("{CALL Consulta_productoTipo(?,?)}");
 
                 // cargar parametros de entrada
                 procMostrarProductos.setString(1, tipo);
@@ -94,7 +94,7 @@ public class OperacionesProducto {
         if (cone != null) {
             try {
                 cone.setAutoCommit(false);
-                CallableStatement procMostrarProductos= cone.prepareCall("{CALL CONSULTAPRODUCTOID(?,?,?)}");
+                CallableStatement procMostrarProductos = cone.prepareCall("{CALL CONSULTAPRODUCTOID(?,?,?)}");
 
                 // cargar parametros de entrada
                 procMostrarProductos.setInt(1, id);
@@ -108,24 +108,24 @@ public class OperacionesProducto {
 
                 if (rsRecords != null) {
                     // System.out.println("Hay data");
-               while (rsRecords.next()) {
-                producto = new Producto(rsRecords.getInt("ID_PRODUCTO"),
-                       rsRecords.getString("NOMBRE"),
-                       rsRecords.getString("REFERENCIA"),
-                       rsRecords.getString("DESCRIPCION"),
-                       rsRecords.getString("TIPO"),
-                       rsRecords.getString("MATERIAL"),
-                       rsRecords.getString("ALTO"),
-                       rsRecords.getString("ANCHO"),
-                       rsRecords.getString("PROFUNDIDAD"),
-                       rsRecords.getString("COLOR"),
-                       rsRecords.getString("PESO"),
-                       rsRecords.getString("FOTO"),
-                       rsRecords.getString("FECHA_ALTA"),
-                       rsRecords.getString("FECHA_BAJA"),
-                       rsRecords.getString("ESTADO"),
-                       rsRecords.getDouble("PRECIO_VENTA"));
-            }
+                    while (rsRecords.next()) {
+                        producto = new Producto(rsRecords.getInt("ID_PRODUCTO"),
+                                rsRecords.getString("NOMBRE"),
+                                rsRecords.getString("REFERENCIA"),
+                                rsRecords.getString("DESCRIPCION"),
+                                rsRecords.getString("TIPO"),
+                                rsRecords.getString("MATERIAL"),
+                                rsRecords.getString("ALTO"),
+                                rsRecords.getString("ANCHO"),
+                                rsRecords.getString("PROFUNDIDAD"),
+                                rsRecords.getString("COLOR"),
+                                rsRecords.getString("PESO"),
+                                rsRecords.getString("FOTO"),
+                                rsRecords.getString("FECHA_ALTA"),
+                                rsRecords.getString("FECHA_BAJA"),
+                                rsRecords.getString("ESTADO"),
+                                rsRecords.getDouble("PRECIO_VENTA"));
+                    }
                 }
                 cone.commit();// confirmar si se ejecuto sin errores
             } catch (SQLException e) {
@@ -135,7 +135,7 @@ public class OperacionesProducto {
                 cone.close();// cerrar la conexion
             }
         }
-        
+
         return producto;
     }
 
@@ -199,13 +199,13 @@ public class OperacionesProducto {
         }
         return productos;
     }
-    
-        /**
-     * Retorna determinado valor, según respuesta de la función para insertar
-     * Datos de Nuevo Producto
+
+    /**
+     * Retorna determinado valor, según respuesta del SP para insertar Datos de
+     * Nuevo Producto
      *
      * @param producto
-     * @return 1 = exitoso 2 = usuario ya existe 3 = error al procesar datos
+     * @return      *
      * @throws java.sql.SQLException
      */
     public String insertarProducto(Producto producto) throws SQLException {
@@ -214,7 +214,7 @@ public class OperacionesProducto {
         if (producto.getDESCRIPCION().equals("prueba")) {
             return "si";
         }
-        
+
         if (cone != null) {
             try {
                 cone.setAutoCommit(false);
@@ -235,7 +235,88 @@ public class OperacionesProducto {
 //                System.out.println("Dato: " + producto.getEMAIL());
 //                System.out.println("Dato: " + producto.getUSUARIO());
 //                System.out.println("Dato: " + producto.getCONTRASENA());
-                
+                /*
+in_REFERENCIA  IN producto.referencia%TYPE,
+in_NOMBRE      IN PRODUCTO.NOMBRE%TYPE,
+in_DESCRIPCION IN PRODUCTO.DESCRIPCION%type,
+in_TIPO        IN PRODUCTO.TIPO%TYPE,
+in_MATERIAL    IN PRODUCTO.MATERIAL%TYPE,
+in_ALTO        IN PRODUCTO.ALTO%TYPE,
+in_ANCHO       IN PRODUCTO.ANCHO%TYPE,
+in_PROFUNDIDAD IN PRODUCTO.PROFUNDIDAD%TYPE,
+in_COLOR       IN PRODUCTO.COLOR%TYPE,
+in_PESO        IN PRODUCTO.PESO%TYPE,
+in_FOTO        IN PRODUCTO.FOTO%TYPE,
+in_ESTADO      IN PRODUCTO.ESTADO%TYPE,
+in_PRECIO_VENTA IN PRODUCTO.PRECIO_VENTA%TYPE,
+in_mensaje     out varchar2
+                 */
+                // cargar parametros de entrada
+                InsertarProducto.setString(1, producto.getREFERENCIA());
+                InsertarProducto.setString(2, producto.getNOMBRE());
+                InsertarProducto.setString(3, producto.getDESCRIPCION());
+                InsertarProducto.setString(4, producto.getTIPO());
+                InsertarProducto.setString(5, producto.getMATERIAL());
+                InsertarProducto.setString(6, producto.getALTO());
+                InsertarProducto.setString(7, producto.getANCHO());
+                InsertarProducto.setString(8, producto.getPROFUNDIDAD());
+                InsertarProducto.setString(9, producto.getCOLOR());
+                InsertarProducto.setString(10, producto.getPESO());
+                InsertarProducto.setString(11, producto.getFOTO());
+                InsertarProducto.setString(12, producto.getESTADO());
+                InsertarProducto.setDouble(13, producto.getPRECIOVENTA());
+
+                InsertarProducto.registerOutParameter(14, OracleTypes.VARCHAR);//Parametro de salida
+                InsertarProducto.execute();
+
+                cone.commit();// confirmar si se ejecuto sin errores
+                respuesta = InsertarProducto.getString(14);// obtener salida
+            } catch (SQLException e) {
+                respuesta = "";
+                cone.rollback();// deshacer la ejecucion en caso de error
+                System.out.println("Error al ejecutar función  por, " + Arrays.toString(e.getStackTrace())); // informar por consola
+            } finally {
+                cone.close();// cerrar la conexion
+            }
+        }
+        return respuesta;
+    }
+
+    /**
+     * Retorna determinado valor, según respuesta de Sp para modificar Datos de
+     * Producto
+     *
+     * @param producto
+     * @return
+     * @throws java.sql.SQLException
+     */
+    public String modificarProducto(Producto producto) throws SQLException {
+        String respuesta = "";
+        Connection cone = coneLocal.NewConnection();
+        if (producto.getDESCRIPCION().equals("prueba")) {
+            return "si";
+        }
+
+        if (cone != null) {
+            try {
+                cone.setAutoCommit(false);
+                CallableStatement InsertarProducto = cone.prepareCall("{ call ACTUALIZARPRODUCTO(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+
+//                System.out.println("Dato: " + producto.getNOMBRE());
+//                System.out.println("Dato: " + producto.getAPELLIDO());
+//                System.out.println("Dato: " + producto.getTIPODOCUMENTO());
+//                System.out.println("Dato: " + producto.getNUMERO_DOC());
+//                System.out.println("Dato: " + producto.getTEL_RESIDENCIA());
+//                System.out.println("Dato: " + producto.getTEL_CEL());
+//                System.out.println("Dato: " + producto.getNIT());
+//                System.out.println("Dato: " + producto.getDIRECCION());
+//                System.out.println("Dato: " + producto.getCIUDAD());
+//                System.out.println("Dato: " + producto.getDEPARTAMENTO());
+//                System.out.println("Dato: " + producto.getPAIS());
+//                System.out.println("Dato: " + producto.getPROFESION());
+//                System.out.println("Dato: " + producto.getEMAIL());
+//                System.out.println("Dato: " + producto.getUSUARIO());
+//                System.out.println("Dato: " + producto.getCONTRASENA());
                 /*
 in_ID_PRODUCTO IN producto.id_producto%TYPE,
 in_REFERENCIA  IN producto.referencia%TYPE,
@@ -251,8 +332,10 @@ in_PESO        IN PRODUCTO.PESO%TYPE,
 in_FOTO        IN PRODUCTO.FOTO%TYPE,
 in_ESTADO      IN PRODUCTO.ESTADO%TYPE,
 in_PRECIO_VENTA IN PRODUCTO.PRECIO_VENTA%TYPE,
- */
+in_mensaje     out varchar2
+                 */
                 // cargar parametros de entrada
+                InsertarProducto.setInt(1, producto.getID_PRODUCTO());
                 InsertarProducto.setString(2, producto.getREFERENCIA());
                 InsertarProducto.setString(3, producto.getNOMBRE());
                 InsertarProducto.setString(4, producto.getDESCRIPCION());
@@ -267,15 +350,15 @@ in_PRECIO_VENTA IN PRODUCTO.PRECIO_VENTA%TYPE,
                 InsertarProducto.setString(13, producto.getESTADO());
                 InsertarProducto.setDouble(14, producto.getPRECIOVENTA());
 
-                InsertarProducto.registerOutParameter(1, Types.INTEGER);//Parametro de salida
+                InsertarProducto.registerOutParameter(15, OracleTypes.VARCHAR);//Parametro de salida
                 InsertarProducto.execute();
 
                 cone.commit();// confirmar si se ejecuto sin errores
-                respuesta = InsertarProducto.getString(1);// obtener salida
+                respuesta = InsertarProducto.getString(15);// obtener salida
             } catch (SQLException e) {
                 respuesta = "";
                 cone.rollback();// deshacer la ejecucion en caso de error
-                System.out.println("Error al ejecutar función  por, " + Arrays.toString(e.getStackTrace())); // informar por consola
+                System.out.println("Error al ejecutar función ACTUALIZARPRODUCTO por, " + Arrays.toString(e.getStackTrace())); // informar por consola
             } finally {
                 cone.close();// cerrar la conexion
             }

@@ -15,19 +15,7 @@
 <%@page import="Controlador.controladorProducto"%>
 <%@page import="Controlador.EliminarProducto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Muebles Los Alpes</title>
-        <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <script src="assets/js/jspdf.debug.js"></script>
-    </head>
-    <body oncontextmenu='return false'>
-        <%
+<%
     HttpSession sesion = request.getSession(true);
     //ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
     //Utileria algo = new Utileria();
@@ -45,8 +33,7 @@
         nivel = sesion.getAttribute("nivel").toString();
         usuario = sesion.getAttribute("user").toString();
     }
-    
-    
+
     int opera = 0;
     if (request.getParameter("Operacion") != null) {
         opera = Integer.parseInt(request.getParameter("Operacion"));
@@ -61,9 +48,9 @@
     if (request.getParameter("campoFiltro") != null) {
         campoFiltro = request.getParameter("campoFiltro").toString();
     }
- 
+
     if (nivel.equals("3") || nivel.equals("4") || nivel == "") {
-       response.sendRedirect("index.jsp#reporteria");
+        response.sendRedirect("index.jsp#reporteria");
     }
     // controladorProducto cp = new controladorProducto();
 
@@ -72,6 +59,19 @@
     System.out.println("campoFiltro: " + campoFiltro);
     //   ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
 %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><% out.write(idioma.getProperty("mueblierialosalpes"));%></title>
+        <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <script src="assets/js/jspdf.debug.js"></script>
+    </head>
+    <body oncontextmenu='return false'>
+
         <!--        <section id="container" > -->
         <div id="page-wrapper">
             <!-- Header -->
@@ -80,22 +80,22 @@
                 <nav id="nav">
                     <ul>
                         <li>
-                            <a href="index.jsp">Inicio</a>
+                            <a href="index.jsp#main"><% out.write(idioma.getProperty("inicio"));%></a>
                         </li>
                         <li>
                             <a href="#" class="icon fa-angle-down">Menu</a>
                             <ul>
-                                <li><a href="catalogo.jsp#main">Catálogo Productos</a></li>
-                                <li><a href="contact.jsp#main">Contacto</a></li>
-                                <li><a href="productosCarrito.jsp#main">Ver Pedido</a></li> 
+                                <li><a href="#catalogo"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
+                                <li><a href="contact.jsp#main"><% out.write(idioma.getProperty("Contacto"));%></a></li>
+                                <li><a href="productosCarrito.jsp#OrdenCompra"><% out.write(idioma.getProperty("VerPedido"));%></a></li> 
                             </ul>
                         </li>
                         <%if (nivel.equals("1")) {%>
                         <li>
-                            <a href="#" class="icon fa-angle-down">Administracion</a>
+                            <a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("Administracion"));%></a>
                             <ul>
-                                <li><a href="index.jsp#reporteria">Reporteria</a></li>
-                                <li><a href="index.jsp#mantenimiento">Mantenimientos</a></li>
+                                <li><a href="index.jsp#reporteria"><% out.write(idioma.getProperty("Reporteria"));%></a></li>
+                                <li><a href="index.jsp#mantenimiento"><% out.write(idioma.getProperty("Mantenimientos"));%></a></li>
                             </ul>
                         </li>
                         <%}%>
@@ -104,11 +104,13 @@
                             <ul>
                                 <li>
                                     <a href="cambioEspanol.jsp" class ="actions" >
+                                        <img class = "image featured" src="images/ICONOS/ESPANOL.png" width="25" height="25" alt ="<% out.write(idioma.getProperty("espanol"));%>">
                                         <% out.write(idioma.getProperty("espanol"));%>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="cambioIngles.jsp" class ="actions"> 
+                                        <img  class = "image featured" src="images/ICONOS/INGLES.png" width="25" height="25" alt ="<% out.write(idioma.getProperty("ingles"));%>">
                                         <% out.write(idioma.getProperty("ingles"));%>
                                     </a>
                                 </li>
@@ -116,21 +118,21 @@
                         </li>
                         <%if (nivel.equals("2") || nivel.equals("1")) {%>
                         <li>
-                            <a  class= "button special" >Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
-                            <ul>
-
-                                <li> <a href="modificaCliente.jsp#main" class ="actions">Modificar mis Datos</a> </li>
-                                <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
+                            <a  class= "button special" ><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <ul> 
+                                <li> <a href="modificaCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("ModificarmisDatos"));%></a> </li>
+                                <li> <a href="logout.jsp" class ="actions"><% out.write(idioma.getProperty("CerrarSesión"));%></a> </li>
                             </ul>
                         </li>
                         <%} else {%>
                         <li>
-                            <a href="#" class= "icon fa-angle-down">Ingresa o Registrate<img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <a href="#" class= "icon fa-angle-down"><% out.write(idioma.getProperty("IngresaroRegistrarse"));%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                             <ul>
                                 <li>
-                                    <a href="login.jsp#main" class= "actions"> Entrar  </a>
+                                    <a href="login.jsp#main" class= "actions"> <% out.write(idioma.getProperty("Entrar"));%></a>
+
                                 </li>
-                                <li> <a href="nuevoCliente.jsp#main" class ="actions">Registrate</a> </li>
+                                <li> <a href="nuevoCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("Registrate"));%></a> </li>
                             </ul>
                         </li>             
                         <%}%>
@@ -207,8 +209,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <%
-                                            while (conta < clientes.size()) {
+                                        <%                                         while (conta < clientes.size()) {
                                         %>                               
                                         <tr>
                                             <td><%out.write(clientes.get(conta).getNOMBRE() + " " + clientes.get(conta).getAPELLIDO());%></td>
@@ -804,8 +805,98 @@
                         </section>
                     </div>
                     <!-- FIN REPORTE 7 -->                    
-                    <%} else {
-                          //  response.sendRedirect("index.jsp#reporteria");
+                    <% } else if (opera == 8) {%>
+                    <!-- **** REPORTE 8, UPDATE PRODUCTOS**** -->
+                    <div class="12u" id ="verProductos2">
+                        <section class="box" >
+                            <header class="major">
+                                <h2>ACTUALIZACION PRODUCTOS</h2>
+                            </header>
+                            <form method="POST" action="reporteria.jsp?Operacion=8#verProductos2">
+                                <div class="row uniform 50%">
+                                    <div class="6u 12u(narrower)">
+                                        <div class="select-wrapper">
+                                            <select  id="CampoFiltro" name="campoFiltro" >
+                                                <option value="" disabled selected hidden>Buscar Producto por:</option>
+                                                <option value="NOMBRE">Nombre</option>
+                                                <option value="REFERENCIA">Referencia</option>
+                                                <option value="TIPO">Categoria</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="6u 12u(narrower)">
+                                        <input type="text" name="datoBuscar" id="datoBuscar" value="" placeholder="Que coincida con..." />
+                                    </div>
+                                    <ul class="actions">
+                                        <li><input type="submit" name ="Buscar" value="Buscar"  /></li>
+                                    </ul>
+                                </div>
+                            </form>
+                            <%
+                                ArrayList<Producto> productos = null;
+                                OperacionesProducto oP = new OperacionesProducto();
+                                int conta = 0;
+                                if (!campoFiltro.equals("") && !datoBuscar.equals("")) {
+                                    productos = oP.mostrarDatosProductoReporte(campoFiltro, datoBuscar);
+
+                                    if (productos != null && productos.size() != 0) {
+                                        GenerarPDF gp = new GenerarPDF();
+                                        gp.nuevoReporteProductos(productos);
+                            %>
+                            <div class="table-wrapper">
+                                <table class="actions" id="TablaProductos">
+                                    <thead>
+                                        <tr>
+                                            <th>DESCRIPCIÓN PRODUCTO </th>
+                                            <th>TIPO</th>
+                                            <th>ACTUALIZACION </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%      while (conta < productos.size()) {
+                                                int idProd = productos.get(conta).getID_PRODUCTO();
+                                        %>                               
+                                        <tr>
+                                            <td><%out.write(productos.get(conta).getDESCRIPCION());%></td>
+                                            <td><%out.write(productos.get(conta).getTIPO());%></td>
+                                            <td><a href="mantenimientosInterfaz.jsp?Operacion=2&idProd=<%=idProd%>#updateProductos" > 
+                                                    <% out.write(productos.get(conta).getREFERENCIA());%> 
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <%
+                                                conta++;
+                                            };
+                                        %>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3">
+                                                <p>&nbsp;</p>
+                                                <%
+                                                            out.write("<h3>Se encontraron: " + conta + " coincidencias</h3>");
+                                                            out.write("<div class='row uniform 50%'>");
+                                                            out.write("<form method='POST' action='report'>");
+                                                            out.write("<a class='actions'>");
+                                                            out.write("<input type='hidden' name ='fileName' value='ReporteProductos' />");
+                                                            out.write("<input type='submit' name ='Buscar' value='Obtener PDF'  />");
+                                                            out.write("</ul></form></div>");
+                                                            out.write("</ul></a></div>");
+                                                            out.write("</a></div>");
+                                                        } else {
+                                                            out.write(" <p> &nbsp</p> <h3>No se encontraron resultados</h3>");
+                                                        }
+                                                    }%>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            &nbsp;
+                        </section>
+                    </div>
+                    <!-- FIN REPORTE 8 --><%} else {
+                            //  response.sendRedirect("index.jsp#reporteria");
                         }%>
                 </div>
             </section>

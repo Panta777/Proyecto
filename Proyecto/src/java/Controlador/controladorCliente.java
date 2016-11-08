@@ -68,9 +68,7 @@ public class controladorCliente extends HttpServlet {
                         sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta + "</p></h5>");
                         response.sendRedirect("nuevoCliente.jsp#ResultadoNuevoCliente");
                     }
-//                        sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta2 + "</p></h5>");
-//                        response.sendRedirect("nuevoCliente.jsp#ResultadoNuevoCliente");
-                    // }  
+
                 }
             } else if (request.getParameter("modificaCliente") != null) {
 
@@ -97,8 +95,7 @@ public class controladorCliente extends HttpServlet {
                     sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta + "</p></h5>");
                     response.sendRedirect("modificaCliente.jsp#main");
                 }
-                //response.sendRedirect("modificaCliente.jsp");
-                //}
+
             }
         } catch (SQLException e) {
             out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Error login desde Base de Datos</p></h5>");

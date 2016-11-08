@@ -4,6 +4,8 @@
     Author     : panle
 --%>
 
+<%@page import="ClasesGenericas.Producto"%>
+<%@page import="modelo.OperacionesProducto"%>
 <%@page import="modelo.Idioma"%>
 <%@page import="modelo.OperacionesCliente"%>
 <%@page session = "true"%>
@@ -16,9 +18,9 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="assets/css/main.css" />
-<!--        <meta http-equiv="Cache-Control" content="no-cache">
-        <meta HTTP-EQUIV="Expires" CONTENT="Tue, 01 Jan 1980 1:00:00 GMT">
-        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">-->
+        <!--        <meta http-equiv="Cache-Control" content="no-cache">
+                <meta HTTP-EQUIV="Expires" CONTENT="Tue, 01 Jan 1980 1:00:00 GMT">
+                <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">-->
         <script type="text/javascript">
             function AutenticaSiEsHumano(form)
             {
@@ -75,6 +77,11 @@
             if (request.getParameter("Operacion") != null) {
                 opera = Integer.parseInt(request.getParameter("Operacion"));
             }
+            
+            int idProd = 0;
+            if (request.getParameter("idProd") != null) {
+                idProd = Integer.parseInt(request.getParameter("idProd"));
+            }
         %>
     </head>
     <body class="landing" oncontextmenu='return false'>
@@ -85,22 +92,22 @@
                 <nav id="nav">
                     <ul>
                         <li>
-                            <a href="index.jsp#main">Inicio</a>
+                            <a href="index.jsp#main"><% out.write(idioma.getProperty("inicio"));%></a>
                         </li>
                         <li>
                             <a href="#" class="icon fa-angle-down">Menu</a>
                             <ul>
-                                <li><a href="#catalogo">Catálogo Productos</a></li>
-                                <li><a href="contact.jsp#main">Contacto</a></li>
-                                <li><a href="productosCarrito.jsp#OrdenCompra">Ver Pedido</a></li> 
+                                <li><a href="#catalogo"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
+                                <li><a href="contact.jsp#main"><% out.write(idioma.getProperty("Contacto"));%></a></li>
+                                <li><a href="productosCarrito.jsp#OrdenCompra"><% out.write(idioma.getProperty("VerPedido"));%></a></li> 
                             </ul>
                         </li>
                         <%if (nivel.equals("1")) {%>
                         <li>
-                            <a href="#" class="icon fa-angle-down">Administracion</a>
+                            <a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("Administracion"));%></a>
                             <ul>
-                                <li><a href="index.jsp#reporteria">Reporteria</a></li>
-                                <li><a href="index.jspa#mantenimiento">Mantenimientos</a></li>
+                                <li><a href="index.jsp#reporteria"><% out.write(idioma.getProperty("Reporteria"));%></a></li>
+                                <li><a href="index.jsp#mantenimiento"><% out.write(idioma.getProperty("Mantenimientos"));%></a></li>
                             </ul>
                         </li>
                         <%}%>
@@ -109,11 +116,13 @@
                             <ul>
                                 <li>
                                     <a href="cambioEspanol.jsp" class ="actions" >
+                                        <img class = "image featured" src="images/ICONOS/ESPANOL.png" width="25" height="25" alt ="<% out.write(idioma.getProperty("espanol"));%>">
                                         <% out.write(idioma.getProperty("espanol"));%>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="cambioIngles.jsp" class ="actions"> 
+                                        <img  class = "image featured" src="images/ICONOS/INGLES.png" width="25" height="25" alt ="<% out.write(idioma.getProperty("ingles"));%>">
                                         <% out.write(idioma.getProperty("ingles"));%>
                                     </a>
                                 </li>
@@ -121,21 +130,21 @@
                         </li>
                         <%if (nivel.equals("2") || nivel.equals("1")) {%>
                         <li>
-                            <a  class= "button special" >Usuario:  <%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
-                            <ul>
-
-                                <li> <a href="modificaCliente.jsp#main" class ="actions">Modificar mis Datos</a> </li>
-                                <li> <a href="logout.jsp" class ="actions">Cerrar Sesión</a> </li>
+                            <a  class= "button special" ><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <ul> 
+                                <li> <a href="modificaCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("ModificarmisDatos"));%></a> </li>
+                                <li> <a href="logout.jsp" class ="actions"><% out.write(idioma.getProperty("CerrarSesión"));%></a> </li>
                             </ul>
                         </li>
                         <%} else {%>
                         <li>
-                            <a href="#" class= "icon fa-angle-down">Ingresa o Registrate<img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <a href="#" class= "icon fa-angle-down"><% out.write(idioma.getProperty("IngresaroRegistrarse"));%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                             <ul>
                                 <li>
-                                    <a href="login.jsp#main" class= "actions"> Entrar  </a>
+                                    <a href="login.jsp#main" class= "actions"> <% out.write(idioma.getProperty("Entrar"));%></a>
+
                                 </li>
-                                <li> <a href="nuevoCliente.jsp#main" class ="actions">Registrate</a> </li>
+                                <li> <a href="nuevoCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("Registrate"));%></a> </li>
                             </ul>
                         </li>             
                         <%}%>
@@ -144,14 +153,14 @@
             </header>
             <!-- Banner -->
             <section id="banner" class ="box special">
-                <span class="image featured"><img src="images/logo.png" alt="log" /></span>
-                <p>Sirviendole con total amabilidad desde 1985.</p>
+                <img class="image featured" src="images/logo.png" alt="log" />
+                <p><% out.write(idioma.getProperty("Sirviendolecon"));%></p>
             </section>
             <!-- Main -->
             <section id="main" class="container">
                 <section class="box special">
                     <header class="major">
-                        <h2>MANTENIMIENTO PRODUCTOS</h2>
+                        <h2>MANTENIMIENTOS</h2>
                         <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
                     </header>                
                 </section>
@@ -161,9 +170,9 @@
                         <%//VER Nuevo PRODUCTO  = 1
                             if (opera == 1) {
                         %>
-                        <section class="box">
+                        <section class="box" id = "nuevoProducto">
                             <h2>NUEVO PRODUCTO</h2>
-                            <h3><p>Ingrese los siguientes Datos</p></h3>
+                            <h3>Ingrese los siguientes Datos</h3>
                             <form method="post" action="controladorProducto">
                                 <div class="row uniform 50%">
                                     <div class="6u 12u(narrower)">
@@ -220,7 +229,7 @@
                                     <div class="row uniform " id = "ResultadoNuevoCliente">
                                         <div class="12u">
                                             <ul class="actions">
-                                                <li><input type="submit" name ="Enviar" value="Enviar" /></li>
+                                                <li><input type="submit" name ="EnviarNP" value="<% out.write(idioma.getProperty("Enviar"));%> " /></li>
                                             </ul>
                                         </div>
                                         <%
@@ -240,14 +249,17 @@
                         <!-- Form Modificar PRODUCTO -->
                         <%//VER  Modificar PRODUCTO  = 2
                             if (opera == 2) {
+                                Producto prodMostrar = null;
+                                OperacionesProducto oP = new OperacionesProducto();
+                                prodMostrar = oP.getProducto(idProd);
                         %>
-                        <section class="box">
+                        <section class="box" id = "updateProductos">
                             <h2>MANTENIMIENTO PRODUCTOS</h2>
-                            <h3><p>Modifique los datos que considere:</p></h3>
+                            <h3>Modifique los datos que considere:</h3>
                             <form method="post" action="controladorProducto">
                                 <div class="row uniform 50%">
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="" id="in_REFERENCIA" value="" placeholder="Referencia" />
+                                        <input type="text" name="" id="in_REFERENCIA" value="" placeholder="<%out.write(prodMostrar.getREFERENCIA());%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
                                         <input type="text" name="FName" id="in_NOMBRE" value="" placeholder="<%out.write(idioma.getProperty("nombre"));%>" />
@@ -322,7 +334,7 @@
                         %>
                         <section class="box">
                             <h2>MANTENIMIENTO PRODUCTOS</h2>
-                            <h3><p>BUSQUE EL PRODUCTO QUE DESEA DAR DE BAJA</p></h3>
+                            <h3>BUSQUE EL PRODUCTO QUE DESEA DAR DE BAJA</h3>
                             <form method="post" action="controladorProducto">
                                 <div class="row uniform 50%">
                                     <div class="6u 12u(narrower)">

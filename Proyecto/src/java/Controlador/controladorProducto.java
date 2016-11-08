@@ -73,7 +73,7 @@ public class controladorProducto extends HttpServlet {
             OperacionesProducto opproducto = new OperacionesProducto();
             Producto producto = new Producto();
 
-            if (request.getParameter("EnviarMP") != null) {
+            if (request.getParameter("EnviarNP") != null) {
 //                if (request.getParameter("pass") == null ? request.getParameter("pass2") != null : !request.getParameter("pass").equals(request.getParameter("pass2"))) {
 //                    response.sendRedirect("nuevoProducto.jsp");
 //                } else {

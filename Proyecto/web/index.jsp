@@ -72,7 +72,7 @@
                                     <li>
                                         <a href="cambioEspanol.jsp" class ="actions" >
                                             <img class = "image featured" src="images/ICONOS/ESPANOL.png" width="25" height="25" alt ="<% out.write(idioma.getProperty("espanol"));%>">
-                                              <% out.write(idioma.getProperty("espanol"));%>
+                                            <% out.write(idioma.getProperty("espanol"));%>
                                         </a>
                                     </li>
                                     <li>
@@ -145,6 +145,7 @@
                                     <li><a href="reporteria.jsp?Operacion=7#productoMasVendido" class="button alt"><% out.write(idioma.getProperty("PRODUCTOMASVENDIDOPORCIUDAD"));%></a></li>
                                 </ul>
                             </div> 
+                                <a href="reporteria.jsp"></a>
                         </section>
                     </div>
                     <div class="12u 20u(narrower)" id ="mantenimiento">
@@ -158,7 +159,9 @@
                                     <li><a href="mantenimientosInterfaz.jsp?Operacion=4#main" class="button"><% out.write(idioma.getProperty("ELIMINARCLIENTES"));%></a></li>
                                     <li><a href="mantenimientosInterfaz.jsp?Operacion=3#main" class="button special"><% out.write(idioma.getProperty("ELIMINARPRODUCTO"));%></a></li>
                                     <li><a href="mantenimientosInterfaz.jsp?Operacion=1#main" class="button "><% out.write(idioma.getProperty("AGREGARPRODUCTO"));%></a></li>
-                                    <li><a href="mantenimientosInterfaz.jsp?Operacion=2#main" class="button special"><% out.write(idioma.getProperty("ACTUALIZARPRODUCTO"));%></a></li>
+<!--                                    <li><a href="mantenimientosInterfaz.jsp?Operacion=2#main" class="button special"><% out.write(idioma.getProperty("ACTUALIZARPRODUCTO"));%></a></li>-->
+                                    <li><a href="reporteria.jsp?Operacion=8#verProductos2" class="button special"><% out.write(idioma.getProperty("ACTUALIZARPRODUCTO"));%></a></li>
+
                                 </ul>
                             </div> 
                         </section>
