@@ -77,7 +77,7 @@
             if (request.getParameter("Operacion") != null) {
                 opera = Integer.parseInt(request.getParameter("Operacion"));
             }
-            
+
             int idProd = 0;
             if (request.getParameter("idProd") != null) {
                 idProd = Integer.parseInt(request.getParameter("idProd"));
@@ -259,59 +259,92 @@
                             <form method="post" action="controladorProducto">
                                 <div class="row uniform 50%">
                                     <div class="6u 12u(narrower)">
+                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
                                         <input type="text" name="" id="in_REFERENCIA"  value="<%out.write(prodMostrar.getREFERENCIA());%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="FName" id="in_NOMBRE"  placeholder="<%out.write(idioma.getProperty("nombre"));%>" />
+                                        <h1><%out.write(idioma.getProperty("nombre"));%>: </h1>
+                                        <input type="text" name="FName" id="in_NOMBRE" value="<%out.write(prodMostrar.getNOMBRE());%>"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="LName" id="in_DESCRIPCION"  placeholder="Descripcion"  />
+                                        <h1><%out.write(idioma.getProperty("Descripcion"));%>: </h1>
+                                        <input type="text" name="LName" id="in_DESCRIPCION"  value ="<%out.write(prodMostrar.getDESCRIPCION());%>"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
                                         <div class="select-wrapper">
+                                            <h1><%out.write(idioma.getProperty("TIPO"));%>: </h1>
                                             <select  name="in_TIPO" id="TipoProd" >
-                                                <option  disabled selected hidden>-Categoria-</option>
-                                                <option value="Tradicionales">Tradicionales</option>
-                                                <option value="Modernos">Modernos</option>
-                                                <option value="Coloniales">Coloniales</option>
-                                                <option value="Rusticos">Rusticos</option>
                                             </select>
+
+                                            <%if (prodMostrar.getTIPO() != null) {
+                                                    if (prodMostrar.getTIPO().contains("Tradicionales") || prodMostrar.getTIPO().contains("Traditional")) {%>
+                                            <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
+
+                                            <%}%>
+                                            <%if (prodMostrar.getTIPO().contains("Modernos") || prodMostrar.getTIPO().contains("Modern")) {%>
+                                            <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
+
+                                            <%}%>
+                                            <%if (prodMostrar.getTIPO().contains("Coloniales") || prodMostrar.getTIPO().contains("Colonial")) {%>
+                                            <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
+
+                                            <%}
+                                                if (prodMostrar.getTIPO().contains("Rusticos") || prodMostrar.getTIPO().contains("Rustic")) {%>
+                                            <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
+                                            <%}
+                                            } else {%>
+                                            <option  disabled selected hidden>-<% out.write(idioma.getProperty("Categoria"));%>-</option>
+                                            <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
+                                            <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
+                                            <option value="Coloniales"><% out.write(idioma.getProperty("Coloniales"));%></option>
+                                            <option value="Rusticos"><% out.write(idioma.getProperty("Rusticos"));%></option>
+                                            <%}%>
                                         </div>
                                     </div>
                                     <div class="6u 12u(narrower)">
+                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
                                         <input type="text" name="in_MATERIAL" id="in_MATERIAL"  placeholder="MATERIAL" />
                                     </div>
                                     <div class="6u 12u(narrower)">
+                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
                                         <input type="text" name="in_ALTO" id="in_ALTO"  placeholder="ALTO"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
+                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
                                         <input type="text" name="in_ANCHO" id="in_ANCHO"  placeholder="ANCHO" />
                                     </div>
                                     <div class="6u 12u(narrower)">
+                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
                                         <input type="text" name="in_PROFUNDIDAD" id="in_PROFUNDIDAD"  placeholder="PROFUNDIDAD"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
+                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
                                         <input type="text" name="in_COLOR" id="in_COLOR"  placeholder="COLOR" />
                                     </div>
                                     <div class="6u 12u(narrower)">
+                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
                                         <input type="text" name="in_PESO" id="in_PESO"  placeholder="PESO"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
+                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
                                         <input type="text" name="in_FOTO" id="in_FOTO"  placeholder="FOTO" />
                                     </div>
                                     <div class="6u 12u(narrower)">
+                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
                                         <input type="text" name="FECHA_ALTA" id="FECHA_ALTA"  placeholder="FECHA ALTA"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
+                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
                                         <input type="text" name="ESTADO" id="ESTADO"  placeholder="ESTADO"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
+                                        <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
                                         <input type="text" name="PRECIOVENTA" id="PRECIOVENTA"  placeholder="PRECIOVENTA" />
                                     </div>
                                     <div class="row uniform " id = "ResultadoNuevoProducto">
                                         <div class="12u">
                                             <ul class="actions">
-                                                <li><input type="submit" name ="EnviarMP" value="Enviar" /></li>
+                                                <li><input type="submit" name ="EnviarMP" value="<% out.write(idioma.getProperty("Enviar"));%> "  /></li>
                                             </ul>
                                         </div>
                                         <%
