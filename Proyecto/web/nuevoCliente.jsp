@@ -83,23 +83,16 @@
                         <li>
                             <a href="#" class="icon fa-angle-down">Menu</a>
                             <ul>
-                                <li><a href="catalogo.jsp"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
-                                <li><a href="contact.jsp"><% out.write(idioma.getProperty("Contacto"));%></a></li>
-                                <li>
-                                    <a href="#">Opciones</a>
-                                    <ul>
-                                        <li><a href="catalogo.jsp"><% out.write(idioma.getProperty("BuscarProductos"));%></a></li>
-                                        <li><a href="#"><% out.write(idioma.getProperty("VerPedido"));%></a></li>  
-                                        <li><a href="#"><% out.write(idioma.getProperty("Comentarios"));%></a></li>
-                                    </ul>
-                                </li>
+                                <li><a href="catalogo.jsp#main"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
+                                <li><a href="contact.jsp#main"><% out.write(idioma.getProperty("Contacto"));%></a></li>
+                                <li><a href="productosCarrito.jsp#main"><% out.write(idioma.getProperty("VerPedido"));%></a></li>  
                             </ul>
                         </li>
                         <% if (nivel.equals("3") || nivel.equals("4") || nivel.equals("")) {%>
                         <li>
-                            <a href="login.jsp" class= "button special"> <% out.write(idioma.getProperty("Entrar"));%>  <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <a href="login.jsp#main" class= "button special"> <% out.write(idioma.getProperty("Entrar"));%>  <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                             <ul>
-                                <li> <a href="nuevoCliente.jsp" class ="actions"><% out.write(idioma.getProperty("Registrate"));%></a> </li>
+                                <li> <a href="nuevoCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("Registrate"));%></a> </li>
                             </ul>
                         </li>             
                         <%}%>

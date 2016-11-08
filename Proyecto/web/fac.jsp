@@ -3,8 +3,37 @@
     Created on : 7/11/2016, 03:52:05 PM
     Author     : DesarrolloPantaleon
 --%>
-
+<%@page import="java.util.Calendar"%>
+<%@page import="modelo.Utileria"%>
+<%@page import="modelo.Idioma"%>
+<%@page import="ClasesGenericas.Producto"%>
+<%@page import="ClasesGenericas.Compra"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Controlador.controladorProducto"%>
+<%@page import="Controlador.EliminarProducto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    HttpSession sesion = request.getSession(true);
+    ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
+    Utileria algo = new Utileria();
+    Idioma idioma = null;
+    if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
+        sesion.setAttribute("Idioma", "Español");
+        idioma = new Idioma("Español");
+    } else {
+        idioma = new Idioma("Ingles");
+    }
+    String nivel = "", usuario = "", rol = null, foto = null;
+    if (sesion.getAttribute("user") != null && sesion.getAttribute("nivel") != null) {
+        nivel = sesion.getAttribute("nivel").toString();
+        usuario = sesion.getAttribute("user").toString();
+    }
+
+    Calendar now = Calendar.getInstance();
+    String tmpTxt = "";
+    // controladorProducto cp = new controladorProducto();
+    //   ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
+%>
 <!DOCTYPE html>
 <html>
     <body>

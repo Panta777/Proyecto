@@ -33,19 +33,20 @@ public class controladorProducto extends HttpServlet {
             for (Producto producto : mp.getAllProductos(tipo)) {
                 htmlcode += "                                    <div class=\"4u 12u(narrower)\">\n"
                         + "                                <section class=\"box special\">\n";
-                if (producto.getFOTO() != null && producto.getFOTO().length() == 0) {
+                if (producto.getFOTO() != null || producto.getFOTO().length() == 0) {
                     htmlcode += "                                    <span class=\"image featured\"><img src=\"" + producto.getFOTO() + "\" alt=\"" + producto.getTIPO() + " /></span>\n";
                 } else {
                     htmlcode += "                                    <span class=\"image featured\"><img src=\"images/404.png\" alt=\"Sin Muebles\" /></span>\n";
                 }
                 htmlcode += "                                    <h3>" + producto.getNOMBRE() + "</h3>                                                <ul class=\"actions\">\n"
-                        + "                                        <li><a href=\"detalleproducto.jsp?id=" + producto.getID_PRODUCTO() + "#main\" class= \"button \" >"+idioma.getProperty("VERDETALLES")+"</a></li>\n"
+                        + "                                        <a href=\"detalleproducto.jsp?id=" + producto.getID_PRODUCTO() + "#main\" class= \"button\" >" + idioma.getProperty("VERDETALLES") + "</a>\n"
                         + "                                    </ul>\n"
                         + "                                </section></div>";
             }
         } catch (SQLException e) {
             System.out.println("Error :" + e);
         }
+        System.out.println("h: " + htmlcode);
         return htmlcode;
 
     }
@@ -153,8 +154,7 @@ public class controladorProducto extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -168,8 +168,7 @@ public class controladorProducto extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response

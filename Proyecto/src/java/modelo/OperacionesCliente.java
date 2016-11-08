@@ -257,6 +257,7 @@ public class OperacionesCliente {
         String respuesta = "";
         Connection cone = coneLocal.NewConnection();
 
+        System.out.println("Dato idcliene: " + cliente.getID_CLIENTE());
         System.out.println("Dato getNOMBRE: " + cliente.getNOMBRE());
         System.out.println("Dato getAPELLIDO: " + cliente.getAPELLIDO());
         System.out.println("DatogetTIPODOCUMENTO: " + cliente.getTIPODOCUMENTO());
@@ -296,7 +297,7 @@ public class OperacionesCliente {
 
                 cone.commit();// confirmar si se ejecuto sin errores
                 respuesta = ModificarCliente.getObject(13).toString();// obtener salida
-                System.out.println("esta otra respuesta " + respuesta);
+                System.out.println("esta otra respuesta  dfadf  " + respuesta);
             } catch (SQLException e) {
                 respuesta = "";
                 cone.rollback();// deshacer la ejecucion en caso de error
@@ -402,6 +403,8 @@ public class OperacionesCliente {
 
                 if (rsRecords != null) {
                     while (rsRecords.next()) {
+                        cliente.setID_CLIENTE(Integer.valueOf(rsRecords.getString("ID_CLIENTE")));
+                        System.out.println("id: " +rsRecords.getString("ID_CLIENTE") );
                         cliente.setNOMBRE(rsRecords.getString("NOMBRE"));
                         cliente.setAPELLIDO(rsRecords.getString("APELLIDO"));
                         cliente.setTIPODOCUMENTO(rsRecords.getString("TIPODOCUMENTO"));

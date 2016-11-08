@@ -79,28 +79,28 @@
                     <h1><a href="#main"><% out.write(idioma.getProperty("mueblierialosalpes"));%></a></h1>
                     <nav id="nav">
                         <ul>
-                            <li><a href="index.jsp"><% out.write(idioma.getProperty("inicio"));%></a></li>
+                            <li><a href="index.jsp#main"><% out.write(idioma.getProperty("inicio"));%></a></li>
                             <li>
                                 <a href="#" class="icon fa-angle-down">Menu</a>
                                 <ul>
-                                    <li><a href="catalogo.jsp"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
-                                    <li><a href="contact.jsp"><% out.write(idioma.getProperty("Contacto"));%></a></li>
-                                    <li><a href="#"><% out.write(idioma.getProperty("VerPedido"));%></a></li> 
+                                    <li><a href="catalogo.jsp#main"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
+                                    <li><a href="contact.jsp#main"><% out.write(idioma.getProperty("Contacto"));%></a></li>
+                                    <li><a href="#productosCarrito.jsp#main"><% out.write(idioma.getProperty("VerPedido"));%></a></li> 
                                 </ul>
                             </li>
                             <%if (nivel.equals("1")) {%>
                             <li>
                                 <a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("Administracion"));%></a>
                                 <ul>
-                                    <li><a href="#"><% out.write(idioma.getProperty("Reporteria"));%></a></li>
-                                    <li><a href="#"><% out.write(idioma.getProperty("Mantenimientos"));%></a></li>
+                                    <li><a href="index.jsp#reporteria"><% out.write(idioma.getProperty("Reporteria"));%></a></li>
+                                    <li><a href="index.jsp#mantenimiento"><% out.write(idioma.getProperty("Mantenimientos"));%></a></li>
                                 </ul>
                             </li>
                             <%}%>
                             <li>
                                 <a  class= "button special"><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
                                 <ul>
-                                    <li> <a href="modificaCliente.jsp" class ="actions"><% out.write(idioma.getProperty("ModificarmisDatos"));%></a> </li>
+                                    <li> <a href="modificaCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("ModificarmisDatos"));%></a> </li>
                                     <li> <a href="logout.jsp" class ="actions"><% out.write(idioma.getProperty("CerrarSesión"));%></a> </li>
                                 </ul>
                             </li>
@@ -128,7 +128,7 @@
                                 <form method="post" action="controladorCliente">
                                     <div class="row uniform 50%">
                                         <div class="6u 12u(mobilep)">
-                                            <h1>No Documento: </h1>
+                                            <h1><% out.write(idioma.getProperty("NoDocumento"));%>:</h1>
                                             <input type="text" name="NoDoc" id="NoDoc" value="<%out.write(clMostrar.getNUMERO_DOC());%>"/>
                                         </div>   
                                         <div class="6u 12u(mobilep)">
@@ -172,7 +172,7 @@
                                             <input type="text" name="TelCel" id="TelCel" value="<%out.write(clMostrar.getTEL_CEL());%>"  />
                                         </div>
                                         <div class="6u 12u(narrower)">
-                                            <h1><%out.write(idioma.getProperty("Nit"));%></h1>
+                                            <h1><%out.write(idioma.getProperty("NIT"));%></h1>
                                             <input type="text" name="Nit" id="Nit" value="<%out.write(clMostrar.getNIT());%>"  />
                                         </div>
                                         <div class="6u 12u(narrower)">
@@ -190,6 +190,7 @@
                                         <div class="6u 12u(narrower)">
                                             <h1><% out.write(idioma.getProperty("email"));%></h1>
                                             <input type="text" name="email" id="email" value="<%out.write(clMostrar.getEMAIL());%>"  />
+                                            <input type="text" name="idcliente" id="idcliente" value="<%out.write(clMostrar.getID_CLIENTE());%>" />
                                         </div>
                                         <div class="12u">
                                             <input type="checkbox" id="human" name="human"  onClick="AutenticaSiEsHumano(this.form)">
@@ -199,7 +200,7 @@
                                     <div class="row uniform ">
                                         <div class="12u">
                                             <ul class="actions">
-                                                <li><input type="submit" name ="modificaCliente" disabled = true value="Send"  /></li>
+                                                <li><input type="submit" name ="modificaCliente" disabled = true value="<% out.write(idioma.getProperty("Enviar"));%> "  /></li>
                                             </ul>
                                         </div>
                                         <%

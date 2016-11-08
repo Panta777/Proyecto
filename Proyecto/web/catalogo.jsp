@@ -167,30 +167,26 @@
                     <section class="box special features" id = "muebles">
                         <h3>
                             <%
-//                                    switch (tipo) {
-//                                        case "TRADICIONALES": case "":
-//                                            out.write("MUEBLES TRADICIONALES");
-//                                            break;
-//                                        case "MODERNOS" :
-//                                            out.write("MUEBLES MODERNOS");
-//                                            break;
-//                                        case "COLONIALES":
-//                                            out.write("MUEBLES COLONIALES");
-//                                            break;
-//                                        case "RUSTICOS":
-//                                            out.write("MUEBLES RÚSTICOS");
-//                                            break;
-//                                        default:
-//                                            out.write(idioma.getProperty("nombre"));
-//                                    }
-
+                                if (tipo.equals("TRADICIONALES")) {
+                                    out.write("MUEBLES TRADICIONALES");
+                                } else if (tipo.equals("MODERNOS")) {
+                                    out.write("MUEBLES MODERNOS");
+                                } else if (tipo.equals("COLONIALES")) {
+                                    out.write("MUEBLES COLONIALES");
+                                } else if (tipo.equals("RUSTICOS")) {
+                                    out.write("MUEBLES RUSTICOS");
+                                } else {
+                                    out.write(idioma.getProperty("MUEBLES LOS ALPES"));
+                                }
                             %>
                         </h3>
                         <div class="row">
                             <% if (cp.getProductos(tipo, session.getAttribute("Idioma").toString()).equals("")) {%>
                             <h3> <% out.write(idioma.getProperty("NOHAYMUEBLESENESTACATEGORIA"));%> </h3> 
                             <span class="image featured"><img src="images/404.png" alt="Sin Muebles" /></span>
-                            <%}else {cp.getProductos(tipo,session.getAttribute("Idioma").toString() );}%>
+                                <%} else {
+                                        out.write(cp.getProductos(tipo, session.getAttribute("Idioma").toString()));
+                                    }%>
                         </div>
                     </section>
                 </section>

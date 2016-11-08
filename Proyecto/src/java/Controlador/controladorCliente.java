@@ -73,9 +73,8 @@ public class controladorCliente extends HttpServlet {
                     // }  
                 }
             } else if (request.getParameter("modificaCliente") != null) {
-//                if (request.getParameter("pass") == null ? request.getParameter("pass2") != null : !request.getParameter("pass").equals(request.getParameter("pass2"))) {
-//                    response.sendRedirect("modificarCliente.jsp");
-//                } else {
+
+                cliente.setID_CLIENTE(Integer.valueOf(request.getParameter("idcliente")));
                 cliente.setNOMBRE(request.getParameter("FName"));
                 cliente.setAPELLIDO(request.getParameter("LName"));
                 cliente.setTIPODOCUMENTO(request.getParameter("TipoDoc"));
@@ -85,12 +84,8 @@ public class controladorCliente extends HttpServlet {
                 cliente.setNIT(request.getParameter("Nit"));
                 cliente.setDIRECCION(request.getParameter("Direccion"));
                 cliente.setCIUDAD(request.getParameter("Ciudad"));
-                //cliente.setDEPARTAMENTO(request.getParameter("Departamento"));
-                //cliente.setPAIS(request.getParameter("Pais"));
                 cliente.setPROFESION(request.getParameter("Profesion"));
                 cliente.setEMAIL(request.getParameter("email"));
-               // cliente.setUSUARIO(request.getParameter("usuario"));
-                //cliente.setCONTRASENA(request.getParameter("pass"));
 
                 HttpSession sesion = request.getSession();
                 String respuesta = opcliente.ModificarCliente(cliente);
