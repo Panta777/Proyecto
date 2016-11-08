@@ -840,8 +840,8 @@
                                     productos = oP.mostrarDatosProductoReporte(campoFiltro, datoBuscar);
 
                                     if (productos != null && productos.size() != 0) {
-                                        GenerarPDF gp = new GenerarPDF();
-                                        gp.nuevoReporteProductos(productos);
+                                       // GenerarPDF gp = new GenerarPDF();
+                                       // gp.nuevoReporteProductos(productos);
                             %>
                             <div class="table-wrapper">
                                 <table class="actions" id="TablaProductos">
@@ -849,6 +849,7 @@
                                         <tr>
                                             <th>DESCRIPCIÓN PRODUCTO </th>
                                             <th>TIPO</th>
+                                            <th>REFERENCIA</th>
                                             <th>ACTUALIZACION </th>
                                         </tr>
                                     </thead>
@@ -859,8 +860,9 @@
                                         <tr>
                                             <td><%out.write(productos.get(conta).getDESCRIPCION());%></td>
                                             <td><%out.write(productos.get(conta).getTIPO());%></td>
+                                            <td><%out.write(productos.get(conta).getREFERENCIA());%></td>
                                             <td><a href="mantenimientosInterfaz.jsp?Operacion=2&idProd=<%=idProd%>#updateProductos" > 
-                                                    <% out.write(productos.get(conta).getREFERENCIA());%> 
+                                                   Actualizar Datos 
                                                 </a>
                                             </td>
                                         </tr>
@@ -875,14 +877,14 @@
                                                 <p>&nbsp;</p>
                                                 <%
                                                             out.write("<h3>Se encontraron: " + conta + " coincidencias</h3>");
-                                                            out.write("<div class='row uniform 50%'>");
-                                                            out.write("<form method='POST' action='report'>");
-                                                            out.write("<a class='actions'>");
-                                                            out.write("<input type='hidden' name ='fileName' value='ReporteProductos' />");
-                                                            out.write("<input type='submit' name ='Buscar' value='Obtener PDF'  />");
-                                                            out.write("</ul></form></div>");
-                                                            out.write("</ul></a></div>");
-                                                            out.write("</a></div>");
+//                                                            out.write("<div class='row uniform 50%'>");
+//                                                            out.write("<form method='POST' action='report'>");
+//                                                            out.write("<a class='actions'>");
+//                                                            out.write("<input type='hidden' name ='fileName' value='ReporteProductos' />");
+//                                                            out.write("<input type='submit' name ='Buscar' value='Obtener PDF'  />");
+//                                                            out.write("</ul></form></div>");
+//                                                            out.write("</ul></a></div>");
+//                                                            out.write("</a></div>");
                                                         } else {
                                                             out.write(" <p> &nbsp</p> <h3>No se encontraron resultados</h3>");
                                                         }

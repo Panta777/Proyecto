@@ -159,7 +159,6 @@
                                     <li><a href="mantenimientosInterfaz.jsp?Operacion=4#main" class="button"><% out.write(idioma.getProperty("ELIMINARCLIENTES"));%></a></li>
                                     <li><a href="mantenimientosInterfaz.jsp?Operacion=3#main" class="button special"><% out.write(idioma.getProperty("ELIMINARPRODUCTO"));%></a></li>
                                     <li><a href="mantenimientosInterfaz.jsp?Operacion=1#main" class="button "><% out.write(idioma.getProperty("AGREGARPRODUCTO"));%></a></li>
-<!--                                    <li><a href="mantenimientosInterfaz.jsp?Operacion=2#main" class="button special"><% out.write(idioma.getProperty("ACTUALIZARPRODUCTO"));%></a></li>-->
                                     <li><a href="reporteria.jsp?Operacion=8#verProductos2" class="button special"><% out.write(idioma.getProperty("ACTUALIZARPRODUCTO"));%></a></li>
 
                                 </ul>

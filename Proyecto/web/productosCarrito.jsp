@@ -274,12 +274,12 @@
                                     </a>
                                     <p></br></p>
                                     <div class="12u(mobilep)">
-                                        <h1>Nombre del titular de la tarjeta</h1>
+                                        <h1><% out.write(idioma.getProperty("Nombredeltitulardelatarjeta"));%></h1>
                                         <input  type="text"  name="name_titular" value="" autocomplete="off">
                                     </div>
                                     <hr />
                                     <div class="12u(mobilep)">
-                                        <h1>Número tarjeta bancaria</h1>
+                                        <h1><% out.write(idioma.getProperty("Númerotarjetabancaria"));%></h1>
                                         <input name="card-number"   placeholder="---- ---- ---- ----" type="text" value =" " maxlength="16" onkeypress="return valida(event)"  autocomplete="off">
                                     </div>
                                     <hr />
@@ -288,26 +288,26 @@
                                         <div class="6u 12u(mobilep)">
                                             <div class="select-wrapper">
                                                 <select  id="cb-card-expiration-month"  >
-                                                    <option value="" disabled selected hidden>Mes</option>
-                                                    <option value="01">01 - Enero</option>
-                                                    <option value="02">02 - Febrero</option>
-                                                    <option value="03">03 - Marzo</option>
-                                                    <option value="04">04 - Abril</option>
-                                                    <option value="05">05 - Mayo</option>
-                                                    <option value="06">06 - Junio</option>
-                                                    <option value="07">07 - Julio</option>
-                                                    <option value="08">08 - Agosto</option>
-                                                    <option value="09">09 - Septiembre</option>
-                                                    <option value="10">10 - Octubre</option>
-                                                    <option value="11">11 - Noviembre</option>
-                                                    <option value="12">12 - Diciembre</option>
+                                                    <option value="" disabled selected hidden><% out.write(idioma.getProperty("Mes"));%></option>
+                                                    <option value="01"><% out.write(idioma.getProperty("Enero"));%></option>
+                                                    <option value="02"><% out.write(idioma.getProperty("Febrero"));%></option>
+                                                    <option value="03"><% out.write(idioma.getProperty("Marzo"));%></option>
+                                                    <option value="04"><% out.write(idioma.getProperty("Abril"));%></option>
+                                                    <option value="05"><% out.write(idioma.getProperty("Mayo"));%></option>
+                                                    <option value="06"><% out.write(idioma.getProperty("Junio"));%></option>
+                                                    <option value="07"><% out.write(idioma.getProperty("Julio"));%></option>
+                                                    <option value="08"><% out.write(idioma.getProperty("Agosto"));%></option>
+                                                    <option value="09"><% out.write(idioma.getProperty("Septiembre"));%></option>
+                                                    <option value="10"><% out.write(idioma.getProperty("Octubre"));%></option>
+                                                    <option value="11"><% out.write(idioma.getProperty("Noviembre"));%></option>
+                                                    <option value="12"><% out.write(idioma.getProperty("Diciembre"));%></option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="6u 12u(mobilep)">
                                             <div class="select-wrapper">
                                                 <select id="cb-card-expiration-year" >
-                                                    <option value="" disabled selected hidden>Año</option>
+                                                    <option value="" disabled selected hidden><% out.write(idioma.getProperty("anio"));%></option>
                                                     <option value="2016">2016</option>
                                                     <option value="2017">2017</option>
                                                     <option value="2018">2018</option>
@@ -341,7 +341,7 @@
                                             <div class="form-tipsy tipsy-trigger">
                                                 <div class="popover popover-right">
                                                     <div  class="popover-body">
-                                                        Tu código de seguridad de 4 dígitos está situado en la parte de arriba de tu tarjeta.
+                                                        <% out.write(idioma.getProperty("Tucódigodeseguridad"));%>
                                                     </div>
                                                 </div> 
                                             </div>
@@ -349,10 +349,10 @@
                                         <div class="6u 12u(mobilep)">
                                             <div class="select-wrapper">
                                                 <select  id="Tarjeta"  >
-                                                    <option value="" disabled selected hidden>Tipo Tarjeta</option>
+                                                    <option value="" disabled selected hidden><% out.write(idioma.getProperty("TipoTarjeta"));%></option>
                                                     <option value="1">Visa</option>
                                                     <option value="2">MasterCard</option>
-                                                    <option value="3">Otros</option>
+                                                    <option value="3"><% out.write(idioma.getProperty("Otros"));%></option>
                                                 </select>
                                             </div>
                                         </div>
@@ -360,14 +360,14 @@
                                     <hr />
                                     <div class="12u(mobilep)">
                                         <div class="row" style ='display:none'  id ="mensajeError">
-                                            <h3 style='color:red; font-weight:bold;' > ----> Error, al efectuar transaccion <-----</h3>
+                                            <h3 style='color:red; font-weight:bold;' > ----> <% out.write(idioma.getProperty("ErrorTransaccion"));%> <-----</h3>
                                         </div>
-                                        <h4 style='color:blue; font-weight:bold;'>Total Compra: Q.<%=algo.convertirCantidad(total)%></h4>
-                                        <h4 style='color:blue; font-weight:bold;'>Envio: Q.50.00</h4>
+                                        <h4 style='color:blue; font-weight:bold;'><% out.write(idioma.getProperty("TotalCompra"));%> Q.<%=algo.convertirCantidad(total)%></h4>
+                                        <h4 style='color:blue; font-weight:bold;'><% out.write(idioma.getProperty("Envio"));%> Q.50.00</h4>
                                         <h4 style='color:red; font-weight:bold;' >Total: Q.<%=algo.convertirCantidad(total + 50)%></h4>
                                     </div>
                                     <button class="button" id="EnviarPago" type="submit">
-                                        <span class="label">EFECTUAR PAGO</span>
+                                        <span class="label"><% out.write(idioma.getProperty("EFECTUARPAGO"));%></span>
                                     </button>	
                                     <input type="hidden" id="FechahoraTransaction"  value=<%
 
@@ -393,7 +393,7 @@
                                         tmpTxt = tmpTxt + now.get(Calendar.SECOND);
 
                                         // System.out.println("Dia, hora : " + tmpTxt);
-%>/>
+                                           %>/>
                                 </form>
                             </section>
                         </div>
