@@ -35,7 +35,6 @@
 %>
 <!DOCTYPE html>
 <html>
-
     <head>
         <title><% out.write(idioma.getProperty("mueblierialosalpes"));%></title>
         <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
@@ -113,7 +112,7 @@
                         </li>
                         <%} else {%>
                         <li>
-                            <a href="#" class= "icon fa-angle-down"><% out.write(idioma.getProperty("IngresaroRegistrarse"));%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <a href="#" class= "icon fa-angle-down"><% out.write(idioma.getProperty("IngresaroRegistrarse"));%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito" OnError="Error_Cargar()"> </a>
                             <ul>
                                 <li>
                                     <a href="login.jsp#main" class= "actions"> <% out.write(idioma.getProperty("Entrar"));%></a>
@@ -204,7 +203,7 @@
                                 </table>
                                 <% } else {%>
                                 <h4><% out.write(idioma.getProperty("NohayArticulos"));%> &nbsp;
-                                    <img  src="images/404.png" alt=" Sin Muebles"  width="25" height="21" /></h4> 
+                                    <img  src="images/404.png" alt=" Sin Muebles"  width="25" height="21" OnError="Error_Cargar()" /></h4> 
                                     <%}%>
                                 &nbsp;
                             </div>
@@ -212,7 +211,7 @@
                                 <div class="4u 12u(narrow)">
                                     <a class ="button" href="index.jsp#catalogo">
                                         <!--                                <a class ="button special" href="#pagotarjeta" onclick="mostrar()">-->
-                                        <% out.write(idioma.getProperty("SeguirComprando"));%> &nbsp; <img src="images/ICONOS BLANCOS/FACTURA.png" width="25" height="21" alt ="FAC"> 
+                                        <% out.write(idioma.getProperty("SeguirComprando"));%> &nbsp; <img src="images/ICONOS BLANCOS/FACTURA.png" width="25" height="21" alt ="FAC" OnError="Error_Cargar()"> 
                                     </a>
                                 </div>
                                 <div class="4u 12u(narrow)">
@@ -222,13 +221,13 @@
                                         //if (articulos != null && articulos.size() > 0) {%>
                                 <div class="4u 12u(mobile2p)">
                                     <a class ="button special" href="#pagotarjeta" onclick="mostrar()">
-                                        <% out.write(idioma.getProperty("TerminarCompra"));%>  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
+                                        <% out.write(idioma.getProperty("TerminarCompra"));%>  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR" OnError="Error_Cargar()">  
                                     </a>
                                 </div>
                                 <%} else if (articulos != null && articulos.size() > 0) {%>
                                 <div class="4u 12u(mobilep)">
                                     <a class ="button special" href="#OrdenCompra" onclick="mostrarNoLogueado()">
-                                        <% out.write(idioma.getProperty("TerminarCompra"));%> &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR"> 
+                                        <% out.write(idioma.getProperty("TerminarCompra"));%> &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR" OnError="Error_Cargar()"> 
                                     </a>
                                     <div class="row" style ='display:none' id ="NoLogueado">
                                         <a href="login.jsp#main">  <h5 style ='color:red; font-weight:bold;' ><% out.write(idioma.getProperty("Debeestarlogueado"));%> &nbsp; </h5></a>
@@ -248,27 +247,27 @@
                                 <header class="major">
                                     <h2 style ='font-weight:bold;' ><% out.write(idioma.getProperty("PagoconTarjeta"));%></h2>
                                     <a class ="actions">
-                                        <img src="images/ICONOS/formas.png" alt = "Formas de Pago"/>
+                                        <img src="images/ICONOS/formas.png" alt = "Formas de Pago" OnError="Error_Cargar()"/>
                                     </a>
                                 </header>
                                 <form  id="formularioPago" method="post" action="pagarform" autocomplete="off">
                                     <h4 class="actions"><% out.write(idioma.getProperty("Completesutransacción"));%></h4>
                                     <h4 style ='color:blue; font-weight:bold;' >(<% out.write(idioma.getProperty("VerifiquesusDatos"));%></h4>
                                     <a class ="actions">
-                                        <img src="images/ICONOS/lap.png" alt = "lap" width="25" height ="25"/>
+                                        <img src="images/ICONOS/lap.png" alt = "lap" width="25" height ="25" OnError="Error_Cargar()"/>
                                     </a>
                                     <p></br></p>
                                     <div class="12u(mobilep)">
-                                        <h1><% out.write(idioma.getProperty("Nombredeltitulardelatarjeta"));%></h1>
+                                        <h1><% out.write(idioma.getProperty("Nombredeltitulardelatarjeta"));%>:</h1>
                                         <input  type="text"  name="name_titular" value="" autocomplete="off">
                                     </div>
                                     <hr />
                                     <div class="12u(mobilep)">
-                                        <h1><% out.write(idioma.getProperty("Númerotarjetabancaria"));%></h1>
+                                        <h1><% out.write(idioma.getProperty("Númerotarjetabancaria"));%>:</h1>
                                         <input name="card-number"   placeholder="---- ---- ---- ----" type="text" value =" " maxlength="16" onkeypress="return valida(event)"  autocomplete="off">
                                     </div>
                                     <hr />
-                                    <h1>Fecha de caducidad</h1>
+                                    <h1><% out.write(idioma.getProperty("FechaCaducidad"));%>: </h1>
                                     <div class="row uniform 50%">
                                         <div class="6u 12u(mobilep)">
                                             <div class="select-wrapper">

@@ -62,6 +62,9 @@
                 tecla_final = String.fromCharCode(tecla);
                 return patron.test(tecla_final);
             }
+            function Error_Cargar() {
+                window.event.srcElement.style.display = "None";
+            }
         </script>
     </head>
     <body class="landing" oncontextmenu='return false'>

@@ -36,12 +36,17 @@
             }
             controladorProducto cp = new controladorProducto();
             // ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
-        %>
+%>
         <title><% out.write(idioma.getProperty("mueblierialosalpes"));%></title>
         <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="assets/css/main.css" />
+        <script>
+            function Error_Cargar() {
+                window.event.srcElement.style.display = "None";
+            }
+        </script>
     </head>
     <body class="landing">
         <section id="container" > 
@@ -159,7 +164,7 @@
                                 } else if (tipo.toUpperCase().equals("RUSTICOS")) {
                                     out.write(idioma.getProperty("MueblesRústicos"));
                                 } else {
-                                   out.write(idioma.getProperty("MueblesTradicionales"));
+                                    out.write(idioma.getProperty("MueblesTradicionales"));
                                 }
 
                             %>

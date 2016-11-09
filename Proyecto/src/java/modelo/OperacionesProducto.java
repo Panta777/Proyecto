@@ -312,12 +312,10 @@ public class OperacionesProducto {
     }
 
     /**
-     * Muestra datos de los productos, segun diferentes criterios para el
-     * reporte
+     * Valida la existencia de un producto en el inventario
      *
-     * @param campoFiltro
-     * @param dato
-     * @return registros Productos
+
+     * @return respuesta
      * @throws java.sql.SQLException
      */
     public boolean validarInventario(int idP, int cant) throws SQLException {
@@ -349,7 +347,7 @@ public class OperacionesProducto {
                 }
             } catch (SQLException e) {
                 cone.rollback();// deshacer la ejecucion en caso de error
-                System.out.println("Error al ejecutar función validarInventario por, " + e); // informar por consola
+                System.out.println("Error al validarInventario por, " + e); // informar por consola
             } finally {
                 cone.close();// cerrar la conexion
             }
