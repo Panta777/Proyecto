@@ -149,12 +149,12 @@
                                         <section class="box" >
                                             <h2><% out.write(idioma.getProperty("Detalles"));%></h2>
                                             <h3><%=producto.getDESCRIPCION()%></h3>      
-                                            <h4><% out.write(idioma.getProperty("TIPO"));%> <%= producto.getTIPO()%></h4>
-                                            <h4><% out.write(idioma.getProperty("ALTO:"));%> <%= producto.getALTO()%></h4>
-                                            <h4><% out.write(idioma.getProperty("ANCHO"));%> <%= producto.getANCHO()%></h4>
-                                            <h4><% out.write(idioma.getProperty("PROFUNDIDAD"));%> <%= producto.getPROFUNDIDAD()%></h4>
-                                            <h4><% out.write(idioma.getProperty("COLOR"));%> <%= producto.getCOLOR()%></h4>
-                                            <h4><% out.write(idioma.getProperty("CONDICIÓN"));%> <%= producto.getESTADO()%></h4>
+                                            <h4><% out.write(idioma.getProperty("TIPO"));%>: <%= producto.getTIPO()%></h4>
+                                            <h4><% out.write(idioma.getProperty("ALTO"));%>: <%= producto.getALTO()%></h4>
+                                            <h4><% out.write(idioma.getProperty("ANCHO"));%>: <%= producto.getANCHO()%></h4>
+                                            <h4><% out.write(idioma.getProperty("PROFUNDIDAD"));%>: <%= producto.getPROFUNDIDAD()%></h4>
+                                            <h4><% out.write(idioma.getProperty("COLOR"));%>: <%= producto.getCOLOR()%></h4>
+                                            <h4><% out.write(idioma.getProperty("CONDICIÓN"));%>: <%= producto.getESTADO()%></h4>
                                             <form method="post" action="agregarproducto">
                                                 <h2><% out.write(idioma.getProperty("VALORMONEDA"));%> <%= producto.getPRECIOVENTA()%></h2>
                                                 <h4><% out.write(idioma.getProperty("CantidadalCarrito"));%></h4>

@@ -46,7 +46,7 @@ public class controladorProducto extends HttpServlet {
         } catch (SQLException e) {
             System.out.println("Error :" + e);
         }
-        System.out.println("h: " + htmlcode);
+        //System.out.println("h: " + htmlcode);
         return htmlcode;
 
     }
@@ -74,9 +74,6 @@ public class controladorProducto extends HttpServlet {
             Producto producto = new Producto();
 
             if (request.getParameter("EnviarNP") != null) {
-//                if (request.getParameter("pass") == null ? request.getParameter("pass2") != null : !request.getParameter("pass").equals(request.getParameter("pass2"))) {
-//                    response.sendRedirect("nuevoProducto.jsp");
-//                } else {
 
                 producto.setREFERENCIA(request.getParameter("in_REFERENCIA"));
                 producto.setNOMBRE(request.getParameter("in_NOMBRE"));
@@ -99,13 +96,12 @@ public class controladorProducto extends HttpServlet {
                 } else {
 
                     sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta + "</p></h5>");
-                    response.sendRedirect("nuevoProducto.jsp#ResultadoUpdateProducto");
+                    response.sendRedirect("mantenimientosInterfaz.jsp?Operacion=1#ResultadoNuevoProducto");
                 }
                 //}
             } else if (request.getParameter("EnviarMP") != null) {
-//                if (request.getParameter("pass") == null ? request.getParameter("pass2") != null : !request.getParameter("pass").equals(request.getParameter("pass2"))) {
-//                    response.sendRedirect("modificarProducto.jsp");
-//                } else {
+
+                producto.setID_PRODUCTO(Integer.valueOf(request.getParameter("idprod")));
                 producto.setREFERENCIA(request.getParameter("in_REFERENCIA"));
                 producto.setNOMBRE(request.getParameter("in_NOMBRE"));
                 producto.setDESCRIPCION(request.getParameter("in_DESCRIPCION"));
@@ -121,18 +117,17 @@ public class controladorProducto extends HttpServlet {
                 producto.setPRECIOVENTA(Double.valueOf(request.getParameter("PRECIOVENTA")));
 
                 HttpSession sesion = request.getSession();
-                String respuesta = opproducto.insertarProducto(producto);
+                String respuesta = opproducto.modificarProducto(producto);
                 if (respuesta.equals("")) {
                     sesion.setAttribute("resOper", "out.write(\"<h5 style=\\\" color:red; font-weight:bold;\\\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>\");\n");
                 } else {
-
                     sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta + "</p></h5>");
-                    response.sendRedirect("nuevoProducto.jsp#ResultadoNuevoProducto");
+                    response.sendRedirect("mantenimientosInterfaz.jsp?Operacion=2#ResultadoUpdateProducto");
                 }
                 response.sendRedirect("mantenimientosInterfaz.jsp");
             }
             //}
-        } catch (SQLException e) {
+        } catch ( Exception e) {
             out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Error desde Base de Datos</p></h5>");
         } finally {
             out.close();

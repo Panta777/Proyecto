@@ -167,17 +167,18 @@
                     <section class="box special features" id = "muebles">
                         <h3>
                             <%
-                                if (tipo.equals("TRADICIONALES")) {
-                                    out.write("MUEBLES TRADICIONALES");
-                                } else if (tipo.equals("MODERNOS")) {
-                                    out.write("MUEBLES MODERNOS");
-                                } else if (tipo.equals("COLONIALES")) {
-                                    out.write("MUEBLES COLONIALES");
-                                } else if (tipo.equals("RUSTICOS")) {
-                                    out.write("MUEBLES RUSTICOS");
+                                if (tipo.toUpperCase().equals("TRADICIONALES")) {
+                                    out.write(idioma.getProperty("MueblesTradicionales"));
+                                } else if (tipo.toUpperCase().equals("MODERNOS")) {
+                                    out.write(idioma.getProperty("MueblesModernos"));
+                                } else if (tipo.toUpperCase().equals("COLONIALES")) {
+                                    out.write(idioma.getProperty("MueblesColoniales"));
+                                } else if (tipo.toUpperCase().equals("RUSTICOS")) {
+                                    out.write(idioma.getProperty("MueblesRústicos"));
                                 } else {
-                                    out.write(idioma.getProperty("MUEBLES LOS ALPES"));
+                                   out.write(idioma.getProperty("MueblesTradicionales"));
                                 }
+
                             %>
                         </h3>
                         <div class="row">

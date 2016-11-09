@@ -154,7 +154,6 @@
                     </header>                
                 </section>
                 <!-- Tabla Productos del Carrito -->
-                <!--<div class="12u 20u(narrower)" id ="OrdenCompra">-->
                 <div class="row" id ="OrdenCompra">
                     <div class="12u">
                         <!-- Table -->

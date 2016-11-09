@@ -23,9 +23,6 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="assets/css/main.css" />
-        <!--        <meta http-equiv="Cache-Control" content="no-cache">
-                <meta HTTP-EQUIV="Expires" CONTENT="Tue, 01 Jan 1980 1:00:00 GMT">
-                <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">-->
         <script type="text/javascript">
             function AutenticaSiEsHumano(form)
             {
@@ -195,17 +192,17 @@
                             <form method="post" action="controladorProducto">
                                 <div class="row uniform 50%">
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="" id="in_REFERENCIA" value="" placeholder="Referencia" />
+                                        <input type="text" name="in_REFERENCIA" id="in_REFERENCIA" value="" placeholder="Referencia" />
                                     </div>                               
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="FName" id="in_NOMBRE" value="" placeholder="<%out.write(idioma.getProperty("nombre"));%>" />
+                                        <input type="text" name="in_NOMBRE" id="in_NOMBRE" value="" placeholder="<%out.write(idioma.getProperty("nombre"));%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="LName" id="in_DESCRIPCION" value="" placeholder="Descripcion"  />
+                                        <input type="text" name="in_DESCRIPCION" id="in_DESCRIPCION" value="" placeholder="Descripcion"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
                                         <div class="select-wrapper">
-                                            <select  name="in_TIPO" id="TipoProd" >
+                                            <select  name="in_TIPO" id="in_TIPO" >
                                                 <option value="" disabled selected hidden>-Categoria-</option>
                                                 <option value="Tradicionales">Tradicionales</option>
                                                 <option value="Modernos">Modernos</option>
@@ -236,14 +233,15 @@
                                         <input type="text" name="in_FOTO" id="in_FOTO" value="" placeholder="FOTO" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <input type="text" name="FECHA_ALTA" id="FECHA_ALTA" value="" placeholder="FECHA ALTA"  />
-                                    </div>
-
-                                    <div class="6u 12u(narrower)">
                                         <input type="text" name="ESTADO" id="ESTADO" value="" placeholder="ESTADO"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
                                         <input type="text" name="PRECIOVENTA" id="PRECIOVENTA" value="" placeholder="PRECIOVENTA" />
+                                    </div>
+                                    <div class="6u 12u(narrower)">
+                                        <ul class="actions">
+                                            <li> <br></br></li>
+                                        </ul>                                    
                                     </div>
                                     <div class="row uniform " id = "ResultadoNuevoProducto">
                                         <div class="12u">
@@ -254,7 +252,7 @@
                                         <%
                                             if (sesion.getAttribute("resOper") != null) {
                                                 out.write((String) sesion.getAttribute("resOper"));
-                                                // out.write("<h5 style=\" color:red; font-weight:bold;\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>");
+                                                sesion.setAttribute("resOper", null);
                                             }
                                         %>
                                     </div>
@@ -279,50 +277,50 @@
                                 <div class="row uniform 50%">
                                     <div class="6u 12u(narrower)">
                                         <h1><%out.write(idioma.getProperty("Referencia"));%>: </h1>
-                                        <input type="text" name="" id="in_REFERENCIA"  value="<%out.write(prodMostrar.getREFERENCIA());%>" />
+                                        <input type="text" name="in_REFERENCIA" id="in_REFERENCIA"  value="<%out.write(prodMostrar.getREFERENCIA());%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
                                         <h1><%out.write(idioma.getProperty("nombre"));%>: </h1>
-                                        <input type="text" name="FName" id="in_NOMBRE" value="<%out.write(prodMostrar.getNOMBRE());%>"  />
+                                        <input type="text" name="in_NOMBRE" id="in_NOMBRE" value="<%out.write(prodMostrar.getNOMBRE());%>"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
                                         <h1><%out.write(idioma.getProperty("Descripcion"));%>: </h1>
-                                        <input type="text" name="LName" id="in_DESCRIPCION"  value ="<%out.write(prodMostrar.getDESCRIPCION());%>"  />
+                                        <input type="text" name="in_DESCRIPCION" id="in_DESCRIPCION"  value ="<%out.write(prodMostrar.getDESCRIPCION());%>"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
                                         <div class="select-wrapper">
                                             <h1><%out.write(idioma.getProperty("TIPO"));%>: </h1>
-                                            <select  name="in_TIPO" id="TipoProd" >
+                                            <select  name="in_TIPO" id="in_TIPO" >
 
                                                 <%if (prodMostrar.getTIPO() != null) {
-                                                    if (prodMostrar.getTIPO().contains("TRADICIONALES") || prodMostrar.getTIPO().contains("Traditional")) {%>
+                                                        if (prodMostrar.getTIPO().toLowerCase().contains("tradicionales") || prodMostrar.getTIPO().toLowerCase().contains("traditional")) {%>
                                                 <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
                                                 <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
                                                 <option value="Coloniales"><% out.write(idioma.getProperty("Coloniales"));%></option>
                                                 <option value="Rusticos"><% out.write(idioma.getProperty("Rusticos"));%></option>
 
                                                 <%}%>
-                                                <%if (prodMostrar.getTIPO().contains("MODERNOS") || prodMostrar.getTIPO().contains("Modern")) {%>
+                                                <%if (prodMostrar.getTIPO().toLowerCase().contains("modernos") || prodMostrar.getTIPO().toLowerCase().contains("modern")) {%>
                                                 <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
                                                 <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
                                                 <option value="Coloniales"><% out.write(idioma.getProperty("Coloniales"));%></option>
                                                 <option value="Rusticos"><% out.write(idioma.getProperty("Rusticos"));%></option>
 
                                                 <%}%>
-                                                <%if (prodMostrar.getTIPO().contains("Coloniales") || prodMostrar.getTIPO().contains("Colonial")) {%>
+                                                <%if (prodMostrar.getTIPO().toLowerCase().contains("coloniales") || prodMostrar.getTIPO().toLowerCase().contains("colonial")) {%>
                                                 <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
                                                 <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
                                                 <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
                                                 <option value="Rusticos"><% out.write(idioma.getProperty("Rusticos"));%></option>
 
                                                 <%}
-                                                if (prodMostrar.getTIPO().contains("Rusticos") || prodMostrar.getTIPO().contains("Rustic")) {%>
+                                                    if (prodMostrar.getTIPO().toLowerCase().contains("rusticos") || prodMostrar.getTIPO().toLowerCase().contains("rustic")) {%>
                                                 <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
                                                 <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
                                                 <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
                                                 <option value="Coloniales"><% out.write(idioma.getProperty("Coloniales"));%></option>
                                                 <%}
-                                            } else {%>
+                                                } else {%>
                                                 <option  disabled  hidden>-<% out.write(idioma.getProperty("Categoria"));%>-</option>
                                                 <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
                                                 <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
@@ -375,12 +373,16 @@
                                     <div class="row uniform " id = "ResultadoUpdateProducto">
                                         <div class="12u">
                                             <ul class="actions">
-                                                <li><input type="submit" name ="EnviarMP" value="<% out.write(idioma.getProperty("Enviar"));%> "  /></li>
+                                                <li>
+                                                    <input type="hidden" name="idprod" id="idprod" value=<%=prodMostrar.getID_PRODUCTO()%> />
+                                                    <input type="submit" name ="EnviarMP" value="<% out.write(idioma.getProperty("Enviar"));%> "  />
+                                                </li>
                                             </ul>
                                         </div>
                                         <%
                                             if (sesion.getAttribute("resOper") != null) {
                                                 out.write((String) sesion.getAttribute("resOper"));
+                                                sesion.setAttribute("resOper", null);
                                             }
                                         %>
                                     </div>
@@ -485,27 +487,27 @@
                 </div>
             </section>
         </div>
-<!--    </div>
-</section>-->
-<!-- Footer -->
-<footer id="footer">
-    <ul class="icons">
-        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-        <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
-    </ul>
-    <ul class="copyright">
-        <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Pantaleón Medrano</a></li>
-    </ul>
-</footer>
-<!--</div>-->
-<!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.dropotron.min.js"></script>
-<script src="assets/js/jquery.scrollgress.min.js"></script>
-<script src="assets/js/skel.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
-</body>
+        <!--    </div>
+        </section>-->
+        <!-- Footer -->
+        <footer id="footer">
+            <ul class="icons">
+                <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+            </ul>
+            <ul class="copyright">
+                <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Pantaleón Medrano</a></li>
+            </ul>
+        </footer>
+        <!--</div>-->
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/jquery.scrollgress.min.js"></script>
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+    </body>
 </html>
