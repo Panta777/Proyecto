@@ -293,43 +293,43 @@
                                         <div class="select-wrapper">
                                             <h1><%out.write(idioma.getProperty("TIPO"));%>: </h1>
                                             <select  name="in_TIPO" id="TipoProd" >
-                                            </select>
 
-                                            <%if (prodMostrar.getTIPO() != null) {
-                                                    if (prodMostrar.getTIPO().contains("Tradicionales") || prodMostrar.getTIPO().contains("Traditional")) {%>
-                                            <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
-                                            <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
-                                            <option value="Coloniales"><% out.write(idioma.getProperty("Coloniales"));%></option>
-                                            <option value="Rusticos"><% out.write(idioma.getProperty("Rusticos"));%></option>
+                                                <%if (prodMostrar.getTIPO() != null) {
+                                                    if (prodMostrar.getTIPO().contains("TRADICIONALES") || prodMostrar.getTIPO().contains("Traditional")) {%>
+                                                <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
+                                                <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
+                                                <option value="Coloniales"><% out.write(idioma.getProperty("Coloniales"));%></option>
+                                                <option value="Rusticos"><% out.write(idioma.getProperty("Rusticos"));%></option>
 
-                                            <%}%>
-                                            <%if (prodMostrar.getTIPO().contains("Modernos") || prodMostrar.getTIPO().contains("Modern")) {%>
-                                            <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
-                                            <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
-                                            <option value="Coloniales"><% out.write(idioma.getProperty("Coloniales"));%></option>
-                                            <option value="Rusticos"><% out.write(idioma.getProperty("Rusticos"));%></option>
+                                                <%}%>
+                                                <%if (prodMostrar.getTIPO().contains("MODERNOS") || prodMostrar.getTIPO().contains("Modern")) {%>
+                                                <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
+                                                <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
+                                                <option value="Coloniales"><% out.write(idioma.getProperty("Coloniales"));%></option>
+                                                <option value="Rusticos"><% out.write(idioma.getProperty("Rusticos"));%></option>
 
-                                            <%}%>
-                                            <%if (prodMostrar.getTIPO().contains("Coloniales") || prodMostrar.getTIPO().contains("Colonial")) {%>
-                                            <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
-                                            <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
-                                            <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
-                                            <option value="Rusticos"><% out.write(idioma.getProperty("Rusticos"));%></option>
+                                                <%}%>
+                                                <%if (prodMostrar.getTIPO().contains("Coloniales") || prodMostrar.getTIPO().contains("Colonial")) {%>
+                                                <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
+                                                <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
+                                                <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
+                                                <option value="Rusticos"><% out.write(idioma.getProperty("Rusticos"));%></option>
 
-                                            <%}
+                                                <%}
                                                 if (prodMostrar.getTIPO().contains("Rusticos") || prodMostrar.getTIPO().contains("Rustic")) {%>
-                                            <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
-                                            <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
-                                            <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
-                                            <option value="Coloniales"><% out.write(idioma.getProperty("Coloniales"));%></option>
-                                            <%}
+                                                <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
+                                                <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
+                                                <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
+                                                <option value="Coloniales"><% out.write(idioma.getProperty("Coloniales"));%></option>
+                                                <%}
                                             } else {%>
-                                            <option  disabled selected hidden>-<% out.write(idioma.getProperty("Categoria"));%>-</option>
-                                            <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
-                                            <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
-                                            <option value="Coloniales"><% out.write(idioma.getProperty("Coloniales"));%></option>
-                                            <option value="Rusticos"><% out.write(idioma.getProperty("Rusticos"));%></option>
-                                            <%}%>
+                                                <option  disabled  hidden>-<% out.write(idioma.getProperty("Categoria"));%>-</option>
+                                                <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
+                                                <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
+                                                <option value="Coloniales"><% out.write(idioma.getProperty("Coloniales"));%></option>
+                                                <option value="Rusticos"><% out.write(idioma.getProperty("Rusticos"));%></option>
+                                                <%}%>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="6u 12u(narrower)">
@@ -357,7 +357,7 @@
                                         <input type="text" name="in_PESO" id="in_PESO"  value ="<%out.write(prodMostrar.getPESO());%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <h1><%out.write(idioma.getProperty("FOTO"));%>: </h1>
+                                        <h1><%out.write(idioma.getProperty("Foto"));%>: </h1>
                                         <input type="text" name="in_FOTO" id="in_FOTO"  value ="<%out.write(prodMostrar.getFOTO());%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
@@ -451,7 +451,7 @@
                                                         ELIMINAR 
                                                     </a>
                                                 </td>
-                                                
+
                                             </tr>
                                             <%
                                                     conta++;
@@ -485,8 +485,8 @@
                 </div>
             </section>
         </div>
-    </div>
-</section>
+<!--    </div>
+</section>-->
 <!-- Footer -->
 <footer id="footer">
     <ul class="icons">
@@ -499,7 +499,7 @@
         <li>&copy; Todos los Derechos Reservados</li><li>Diseñado por: <a href="https://www.facebook.com/panta.medrano">Pantaleón Medrano</a></li>
     </ul>
 </footer>
-</div>
+<!--</div>-->
 <!-- Scripts -->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/jquery.dropotron.min.js"></script>
