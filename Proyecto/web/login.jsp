@@ -48,6 +48,9 @@
                 history.go(1);
             };
             window.back = previene();
+            function Error_Cargar() {
+                window.event.srcElement.style.display = "None";
+            }
         </script>
     </head>
     <body class="landing" oncontextmenu='return false'>
@@ -79,7 +82,7 @@
                             </li>
                             <% if (nivel.equals("3") || nivel.equals("4") || nivel.equals("")) {%>
                             <li>
-                                <a href="login.jsp" class= "button special"><% out.write(idioma.getProperty("Entrar"));%> <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <a href="login.jsp" class= "button special"><% out.write(idioma.getProperty("Entrar"));%> <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito" onerror="Error_Cargar()"> </a>
                                 <ul>
                                     <li> <a href="nuevoCliente.jsp" class ="actions"><% out.write(idioma.getProperty("Registrate"));%></a> </li>
 
@@ -91,7 +94,7 @@
                 </header>
                 <!-- Banner -->
                 <section id="banner" class ="box">
-                    <img class="image featured" src="images/logo.png" alt="log" />
+                    <img class="image featured" src="images/logo.png" alt="log" onerror="Error_Cargar()" />
                     <p><% out.write(idioma.getProperty("Sirviendolecon"));%></p>
                 </section>                    
                 <!-- Main -->

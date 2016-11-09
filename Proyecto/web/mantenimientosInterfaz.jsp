@@ -12,13 +12,56 @@
 <%@page import="ClasesGenericas.Compra"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Controlador.controladorProducto"%>
-<%@page import="Controlador.EliminarProducto"%>
+<%@page import=""%>
 <%@page session = "true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    Idioma idioma = null;
+    HttpSession sesion = request.getSession(true);
+    if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
+        sesion.setAttribute("Idioma", "Español");
+        idioma = new Idioma("Español");
+    } else {
+        idioma = new Idioma("Ingles");
+    }
+
+    String nivel = "", usuario = "", resOper = "";
+    if (sesion.getAttribute("nivel") != null && sesion.getAttribute("user") != null) {
+        nivel = sesion.getAttribute("nivel").toString();
+        usuario = sesion.getAttribute("user").toString();
+    }
+    if (sesion.getAttribute("resOper") != null) {
+        resOper = sesion.getAttribute("resOper").toString();
+    }
+
+    int opera = 0;
+    if (request.getParameter("Operacion") != null) {
+        opera = Integer.parseInt(request.getParameter("Operacion"));
+    }
+
+    int idProd = 0;
+    if (request.getParameter("idProd") != null) {
+        idProd = Integer.parseInt(request.getParameter("idProd"));
+    }
+
+    String datoBuscar = "";
+    if (request.getParameter("datoBuscar") != null) {
+        datoBuscar = request.getParameter("datoBuscar").toString();
+    }
+
+    String campoFiltro = "";
+    if (request.getParameter("campoFiltro") != null) {
+        campoFiltro = request.getParameter("campoFiltro").toString();
+    }
+
+    if (nivel.equals("3") || nivel.equals("4") || nivel == "") {
+        response.sendRedirect("index.jsp#main");
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Mantenimiento Productos</title>
+        <title><% out.write(idioma.getProperty("Mantenimientos"));%></title>
         <link rel="shortcut icon" href="images/ICONOS/ICO.ico "/>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -51,54 +94,10 @@
                 history.go(1);
             };
             window.back = previene();
-        </script>        
-        <%
-            Idioma idioma = null;
-            HttpSession sesion = request.getSession(true);
-            if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
-                sesion.setAttribute("Idioma", "Español");
-                idioma = new Idioma("Español");
-            } else {
-                idioma = new Idioma("Ingles");
+            function Error_Cargar() {
+                window.event.srcElement.style.display = "None";
             }
-
-            String nivel = "", usuario = "", resOper = "";
-            if (sesion.getAttribute("nivel") != null && sesion.getAttribute("user") != null) {
-                nivel = sesion.getAttribute("nivel").toString();
-                usuario = sesion.getAttribute("user").toString();
-            }
-//            if (!nivel.equals("2") && !nivel.equals("1")) {
-//                response.sendRedirect("index.jsp#main");
-//            }
-
-            if (sesion.getAttribute("resOper") != null) {
-                resOper = sesion.getAttribute("resOper").toString();
-            }
-
-            int opera = 0;
-            if (request.getParameter("Operacion") != null) {
-                opera = Integer.parseInt(request.getParameter("Operacion"));
-            }
-
-            int idProd = 0;
-            if (request.getParameter("idProd") != null) {
-                idProd = Integer.parseInt(request.getParameter("idProd"));
-            }
-
-            String datoBuscar = "";
-            if (request.getParameter("datoBuscar") != null) {
-                datoBuscar = request.getParameter("datoBuscar").toString();
-            }
-
-            String campoFiltro = "";
-            if (request.getParameter("campoFiltro") != null) {
-                campoFiltro = request.getParameter("campoFiltro").toString();
-            }
-
-            if (nivel.equals("3") || nivel.equals("4") || nivel == "") {
-                response.sendRedirect("index.jsp#mantenimiento");
-            }
-        %>
+        </script>       
     </head>
     <body class="landing" oncontextmenu='return false'>
         <div id="page-wrapper">
@@ -129,7 +128,7 @@
                         <%}%>
                         <%if (nivel.equals("2") || nivel.equals("1")) {%>
                         <li>
-                            <a  class= "button special" ><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <a  class= "button special" ><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito" onerror="Error_Cargar()"> </a>
                             <ul> 
                                 <li> <a href="modificaCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("ModificarmisDatos"));%></a> </li>
                                 <li> <a href="logout.jsp" class ="actions"><% out.write(idioma.getProperty("CerrarSesión"));%></a> </li>
@@ -137,7 +136,7 @@
                         </li>
                         <%} else {%>
                         <li>
-                            <a href="#" class= "icon fa-angle-down"><% out.write(idioma.getProperty("IngresaroRegistrarse"));%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <a href="#" class= "icon fa-angle-down"><% out.write(idioma.getProperty("IngresaroRegistrarse"));%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito" onerror="Error_Cargar()"> </a>
                             <ul>
                                 <li>
                                     <a href="login.jsp#main" class= "actions"> <% out.write(idioma.getProperty("Entrar"));%></a>
@@ -152,7 +151,7 @@
             </header>
             <!-- Banner -->
             <section id="banner" class ="box special">
-                <img class="image featured" src="images/logo.png" alt="log" />
+                <img class="image featured" src="images/logo.png" alt="log" onerror="Error_Cargar()"/>
                 <p><% out.write(idioma.getProperty("Sirviendolecon"));%></p>
             </section>
             <!-- Main -->
@@ -160,7 +159,7 @@
                 <section class="box special">
                     <header class="major">
                         <h2>MANTENIMIENTOS</h2>
-                        <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
+                        <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" onerror="Error_Cargar()"s/></span>
                     </header>                
                 </section>
                 <div class="row">
@@ -376,7 +375,7 @@
                         <%
                             }
                         %>
-                        <!-- Form Modificar PRODUCTO -->
+                        <!-- Form ELIMINAR PRODUCTO -->
                         <%//VER  ELIMINAR PRODUCTO  = 3
                             if (opera == 3) {
                         %>
@@ -466,6 +465,97 @@
                         <%
                             }
                         %>
+                        <!-- FIN ELIMINAR PRODUCTO -->
+                        <!-- Form ELIMINAR CLIENTE -->
+                        <%//VER  ELIMINAR CLIENTE  = 4
+                            if (opera == 4) {
+                        %>
+                        <div class="12u" id ="eliminaClientes">
+                            <section class="box" >
+                                <header class="major">
+                                    <h2> BAJA A CLIENTES</h2>
+                                    <h3>BUSQUE EL CLIENTE QUE DESEA DAR DE BAJA</h3>
+                                </header>
+                                <form method="POST" action="mantenimientosInterfaz.jsp?Operacion=4#eliminaClientes">
+                                    <div class="row uniform 50%">
+                                        <div class="6u 12u(narrower)">
+                                            <div class="select-wrapper">
+                                                <select  id="CampoFiltro" name="campoFiltro" >
+                                                    <option value="" disabled selected hidden>Buscar Cliente por:</option>
+                                                    <option value="NOMBRE">Nombre</option>
+                                                    <option value="NIT">NIT</option>
+                                                    <option value="NIT">USUARIO</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="6u 12u(narrower)">
+                                            <input type="text" name="datoBuscar" id="datoBuscar" value="" placeholder="Que coincida con..." />
+                                        </div>
+                                        <ul class="actions">
+                                            <li><input type="submit" name ="Buscar" value="Buscar"  /></li>
+                                        </ul>
+                                    </div>
+                                </form>
+                                <%
+                                    ArrayList<Producto> productos = null;
+                                    OperacionesProducto oP = new OperacionesProducto();
+                                    int conta = 0;
+                                    if (!campoFiltro.equals("") && !datoBuscar.equals("")) {
+                                        productos = oP.mostrarDatosProductoReporte(campoFiltro, datoBuscar);
+
+                                        if (productos != null && productos.size() != 0) {
+                                %>
+                                <div class="table-wrapper">
+                                    <table class="actions" id="TablaProductos">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre </th>
+                                                <th>NIT </th>
+                                                <th>USUARIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%      while (conta < productos.size()) {
+                                                    int idProd2 = productos.get(conta).getID_PRODUCTO();
+                                            %>                               
+                                            <tr>
+                                                <td><%out.write(productos.get(conta).getDESCRIPCION());%></td>
+                                                <td><% out.write(productos.get(conta).getREFERENCIA());%></td>
+                                                <td><%out.write(productos.get(conta).getTIPO());%></td>
+                                                <td><a href="detalleproducto.jsp?id=<%=idProd2%>#main" > 
+                                                        ELIMINAR 
+                                                    </a>
+                                                </td>
+
+                                            </tr>
+                                            <%
+                                                    conta++;
+                                                };
+                                            %>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="3">
+                                                    <p>&nbsp;</p>
+                                                    <%
+                                                                out.write("<h3>Se encontraron: " + conta + " coincidencias</h3>");
+
+                                                            } else {
+                                                                out.write(" <p> &nbsp</p> <h3>No se encontraron resultados</h3>");
+                                                            }
+                                                        }%>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                &nbsp;
+                            </section>
+                        </div>
+                        <%
+                            }
+                        %>
+                        <!-- FIN ELIMINAR CLIENTE -->
                     </div>
                     <hr />
                 </div>

@@ -69,6 +69,9 @@
                 history.go(1);
             };
             window.back = previene();
+            function Error_Cargar() {
+                window.event.srcElement.style.display = "None";
+            }
         </script>
     </head>
     <body class="landing" oncontextmenu='return false'>
@@ -98,7 +101,7 @@
                             </li>
                             <%}%>
                             <li>
-                                <a  class= "button special"><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <a  class= "button special"><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito" onerror="Error_Cargar()"> </a>
                                 <ul>
                                     <li> <a href="modificaCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("ModificarmisDatos"));%></a> </li>
                                     <li> <a href="logout.jsp" class ="actions"><% out.write(idioma.getProperty("CerrarSesión"));%></a> </li>
@@ -109,7 +112,7 @@
                 </header>
                 <!-- Banner -->
                 <section id="banner" class ="box special">
-                    <span class="image featured"><img src="images/logo.png" alt="log" /></span>
+                    <span class="image featured"><img src="images/logo.png" alt="log" onerror="Error_Cargar()"/></span>
                     <p><% out.write(idioma.getProperty("Sirviendolecon"));%></p>
                 </section>
                 <!-- Main -->
@@ -117,7 +120,7 @@
                     <section class="box special">
                         <header class="major">
                             <h2><% out.write(idioma.getProperty("ACTUALIZACIÓNDEMISDATOS"));%></h2>
-                            <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
+                            <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" onerror="Error_Cargar()"/></span>
                         </header>                
                     </section>
                     <div class="row">

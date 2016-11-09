@@ -51,7 +51,9 @@
 
             ga('create', 'UA-329936-3', 'auto');
             ga('send', 'pageview');
-
+            function Error_Cargar() {
+                window.event.srcElement.style.display = "None";
+            }
         </script>
     </head>
     <body class ="landing">
@@ -123,7 +125,7 @@
             </header>
             <!-- Banner -->
             <section id="banner" class ="box special">
-                <span class="image featured"><img src="images/logo.png" alt="log" /></span>
+                <span class="image featured"><img src="images/logo.png" alt="log" onerror="Error_Cargar()"/></span>
                 <p><% out.write(idioma.getProperty("Sirviendolecon"));%></p>
 
             </section>

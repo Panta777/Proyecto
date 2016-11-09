@@ -9,10 +9,32 @@
 <%@page import="modelo.OperacionesCliente"%>
 <%@page session = "true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+        <%
+            Idioma idioma = null;
+            HttpSession sesion = request.getSession(true);
+            if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
+                sesion.setAttribute("Idioma", "Español");
+                idioma = new Idioma("Español");
+            } else {
+                idioma = new Idioma("Ingles");
+            }
+
+            String nivel = "", resOper = "";
+            if (sesion.getAttribute("nivel") != null && sesion.getAttribute("user") != null) {
+                nivel = sesion.getAttribute("nivel").toString();
+            }
+            if (nivel.equals("2") || nivel.equals("1")) {
+                response.sendRedirect("modificaCliente.jsp");
+            }
+
+            if (sesion.getAttribute("resOper") != null) {
+                resOper = sesion.getAttribute("resOper").toString();
+            }
+        %>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Registro de Nuevo Cliente</title>
+        <title><% out.write(idioma.getProperty("REGISTRONUEVOCLIENTE"));%></title>
         <link rel="shortcut icon" href="images/ICONOS/ICO.ico "/>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -48,29 +70,11 @@
                 history.go(1);
             };
             window.back = previene();
+            function Error_Cargar() {
+                window.event.srcElement.style.display = "None";
+            }
         </script>        
-        <%
-            Idioma idioma = null;
-            HttpSession sesion = request.getSession(true);
-            if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
-                sesion.setAttribute("Idioma", "Español");
-                idioma = new Idioma("Español");
-            } else {
-                idioma = new Idioma("Ingles");
-            }
 
-            String nivel = "", resOper = "";
-            if (sesion.getAttribute("nivel") != null && sesion.getAttribute("user") != null) {
-                nivel = sesion.getAttribute("nivel").toString();
-            }
-            if (nivel.equals("2") || nivel.equals("1")) {
-                response.sendRedirect("modificaCliente.jsp");
-            }
-
-            if (sesion.getAttribute("resOper") != null) {
-                resOper = sesion.getAttribute("resOper").toString();
-            }
-        %>
     </head>
     <body class="landing">
         <div id="page-wrapper">
@@ -90,7 +94,7 @@
                         </li>
                         <% if (nivel.equals("3") || nivel.equals("4") || nivel.equals("")) {%>
                         <li>
-                            <a href="login.jsp#main" class= "button special"> <% out.write(idioma.getProperty("Entrar"));%>  <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <a href="login.jsp#main" class= "button special"> <% out.write(idioma.getProperty("Entrar"));%>  <img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito" onerror="Error_Cargar()"> </a>
                             <ul>
                                 <li> <a href="nuevoCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("Registrate"));%></a> </li>
                             </ul>
@@ -101,7 +105,7 @@
             </header>
             <!-- Banner -->
             <section id="banner" class ="box special">
-                <span class="image featured"><img src="images/logo.png" alt="log" /></span>
+                <span class="image featured"><img src="images/logo.png" alt="log" onerror="Error_Cargar()"/></span>
                 <p><% out.write(idioma.getProperty("Sirviendolecon"));%></p>
             </section>
             <!-- Main -->
@@ -109,7 +113,7 @@
                 <section class="box special">
                     <header class="major">
                         <h2><% out.write(idioma.getProperty("REGISTRONUEVOCLIENTE"));%></h2>
-                        <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
+                        <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" onerror="Error_Cargar()"/></span>
                     </header>                
                 </section>
                 <div class="row">

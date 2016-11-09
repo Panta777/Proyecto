@@ -68,7 +68,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
-        <script src="assets/js/jspdf.debug.js"></script>
+                <script>          
+           function Error_Cargar() {
+                window.event.srcElement.style.display = "None";
+            }
+        </script>
     </head>
     <body oncontextmenu='return false'>
 
@@ -101,7 +105,7 @@
                         <%}%>
                         <%if (nivel.equals("2") || nivel.equals("1")) {%>
                         <li>
-                            <a  class= "button special" ><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <a  class= "button special" ><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito" onerror="Error_Cargar()"> </a>
                             <ul> 
                                 <li> <a href="modificaCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("ModificarmisDatos"));%></a> </li>
                                 <li> <a href="logout.jsp" class ="actions"><% out.write(idioma.getProperty("CerrarSesión"));%></a> </li>
@@ -109,11 +113,10 @@
                         </li>
                         <%} else {%>
                         <li>
-                            <a href="#" class= "icon fa-angle-down"><% out.write(idioma.getProperty("IngresaroRegistrarse"));%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <a href="#" class= "icon fa-angle-down"><% out.write(idioma.getProperty("IngresaroRegistrarse"));%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito" onerror="Error_Cargar()"> </a>
                             <ul>
                                 <li>
                                     <a href="login.jsp#main" class= "actions"> <% out.write(idioma.getProperty("Entrar"));%></a>
-
                                 </li>
                                 <li> <a href="nuevoCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("Registrate"));%></a> </li>
                             </ul>
@@ -124,15 +127,15 @@
             </header>
             <!-- Banner -->
             <section id="banner" class ="box">
-                <img class="image featured" src="images/logo.png" alt="log" />
-                <p>Sirviendole con total amabilidad desde 1985.</p>
+                <img class="image featured" src="images/logo.png" alt="log"  onerror="Error_Cargar()"/>
+                <p><% out.write(idioma.getProperty("Sirviendolecon"));%></p>
             </section>
             <!-- Main -->
             <section id="main" class="container">
                 <section class="box special">
                     <header class="major">
                         <h2>REPORTERIA</h2>
-                        <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
+                        <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" onerror="Error_Cargar()"/></span>
                     </header>                
                 </section>
                 <div class="row">
@@ -880,9 +883,8 @@
                             &nbsp;
                         </section>
                     </div>
-                    <!-- FIN REPORTE 8 --><%} else {
-                            //  response.sendRedirect("index.jsp#reporteria");
-                        }%>
+                    <!-- FIN REPORTE 8 -->
+					<%}%>
                 </div>
             </section>
             <!-- Footer -->

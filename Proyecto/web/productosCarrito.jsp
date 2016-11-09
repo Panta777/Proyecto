@@ -127,7 +127,7 @@
             </header>
             <!-- Banner -->
             <section id="banner" class ="box">
-                <img class="image featured" src="images/logo.png" alt="log" />
+                <img class="image featured" src="images/logo.png" alt="log" onerror="Error_Cargar()" />
                 <p><% out.write(idioma.getProperty("Sirviendolecon"));%></p>
             </section>
             <!-- Main -->
@@ -135,7 +135,7 @@
                 <section class="box special">
                     <header class="major">
                         <h2><% out.write(idioma.getProperty("ORDENyPAGODECOMPRA"));%></h2>
-                        <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" /></span>
+                        <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" onerror="Error_Cargar()"/></span>
                     </header>                
                 </section>
                 <!-- Tabla Productos del Carrito -->
@@ -173,7 +173,7 @@
                                             </td>
                                             <td>
                                                 <div class="4u">
-                                                    <img src="<%= producto.getFOTO()%>" alt="foto" width="80" height="80"> 
+                                                    <img src="<%= producto.getFOTO()%>" alt="foto" width="80" height="80" onerror="Error_Cargar()"> 
                                                 </div>
                                             </td>
                                             <td><%= producto.getNOMBRE()%></td>
@@ -211,7 +211,7 @@
                                 <div class="4u 12u(narrow)">
                                     <a class ="button" href="index.jsp#catalogo">
                                         <!--                                <a class ="button special" href="#pagotarjeta" onclick="mostrar()">-->
-                                        <% out.write(idioma.getProperty("SeguirComprando"));%> &nbsp; <img src="images/ICONOS BLANCOS/FACTURA.png" width="25" height="21" alt ="FAC" OnError="Error_Cargar()"> 
+                                        <% out.write(idioma.getProperty("SeguirComprando"));%> &nbsp; <img src="images/ICONOS BLANCOS/FACTURA.png" width="25" height="21" alt ="FAC" onerror="Error_Cargar()" > 
                                     </a>
                                 </div>
                                 <div class="4u 12u(narrow)">

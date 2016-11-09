@@ -78,7 +78,7 @@
                             <%}%>
                             <%if (nivel.equals("2") || nivel.equals("1")) {%>
                             <li>
-                                <a  class= "button special" ><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <a  class= "button special" ><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito" onerror="Error_Cargar()"> </a>
                                 <ul> 
                                     <li> <a href="modificaCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("ModificarmisDatos"));%></a> </li>
                                     <li> <a href="logout.jsp" class ="actions"><% out.write(idioma.getProperty("CerrarSesión"));%></a> </li>
@@ -86,7 +86,7 @@
                             </li>
                             <%} else {%>
                             <li>
-                                <a href="#" class= "icon fa-angle-down"><% out.write(idioma.getProperty("IngresaroRegistrarse"));%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <a href="#" class= "icon fa-angle-down"><% out.write(idioma.getProperty("IngresaroRegistrarse"));%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito" onerror="Error_Cargar()"> </a>
                                 <ul>
                                     <li>
                                         <a href="login.jsp#main" class= "actions"> <% out.write(idioma.getProperty("Entrar"));%></a>
@@ -101,7 +101,7 @@
                 </header>
                 <!-- Banner -->
                 <section id="banner" class ="box">
-                    <img class="image featured" src="images/logo.png" alt="log" />
+                    <img class="image featured" src="images/logo.png" alt="log" onerror="Error_Cargar()"/>
                     <p><% out.write(idioma.getProperty("Sirviendolecon"));%></p>
                 </section>
                 <!-- Main -->
@@ -115,7 +115,7 @@
                         <div class="row">
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
-                                    <span class="image featured"><img src="images/TRADICIONALES/MTradicionales.png" alt = "Muebles Tradicionales"/></span>
+                                    <span class="image featured"><img src="images/TRADICIONALES/MTradicionales.png" alt = "Muebles Tradicionales" onerror="Error_Cargar()"/></span>
                                     <!-- <h4><a href="catalogo.jsp?tipo=TRADICIONALES#muebles" class= "button" >Muebles Tradicionales</a></h4>-->
                                     <h4><a href="catalogo.jsp?tipo=TRADICIONALES#muebles" class= "button" ><% out.write(idioma.getProperty("MueblesTradicionales"));%></a></h4>
                                     <p><% out.write(idioma.getProperty("TradicionalesEsteMueble"));%></p>
@@ -124,7 +124,7 @@
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <!--  <span class="icon major fa-area-chart accent3"></span> -->
-                                    <span class="image featured"><img src="images/MODERNOS/MModernos.png" alt = "Muebles Modernos"/></span>
+                                    <span class="image featured"><img src="images/MODERNOS/MModernos.png" alt = "Muebles Modernos" onerror="Error_Cargar()"/></span>
                                     <!--    <h4><a href="catalogo.jsp?tipo=MODERNOS#muebles" class= "button" >Muebles Modernos</a></h4>-->
                                     <h4><a href="catalogo.jsp?tipo=MODERNOS#muebles" class= "button" ><% out.write(idioma.getProperty("MueblesModernos"));%></a></h4>
                                     <p><% out.write(idioma.getProperty("ModernosesEsteMueble"));%></p>
@@ -135,7 +135,7 @@
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <!--  <span class="icon major fa-cloud accent4"></span>-->
-                                    <span class="image featured"><img src="images/COLONIALES/MColoniales.png" alt = "Muebles Coloniales"/></span>
+                                    <span class="image featured"><img src="images/COLONIALES/MColoniales.png" alt = "Muebles Coloniales" onerror="Error_Cargar()"/></span>
                                     <!--   <h4><a href="catalogo.jsp?tipo=COLONIALES#muebles" class= "button" >Muebles Coloniales</a></h4>-->
                                     <h4><a href="catalogo.jsp?tipo=COLONIALES#muebles" class= "button" ><% out.write(idioma.getProperty("MueblesColoniales"));%></a></h4>  
                                     <p><% out.write(idioma.getProperty("ColonialesEsteMueble"));%></p>
@@ -144,7 +144,7 @@
                             <div class="6u 12u(narrower)">
                                 <section class="box special">
                                     <!--   <span class="icon major fa-lock accent5"></span>-->
-                                    <span class="image featured"><img src="images/RUSTICOS/MRusticos.png" alt = "Muebles Rusticos"/></span>
+                                    <span class="image featured"><img src="images/RUSTICOS/MRusticos.png" alt = "Muebles Rusticos" onerror="Error_Cargar()"/></span>
                                     <!--  <h4><a href="catalogo.jsp?tipo=RUSTICOS#muebles" class= "button" >Muebles Rústicos</a></h4>-->
                                     <h4><a href="catalogo.jsp?tipo=RUSTICOS#muebles" class= "button" ><% out.write(idioma.getProperty("MueblesRústicos"));%></a></h4>     
                                     <p><% out.write(idioma.getProperty("RusticusEsteMueble"));%></p>
@@ -172,7 +172,7 @@
                         <div class="row">
                             <% if (cp.getProductos(tipo, session.getAttribute("Idioma").toString()).equals("")) {%>
                             <h3> <% out.write(idioma.getProperty("NOHAYMUEBLESENESTACATEGORIA"));%> </h3> 
-                            <span class="image featured"><img src="images/404.png" alt="Sin Muebles" /></span>
+                            <span class="image featured"><img src="images/404.png" alt="Sin Muebles" onerror="Error_Cargar()"/></span>
                                 <%} else {
                                         out.write(cp.getProductos(tipo, session.getAttribute("Idioma").toString()));
                                     }%>

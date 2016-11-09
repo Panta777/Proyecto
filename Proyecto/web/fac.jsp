@@ -10,7 +10,6 @@
 <%@page import="ClasesGenericas.Compra"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Controlador.controladorProducto"%>
-<%@page import="Controlador.EliminarProducto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     HttpSession sesion = request.getSession(true);

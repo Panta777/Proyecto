@@ -97,7 +97,7 @@
                             <%}%>
                             <%if (nivel.equals("2") || nivel.equals("1")) {%>
                             <li>
-                                <a  class= "button special" ><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <a  class= "button special" ><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito" onerror="Error_Cargar()"> </a>
                                 <ul> 
                                     <li> <a href="modificaCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("ModificarmisDatos"));%></a> </li>
                                     <li> <a href="logout.jsp" class ="actions"><% out.write(idioma.getProperty("CerrarSesión"));%></a> </li>
@@ -105,7 +105,7 @@
                             </li>
                             <%} else {%>
                             <li>
-                                <a href="#" class= "icon fa-angle-down"><% out.write(idioma.getProperty("IngresaroRegistrarse"));%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                                <a href="#" class= "icon fa-angle-down"><% out.write(idioma.getProperty("IngresaroRegistrarse"));%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito" onerror="Error_Cargar()"> </a>
                                 <ul>
                                     <li>
                                         <a href="login.jsp#main" class= "actions"> <% out.write(idioma.getProperty("Entrar"));%></a>
@@ -120,7 +120,7 @@
                 </header>
                 <!-- Banner -->
                 <section id="banner" class ="box">
-                    <img class="image featured" src="images/logo.png" alt="log" />
+                    <img class="image featured" src="images/logo.png" alt="log" onerror="Error_Cargar()" />
                     <p><% out.write(idioma.getProperty("Sirviendolecon"));%></p>
                     <%if (nivel.equals("4") || nivel.equals("3") || nivel.equals("")) {%>
                     <ul class="actions" id = "botonesEntrada">
@@ -139,7 +139,7 @@
                                 <div class="row" >
                                     <div class="6u 12u(mobilep)">
                                         <section class="box special">
-                                            <div class="image featured"><img src="<%=producto.getFOTO()%>" alt="=<%=producto.getFOTO()%>" /></div>
+                                            <div class="image featured"><img src="<%=producto.getFOTO()%>" alt="=<%=producto.getFOTO()%>" onerror="Error_Cargar()"/></div>
                                         </section>
                                     </div>
                                     <div class="6u 12u(mobilep)">

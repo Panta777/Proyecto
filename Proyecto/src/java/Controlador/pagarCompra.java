@@ -8,7 +8,6 @@ package Controlador;
 import ClasesGenericas.Compra;
 import modelo.OperacionesProducto;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
