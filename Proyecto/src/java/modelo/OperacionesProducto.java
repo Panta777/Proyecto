@@ -5,7 +5,6 @@
  */
 package modelo;
 
-import ClasesGenericas.Cliente;
 import ClasesGenericas.Producto;
 import java.sql.*;
 import java.util.ArrayList;
@@ -202,8 +201,7 @@ public class OperacionesProducto {
     }
 
     /**
-     * Retorna determinado valor, según respuesta del SP para insertar Datos de
-     * Nuevo Producto
+     * Retorna respuesta del SP para insertar Datos de Nuevo Producto
      *
      * @param producto
      * @return
@@ -213,9 +211,6 @@ public class OperacionesProducto {
     public String insertarProducto(Producto producto) throws SQLException {
         String respuesta = "";
         Connection cone = coneLocal.NewConnection();
-//        if (producto.getDESCRIPCION().equals("prueba")) {
-//            return "si";
-//        }
 
         if (cone != null) {
             try {
@@ -245,7 +240,7 @@ public class OperacionesProducto {
             } catch (SQLException e) {
                 respuesta = "";
                 cone.rollback();// deshacer la ejecucion en caso de error
-                System.out.println("Error al ejecutar función  por, " ); // informar por consola
+                System.out.println("Error al ejecutar función  por, "); // informar por consola
                 e.printStackTrace();
             } finally {
                 cone.close();// cerrar la conexion
@@ -255,8 +250,7 @@ public class OperacionesProducto {
     }
 
     /**
-     * Retorna determinado valor, según respuesta de Sp para modificar Datos de
-     * Producto
+     * Retorna respuesta de Sp para modificar Datos de Producto
      *
      * @param producto
      * @return
@@ -266,20 +260,20 @@ public class OperacionesProducto {
         String respuesta = "";
         Connection cone = coneLocal.NewConnection();
 
-        System.out.println("Dato: " + producto.getID_PRODUCTO());
-        System.out.println("Dato: " + producto.getREFERENCIA());
-        System.out.println("Dato: " + producto.getNOMBRE());
-        System.out.println("Dato: " + producto.getDESCRIPCION());
-        System.out.println("Dato: " + producto.getTIPO());
-        System.out.println("Dato: " + producto.getMATERIAL());
-        System.out.println("Dato: " + producto.getALTO());
-        System.out.println("Dato: " + producto.getANCHO());
-        System.out.println("Dato: " + producto.getPROFUNDIDAD());
-        System.out.println("Dato: " + producto.getCOLOR());
-        System.out.println("Dato: " + producto.getPESO());
-        System.out.println("Dato: " + producto.getFOTO());
-        System.out.println("Dato: " + producto.getESTADO());
-        System.out.println("Dato: " + producto.getPRECIOVENTA());
+//        System.out.println("Dato: " + producto.getID_PRODUCTO());
+//        System.out.println("Dato: " + producto.getREFERENCIA());
+//        System.out.println("Dato: " + producto.getNOMBRE());
+//        System.out.println("Dato: " + producto.getDESCRIPCION());
+//        System.out.println("Dato: " + producto.getTIPO());
+//        System.out.println("Dato: " + producto.getMATERIAL());
+//        System.out.println("Dato: " + producto.getALTO());
+//        System.out.println("Dato: " + producto.getANCHO());
+//        System.out.println("Dato: " + producto.getPROFUNDIDAD());
+//        System.out.println("Dato: " + producto.getCOLOR());
+//        System.out.println("Dato: " + producto.getPESO());
+//        System.out.println("Dato: " + producto.getFOTO());
+//        System.out.println("Dato: " + producto.getESTADO());
+//        System.out.println("Dato: " + producto.getPRECIOVENTA());
 
         if (cone != null) {
             try {
@@ -317,4 +311,49 @@ public class OperacionesProducto {
         return respuesta;
     }
 
+    /**
+     * Muestra datos de los productos, segun diferentes criterios para el
+     * reporte
+     *
+     * @param campoFiltro
+     * @param dato
+     * @return registros Productos
+     * @throws java.sql.SQLException
+     */
+    public boolean validarInventario(int idP, int cant) throws SQLException {
+        boolean respuesta = false;
+        String res = "";
+
+        Connection cone = coneLocal.NewConnection();
+
+        if (cone != null) {
+            try {
+                cone.setAutoCommit(false);
+                CallableStatement validarCantidad = cone.prepareCall("{CALL validarInventario(?,?,?)}");
+
+                // cargar parametros de entrada
+                validarCantidad.setInt(1, idP);
+                validarCantidad.setInt(2, cant);
+
+                //parametro de salida
+                validarCantidad.registerOutParameter(3, OracleTypes.VARCHAR);
+
+                validarCantidad.execute();
+                res = (String) validarCantidad.getObject(3);
+
+                cone.commit();// confirmar si se ejecuto sin errores
+                
+                if(res.toUpperCase().contains("SI"))
+                {
+                     respuesta= true;
+                }
+            } catch (SQLException e) {
+                cone.rollback();// deshacer la ejecucion en caso de error
+                System.out.println("Error al ejecutar función validarInventario por, " + e); // informar por consola
+            } finally {
+                cone.close();// cerrar la conexion
+            }
+        }
+        return respuesta;
+    }
 }

@@ -6,9 +6,13 @@
 package Controlador;
 
 import ClasesGenericas.Compra;
+import modelo.OperacionesProducto;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,8 +29,9 @@ public class agregarproducto extends HttpServlet {
 
     //agregarproducto
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Processes requests for both HTTP
+     * <code>GET</code> and
+     * <code>POST</code> methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -34,22 +39,33 @@ public class agregarproducto extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-       // System.out.println("algo:::::::");
+
         int cantidad = Integer.parseInt(request.getParameter("cantidad"));
         int idproducto = Integer.parseInt(request.getParameter("idproducto"));
 
         HttpSession sesion = request.getSession(true);
         ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? new ArrayList<>() : (ArrayList) sesion.getAttribute("carrito");
 
+        OperacionesProducto opInventario = new OperacionesProducto();
+
+
         boolean flag = false;
         if (articulos.size() > 0) {
             for (Compra a : articulos) {
                 if (idproducto == a.getIdProducto()) {
-                    a.setCantidad(a.getCantidad() + cantidad);
-                    flag = true;
-                    break;
+                    if (opInventario.validarInventario(idproducto, cantidad)) {
+                        System.out.println("si procede");
+                        a.setCantidad(a.getCantidad() + cantidad);
+                        flag = true;
+                        break;
+                    } else {
+                        System.out.println("no procede venta");
+                        sesion.setAttribute("NoInventario", "NO");
+                        response.sendRedirect("detalleproducto.jsp?id=" + idproducto + "#noAlcanzaInventario");
+                        break;
+                    }
                 }
             }
         }
@@ -59,13 +75,14 @@ public class agregarproducto extends HttpServlet {
         }
 
         sesion.setAttribute("carrito", articulos);
-        response.sendRedirect("productosCarrito.jsp#main");
+        response.sendRedirect("productosCarrito.jsp#OrdenCompra");
 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the HTTP
+     * <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -75,11 +92,16 @@ public class agregarproducto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(agregarproducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP
+     * <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -89,7 +111,11 @@ public class agregarproducto extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(agregarproducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -99,7 +125,6 @@ public class agregarproducto extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Agregando Producto";
     }// </editor-fold>
-
 }

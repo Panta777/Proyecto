@@ -51,25 +51,9 @@ public class EliminarProducto extends HttpServlet {
                 }
             }
             
-//            if(articulos.isEmpty())
-//            {
-//                articulos.clear();
-//                articulos = null;
-//            }
         }
-//        
-//        double total = 0;
-//        controladorProducto cp = new controladorProducto();
-//        for(Compra a : articulos){                
-//            Producto producto = cp.getProducto(a.getIdProducto());
-//            total += a.getCantidad() * producto.getPRECIOVENTA();            
-//        }
-//        
-//        response.getWriter().print(Math.round(total * 100.0) /100.0);      
-//        
-    // response.sendRedirect("productosCarrito.jsp");
         sesion.setAttribute("carrito", articulos);
-        response.sendRedirect("productosCarrito.jsp#main");
+        response.sendRedirect("productosCarrito.jsp#OrdenCompra");
 
     }
 

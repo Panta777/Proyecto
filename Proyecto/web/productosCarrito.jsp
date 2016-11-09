@@ -32,7 +32,6 @@
     Calendar now = Calendar.getInstance();
     String tmpTxt = "";
     // controladorProducto cp = new controladorProducto();
-    //   ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
 %>
 <!DOCTYPE html>
 <html>
@@ -71,6 +70,10 @@
                 return patron.test(tecla_final);
             }
             $('input,form').attr('autocomplete', 'off');
+            
+            function Error_Cargar() {
+                window.event.srcElement.style.display = "None";
+            }
         </script>
     </head>
     <body class="landing" oncontextmenu='return false'>
@@ -100,26 +103,9 @@
                             </ul>
                         </li>
                         <%}%>
-                        <li>
-                            <a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
-                            <ul>
-                                <li>
-                                    <a href="cambioEspanol.jsp" class ="actions" >
-                                        <img class = "image featured" src="images/ICONOS/ESPANOL.png" width="25" height="25" alt ="<% out.write(idioma.getProperty("espanol"));%>">
-                                        <% out.write(idioma.getProperty("espanol"));%>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="cambioIngles.jsp" class ="actions"> 
-                                        <img  class = "image featured" src="images/ICONOS/INGLES.png" width="25" height="25" alt ="<% out.write(idioma.getProperty("ingles"));%>">
-                                        <% out.write(idioma.getProperty("ingles"));%>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
                         <%if (nivel.equals("2") || nivel.equals("1")) {%>
                         <li>
-                            <a  class= "button special" ><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
+                            <a  class= "button special" ><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito" OnError="Error_Cargar()"> </a>
                             <ul> 
                                 <li> <a href="modificaCliente.jsp#main" class ="actions"><% out.write(idioma.getProperty("ModificarmisDatos"));%></a> </li>
                                 <li> <a href="logout.jsp" class ="actions"><% out.write(idioma.getProperty("CerrarSesión"));%></a> </li>
@@ -167,12 +153,12 @@
                                     <thead>
                                         <tr>
                                             <th><h4><% out.write(idioma.getProperty("Cantidad"));%></h4></th>
-                                            <th><% out.write(idioma.getProperty("Foto"));%></th>
-                                            <th><% out.write(idioma.getProperty("Descripcion"));%></th>
-                                            <th><% out.write(idioma.getProperty("PrecioU"));%></th>
-                                            <th><% out.write(idioma.getProperty("Subtotal"));%></th>
-                                            <th><% out.write(idioma.getProperty("Eliminar"));%></th>
-                                        </tr>
+                                    <th><% out.write(idioma.getProperty("Foto"));%></th>
+                                    <th><% out.write(idioma.getProperty("Descripcion"));%></th>
+                                    <th><% out.write(idioma.getProperty("PrecioU"));%></th>
+                                    <th><% out.write(idioma.getProperty("Subtotal"));%></th>
+                                    <th><% out.write(idioma.getProperty("Eliminar"));%></th>
+                                    </tr>
                                     </thead>
                                     <tbody>
                                         <%
@@ -367,30 +353,29 @@
                                     </div>
                                     <button class="button" id="EnviarPago" type="submit">
                                         <span class="label"><% out.write(idioma.getProperty("EFECTUARPAGO"));%></span>
-                                    </button>	
-                                    <input type="hidden" id="FechahoraTransaction"  value=<%
+                                    </button>
+                                    <%
+                                     int dia_i = now.get(Calendar.DATE);
+                                     String dia = "" + dia_i;
+                                     if (dia.length() == 1) {
+                                             dia = "0" + dia;
+                                     }
+                                     tmpTxt += dia + "/";
+                                     int mes_i = now.get(Calendar.MONTH) + 1;
 
-                                        int dia_i = now.get(Calendar.DATE);
-                                        String dia = "" + dia_i;
-                                        if (dia.length() == 1) {
-                                            dia = "0" + dia;
-                                        }
-                                        tmpTxt += dia + "/";
-                                        int mes_i = now.get(Calendar.MONTH) + 1;
+                                      String mes = "" + mes_i;
+                                      if (mes.length() == 1) {
+                                           mes = "0" + mes;
+                                      }
+                                      tmpTxt += mes + "/";
+                                      tmpTxt = tmpTxt + now.get(Calendar.YEAR) + " ";
 
-                                        String mes = "" + mes_i;
-                                        if (mes.length() == 1) {
-                                            mes = "0" + mes;
-                                        }
-                                        tmpTxt += mes + "/";
-                                        tmpTxt = tmpTxt + now.get(Calendar.YEAR) + " ";
-
-                                        tmpTxt = tmpTxt + now.get(Calendar.HOUR_OF_DAY) + ":";
-                                        tmpTxt = tmpTxt + now.get(Calendar.MINUTE) + ":";
-                                        tmpTxt = tmpTxt + now.get(Calendar.SECOND);
-
-                                        // System.out.println("Dia, hora : " + tmpTxt);
-                                           %>/>
+                                       tmpTxt = tmpTxt + now.get(Calendar.HOUR_OF_DAY) + ":";
+                                       tmpTxt = tmpTxt + now.get(Calendar.MINUTE) + ":";
+                                       tmpTxt = tmpTxt + now.get(Calendar.SECOND);
+                                     // System.out.println("Dia, hora : " + tmpTxt);
+                                    %>
+                                    <input type="hidden" id="FechahoraTransaction"  value=<%=tmpTxt%>/>
                                 </form>
                             </section>
                         </div>

@@ -6,13 +6,18 @@
 <%@page import="Controlador.controladorProducto"%>
 <%@page import="ClasesGenericas.Producto"%>
 <%
-    int id = Integer.parseInt(request.getParameter("id"));
-    Producto producto = new controladorProducto().getProducto(id);
+    int id = 0;
+    Producto producto = null;
+    if (request.getParameter("id") != null) {
+        id = Integer.parseInt(request.getParameter("id"));
+        producto = new controladorProducto().getProducto(id);
+    }
+
 
     Utileria algo = new Utileria();
 
     //System.out.println(algo.getLocalIpAddress());
-    //System.out.println("prod:" + producto.getNOMBRE());
+
     Idioma idioma = null;
     HttpSession sesion = request.getSession(true);
     if (sesion.getAttribute("Idioma") == null || sesion.getAttribute("Idioma").equals("Español")) {
@@ -22,10 +27,15 @@
         idioma = new Idioma("Ingles");
     }
 
-    String nivel = "", usuario = "", rol = null, foto = null;
+    String nivel = "", usuario = "";
     if (sesion.getAttribute("user") != null && sesion.getAttribute("nivel") != null) {
         nivel = sesion.getAttribute("nivel").toString();
         usuario = sesion.getAttribute("user").toString();
+    }
+
+    String noVenta = "";
+    if (sesion.getAttribute("NoInventario") != null) {
+        noVenta = sesion.getAttribute("NoInventario").toString();
     }
     // controladorProducto cp = new controladorProducto();
     ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
@@ -82,23 +92,6 @@
                                 </ul>
                             </li>
                             <%}%>
-                            <li>
-                                <a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
-                                <ul>
-                                    <li>
-                                        <a href="cambioEspanol.jsp" class ="actions" >
-                                            <img class = "image featured" src="images/ICONOS/ESPANOL.png" width="25" height="25" alt ="<% out.write(idioma.getProperty("espanol"));%>">
-                                            <% out.write(idioma.getProperty("espanol"));%>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="cambioIngles.jsp" class ="actions"> 
-                                            <img  class = "image featured" src="images/ICONOS/INGLES.png" width="25" height="25" alt ="<% out.write(idioma.getProperty("ingles"));%>">
-                                            <% out.write(idioma.getProperty("ingles"));%>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
                             <%if (nivel.equals("2") || nivel.equals("1")) {%>
                             <li>
                                 <a  class= "button special" ><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
@@ -138,6 +131,7 @@
                     <div class="row">
                         <div class="12u">
                             <section class="box">
+                                <%if (producto != null) {%>
                                 <center><h2><%=producto.getNOMBRE()%></h2></center>
                                 <div class="row" >
                                     <div class="6u 12u(mobilep)">
@@ -167,9 +161,15 @@
                                                     <% out.write(idioma.getProperty("AGREGAR"));%>
                                                 </button>
                                             </form>
+                                            <%if (noVenta.equals("NO")) {%>
+                                            <div class="3u" id="noAlcanzaInventario">
+                                                <a href="#main">  <h5 style ='color:red; font-weight:bold;' ><% out.write(idioma.getProperty("NoInventario"));%> &nbsp; </h5></a>
+                                            </div>
+                                            <%}%>
                                         </section>
                                     </div>                       
                                 </div>
+                                <%}%>
                             </section>
                         </div>
                     </div>
@@ -182,7 +182,7 @@
                             <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
                         </ul>
                         <ul class="copyright">
-                            <li>&copy; <% out.write(idioma.getProperty("TodoslosDerechosReservados"));%></li><li><% out.write(idioma.getProperty("Diseñadopor"));%> <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
+                            <li>&copy; <% out.write(idioma.getProperty("TodoslosDerechosReservados"));%></li><li><% out.write(idioma.getProperty("Diseï¿½adopor"));%> <a href="https://www.facebook.com/panta.medrano">Panta Medrano</a></li>
                         </ul>
                     </footer>
                 </section>                                 

@@ -71,23 +71,6 @@
                                 </ul>
                             </li>
                             <%}%>
-                            <li>
-                                <a href="#" class="icon fa-angle-down"><% out.write(idioma.getProperty("cambioIdioma"));%></a>
-                                <ul>
-                                    <li>
-                                        <a href="cambioEspanol.jsp" class ="actions" >
-                                            <img class = "image featured" src="images/ICONOS/ESPANOL.png" width="25" height="25" alt ="<% out.write(idioma.getProperty("espanol"));%>">
-                                            <% out.write(idioma.getProperty("espanol"));%>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="cambioIngles.jsp" class ="actions"> 
-                                            <img  class = "image featured" src="images/ICONOS/INGLES.png" width="25" height="25" alt ="<% out.write(idioma.getProperty("ingles"));%>">
-                                            <% out.write(idioma.getProperty("ingles"));%>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
                             <%if (nivel.equals("2") || nivel.equals("1")) {%>
                             <li>
                                 <a  class= "button special" ><% out.write(idioma.getProperty("usuario"));%><%=usuario%><img src="images/ICONOS BLANCOS/CARRITO.png" width="25" height="21" alt ="carrito"> </a>
