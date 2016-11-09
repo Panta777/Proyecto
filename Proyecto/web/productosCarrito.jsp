@@ -10,7 +10,7 @@
 <%@page import="ClasesGenericas.Compra"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Controlador.controladorProducto"%>
-<%@page import="Controlador.EliminarProducto"%>
+<%@page import="Controlador.EliminarProductoCarrito"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     HttpSession sesion = request.getSession(true);
@@ -182,8 +182,8 @@
                                                 <p class="cart_total_price"><% out.write(idioma.getProperty("VALORMONEDA"));%> <%= algo.convertirCantidad(Math.round(producto.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0)%></p>
                                             </td>
                                             <td class="cart_delete">
-                                                <form method="post" action="EliminarProducto">
-                                                    <span id="idarticulo" style="display:none;"><%=producto.getID_PRODUCTO()%></span>
+                                                <form method="post" action="EliminarProductoCarrito">
+                                                    <!--<span id="idarticulo" style="display:none;"><%//=producto.getID_PRODUCTO()%></span>-->
                                                     <input type="hidden" value="<%= producto.getID_PRODUCTO()%>" name="idproducto">
                                                     <button type="submit" >
                                                         <i class="fa fa-times"></i>
@@ -250,7 +250,7 @@
                                         <img src="images/ICONOS/formas.png" alt = "Formas de Pago" OnError="Error_Cargar()"/>
                                     </a>
                                 </header>
-                                <form  id="formularioPago" method="post" action="pagarform" autocomplete="off">
+                                <form  id="formularioPago" method="post" action="pagarCompra" autocomplete="off">
                                     <h4 class="actions"><% out.write(idioma.getProperty("Completesutransacción"));%></h4>
                                     <h4 style ='color:blue; font-weight:bold;' >(<% out.write(idioma.getProperty("VerifiquesusDatos"));%></h4>
                                     <a class ="actions">
@@ -265,6 +265,18 @@
                                     <div class="12u(mobilep)">
                                         <h1><% out.write(idioma.getProperty("Númerotarjetabancaria"));%>:</h1>
                                         <input name="card-number"   placeholder="---- ---- ---- ----" type="text" value =" " maxlength="16" onkeypress="return valida(event)"  autocomplete="off">
+                                    </div>
+                                    <div class="12u(mobilep)">
+                                        <h1><% out.write(idioma.getProperty("Banco"));%>:</h1>
+                                        <div class="select-wrapper">
+                                            <select  id="Banco"  >
+                                                <option value="" disabled selected hidden><% out.write(idioma.getProperty("Bancos"));%></option>
+                                                <option value="1"><% out.write(idioma.getProperty("Banrural"));%></option>
+                                                <option value="2"><% out.write(idioma.getProperty("BancoIndustrial"));%></option>
+                                                <option value="3"><% out.write(idioma.getProperty("BancoGTContinental"));%></option>
+                                                <option value="4"><% out.write(idioma.getProperty("Otros"));%></option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <hr />
                                     <h1><% out.write(idioma.getProperty("FechaCaducidad"));%>: </h1>
@@ -318,7 +330,7 @@
                                         </div>
                                     </div>
                                     <hr />
-                                    <h1>Código de seguridad</h1>
+                                    <h1><% out.write(idioma.getProperty("Codigo"));%></h1>
                                     <div class="row uniform 50%">
                                         <div class="6u 12u(mobilep)">
                                             <input name="pas-card" type ="password" placeholder="••••" maxlength="4" onkeypress="return valida(event)" autocomplete="off"  >
@@ -354,25 +366,25 @@
                                         <span class="label"><% out.write(idioma.getProperty("EFECTUARPAGO"));%></span>
                                     </button>
                                     <%
-                                     int dia_i = now.get(Calendar.DATE);
-                                     String dia = "" + dia_i;
-                                     if (dia.length() == 1) {
-                                             dia = "0" + dia;
-                                     }
-                                     tmpTxt += dia + "/";
-                                     int mes_i = now.get(Calendar.MONTH) + 1;
+                                        int dia_i = now.get(Calendar.DATE);
+                                        String dia = "" + dia_i;
+                                        if (dia.length() == 1) {
+                                            dia = "0" + dia;
+                                        }
+                                        tmpTxt += dia + "/";
+                                        int mes_i = now.get(Calendar.MONTH) + 1;
 
-                                      String mes = "" + mes_i;
-                                      if (mes.length() == 1) {
-                                           mes = "0" + mes;
-                                      }
-                                      tmpTxt += mes + "/";
-                                      tmpTxt = tmpTxt + now.get(Calendar.YEAR) + " ";
+                                        String mes = "" + mes_i;
+                                        if (mes.length() == 1) {
+                                            mes = "0" + mes;
+                                        }
+                                        tmpTxt += mes + "/";
+                                        tmpTxt = tmpTxt + now.get(Calendar.YEAR) + " ";
 
-                                       tmpTxt = tmpTxt + now.get(Calendar.HOUR_OF_DAY) + ":";
-                                       tmpTxt = tmpTxt + now.get(Calendar.MINUTE) + ":";
-                                       tmpTxt = tmpTxt + now.get(Calendar.SECOND);
-                                     // System.out.println("Dia, hora : " + tmpTxt);
+                                        tmpTxt = tmpTxt + now.get(Calendar.HOUR_OF_DAY) + ":";
+                                        tmpTxt = tmpTxt + now.get(Calendar.MINUTE) + ":";
+                                        tmpTxt = tmpTxt + now.get(Calendar.SECOND);
+                                        // System.out.println("Dia, hora : " + tmpTxt);
                                     %>
                                     <input type="hidden" id="FechahoraTransaction"  value=<%=tmpTxt%>/>
                                 </form>
