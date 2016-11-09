@@ -137,17 +137,17 @@
                                                 <select  name="TipoDoc" id="TipoDoc" >
                                                     <%if (clMostrar.getTIPODOCUMENTO() != null) {
                                                             if (clMostrar.getTIPODOCUMENTO().contains("DPI") || clMostrar.getTIPODOCUMENTO().contains("DCI")) {%>
-                                                    <option value="" selected ><%out.write(clMostrar.getTIPODOCUMENTO());%></option>
+                                                    <option value="<%out.write(clMostrar.getTIPODOCUMENTO());%>" selected ><%out.write(clMostrar.getTIPODOCUMENTO());%></option>
                                                     <option value="Pasaporte"><% out.write(idioma.getProperty("Pasaporte"));%></option>
                                                     <option value="Otros"><% out.write(idioma.getProperty("Otrosdoc"));%></option>
                                                     <%}%>
                                                     <%if (clMostrar.getTIPODOCUMENTO().contains("Pasaporte") || clMostrar.getTIPODOCUMENTO().contains("Passport")) {%>
-                                                    <option value="" selected ><%out.write(clMostrar.getTIPODOCUMENTO());%></option>
+                                                    <option value="<%out.write(clMostrar.getTIPODOCUMENTO());%>" selected ><%out.write(clMostrar.getTIPODOCUMENTO());%></option>
                                                     <option value="DPI"><% out.write(idioma.getProperty("DPI"));%></option>
                                                     <option value="Otros"><% out.write(idioma.getProperty("Otrosdoc"));%></option>
                                                     <%}%>
                                                     <%if (clMostrar.getTIPODOCUMENTO().contains("Others") || clMostrar.getTIPODOCUMENTO().contains("Otros")) {%>
-                                                    <option value="" selected ><%out.write(clMostrar.getTIPODOCUMENTO());%></option>
+                                                    <option value="<%out.write(clMostrar.getTIPODOCUMENTO());%>" selected ><%out.write(clMostrar.getTIPODOCUMENTO());%></option>
                                                     <option value="Pasaporte"><% out.write(idioma.getProperty("Pasaporte"));%></option>
                                                     <option value="DPI"><% out.write(idioma.getProperty("DPI"));%></option>
                                                     <%}

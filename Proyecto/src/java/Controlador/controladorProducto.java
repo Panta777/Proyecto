@@ -122,11 +122,9 @@ public class controladorProducto extends HttpServlet {
                     sesion.setAttribute("resOper", "out.write(\"<h5 style=\\\" color:red; font-weight:bold;\\\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>\");\n");
                 } else {
                     sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta + "</p></h5>");
-                    response.sendRedirect("mantenimientosInterfaz.jsp?Operacion=2#ResultadoUpdateProducto");
-                }
-                response.sendRedirect("mantenimientosInterfaz.jsp");
+                    response.sendRedirect("mantenimientosInterfaz.jsp?Operacion=2&idProd="+producto.getID_PRODUCTO()+"#ResultadoUpdateProducto");
+                }          
             }
-            //}
         } catch ( Exception e) {
             out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Error desde Base de Datos</p></h5>");
         } finally {

@@ -222,36 +222,6 @@ public class OperacionesProducto {
                 cone.setAutoCommit(false);
                 CallableStatement InsertarProducto = cone.prepareCall("{ call INS_PRODUCTO(?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
 
-                System.out.println("Dato: " + producto.getID_PRODUCTO());
-                System.out.println("Dato: " + producto.getREFERENCIA());
-                System.out.println("Dato: " + producto.getNOMBRE());
-                System.out.println("Dato: " + producto.getDESCRIPCION());
-                System.out.println("Dato: " + producto.getTIPO());
-                System.out.println("Dato: " + producto.getMATERIAL());
-                System.out.println("Dato: " + producto.getALTO());
-                System.out.println("Dato: " + producto.getANCHO());
-                System.out.println("Dato: " + producto.getPROFUNDIDAD());
-                System.out.println("Dato: " + producto.getCOLOR());
-                System.out.println("Dato: " + producto.getPESO());
-                System.out.println("Dato: " + producto.getFOTO());
-                System.out.println("Dato: " + producto.getESTADO());
-                System.out.println("Dato: " + producto.getPRECIOVENTA());
-                /*
-in_REFERENCIA  IN producto.referencia%TYPE,
-in_NOMBRE      IN PRODUCTO.NOMBRE%TYPE,
-in_DESCRIPCION IN PRODUCTO.DESCRIPCION%type,
-in_TIPO        IN PRODUCTO.TIPO%TYPE,
-in_MATERIAL    IN PRODUCTO.MATERIAL%TYPE,
-in_ALTO        IN PRODUCTO.ALTO%TYPE,
-in_ANCHO       IN PRODUCTO.ANCHO%TYPE,
-in_PROFUNDIDAD IN PRODUCTO.PROFUNDIDAD%TYPE,
-in_COLOR       IN PRODUCTO.COLOR%TYPE,
-in_PESO        IN PRODUCTO.PESO%TYPE,
-in_FOTO        IN PRODUCTO.FOTO%TYPE,
-in_ESTADO      IN PRODUCTO.ESTADO%TYPE,
-in_PRECIO_VENTA IN PRODUCTO.PRECIO_VENTA%TYPE,
-in_mensaje     out varchar2
-                 */
                 // cargar parametros de entrada
                 InsertarProducto.setString(1, producto.getREFERENCIA());
                 InsertarProducto.setString(2, producto.getNOMBRE());
@@ -310,9 +280,6 @@ in_mensaje     out varchar2
         System.out.println("Dato: " + producto.getFOTO());
         System.out.println("Dato: " + producto.getESTADO());
         System.out.println("Dato: " + producto.getPRECIOVENTA());
-        if (producto.getDESCRIPCION().equals("prueba")) {
-            return "si";
-        }
 
         if (cone != null) {
             try {

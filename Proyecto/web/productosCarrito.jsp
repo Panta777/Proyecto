@@ -86,7 +86,7 @@
                         <li>
                             <a href="#" class="icon fa-angle-down">Menu</a>
                             <ul>
-                                <li><a href="#catalogo"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
+                                <li><a href="index.jsp#catalogo"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
                                 <li><a href="contact.jsp#main"><% out.write(idioma.getProperty("Contacto"));%></a></li>
                                 <li><a href="productosCarrito.jsp#OrdenCompra"><% out.write(idioma.getProperty("VerPedido"));%></a></li> 
                             </ul>
@@ -167,12 +167,12 @@
                                     <thead>
                                         <tr>
                                             <th><h4><% out.write(idioma.getProperty("Cantidad"));%></h4></th>
-                                    <th><% out.write(idioma.getProperty("Foto"));%></th>
-                                    <th><% out.write(idioma.getProperty("Descripcion"));%></th>
-                                    <th><% out.write(idioma.getProperty("PrecioU"));%></th>
-                                    <th><% out.write(idioma.getProperty("Subtotal"));%></th>
-                                    <th><% out.write(idioma.getProperty("Eliminar"));%>}</th>
-                                    </tr>
+                                            <th><% out.write(idioma.getProperty("Foto"));%></th>
+                                            <th><% out.write(idioma.getProperty("Descripcion"));%></th>
+                                            <th><% out.write(idioma.getProperty("PrecioU"));%></th>
+                                            <th><% out.write(idioma.getProperty("Subtotal"));%></th>
+                                            <th><% out.write(idioma.getProperty("Eliminar"));%></th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         <%
@@ -361,15 +361,14 @@
                                         <div class="row" style ='display:none'  id ="mensajeError">
                                             <h3 style='color:red; font-weight:bold;' > ----> <% out.write(idioma.getProperty("ErrorTransaccion"));%> <-----</h3>
                                         </div>
-                                        <h4 style='color:blue; font-weight:bold;'><% out.write(idioma.getProperty("TotalCompra"));%> Q.<%=algo.convertirCantidad(total)%></h4>
-                                        <h4 style='color:blue; font-weight:bold;'><% out.write(idioma.getProperty("Envio"));%> Q.50.00</h4>
-                                        <h4 style='color:red; font-weight:bold;' >Total: Q.<%=algo.convertirCantidad(total + 50)%></h4>
+                                        <h4 style='color:blue; font-weight:bold;'><% out.write(idioma.getProperty("TotalCompra"));%> <% out.write(idioma.getProperty("VALORMONEDA"));%><%=algo.convertirCantidad(total)%></h4>
+                                        <h4 style='color:blue; font-weight:bold;'><% out.write(idioma.getProperty("Envio"));%> <% out.write(idioma.getProperty("VALORMONEDA"));%> 50.00</h4>
+                                        <h4 style='color:red; font-weight:bold;' >Total: <% out.write(idioma.getProperty("VALORMONEDA"));%><%=algo.convertirCantidad(total + 50)%></h4>
                                     </div>
                                     <button class="button" id="EnviarPago" type="submit">
                                         <span class="label"><% out.write(idioma.getProperty("EFECTUARPAGO"));%></span>
                                     </button>	
                                     <input type="hidden" id="FechahoraTransaction"  value=<%
-
 
                                         int dia_i = now.get(Calendar.DATE);
                                         String dia = "" + dia_i;
@@ -385,7 +384,6 @@
                                         }
                                         tmpTxt += mes + "/";
                                         tmpTxt = tmpTxt + now.get(Calendar.YEAR) + " ";
-
 
                                         tmpTxt = tmpTxt + now.get(Calendar.HOUR_OF_DAY) + ":";
                                         tmpTxt = tmpTxt + now.get(Calendar.MINUTE) + ":";

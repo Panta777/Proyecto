@@ -52,7 +52,7 @@
                             <li>
                                 <a href="#" class="icon fa-angle-down">Menu</a>
                                 <ul>
-                                    <li><a href="#catalogo"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
+                                    <li><a href="index.jsp#catalogo"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
                                     <li><a href="contact.jsp#main"><% out.write(idioma.getProperty("Contacto"));%></a></li>
                                     <li><a href="productosCarrito.jsp#OrdenCompra"><% out.write(idioma.getProperty("VerPedido"));%></a></li> 
                                 </ul>

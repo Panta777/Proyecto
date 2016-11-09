@@ -11,7 +11,7 @@
 
     Utileria algo = new Utileria();
 
-    System.out.println(algo.getLocalIpAddress());
+    //System.out.println(algo.getLocalIpAddress());
     //System.out.println("prod:" + producto.getNOMBRE());
     Idioma idioma = null;
     HttpSession sesion = request.getSession(true);
@@ -68,7 +68,7 @@
                             <li>
                                 <a href="#" class="icon fa-angle-down">Menu</a>
                                 <ul>
-                                    <li><a href="#catalogo"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
+                                    <li><a href="index.jsp#catalogo"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
                                     <li><a href="contact.jsp#main"><% out.write(idioma.getProperty("Contacto"));%></a></li>
                                     <li><a href="productosCarrito.jsp#OrdenCompra"><% out.write(idioma.getProperty("VerPedido"));%></a></li> 
                                 </ul>
@@ -156,15 +156,15 @@
                                             <h4><% out.write(idioma.getProperty("COLOR"));%>: <%= producto.getCOLOR()%></h4>
                                             <h4><% out.write(idioma.getProperty("CONDICIÓN"));%>: <%= producto.getESTADO()%></h4>
                                             <form method="post" action="agregarproducto">
-                                                <h2><% out.write(idioma.getProperty("VALORMONEDA"));%> <%= producto.getPRECIOVENTA()%></h2>
+                                                <h2><% out.write(idioma.getProperty("VALORMONEDA"));%> <%=algo.convertirCantidad(producto.getPRECIOVENTA())%></h2>
                                                 <h4><% out.write(idioma.getProperty("CantidadalCarrito"));%></h4>
-                                                <div class="3u">
+                                                <div class="3u" >
                                                     <input type="hidden" value="<%= producto.getID_PRODUCTO()%>" name="idproducto">
-                                                    <input type="text" value="" id="txt-cantidad" name="cantidad" onkeypress="return valida(event)"/>
+                                                    <input type="text" style = 'font-size: 22px; font-weight: bold; color: ' value="" id="txt-cantidad" name="cantidad" onkeypress="return valida(event)"/>
                                                 </div>
-                                                <button type="submit" >
+                                                <button type="submit" style = 'font-size: 18px; '>
                                                     <i class="fa fa-shopping-cart"></i>
-                                                    AGREGAR
+                                                    <% out.write(idioma.getProperty("AGREGAR"));%>
                                                 </button>
                                             </form>
                                         </section>

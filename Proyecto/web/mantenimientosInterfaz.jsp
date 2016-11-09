@@ -113,7 +113,7 @@
                         <li>
                             <a href="#" class="icon fa-angle-down">Menu</a>
                             <ul>
-                                <li><a href="#catalogo"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
+                                <li><a href="index.jsp#catalogo"><% out.write(idioma.getProperty("CatálogoProductos"));%></a></li>
                                 <li><a href="contact.jsp#main"><% out.write(idioma.getProperty("Contacto"));%></a></li>
                                 <li><a href="productosCarrito.jsp#OrdenCompra"><% out.write(idioma.getProperty("VerPedido"));%></a></li> 
                             </ul>
@@ -294,28 +294,28 @@
 
                                                 <%if (prodMostrar.getTIPO() != null) {
                                                         if (prodMostrar.getTIPO().toLowerCase().contains("tradicionales") || prodMostrar.getTIPO().toLowerCase().contains("traditional")) {%>
-                                                <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
+                                                <option value="<%out.write(prodMostrar.getTIPO());%>" selected ><%out.write(prodMostrar.getTIPO());%></option>
                                                 <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
                                                 <option value="Coloniales"><% out.write(idioma.getProperty("Coloniales"));%></option>
                                                 <option value="Rusticos"><% out.write(idioma.getProperty("Rusticos"));%></option>
 
                                                 <%}%>
                                                 <%if (prodMostrar.getTIPO().toLowerCase().contains("modernos") || prodMostrar.getTIPO().toLowerCase().contains("modern")) {%>
-                                                <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
+                                                <option value="<%out.write(prodMostrar.getTIPO());%>" selected ><%out.write(prodMostrar.getTIPO());%></option>
                                                 <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
                                                 <option value="Coloniales"><% out.write(idioma.getProperty("Coloniales"));%></option>
                                                 <option value="Rusticos"><% out.write(idioma.getProperty("Rusticos"));%></option>
 
                                                 <%}%>
                                                 <%if (prodMostrar.getTIPO().toLowerCase().contains("coloniales") || prodMostrar.getTIPO().toLowerCase().contains("colonial")) {%>
-                                                <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
+                                                <option value="<%out.write(prodMostrar.getTIPO());%>" selected ><%out.write(prodMostrar.getTIPO());%></option>
                                                 <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
                                                 <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
                                                 <option value="Rusticos"><% out.write(idioma.getProperty("Rusticos"));%></option>
 
                                                 <%}
                                                     if (prodMostrar.getTIPO().toLowerCase().contains("rusticos") || prodMostrar.getTIPO().toLowerCase().contains("rustic")) {%>
-                                                <option value="" selected ><%out.write(prodMostrar.getTIPO());%></option>
+                                                <option value="<%out.write(prodMostrar.getTIPO());%>" selected ><%out.write(prodMostrar.getTIPO());%></option>
                                                 <option value="Tradicionales"><% out.write(idioma.getProperty("Tradicionales"));%></option>
                                                 <option value="Modernos"><% out.write(idioma.getProperty("Modernos"));%></option>
                                                 <option value="Coloniales"><% out.write(idioma.getProperty("Coloniales"));%></option>
@@ -359,16 +359,17 @@
                                         <input type="text" name="in_FOTO" id="in_FOTO"  value ="<%out.write(prodMostrar.getFOTO());%>" />
                                     </div>
                                     <div class="6u 12u(narrower)">
-                                        <h1><%out.write(idioma.getProperty("FechaAlta"));%>: </h1>
-                                        <input type="text" name="FECHA_ALTA" id="FECHA_ALTA"  value ="<%out.write(prodMostrar.getFECHA_ALTA());%>"  />
-                                    </div>
-                                    <div class="6u 12u(narrower)">
                                         <h1><%out.write(idioma.getProperty("ESTADO"));%>: </h1>
                                         <input type="text" name="ESTADO" id="ESTADO"  value ="<%out.write(prodMostrar.getESTADO());%>"  />
                                     </div>
                                     <div class="6u 12u(narrower)">
                                         <h1><%out.write(idioma.getProperty("PrecioU"));%>: </h1>
                                         <input type="text" name="PRECIOVENTA" id="PRECIOVENTA"  value ="<%out.write(Double.toString(prodMostrar.getPRECIOVENTA()));%>"/>
+                                    </div>
+                                    <div class="12u">
+                                        <ul class="actions">
+                                            <li></li>
+                                        </ul>                                    
                                     </div>
                                     <div class="row uniform " id = "ResultadoUpdateProducto">
                                         <div class="12u">
