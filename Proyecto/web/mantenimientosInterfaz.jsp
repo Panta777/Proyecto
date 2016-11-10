@@ -12,7 +12,6 @@
 <%@page import="ClasesGenericas.Compra"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Controlador.controladorProducto"%>
-<%@page import=""%>
 <%@page session = "true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -159,7 +158,7 @@
                 <section class="box special">
                     <header class="major">
                         <h2>MANTENIMIENTOS</h2>
-                        <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" onerror="Error_Cargar()"s/></span>
+                        <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" onerror="Error_Cargar()"/></span>
                     </header>                
                 </section>
                 <div class="row">

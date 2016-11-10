@@ -274,7 +274,6 @@ public class OperacionesProducto {
 //        System.out.println("Dato: " + producto.getFOTO());
 //        System.out.println("Dato: " + producto.getESTADO());
 //        System.out.println("Dato: " + producto.getPRECIOVENTA());
-
         if (cone != null) {
             try {
                 cone.setAutoCommit(false);
@@ -314,11 +313,56 @@ public class OperacionesProducto {
     /**
      * Valida la existencia de un producto en el inventario
      *
-
+     * @param idP
+     * @param cant
      * @return respuesta
      * @throws java.sql.SQLException
      */
-    public boolean validarInventario(int idP, int cant) throws SQLException {
+//    public boolean validarInventario(int idP, int cant) throws SQLException {
+    public String validarInventario(int idP, int cant) throws SQLException {
+       // boolean respuesta = false;
+        String res = "";
+
+        Connection cone = coneLocal.NewConnection();
+
+        if (cone != null) {
+            try {
+                cone.setAutoCommit(false);
+                CallableStatement validarCantidad = cone.prepareCall("{CALL P_VALIDAR_EXISTENCIA(?,?,?)}");
+
+                // cargar parametros de entrada
+                validarCantidad.setInt(1, idP);
+                validarCantidad.setInt(2, cant);
+
+                //parametro de salida
+                validarCantidad.registerOutParameter(3, OracleTypes.VARCHAR);
+ 
+                validarCantidad.execute();
+                res = (String) validarCantidad.getObject(3);
+
+                cone.commit();// confirmar si se ejecuto sin errores
+
+            } catch (SQLException e) {
+                cone.rollback();// deshacer la ejecucion en caso de error
+                System.out.println("Error al validarInventario por, " + e); // informar por consola
+            } finally {
+                cone.close();// cerrar la conexion
+            }
+        }
+        return res.toUpperCase();
+    }
+    
+    
+      /**
+     * Valida la existencia de un producto en el inventario
+     *
+     * @param idP
+     * @param cant
+     * @param oper
+     * @return respuesta
+     * @throws java.sql.SQLException
+     */
+    public boolean actualizarInventario(int idP, int cant, String oper) throws SQLException {
         boolean respuesta = false;
         String res = "";
 
@@ -327,27 +371,27 @@ public class OperacionesProducto {
         if (cone != null) {
             try {
                 cone.setAutoCommit(false);
-                CallableStatement validarCantidad = cone.prepareCall("{CALL validarInventario(?,?,?)}");
+                CallableStatement validarCantidad = cone.prepareCall("{CALL ACTUALIZA_EXISTENCIA(?,?,?,?)}");
 
                 // cargar parametros de entrada
                 validarCantidad.setInt(1, idP);
                 validarCantidad.setInt(2, cant);
-
+                validarCantidad.setString(3, oper);
                 //parametro de salida
-                validarCantidad.registerOutParameter(3, OracleTypes.VARCHAR);
+                validarCantidad.registerOutParameter(4, OracleTypes.VARCHAR);
+                
 
                 validarCantidad.execute();
-                res = (String) validarCantidad.getObject(3);
+                res = (String) validarCantidad.getObject(4);
 
                 cone.commit();// confirmar si se ejecuto sin errores
-                
-                if(res.toUpperCase().contains("SI"))
-                {
-                     respuesta= true;
+
+                if (res.toUpperCase().contains("EXITO")) {
+                    respuesta = true;
                 }
             } catch (SQLException e) {
                 cone.rollback();// deshacer la ejecucion en caso de error
-                System.out.println("Error al validarInventario por, " + e); // informar por consola
+                System.out.println("Error al actualizar Inventario por, " + e); // informar por consola
             } finally {
                 cone.close();// cerrar la conexion
             }

@@ -13,10 +13,9 @@
         producto = new controladorProducto().getProducto(id);
     }
 
-
     Utileria algo = new Utileria();
 
-    //System.out.println(algo.getLocalIpAddress());
+    System.out.println(algo.getLocalIpAddress());
 
     Idioma idioma = null;
     HttpSession sesion = request.getSession(true);
@@ -37,8 +36,10 @@
     if (sesion.getAttribute("NoInventario") != null) {
         noVenta = sesion.getAttribute("NoInventario").toString();
     }
+
+    // System.out.println("No venta:" + noVenta);
     // controladorProducto cp = new controladorProducto();
-    ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
+    //ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
 %>
 <!DOCTYPE html>
 <html >
@@ -137,13 +138,13 @@
                                 <%if (producto != null) {%>
                                 <center><h2><%=producto.getNOMBRE()%></h2></center>
                                 <div class="row" >
-                                    <div class="6u 12u(mobilep)">
-                                        <section class="box special">
+                                    <div class="4u 8u(mobilep)">
+                                        <section class="box ">
                                             <div class="image featured"><img src="<%=producto.getFOTO()%>" alt="=<%=producto.getFOTO()%>" onerror="Error_Cargar()"/></div>
                                         </section>
                                     </div>
-                                    <div class="6u 12u(mobilep)">
-                                        <section class="box" >
+                                    <div class="8u 12u(mobilep)">
+                                        <section class="box " >
                                             <h2><% out.write(idioma.getProperty("Detalles"));%></h2>
                                             <h3><%=producto.getDESCRIPCION()%></h3>      
                                             <h4><% out.write(idioma.getProperty("TIPO"));%>: <%= producto.getTIPO()%></h4>
@@ -152,26 +153,32 @@
                                             <h4><% out.write(idioma.getProperty("PROFUNDIDAD"));%>: <%= producto.getPROFUNDIDAD()%></h4>
                                             <h4><% out.write(idioma.getProperty("COLOR"));%>: <%= producto.getCOLOR()%></h4>
                                             <h4><% out.write(idioma.getProperty("CONDICIÓN"));%>: <%= producto.getESTADO()%></h4>
-                                            <form method="post" action="agregarproducto">
-                                                <h2><% out.write(idioma.getProperty("VALORMONEDA"));%> <%=algo.convertirCantidad(producto.getPRECIOVENTA())%></h2>
-                                                <h4><% out.write(idioma.getProperty("CantidadalCarrito"));%></h4>
-                                                <div class="3u" >
-                                                    <input type="hidden" value="<%= producto.getID_PRODUCTO()%>" name="idproducto">
-                                                    <input type="text" style = 'font-size: 22px; font-weight: bold; color: ' value="" id="txt-cantidad" name="cantidad" onkeypress="return valida(event)"/>
-                                                </div>
-                                                <button type="submit" style = 'font-size: 18px; '>
-                                                    <i class="fa fa-shopping-cart"></i>
-                                                    <% out.write(idioma.getProperty("AGREGAR"));%>
-                                                </button>
-                                            </form>
-                                            <%if (noVenta.equals("NO")) {%>
-                                            <div class="3u" id="noAlcanzaInventario">
-                                                <a href="#main">  <h5 style ='color:red; font-weight:bold;' ><% out.write(idioma.getProperty("NoInventario"));%> &nbsp; </h5></a>
-                                            </div>
-                                            <%}%>
                                         </section>
-                                    </div>                       
+                                    </div>
                                 </div>
+
+                                <center>
+                                    <form method="post" action="agregarproducto">
+                                        <h2><% out.write(idioma.getProperty("VALORMONEDA"));%> <%=algo.convertirCantidad(producto.getPRECIOVENTA())%></h2>
+                                        <h4><% out.write(idioma.getProperty("CantidadalCarrito"));%></h4>
+                                        <div class="6u" >
+                                            <input type="hidden" value="<%= producto.getID_PRODUCTO()%>" name="idproducto">
+                                            <input type="text" style = 'font-size: 20px; font-weight: bold; color: ' value="" id="txt-cantidad" name="cantidad" onkeypress="return valida(event)"/>
+                                        </div>
+                                        <button type="submit" style = 'font-size: 18px; '>
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <% out.write(idioma.getProperty("AGREGAR"));%>
+                                        </button>
+                                    </form>
+                                </center>
+
+                                <%if (!noVenta.contains("PRODUCTO") && !noVenta.equals("")) {
+                                        sesion.setAttribute("NoInventario", null);%>
+                                <div  id="noAlcanzaInventario">
+                                    <a href="#main">  <h3 style ='color:red;' ><% out.write(noVenta);%> &nbsp; </h3></a>
+                                </div>
+                                <%}%>
+
                                 <%}%>
                             </section>
                         </div>

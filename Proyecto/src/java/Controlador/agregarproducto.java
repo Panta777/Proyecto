@@ -8,7 +8,6 @@ package Controlador;
 import ClasesGenericas.Compra;
 import modelo.OperacionesProducto;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -29,9 +28,8 @@ public class agregarproducto extends HttpServlet {
 
     //agregarproducto
     /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -39,50 +37,69 @@ public class agregarproducto extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        int cantidad = Integer.parseInt(request.getParameter("cantidad"));
-        int idproducto = Integer.parseInt(request.getParameter("idproducto"));
+        int cantidad = 0;
+        int idproducto = idproducto = Integer.parseInt(request.getParameter("idproducto"));;
 
         HttpSession sesion = request.getSession(true);
         ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? new ArrayList<>() : (ArrayList) sesion.getAttribute("carrito");
+        String r, r2 = "";
+        try {
+            cantidad = Integer.parseInt(request.getParameter("cantidad"));
+
+        } catch (Exception e) {
+            System.out.println("Error al dar formato: " + e);
+            sesion.setAttribute("NoInventario", "INGRESE UNA CANTIDAD PARA AGREGAR EN EL CARRITO");
+            response.sendRedirect("detalleproducto.jsp?id=" + idproducto + "#noAlcanzaInventario");
+            return;
+        }
 
         OperacionesProducto opInventario = new OperacionesProducto();
 
+        try {
+            boolean flag = false;
+            r = opInventario.validarInventario(idproducto, cantidad);
+            if (r.contains("PRODUCTO DISPONIBLE EN STOCK")) {
 
-        boolean flag = false;
-        if (articulos.size() > 0) {
-            for (Compra a : articulos) {
-                if (idproducto == a.getIdProducto()) {
-                    if (opInventario.validarInventario(idproducto, cantidad)) {
-                        System.out.println("si procede");
-                        a.setCantidad(a.getCantidad() + cantidad);
-                        flag = true;
-                        break;
-                    } else {
-                        System.out.println("no procede venta");
-                        sesion.setAttribute("NoInventario", "NO");
-                        response.sendRedirect("detalleproducto.jsp?id=" + idproducto + "#noAlcanzaInventario");
-                        break;
+                if (articulos.size() > 0) {
+                    for (Compra a : articulos) {
+                        if (idproducto == a.getIdProducto()) {
+                            a.setCantidad(a.getCantidad() + cantidad);
+                            flag = true;
+                            break;
+                        }
                     }
                 }
+                if (!flag) {
+                    articulos.add(new Compra(idproducto, cantidad));
+                }
+
+                if (!opInventario.actualizarInventario(idproducto, cantidad, "AGREGAR")) {
+                    sesion.setAttribute("NoInventario", "Error al procesar transaccion, intente nuevamente");
+                    response.sendRedirect("detalleproducto.jsp?id=" + idproducto + "#noAlcanzaInventario");
+                    return;
+                }
+
+            } else {
+                sesion.setAttribute("NoInventario", r);
+                response.sendRedirect("detalleproducto.jsp?id=" + idproducto + "#noAlcanzaInventario");
+                return;
             }
-        }
 
-        if (!flag) {
-            articulos.add(new Compra(idproducto, cantidad));
-        }
+            sesion.setAttribute("carrito", articulos);
+            response.sendRedirect("productosCarrito.jsp#OrdenCompra");
 
-        sesion.setAttribute("carrito", articulos);
-        response.sendRedirect("productosCarrito.jsp#OrdenCompra");
+        } catch (SQLException e) {
+            System.out.println("Error:" + e);
+        }
 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -92,16 +109,15 @@ public class agregarproducto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(agregarproducto.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //     try {
+        processRequest(request, response);
+        //     } catch (SQLException ex) {
+        //   Logger.getLogger(agregarproducto.class.getName()).log(Level.SEVERE, null, ex);
+        //  }
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -111,11 +127,11 @@ public class agregarproducto extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(agregarproducto.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // try {
+        processRequest(request, response);
+        //} catch (SQLException ex) {
+        //  Logger.getLogger(agregarproducto.class.getName()).log(Level.SEVERE, null, ex);
+        //}
     }
 
     /**

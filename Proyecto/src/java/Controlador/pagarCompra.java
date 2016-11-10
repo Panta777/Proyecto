@@ -51,23 +51,23 @@ public class pagarCompra extends HttpServlet {
 
 
         boolean flag = false;
-        if (articulos.size() > 0) {
-            for (Compra a : articulos) {
-                if (idproducto == a.getIdProducto()) {
-                    if (opInventario.validarInventario(idproducto, cantidad)) {
-                        System.out.println("si procede");
-                        a.setCantidad(a.getCantidad() + cantidad);
-                        flag = true;
-                        break;
-                    } else {
-                        System.out.println("no procede venta");
-                        sesion.setAttribute("NoInventario", "NO");
-                        response.sendRedirect("detalleproducto.jsp?id=" + idproducto + "#noAlcanzaInventario");
-                        break;
-                    }
-                }
-            }
-        }
+//        if (articulos.size() > 0) {
+//            for (Compra a : articulos) {
+//                if (idproducto == a.getIdProducto()) {
+//                    if (opInventario.validarInventario(idproducto, cantidad)) {
+//                        System.out.println("si procede");
+//                        a.setCantidad(a.getCantidad() + cantidad);
+//                        flag = true;
+//                        break;
+//                    } else {
+//                        System.out.println("no procede venta");
+//                        sesion.setAttribute("NoInventario", "NO");
+//                        response.sendRedirect("detalleproducto.jsp?id=" + idproducto + "#noAlcanzaInventario");
+//                        break;
+//                    }
+//                }
+//            }
+//        }
 
         if (!flag) {
             articulos.add(new Compra(idproducto, cantidad));

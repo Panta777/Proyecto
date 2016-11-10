@@ -5,7 +5,6 @@
 package Controlador;
 
 import ClasesGenericas.Producto;
-import ClasesGenericas.Producto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -34,9 +33,9 @@ public class controladorProducto extends HttpServlet {
                 htmlcode += "                                    <div class=\"4u 12u(narrower)\">\n"
                         + "                                <section class=\"box special\">\n";
                 if (producto.getFOTO() != null || producto.getFOTO().length() == 0) {
-                    htmlcode += "                                    <span class=\"image featured\"><img src=\"" + producto.getFOTO() + "\" alt=\"" + producto.getTIPO() + " /></span>\n";
+                    htmlcode += "                                    <span class=\"image featured\"><img src=\"" + producto.getFOTO() + "\" alt=\"" + producto.getTIPO() + " onerror=\"Error_Cargar()/></span>\n";
                 } else {
-                    htmlcode += "                                    <span class=\"image featured\"><img src=\"images/404.png\" alt=\"Sin Muebles\" /></span>\n";
+                    htmlcode += "                                    <span class=\"image featured\"><img src=\"images/404.png\" alt=\"Sin Muebles\" onerror=\"Error_Cargar() /></span>\n";
                 }
                 htmlcode += "                                    <h3>" + producto.getNOMBRE() + "</h3>                                                <ul class=\"actions\">\n"
                         + "                                        <a href=\"detalleproducto.jsp?id=" + producto.getID_PRODUCTO() + "#main\" class= \"button\" >" + idioma.getProperty("VERDETALLES") + "</a>\n"
@@ -46,7 +45,7 @@ public class controladorProducto extends HttpServlet {
         } catch (SQLException e) {
             System.out.println("Error :" + e);
         }
-        //System.out.println("h: " + htmlcode);
+        System.out.println("h: " + htmlcode);
         return htmlcode;
 
     }
@@ -122,10 +121,10 @@ public class controladorProducto extends HttpServlet {
                     sesion.setAttribute("resOper", "out.write(\"<h5 style=\\\" color:red; font-weight:bold;\\\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>\");\n");
                 } else {
                     sesion.setAttribute("resOper", "<h5 style=' color:blue; font-weight:bold;' ><p>" + respuesta + "</p></h5>");
-                    response.sendRedirect("mantenimientosInterfaz.jsp?Operacion=2&idProd="+producto.getID_PRODUCTO()+"#ResultadoUpdateProducto");
-                }          
+                    response.sendRedirect("mantenimientosInterfaz.jsp?Operacion=2&idProd=" + producto.getID_PRODUCTO() + "#ResultadoUpdateProducto");
+                }
             }
-        } catch ( Exception e) {
+        } catch (Exception e) {
             out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Error desde Base de Datos</p></h5>");
         } finally {
             out.close();

@@ -7,6 +7,7 @@ package Controlador;
 
 import ClasesGenericas.Compra;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import modelo.OperacionesProducto;
 
 /**
  *
@@ -37,24 +39,33 @@ public class EliminarProductoCarrito extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         int idproducto = Integer.parseInt(request.getParameter("idproducto"));
-        
+        int cant = Integer.parseInt(request.getParameter("cantidad"));
         //System.out.println("Id: " + idproducto);
-
         HttpSession sesion = request.getSession(true);
         ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
+        OperacionesProducto opInventario = new OperacionesProducto();
+        try {
+            if (articulos != null) {
+                for (Compra a : articulos) {
+                    if (a.getIdProducto() == idproducto) {
+                        articulos.remove(a);
 
-        if (articulos != null) {
-            for (Compra a : articulos) {
-                if (a.getIdProducto() == idproducto) {
-                    articulos.remove(a);
-                    break;
+                        if (!opInventario.actualizarInventario(idproducto, cant, "ELIMINAR")) {
+                            sesion.setAttribute("NoInventario", "Error al procesar transaccion, intente nuevamente");
+                            response.sendRedirect("productosCarrito.jsp#OrdenCompra");
+                            return;
+                        }
+                        break;
+                    }
                 }
-            }
-            
-        }
-        sesion.setAttribute("carrito", articulos);
-        response.sendRedirect("productosCarrito.jsp#OrdenCompra");
 
+            }
+
+            sesion.setAttribute("carrito", articulos);
+            response.sendRedirect("productosCarrito.jsp#OrdenCompra");
+        } catch (SQLException e) {
+            System.out.println("Error:" + e);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

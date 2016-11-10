@@ -13,7 +13,6 @@
 <%@page import="ClasesGenericas.Compra"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Controlador.controladorProducto"%>
-<%@page import="Controlador.EliminarProducto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     HttpSession sesion = request.getSession(true);
@@ -54,9 +53,9 @@
     }
     // controladorProducto cp = new controladorProducto();
 
-    System.out.println("Operacion: " + opera);
-    System.out.println("datoBuscar: " + datoBuscar);
-    System.out.println("campoFiltro: " + campoFiltro);
+   // System.out.println("Operacion: " + opera);
+   // System.out.println("datoBuscar: " + datoBuscar);
+   // System.out.println("campoFiltro: " + campoFiltro);
     //   ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
 %>
 <!DOCTYPE html>

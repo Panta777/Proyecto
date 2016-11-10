@@ -31,6 +31,11 @@
 
     Calendar now = Calendar.getInstance();
     String tmpTxt = "";
+
+    String noVenta = "";
+    if (sesion.getAttribute("NoInventario") != null) {
+        noVenta = sesion.getAttribute("NoInventario").toString();
+    }
     // controladorProducto cp = new controladorProducto();
 %>
 <!DOCTYPE html>
@@ -69,7 +74,7 @@
                 return patron.test(tecla_final);
             }
             $('input,form').attr('autocomplete', 'off');
-            
+
             function Error_Cargar() {
                 window.event.srcElement.style.display = "None";
             }
@@ -152,12 +157,12 @@
                                     <thead>
                                         <tr>
                                             <th><h4><% out.write(idioma.getProperty("Cantidad"));%></h4></th>
-                                    <th><% out.write(idioma.getProperty("Foto"));%></th>
-                                    <th><% out.write(idioma.getProperty("Descripcion"));%></th>
-                                    <th><% out.write(idioma.getProperty("PrecioU"));%></th>
-                                    <th><% out.write(idioma.getProperty("Subtotal"));%></th>
-                                    <th><% out.write(idioma.getProperty("Eliminar"));%></th>
-                                    </tr>
+                                            <th><% out.write(idioma.getProperty("Foto"));%></th>
+                                            <th><% out.write(idioma.getProperty("Descripcion"));%></th>
+                                            <th><% out.write(idioma.getProperty("PrecioU"));%></th>
+                                            <th><% out.write(idioma.getProperty("Subtotal"));%></th>
+                                            <th><% out.write(idioma.getProperty("Eliminar"));%></th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         <%
@@ -177,14 +182,14 @@
                                                 </div>
                                             </td>
                                             <td><%= producto.getNOMBRE()%></td>
-                                            <td>Q. <%= algo.convertirCantidad(producto.getPRECIOVENTA())%></td>
+                                            <td><% out.write(idioma.getProperty("VALORMONEDA"));%> <%= algo.convertirCantidad(producto.getPRECIOVENTA())%></td>
                                             <td class="cart_total">
                                                 <p class="cart_total_price"><% out.write(idioma.getProperty("VALORMONEDA"));%> <%= algo.convertirCantidad(Math.round(producto.getPRECIOVENTA() * a.getCantidad() * 100.0) / 100.0)%></p>
                                             </td>
                                             <td class="cart_delete">
                                                 <form method="post" action="EliminarProductoCarrito">
-                                                    <!--<span id="idarticulo" style="display:none;"><%//=producto.getID_PRODUCTO()%></span>-->
                                                     <input type="hidden" value="<%= producto.getID_PRODUCTO()%>" name="idproducto">
+                                                    <input type="hidden" value="<%= a.getCantidad()%>" name="cantidad">
                                                     <button type="submit" >
                                                         <i class="fa fa-times"></i>
                                                     </button>
@@ -235,6 +240,12 @@
                                 </div>
                                 <%}%>
                             </div>
+                            <%if (!noVenta.contains("PRODUCTO") && !noVenta.equals("")) {
+                                sesion.setAttribute("NoInventario", null);%>
+                            <div  id="noAlcanzaInventario">
+                                <a href="#main">  <h3 style ='color:red;' ><% out.write(noVenta);//out.write(idioma.getProperty("NoInventario"));%> &nbsp; </h3></a>
+                            </div>
+                            <%}%>
                         </section>
                     </div>
                 </div>
@@ -252,7 +263,7 @@
                                 </header>
                                 <form  id="formularioPago" method="post" action="pagarCompra" autocomplete="off">
                                     <h4 class="actions"><% out.write(idioma.getProperty("Completesutransacción"));%></h4>
-                                    <h4 style ='color:blue; font-weight:bold;' >(<% out.write(idioma.getProperty("VerifiquesusDatos"));%></h4>
+                                    <h4 style ='color:blue; font-weight:bold;' >(<% out.write(idioma.getProperty("VerifiquesusDatos"));%>)</h4>
                                     <a class ="actions">
                                         <img src="images/ICONOS/lap.png" alt = "lap" width="25" height ="25" OnError="Error_Cargar()"/>
                                     </a>
