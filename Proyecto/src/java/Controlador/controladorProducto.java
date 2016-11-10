@@ -45,7 +45,7 @@ public class controladorProducto extends HttpServlet {
         } catch (SQLException e) {
             System.out.println("Error :" + e);
         }
-        System.out.println("h: " + htmlcode);
+        //System.out.println("h: " + htmlcode);
         return htmlcode;
 
     }

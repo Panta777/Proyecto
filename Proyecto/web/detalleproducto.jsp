@@ -136,27 +136,31 @@
                         <div class="12u">
                             <section class="box">
                                 <%if (producto != null) {%>
-                                <center><h2><%=producto.getNOMBRE()%></h2></center>
-                                <div class="row" >
-                                    <div class="4u 8u(mobilep)">
-                                        <section class="box ">
-                                            <div class="image featured"><img src="<%=producto.getFOTO()%>" alt="=<%=producto.getFOTO()%>" onerror="Error_Cargar()"/></div>
-                                        </section>
+                                <center><h2><%=producto.getNOMBRE().toUpperCase()%></h2></center>
+                                <center>
+                                    <div class="row" >
+                                        <div class="1u 12u(narrower))">
+                                            </br>
+                                        </div>
+                                        <div class="4u 12u(narrower)">
+                                            <section class="box ">
+                                                <div class="image featured"><img src="<%=producto.getFOTO()%>" alt="=<%=producto.getFOTO()%>" onerror="Error_Cargar()"/></div>
+                                            </section>
+                                        </div>
+                                        <div class="6u 12u(narrower)">
+                                            <section class="box " >
+                                                <h2><% out.write(idioma.getProperty("Detalles"));%></h2>
+                                                <h3><%=producto.getDESCRIPCION()%></h3>      
+                                                <h4><% out.write(idioma.getProperty("TIPO"));%>: <%= producto.getTIPO()%></h4>
+                                                <h4><% out.write(idioma.getProperty("ALTO"));%>: <%= producto.getALTO()%></h4>
+                                                <h4><% out.write(idioma.getProperty("ANCHO"));%>: <%= producto.getANCHO()%></h4>
+                                                <h4><% out.write(idioma.getProperty("PROFUNDIDAD"));%>: <%= producto.getPROFUNDIDAD()%></h4>
+                                                <h4><% out.write(idioma.getProperty("COLOR"));%>: <%= producto.getCOLOR()%></h4>
+                                                <h4><% out.write(idioma.getProperty("CONDICIÓN"));%>: <%= producto.getESTADO()%></h4>
+                                            </section>
+                                        </div>
                                     </div>
-                                    <div class="8u 12u(mobilep)">
-                                        <section class="box " >
-                                            <h2><% out.write(idioma.getProperty("Detalles"));%></h2>
-                                            <h3><%=producto.getDESCRIPCION()%></h3>      
-                                            <h4><% out.write(idioma.getProperty("TIPO"));%>: <%= producto.getTIPO()%></h4>
-                                            <h4><% out.write(idioma.getProperty("ALTO"));%>: <%= producto.getALTO()%></h4>
-                                            <h4><% out.write(idioma.getProperty("ANCHO"));%>: <%= producto.getANCHO()%></h4>
-                                            <h4><% out.write(idioma.getProperty("PROFUNDIDAD"));%>: <%= producto.getPROFUNDIDAD()%></h4>
-                                            <h4><% out.write(idioma.getProperty("COLOR"));%>: <%= producto.getCOLOR()%></h4>
-                                            <h4><% out.write(idioma.getProperty("CONDICIÓN"));%>: <%= producto.getESTADO()%></h4>
-                                        </section>
-                                    </div>
-                                </div>
-
+                                </center>
                                 <center>
                                     <form method="post" action="agregarproducto">
                                         <h2><% out.write(idioma.getProperty("VALORMONEDA"));%> <%=algo.convertirCantidad(producto.getPRECIOVENTA())%></h2>
@@ -171,7 +175,6 @@
                                         </button>
                                     </form>
                                 </center>
-
                                 <%if (!noVenta.contains("PRODUCTO") && !noVenta.equals("")) {
                                         sesion.setAttribute("NoInventario", null);%>
                                 <div  id="noAlcanzaInventario">
