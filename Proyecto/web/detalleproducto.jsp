@@ -169,7 +169,7 @@
                                             <input type="hidden" value="<%= producto.getID_PRODUCTO()%>" name="idproducto">
                                             <input type="text" style = 'font-size: 20px; font-weight: bold; color: ' value="" id="txt-cantidad" name="cantidad" onkeypress="return valida(event)"/>
                                         </div>
-                                        <button type="submit" style = 'font-size: 18px; '>
+                                        <button type="submit" style = 'font-size: 18px; ' name ="addprodcart">
                                             <i class="fa fa-shopping-cart"></i>
                                             <% out.write(idioma.getProperty("AGREGAR"));%>
                                         </button>

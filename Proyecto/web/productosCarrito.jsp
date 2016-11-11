@@ -11,6 +11,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="Controlador.controladorProducto"%>
 <%@page import="Controlador.EliminarProductoCarrito"%>
+<%@page import="Controlador.pagarCompra"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     HttpSession sesion = request.getSession(true);
@@ -157,12 +158,12 @@
                                     <thead>
                                         <tr>
                                             <th><h4><% out.write(idioma.getProperty("Cantidad"));%></h4></th>
-                                            <th><% out.write(idioma.getProperty("Foto"));%></th>
-                                            <th><% out.write(idioma.getProperty("Descripcion"));%></th>
-                                            <th><% out.write(idioma.getProperty("PrecioU"));%></th>
-                                            <th><% out.write(idioma.getProperty("Subtotal"));%></th>
-                                            <th><% out.write(idioma.getProperty("Eliminar"));%></th>
-                                        </tr>
+                                    <th><% out.write(idioma.getProperty("Foto"));%></th>
+                                    <th><% out.write(idioma.getProperty("Descripcion"));%></th>
+                                    <th><% out.write(idioma.getProperty("PrecioU"));%></th>
+                                    <th><% out.write(idioma.getProperty("Subtotal"));%></th>
+                                    <th><% out.write(idioma.getProperty("Eliminar"));%></th>
+                                    </tr>
                                     </thead>
                                     <tbody>
                                         <%
@@ -224,10 +225,18 @@
                                 </div> 
                                 <%if (articulos != null && articulos.size() > 0 && (nivel.equals("2") || nivel.equals("1"))) {
                                         //if (articulos != null && articulos.size() > 0) {%>
-                                <div class="4u 12u(mobile2p)">
-                                    <a class ="button special" href="#pagotarjeta" onclick="mostrar()">
-                                        <% out.write(idioma.getProperty("TerminarCompra"));%>  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR" OnError="Error_Cargar()">  
-                                    </a>
+                                <div class="4u 12u(mobilep)">
+                                    <form method="post" action="agregarproducto">
+<!--                                        <a class ="button special" href="#pagotarjeta" onclick="mostrar()" >
+                                            <%// out.write(idioma.getProperty("TerminarCompra"));%>  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR" OnError="Error_Cargar()">  
+                                        </a>-->
+
+                                        <input type="hidden" value="<%//= producto.getID_PRODUCTO()%>" name="idproducto">
+                                        <input type="hidden" value="<%//= a.getCantidad()%>" name="cantidad">
+                                        <ul class="button special">
+                                            <li><input type="submit" name ="sendCart" disabled = true value="<% out.write(idioma.getProperty("TerminarCompra"));%> "  /> <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR" OnError="Error_Cargar()">  </li>
+                                        </ul>
+                                    </form>
                                 </div>
                                 <%} else if (articulos != null && articulos.size() > 0) {%>
                                 <div class="4u 12u(mobilep)">
@@ -240,8 +249,8 @@
                                 </div>
                                 <%}%>
                             </div>
-                            <%if (!noVenta.contains("PRODUCTO") && !noVenta.equals("")) {
-                                sesion.setAttribute("NoInventario", null);%>
+                            <%if (!noVenta.equals("")) {
+                                    sesion.setAttribute("NoInventario", null);%>
                             <div  id="noAlcanzaInventario">
                                 <a href="#main">  <h3 style ='color:red;' ><% out.write(noVenta);//out.write(idioma.getProperty("NoInventario"));%> &nbsp; </h3></a>
                             </div>
@@ -277,6 +286,7 @@
                                         <h1><% out.write(idioma.getProperty("Númerotarjetabancaria"));%>:</h1>
                                         <input name="card-number"   placeholder="---- ---- ---- ----" type="text" value =" " maxlength="16" onkeypress="return valida(event)"  autocomplete="off">
                                     </div>
+                                    <hr />
                                     <div class="12u(mobilep)">
                                         <h1><% out.write(idioma.getProperty("Banco"));%>:</h1>
                                         <div class="select-wrapper">

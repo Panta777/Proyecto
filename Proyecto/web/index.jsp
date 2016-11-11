@@ -38,7 +38,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="assets/css/main.css" />
         <script>          
-           function Error_Cargar() {
+            function Error_Cargar() {
                 window.event.srcElement.style.display = "None";
             }
         </script>
@@ -142,10 +142,10 @@
                                     <li><a href="reporteria.jsp?Operacion=1#verClientes" class="button"><% out.write(idioma.getProperty("VERCLIENTES"));%></a></li>
                                     <li><a href="reporteria.jsp?Operacion=2#verProductos" class="button special"><% out.write(idioma.getProperty("VERPRODUCTOS"));%></a></li>
                                     <li><a href="reporteria.jsp?Operacion=3#ventasFecha" class="button"><% out.write(idioma.getProperty("VENTASPORFECHA"));%></a></li>
-                                    <li><a href="reporteria.jsp?Operacion=4#ventasCiudad" class="button special"><% out.write(idioma.getProperty("VENTASPORCIUDAD"));%></a></li>
-                                    <li><a href="reporteria.jsp?Operacion=5#ventasMueble" class="button "><% out.write(idioma.getProperty("VENTASPORMUEBLE"));%></a></li>
-                                    <li><a href="reporteria.jsp?Operacion=6#productosCliente" class="button special"><% out.write(idioma.getProperty("PRODUCTOSPORCLIENTE"));%></a></li>
-                                    <li><a href="reporteria.jsp?Operacion=7#productoMasVendido" class="button alt"><% out.write(idioma.getProperty("PRODUCTOMASVENDIDOPORCIUDAD"));%></a></li>
+<!--                                    <li><a href="reporteria.jsp?Operacion=4#ventasCiudad" class="button special"><% //out.write(idioma.getProperty("VENTASPORCIUDAD"));%></a></li>
+                                    <li><a href="reporteria.jsp?Operacion=5#ventasMueble" class="button "><% //out.write(idioma.getProperty("VENTASPORMUEBLE"));%></a></li>
+                                    <li><a href="reporteria.jsp?Operacion=6#productosCliente" class="button special"><%// out.write(idioma.getProperty("PRODUCTOSPORCLIENTE"));%></a></li>
+                                    <li><a href="reporteria.jsp?Operacion=7#productoMasVendido" class="button alt"><% //out.write(idioma.getProperty("PRODUCTOMASVENDIDOPORCIUDAD"));%></a></li>-->
                                 </ul>
                             </div> 
                             <a href="reporteria.jsp"></a>

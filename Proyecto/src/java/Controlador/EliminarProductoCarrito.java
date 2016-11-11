@@ -52,7 +52,7 @@ public class EliminarProductoCarrito extends HttpServlet {
 
                         if (!opInventario.actualizarInventario(idproducto, cant, "ELIMINAR")) {
                             sesion.setAttribute("NoInventario", "Error al procesar transaccion, intente nuevamente");
-                            response.sendRedirect("productosCarrito.jsp#OrdenCompra");
+                            response.sendRedirect("productosCarrito.jsp#noAlcanzaInventario");
                             return;
                         }
                         break;

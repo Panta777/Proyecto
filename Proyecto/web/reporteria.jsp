@@ -133,7 +133,7 @@
             <section id="main" class="container">
                 <section class="box special">
                     <header class="major">
-                        <h2>REPORTERIA</h2>
+                        <h2><h2><% out.write(idioma.getProperty("Reporteria").toUpperCase());%></h2></h2>
                         <span class="image featured"><img src="images/ICONOS/MUEBLES.png" alt="" onerror="Error_Cargar()"/></span>
                     </header>                
                 </section>
