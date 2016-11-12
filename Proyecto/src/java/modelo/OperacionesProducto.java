@@ -398,4 +398,47 @@ public class OperacionesProducto {
         }
         return respuesta;
     }
+    
+    
+       /**
+     * Valida la existencia de un producto en el inventario
+     *
+     * @param idP
+     * @return respuesta
+     * @throws java.sql.SQLException
+     */
+//    public boolean validarInventario(int idP, int cant) throws SQLException {
+    public String eliminarProducto(int idP) throws SQLException {
+       // boolean respuesta = false;
+        String res = "";
+
+        Connection cone = coneLocal.NewConnection();
+
+        if (cone != null) {
+            try {
+                cone.setAutoCommit(false);
+                CallableStatement validarCantidad = cone.prepareCall("{CALL ELIMINAPRODUCTO(?,?}");
+
+                // cargar parametros de entrada
+                validarCantidad.setInt(1, idP);
+              //  validarCantidad.setInt(2, cant);
+
+                //parametro de salida
+                validarCantidad.registerOutParameter(2, OracleTypes.VARCHAR);
+ 
+                validarCantidad.execute();
+                res = (String) validarCantidad.getObject(2);
+
+                cone.commit();// confirmar si se ejecuto sin errores
+
+            } catch (SQLException e) {
+                cone.rollback();// deshacer la ejecucion en caso de error
+                System.out.println("Error al ELIMINAPRODUCTO por, " + e); // informar por consola
+            } finally {
+                cone.close();// cerrar la conexion
+            }
+        }
+        System.out.println("Resultado Eliminacion: " + res);
+        return res.toUpperCase();
+    }
 }

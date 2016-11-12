@@ -43,7 +43,7 @@
 %>
 <!DOCTYPE html>
 <html >
-    <head>
+    
         <title><% out.write(idioma.getProperty("mueblierialosalpes"));%></title>
         <link rel="shortcut icon" href="images/ICONOS/ICO.ico"/>
         <meta charset="utf-8" />
@@ -67,7 +67,7 @@
                 window.event.srcElement.style.display = "None";
             }
         </script>
-    </head>
+    
     <body class="landing" oncontextmenu='return false'>
         <section id="container" > 
             <div id="page-wrapper"> 

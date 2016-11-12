@@ -26,9 +26,8 @@ public class agregarproducto extends HttpServlet {
 
     //agregarproducto
     /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -43,9 +42,8 @@ public class agregarproducto extends HttpServlet {
             int cantidad = 0;
             int idproducto = idproducto = Integer.parseInt(request.getParameter("idproducto"));;
 
-
             ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? new ArrayList<>() : (ArrayList) sesion.getAttribute("carrito");
-            String r, r2 = "";
+            String r = "";
             try {
                 cantidad = Integer.parseInt(request.getParameter("cantidad"));
 
@@ -76,12 +74,11 @@ public class agregarproducto extends HttpServlet {
                         articulos.add(new Compra(idproducto, cantidad));
                     }
 
-                    if (!opInventario.actualizarInventario(idproducto, cantidad, "AGREGAR")) {
-                        sesion.setAttribute("NoInventario", "Error al procesar transaccion, intente nuevamente");
-                        response.sendRedirect("detalleproducto.jsp?id=" + idproducto + "#noAlcanzaInventario");
-                        return;
-                    }
-
+//                    if (!opInventario.actualizarInventario(idproducto, cantidad, "AGREGAR")) {
+//                        sesion.setAttribute("NoInventario", "Error al procesar transaccion, intente nuevamente");
+//                        response.sendRedirect("detalleproducto.jsp?id=" + idproducto + "#noAlcanzaInventario");
+//                        return;
+//                    }
                 } else {
                     sesion.setAttribute("NoInventario", r);
                     response.sendRedirect("detalleproducto.jsp?id=" + idproducto + "#noAlcanzaInventario");
@@ -96,9 +93,8 @@ public class agregarproducto extends HttpServlet {
             }
 
         } else if (request.getParameter("sendCart") != null) {
-                        int cantidad = 0;
+            int cantidad = 0;
             int idproducto = idproducto = Integer.parseInt(request.getParameter("idproducto"));;
-
 
             ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? new ArrayList<>() : (ArrayList) sesion.getAttribute("carrito");
             String r, r2 = "";
@@ -156,8 +152,7 @@ public class agregarproducto extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP
-     * <code>GET</code> method.
+     * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -175,8 +170,7 @@ public class agregarproducto extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP
-     * <code>POST</code> method.
+     * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response

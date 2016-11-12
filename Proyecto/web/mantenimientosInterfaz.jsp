@@ -4,6 +4,7 @@
     Author     : panle
 --%>
 
+<%@page import="ClasesGenericas.Cliente"%>
 <%@page import="ClasesGenericas.Producto"%>
 <%@page import="modelo.OperacionesProducto"%>
 <%@page import="modelo.Idioma"%>
@@ -12,6 +13,8 @@
 <%@page import="ClasesGenericas.Compra"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Controlador.controladorProducto"%>
+<%@page import="Controlador.controladorCliente"%>
+<%@page import="Controlador.EliminarProductoCarrito"%>
 <%@page session = "true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -88,11 +91,11 @@
                     return false;
                 }
             }
-            previene = function () {
-                window.stop;
-                history.go(1);
-            };
-            window.back = previene();
+//            previene = function () {
+//                window.stop;
+//                history.go(1);
+//            };
+//            window.back = previene();
             function Error_Cargar() {
                 window.event.srcElement.style.display = "None";
             }
@@ -381,7 +384,7 @@
                         <div class="12u" id ="eliminaProductos">
                             <section class="box" >
                                 <header class="major">
-                                    <h2> BAJA A PRODUCTOS</h2>
+                                    <h2>ELIMINACION PRODUCTOS</h2>
                                     <h3>BUSQUE EL PRODUCTO QUE DESEA DAR DE BAJA</h3>
                                 </header>
                                 <form method="POST" action="mantenimientosInterfaz.jsp?Operacion=3#eliminaProductos">
@@ -425,17 +428,20 @@
                                         </thead>
                                         <tbody>
                                             <%      while (conta < productos.size()) {
+
                                                     int idProd2 = productos.get(conta).getID_PRODUCTO();
+                                                    oP.eliminarProducto(idProd2);
                                             %>                               
                                             <tr>
                                                 <td><%out.write(productos.get(conta).getDESCRIPCION());%></td>
-                                                <td><% out.write(productos.get(conta).getREFERENCIA());%></td>
+                                                <td><%out.write(productos.get(conta).getREFERENCIA());%></td>
                                                 <td><%out.write(productos.get(conta).getTIPO());%></td>
-                                                <td><a href="detalleproducto.jsp?id=<%=idProd2%>#main" > 
-                                                        ELIMINAR 
-                                                    </a>
+                                                <td>
+                                                    <form method="POST" action="EliminarProductoCarrito">
+                                                        <input type="hidden" name ="prodEli" value="<%= (productos.get(conta).getID_PRODUCTO())%>"  />
+                                                        <input type="submit" name ="ELIMINAR" value="ELIMINAR"  />
+                                                    </form>
                                                 </td>
-
                                             </tr>
                                             <%
                                                     conta++;
@@ -472,7 +478,7 @@
                         <div class="12u" id ="eliminaClientes">
                             <section class="box" >
                                 <header class="major">
-                                    <h2> BAJA A CLIENTES</h2>
+                                    <h2>ELIMINACION CLIENTES</h2>
                                     <h3>BUSQUE EL CLIENTE QUE DESEA DAR DE BAJA</h3>
                                 </header>
                                 <form method="POST" action="mantenimientosInterfaz.jsp?Operacion=4#eliminaClientes">
@@ -482,8 +488,8 @@
                                                 <select  id="CampoFiltro" name="campoFiltro" >
                                                     <option value="" disabled selected hidden>Buscar Cliente por:</option>
                                                     <option value="NOMBRE">Nombre</option>
-                                                    <option value="NIT">NIT</option>
-                                                    <option value="NIT">USUARIO</option>
+                                                    <option value="APELLIDO">Apellido</option>
+                                                    <option value="NIT">Nit</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -491,41 +497,46 @@
                                             <input type="text" name="datoBuscar" id="datoBuscar" value="" placeholder="Que coincida con..." />
                                         </div>
                                         <ul class="actions">
-                                            <li><input type="submit" name ="Buscar" value="Buscar"  /></li>
+                                            <li><input type="submit" name ="Buscar" value="Buscar" /></li>
                                         </ul>
                                     </div>
                                 </form>
                                 <%
-                                    ArrayList<Producto> productos = null;
-                                    OperacionesProducto oP = new OperacionesProducto();
+                                    ArrayList<Cliente> clientes = null;
+                                    OperacionesCliente oC = new OperacionesCliente();
                                     int conta = 0;
                                     if (!campoFiltro.equals("") && !datoBuscar.equals("")) {
-                                        productos = oP.mostrarDatosProductoReporte(campoFiltro, datoBuscar);
-
-                                        if (productos != null && productos.size() != 0) {
+                                        clientes = oC.mostrarDatosClienteReporte(campoFiltro, datoBuscar);
+                                        if (clientes != null && clientes.size() != 0) {
                                 %>
                                 <div class="table-wrapper">
-                                    <table class="actions" id="TablaProductos">
+                                    <table class="actions">
                                         <thead>
                                             <tr>
-                                                <th>Nombre </th>
-                                                <th>NIT </th>
+                                                <th>NOMBRE COMPLETO</th>
                                                 <th>USUARIO</th>
+                                                <th>NIT</th>
+                                                <th>NO DOCUMENTO</th>
+                                                <th>TELÉFONO CELULAR</th>
+                                                <th>ELIMINACION</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <%      while (conta < productos.size()) {
-                                                    int idProd2 = productos.get(conta).getID_PRODUCTO();
+                                            <%
+                                                while (conta < clientes.size()) {
                                             %>                               
                                             <tr>
-                                                <td><%out.write(productos.get(conta).getDESCRIPCION());%></td>
-                                                <td><% out.write(productos.get(conta).getREFERENCIA());%></td>
-                                                <td><%out.write(productos.get(conta).getTIPO());%></td>
-                                                <td><a href="detalleproducto.jsp?id=<%=idProd2%>#main" > 
-                                                        ELIMINAR 
-                                                    </a>
+                                                <td><%out.write(clientes.get(conta).getNOMBRE() + " " + clientes.get(conta).getAPELLIDO());%></td>
+                                                <td><%out.write(clientes.get(conta).getUSUARIO());%></td>
+                                                <td><%out.write(clientes.get(conta).getNIT());%></td>
+                                                <td><%out.write(clientes.get(conta).getNUMERO_DOC());%></td>
+                                                <td><%out.write(clientes.get(conta).getTEL_CEL());%></td>
+                                                <td>
+                                                    <form method="POST" action="controladorCliente">
+                                                        <input type="hidden" name ="prodEli" value="<%= (clientes.get(conta).getID_CLIENTE())%>"  />
+                                                        <input type="submit" name ="ELIMINAR" value="ELIMINAR"  />
+                                                    </form>
                                                 </td>
-
                                             </tr>
                                             <%
                                                     conta++;
@@ -534,7 +545,7 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <td colspan="3">
+                                                <td colspan="3"> 
                                                     <p>&nbsp;</p>
                                                     <%
                                                                 out.write("<h3>Se encontraron: " + conta + " coincidencias</h3>");
@@ -546,12 +557,16 @@
                                                 </td>
                                             </tr>
                                         </tfoot>
-                                    </table>
+                                    </table> 
                                 </div>
                                 &nbsp;
                             </section>
                         </div>
                         <%
+                        } else {
+                        %>
+                        <%
+                            out.write(idioma.getProperty("Mantenimientos"));
                             }
                         %>
                         <!-- FIN ELIMINAR CLIENTE -->

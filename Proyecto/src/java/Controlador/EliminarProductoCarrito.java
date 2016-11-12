@@ -37,34 +37,75 @@ public class EliminarProductoCarrito extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        int idproducto = Integer.parseInt(request.getParameter("idproducto"));
-        int cant = Integer.parseInt(request.getParameter("cantidad"));
-        //System.out.println("Id: " + idproducto);
         HttpSession sesion = request.getSession(true);
-        ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
-        OperacionesProducto opInventario = new OperacionesProducto();
-        try {
-            if (articulos != null) {
-                for (Compra a : articulos) {
-                    if (a.getIdProducto() == idproducto) {
-                        articulos.remove(a);
+        if (request.getParameter("addprodcart") != null) {
 
-                        if (!opInventario.actualizarInventario(idproducto, cant, "ELIMINAR")) {
-                            sesion.setAttribute("NoInventario", "Error al procesar transaccion, intente nuevamente");
-                            response.sendRedirect("productosCarrito.jsp#noAlcanzaInventario");
-                            return;
+            int idproducto = Integer.parseInt(request.getParameter("idproducto"));
+            // int cant = Integer.parseInt(request.getParameter("cantidad"));
+            //System.out.println("Id: " + idproducto);
+
+            ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
+            //OperacionesProducto opInventario = new OperacionesProducto();
+            try {
+                if (articulos != null) {
+                    for (Compra a : articulos) {
+                        if (a.getIdProducto() == idproducto) {
+                            articulos.remove(a);
+                            break;
                         }
-                        break;
                     }
-                }
 
+                }
+                sesion.setAttribute("carrito", articulos);
+                response.sendRedirect("productosCarrito.jsp#OrdenCompra");
+            } catch (Exception e) {
+                System.out.println("Error:" + e);
             }
 
-            sesion.setAttribute("carrito", articulos);
-            response.sendRedirect("productosCarrito.jsp#OrdenCompra");
-        } catch (SQLException e) {
-            System.out.println("Error:" + e);
+        } else if (request.getParameter("ELIMINAR") != null) {
+            int idproducto = 0;
+            if (request.getParameter("prodEli") != null) {
+                idproducto = Integer.parseInt(request.getParameter("prodEli"));
+            }
+
+            OperacionesProducto opInventario = new OperacionesProducto();
+
+            try {
+                boolean flag = false;
+                String r = opInventario.eliminarProducto(idproducto);
+                if (r.toUpperCase().contains("EXITO")) {
+
+                } else {
+                    sesion.setAttribute("NoInventario", r);
+                    response.sendRedirect("detalleproducto.jsp?id=" + idproducto + "#noAlcanzaInventario");
+                    return;
+                }
+
+//                sesion.setAttribute("carrito", articulos);
+//                response.sendRedirect("productosCarrito.jsp#OrdenCompra");
+
+            } catch (SQLException e) {
+                System.out.println("Error:" + e);
+            }
+            //System.out.println("Id: " + idproducto);
+//
+//            ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? null : (ArrayList) sesion.getAttribute("carrito");
+//            //OperacionesProducto opInventario = new OperacionesProducto();
+//            try {
+//                if (articulos != null) {
+//                    for (Compra a : articulos) {
+//                        if (a.getIdProducto() == idproducto) {
+//                            articulos.remove(a);
+//                            break;
+//                        }
+//                    }
+//
+//                }
+//                sesion.setAttribute("carrito", articulos);
+//                response.sendRedirect("productosCarrito.jsp#OrdenCompra");
+//            } catch (Exception e) {
+//                System.out.println("Error:" + e);
+//            }
         }
     }
 

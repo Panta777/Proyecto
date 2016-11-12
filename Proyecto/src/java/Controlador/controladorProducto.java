@@ -73,7 +73,7 @@ public class controladorProducto extends HttpServlet {
             Producto producto = new Producto();
 
             if (request.getParameter("EnviarNP") != null) {
-
+                HttpSession sesion = request.getSession();
                 producto.setREFERENCIA(request.getParameter("in_REFERENCIA"));
                 producto.setNOMBRE(request.getParameter("in_NOMBRE"));
                 producto.setDESCRIPCION(request.getParameter("in_DESCRIPCION"));
@@ -87,8 +87,13 @@ public class controladorProducto extends HttpServlet {
                 producto.setFOTO(request.getParameter("in_FOTO"));
                 producto.setESTADO(request.getParameter("ESTADO"));
                 producto.setPRECIOVENTA(Double.valueOf(request.getParameter("PRECIOVENTA")));
+                try {
+                    producto.setPRECIOVENTA(Double.valueOf((request.getParameter("PRECIOVENTA")).replaceAll(",", "")));
+                } catch (Exception e) {
+                    sesion.setAttribute("resOper", "<h5 style=' color:red; font-weight:bold;' ><p>" + "FORMATO INCORRECTO EN EL PRECIO DE VENTA" + "</p></h5>");
+                    response.sendRedirect("mantenimientosInterfaz.jsp?Operacion=1#ResultadoNuevoProducto");
+                }
 
-                HttpSession sesion = request.getSession();
                 String respuesta = opproducto.insertarProducto(producto);
                 if (respuesta.equals("")) {
                     sesion.setAttribute("resOper", "out.write(\"<h5 style=\\\" color:red; font-weight:bold;\\\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>\");\n");
@@ -99,7 +104,7 @@ public class controladorProducto extends HttpServlet {
                 }
                 //}
             } else if (request.getParameter("EnviarMP") != null) {
-
+                HttpSession sesion = request.getSession();
                 producto.setID_PRODUCTO(Integer.valueOf(request.getParameter("idprod")));
                 producto.setREFERENCIA(request.getParameter("in_REFERENCIA"));
                 producto.setNOMBRE(request.getParameter("in_NOMBRE"));
@@ -113,9 +118,13 @@ public class controladorProducto extends HttpServlet {
                 producto.setPESO(request.getParameter("in_PESO"));
                 producto.setFOTO(request.getParameter("in_FOTO"));
                 producto.setESTADO(request.getParameter("ESTADO"));
-                producto.setPRECIOVENTA(Double.valueOf(request.getParameter("PRECIOVENTA")));
+                try {
+                    producto.setPRECIOVENTA(Double.valueOf((request.getParameter("PRECIOVENTA")).replaceAll(",", "")));
+                } catch (Exception e) {
+                    sesion.setAttribute("resOper", "<h5 style=' color:red; font-weight:bold;' ><p>" + "FORMATO INCORRECTO EN EL PRECIO DE VENTA" + "</p></h5>");
+                    response.sendRedirect("mantenimientosInterfaz.jsp?Operacion=2&idProd=" + producto.getID_PRODUCTO() + "#ResultadoUpdateProducto");
+                }
 
-                HttpSession sesion = request.getSession();
                 String respuesta = opproducto.modificarProducto(producto);
                 if (respuesta.equals("")) {
                     sesion.setAttribute("resOper", "out.write(\"<h5 style=\\\" color:red; font-weight:bold;\\\"><p> FALLO AL INSERTAR LOS DATOS, VERIFIQUE E INTENTE NUEVAMENTE</p></h5>\");\n");
@@ -126,6 +135,7 @@ public class controladorProducto extends HttpServlet {
             }
         } catch (Exception e) {
             out.write("<h5 style=\" color:red; font-weight:bold;\"><p> Error desde Base de Datos</p></h5>");
+            e.printStackTrace();
         } finally {
             out.close();
         }
