@@ -37,6 +37,7 @@
     if (sesion.getAttribute("NoInventario") != null) {
         noVenta = sesion.getAttribute("NoInventario").toString();
     }
+     Producto producto = new Producto();
     // controladorProducto cp = new controladorProducto();
 %>
 <!DOCTYPE html>
@@ -158,17 +159,17 @@
                                     <thead>
                                         <tr>
                                             <th><h4><% out.write(idioma.getProperty("Cantidad"));%></h4></th>
-                                    <th><% out.write(idioma.getProperty("Foto"));%></th>
-                                    <th><% out.write(idioma.getProperty("Descripcion"));%></th>
-                                    <th><% out.write(idioma.getProperty("PrecioU"));%></th>
-                                    <th><% out.write(idioma.getProperty("Subtotal"));%></th>
-                                    <th><% out.write(idioma.getProperty("Eliminar"));%></th>
-                                    </tr>
+                                            <th><% out.write(idioma.getProperty("Foto"));%></th>
+                                            <th><% out.write(idioma.getProperty("Descripcion"));%></th>
+                                            <th><% out.write(idioma.getProperty("PrecioU"));%></th>
+                                            <th><% out.write(idioma.getProperty("Subtotal"));%></th>
+                                            <th><% out.write(idioma.getProperty("Eliminar"));%></th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         <%
                                             for (Compra a : articulos) {
-                                                Producto producto = cp.getProducto(a.getIdProducto());
+                                                 producto = cp.getProducto(a.getIdProducto());
                                                 total += a.getCantidad() * producto.getPRECIOVENTA();
                                         %>
                                         <tr>
@@ -227,15 +228,14 @@
                                         //if (articulos != null && articulos.size() > 0) {%>
                                 <div class="4u 12u(mobilep)">
                                     <form method="post" action="agregarproducto">
-<!--                                        <a class ="button special" href="#pagotarjeta" onclick="mostrar()" >
-                                            <%// out.write(idioma.getProperty("TerminarCompra"));%>  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR" OnError="Error_Cargar()">  
-                                        </a>-->
+                                        <!--                                        <a class ="button special" href="#pagotarjeta" onclick="mostrar()" >
+                                        <%// out.write(idioma.getProperty("TerminarCompra"));%>  &nbsp; <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR" OnError="Error_Cargar()">  
+                                    </a>-->
 
-                                        <input type="hidden" value="<%//= producto.getID_PRODUCTO()%>" name="idproducto">
-                                        <input type="hidden" value="<%//= a.getCantidad()%>" name="cantidad">
-                                        <ul class="button special">
-                                            <li><input type="submit" name ="sendCart" disabled = true value="<% out.write(idioma.getProperty("TerminarCompra"));%> "  /> <img src="images/ICONOS/TARJETA.png" width="25" height="21" alt ="TAR" OnError="Error_Cargar()">  </li>
-                                        </ul>
+                                        <input type="hidden" value="<%= producto.getID_PRODUCTO()%>" name="idproducto">
+                                        <input type="hidden" value="<% %>" name="cantidad">
+                                        <input type="submit" name ="sendCart"  value="<% out.write(idioma.getProperty("TerminarCompra"));%> "  />  
+
                                     </form>
                                 </div>
                                 <%} else if (articulos != null && articulos.size() > 0) {%>
@@ -250,7 +250,7 @@
                                 <%}%>
                             </div>
                             <%if (!noVenta.equals("")) {
-                                    sesion.setAttribute("NoInventario", null);%>
+                                sesion.setAttribute("NoInventario", null);%>
                             <div  id="noAlcanzaInventario">
                                 <a href="#main">  <h3 style ='color:red;' ><% out.write(noVenta);//out.write(idioma.getProperty("NoInventario"));%> &nbsp; </h3></a>
                             </div>
@@ -406,7 +406,7 @@
                                         tmpTxt = tmpTxt + now.get(Calendar.MINUTE) + ":";
                                         tmpTxt = tmpTxt + now.get(Calendar.SECOND);
                                         // System.out.println("Dia, hora : " + tmpTxt);
-                                    %>
+%>
                                     <input type="hidden" id="FechahoraTransaction"  value=<%=tmpTxt%>/>
                                 </form>
                             </section>

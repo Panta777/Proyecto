@@ -40,8 +40,11 @@ public class agregarproducto extends HttpServlet {
         HttpSession sesion = request.getSession(true);
         if (request.getParameter("addprodcart") != null) {
             int cantidad = 0;
-            int idproducto = idproducto = Integer.parseInt(request.getParameter("idproducto"));;
+            int idproducto =  Integer.parseInt(request.getParameter("idproducto"));
 
+            Double precioU =  Double.valueOf(request.getParameter("precioU"));
+            Double precioT =  Double.valueOf(request.getParameter("precioT"));
+            
             ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? new ArrayList<>() : (ArrayList) sesion.getAttribute("carrito");
             String r = "";
             try {
@@ -65,13 +68,15 @@ public class agregarproducto extends HttpServlet {
                         for (Compra a : articulos) {
                             if (idproducto == a.getIdProducto()) {
                                 a.setCantidad(a.getCantidad() + cantidad);
+//                                a.setPrecio_u(precioU);
+//                                a.setPrecio_t(precioT);
                                 flag = true;
                                 break;
                             }
                         }
                     }
                     if (!flag) {
-                        articulos.add(new Compra(idproducto, cantidad));
+                        articulos.add(new Compra(idproducto, cantidad, precioU,precioT));
                     }
 
 //                    if (!opInventario.actualizarInventario(idproducto, cantidad, "AGREGAR")) {
@@ -97,7 +102,7 @@ public class agregarproducto extends HttpServlet {
             int idproducto = idproducto = Integer.parseInt(request.getParameter("idproducto"));;
 
             ArrayList<Compra> articulos = sesion.getAttribute("carrito") == null ? new ArrayList<>() : (ArrayList) sesion.getAttribute("carrito");
-            String r, r2 = "";
+            String r = "";
             try {
                 cantidad = Integer.parseInt(request.getParameter("cantidad"));
 
